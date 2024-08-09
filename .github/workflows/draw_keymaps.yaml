@@ -37,44 +37,46 @@ jobs:
 
       - name: Clone qmk_firmware
         run: |
-          git clone https://github.com/qmk/qmk_firmware.git
-          cd qmk_firmware
+          git clone https://github.com/qmk/qmk_firmware.git ${{ github.workspace }}/qmk_firmware
+          cd ${{ github.workspace }}/qmk_firmware
           git submodule update --init --recursive
 
       - name: Set up QMK environment
         run: |
-          cd qmk_firmware
+          cd ${{ github.workspace }}/qmk_firmware
           qmk setup
 
       - name: Run qmk c2json
         run: |
-          cd qmk_firmware
+          cd ${{ github.workspace }}/qmk_firmware
           make git-submodule
-          make -C keyboards/bastardkb/charybdis/3x6/keymaps/brainrot c2json > ../../../../../keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json
+          keymap_c_path=${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.c
+          c2_json_path=${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json
+          make -C keyboards/bastardkb/charybdis/3x6/keymaps/brainrot c2json > $c2_json_path
 
       - name: Run keymap parse
         run: |
-          keymap parse ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json > ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.json
+          keymap parse ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json > ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.json
 
       - name: Replace problematic characters in keymap.yaml
         run: |
-          sed -i "s/��/''/g" ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.yaml
+          sed -i "s/��/''/g" ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.yaml
 
       - name: Run keymap-drawer for keymap.yaml
         run: |
-          keymap -c ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/config.yaml draw ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.yaml > ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.svg
+          keymap -c ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/config.yaml draw ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.yaml > ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.svg
 
       - name: Run keymap-drawer for keymapDesign.yaml
         run: |
-          keymap -c ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/config.yaml draw ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymapDesign.yaml > ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymapDesign.svg
+          keymap -c ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/config.yaml draw ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymapDesign.yaml > ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymapDesign.svg
 
       - name: Commit and push updated files
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json
-          git add ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.json
-          git add ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.svg
-          git add ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymapDesign.svg
+          git add ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json
+          git add ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.json
+          git add ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.svg
+          git add ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymapDesign.svg
           git commit -m "Update keymap JSON and SVG files"
           git push
