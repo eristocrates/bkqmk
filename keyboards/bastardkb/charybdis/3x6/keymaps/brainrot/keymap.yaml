@@ -1,7 +1,7 @@
 layout: {qmk_keyboard: bastardkb/charybdis/3x6, qmk_layout: LAYOUT}
 layers:
   L0:
-  - [LGUI, V, G, M, P, BSPC, '', U, O, Y, B, '']
+  - [LGUI, V, G, M, P, BSPC, SPC, U, O, Y, B, '']
   - [J, K, S, N, D, '', '', A, E, I, H, Q]
   - [X, 'LT(LAYER POINTER,W)', F, L, C, '', '', '', '', ',', 'LT(LAYER POINTER,DOT)', Z]
   - [MO(LAYER LOWER), R, MO(LAYER RAISE), SPC, T]
