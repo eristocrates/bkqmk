@@ -40,26 +40,31 @@ jobs:
                       if (releases.length === 0) {
                         throw new Error('No releases found');
                       }
-                      return { id: releases[0].id, name: releases[0].name, body: releases[0].body, tag_name: releases[0].tag_name, target_commitish: releases[0].target_commitish };
+                      core.exportVariable('RELEASE_ID', releases[0].id);
+                      core.exportVariable('RELEASE_NAME', releases[0].name);
+                      core.exportVariable('RELEASE_BODY', releases[0].body);
+                      core.exportVariable('RELEASE_TAG_NAME', releases[0].tag_name);
+                      core.exportVariable('RELEASE_TARGET_COMMITISH', releases[0].target_commitish);
 
             - name: Update release timestamp
               uses: actions/github-script@v3
+              env:
+                  RELEASE_ID: ${{ env.RELEASE_ID }}
+                  RELEASE_NAME: ${{ env.RELEASE_NAME }}
+                  RELEASE_BODY: ${{ env.RELEASE_BODY }}
+                  RELEASE_TAG_NAME: ${{ env.RELEASE_TAG_NAME }}
+                  RELEASE_TARGET_COMMITISH: ${{ env.RELEASE_TARGET_COMMITISH }}
               with:
                   script: |
-                      const release_id = core.getInput('release_id');
-                      const { id, name, body, tag_name, target_commitish } = JSON.parse(core.getInput('release_data'));
                       await github.repos.updateRelease({
                         owner: context.repo.owner,
                         repo: context.repo.repo,
-                        release_id: id,
+                        release_id: process.env.RELEASE_ID,
                         draft: false,
                         prerelease: false,
-                        name: name,
-                        body: body,
-                        tag_name: tag_name,
-                        target_commitish: target_commitish,
+                        name: process.env.RELEASE_NAME,
+                        body: process.env.RELEASE_BODY,
+                        tag_name: process.env.RELEASE_TAG_NAME,
+                        target_commitish: process.env.RELEASE_TARGET_COMMITISH,
                         created_at: new Date().toISOString(),
                       });
-                  inputs:
-                      release_id: ${{ steps.get_release.outputs.id }}
-                      release_data: ${{ steps.get_release.outputs }}
