@@ -30,6 +30,7 @@ layers:
     - ''
   L4:
   - [QK BOOT, EE CLR, '', '', DPI MOD, S D MOD, S D MOD, DPI MOD, '', '', EE CLR, QK BOOT]
+  - ['', LGUI, LALT, LCTL, LSFT, '', '', RSFT, RCTL, RALT, RGUI, '']
   - - ''
     - {t: ▽, type: trans}
     - DRGSCRL
@@ -42,5 +43,4 @@ layers:
     - DRGSCRL
     - {t: ▽, type: trans}
     - ''
-  - ['', LGUI, LALT, LCTL, LSFT, '', '', RSFT, RCTL, RALT, RGUI, '']
   - [BTN2, BTN1, BTN3, BTN3, BTN1]
