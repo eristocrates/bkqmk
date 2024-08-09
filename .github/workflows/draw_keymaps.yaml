@@ -46,17 +46,13 @@ jobs:
           cd ${{ github.workspace }}/qmk_firmware
           qmk setup
 
-      - name: List qmk_firmware directory contents
-        run: |
-          ls -R ${{ github.workspace }}/qmk_firmware
-
       - name: Run qmk c2json
         run: |
           cd ${{ github.workspace }}/qmk_firmware
           make git-submodule
           keymap_c_path=${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.c
           c2_json_path=${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json
-          make -C keyboards/bastardkb/charybdis/3x6/keymaps/brainrot c2json > $c2_json_path
+          make -C ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot c2json > $c2_json_path
 
       - name: Run keymap parse
         run: |
