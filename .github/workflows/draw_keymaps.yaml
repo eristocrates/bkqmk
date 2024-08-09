@@ -18,9 +18,15 @@ jobs:
         with:
           python-version: '3.11'  # Ensure this matches the Python version you need
 
+      - name: Install pipx
+        run: |
+          python3 -m pip install --user pipx
+          python3 -m pipx ensurepath
+          export PATH="${HOME}/.local/bin:$PATH"
+
       - name: Install keymap-drawer
         run: |
-          pip install keymap-drawer
+          pipx install keymap-drawer
 
       - name: Install QMK CLI
         run: |
@@ -59,7 +65,7 @@ jobs:
 
       - name: Run keymap parse
         run: |
-          keymap -c ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/config.yaml draw ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.yaml > ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.json
+          keymap parse ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json > ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.json
 
       - name: Replace problematic characters in keymap.yaml
         run: |
