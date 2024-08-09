@@ -46,8 +46,10 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define RAISE MO(LAYER_RAISE)
 #define PT_Z LT(LAYER_POINTER, KC_Z)
 #define PT_W LT(LAYER_POINTER, KC_W)
+#define PT_K LT(LAYER_POINTER, KC_K)
 #define PT_SLSH LT(LAYER_POINTER, KC_SLSH)
 #define PT_DOT LT(LAYER_POINTER, KC_DOT)
+#define PT_H LT(LAYER_POINTER, KC_H)
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -55,9 +57,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
           KC_X,    KC_V,    KC_G,    KC_M,    KC_P, KC_BSPC,     KC_SPC,    KC_U,    KC_O,    KC_Y,    KC_B,    KC_Z,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-          KC_J,    KC_K,    KC_S,    KC_N,    KC_D, XXXXXXX,    XXXXXXX,    KC_A,    KC_E,    KC_I,    KC_H,   KC_QU,
+          KC_J,    PT_K,    KC_S,    KC_N,    KC_D, XXXXXXX,    XXXXXXX,    KC_A,    KC_E,    KC_I,    PT_H,   KC_QU,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       XXXXXXX,    PT_W,    KC_F,    KC_L,    KC_C, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, KC_COMM,   PT_DOT,XXXXXXX,
+       XXXXXXX,    KC_W,    KC_F,    KC_L,    KC_C, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, KC_COMM,   KC_DOT,XXXXXXX,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
                                     LOWER,    KC_R,   RAISE,     KC_SPC,    KC_T
   //                            ╰───────────────────────────╯ ╰──────────────────╯
