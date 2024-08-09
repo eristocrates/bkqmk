@@ -49,7 +49,7 @@ jobs:
 
       - name: Set up QMK environment
         run: |
-          qmk setup --home ${{ github.workspace }}/qmk_firmware
+          qmk setup
 
       - name: Verify QMK CLI after setup
         run: |
