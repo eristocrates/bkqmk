@@ -50,7 +50,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_BASE] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
-       KC_LGUI,    KC_V,    KC_G,    KC_M,    KC_P, KC_BSPC,    XXXXXXX,    KC_U,    KC_O,    KC_Y,    KC_B, XXXXXXX,
+       KC_LGUI,    KC_V,    KC_G,    KC_M,    KC_P, KC_BSPC,     KC_SPC,    KC_U,    KC_O,    KC_Y,    KC_B,XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
           KC_J,    KC_K,    KC_S,    KC_N,    KC_D, XXXXXXX,    XXXXXXX,    KC_A,    KC_E,    KC_I,    KC_H,   KC_Q,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
