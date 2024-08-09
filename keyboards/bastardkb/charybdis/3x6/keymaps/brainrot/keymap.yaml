@@ -20,8 +20,8 @@ layers:
     - ''
     - ''
   L3:
-  - ['', '', '', '', '', '', '', VOLU, MUTE, VOLD, '', '']
-  - ['', LEFT, UP, DOWN, RGHT, '', '', RSFT, RCTL, RALT, RGUI, '']
+  - ['', '', '', '', '', '', RGB MOD, RGB HUI, RGB SAI, RGB VAI, RGB SPI, '']
+  - ['', LEFT, UP, DOWN, RGHT, '', RGB RMOD, RGB HUD, RGB SAD, RGB VAD, RGB SPD, '']
   - ['', HOME, PGUP, PGDN, END, '', QK BOOT, EE CLR, '', '', '', '']
   - - ''
     - ''
