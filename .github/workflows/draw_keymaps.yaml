@@ -41,15 +41,9 @@ jobs:
           sudo apt-get install -y dfu-programmer
           sudo apt-get install -y dfu-util
 
-      - name: Clone qmk_firmware
-        run: |
-          git clone https://github.com/qmk/qmk_firmware.git ${{ github.workspace }}/qmk_firmware
-          cd ${{ github.workspace }}/qmk_firmware
-          git submodule update --init --recursive
-
       - name: Set up QMK environment
         run: |
-          qmk setup
+          qmk setup -y --baseurl https://github.com/qmk/qmk_firmware.git
 
       - name: Verify QMK CLI after setup
         run: |
