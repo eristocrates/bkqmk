@@ -23,6 +23,9 @@ enum charybdis_keymap_layers {
     LAYER_RAISE,
     LAYER_POINTER,
 };
+enum my_keycodes {
+    KC_QU = SAFE_RANGE,
+}
 
 /** \brief Automatically enable sniping-mode on the pointer layer. */
 #define CHARYBDIS_AUTO_SNIPING_ON_LAYER LAYER_POINTER
@@ -52,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
        KC_LGUI,    KC_V,    KC_G,    KC_M,    KC_P, KC_BSPC,     KC_SPC,    KC_U,    KC_O,    KC_Y,    KC_B,XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-          KC_J,    KC_K,    KC_S,    KC_N,    KC_D, XXXXXXX,    XXXXXXX,    KC_A,    KC_E,    KC_I,    KC_H,   KC_Q,
+          KC_J,    KC_K,    KC_S,    KC_N,    KC_D, XXXXXXX,    XXXXXXX,    KC_A,    KC_E,    KC_I,    KC_H,   KC_QU,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
           KC_X,    PT_W,    KC_F,    KC_L,    KC_C, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, KC_COMM,   PT_DOT,  KC_Z,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
@@ -149,3 +152,33 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 // Forward-declare this helper function since it is defined in rgb_matrix.c.
 void rgb_matrix_update_pwm_buffers(void);
 #endif
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case KC_QU:
+            int16_t tapping_term = get_tapping_term(KC_QU, record);
+            if (record->event.pressed) {
+            } else {
+                if (timer_elapsed(qu_timer) < tapping_term) {
+                    // Send "qu" if tapped
+                    SEND_STRING("qu");
+                } else {
+                    // Send "q" if held
+                    tap_code(KC_Q);
+                }
+            }
+            return false; // Skip all further processing of this key
+        default:
+            return true; // Process all other keycodes normally
+    }
+}
+
+// Define the tapping term for the custom keycode
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case KC_QU:
+            return 200; // Set the tapping term for KC_QU
+        default:
+            return TAPPING_TERM; // Default tapping term
+    }
+}

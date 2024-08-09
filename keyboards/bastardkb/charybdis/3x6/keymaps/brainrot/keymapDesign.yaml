@@ -30,6 +30,11 @@ layers:
     - [null, null, null, null, null, null, null, 4, 5, 6, null, null]
     - [null, null, null, null, null, null, null, 1, 2, 3, null, null]
     - [null, null, null, null, null]
+  ComboKeys:
+    - [null, v, g, m, p, bspc, quop, u, o, y, b, null]
+    - [j, k, s, n, d, coda, repeat, a, e, i, h, qu]
+    - [x, w, f, l, c, null, null, null, null, ',', '.', z]
+    - [shiftish, r, altish, spc, t]
   ComboMods:
     - [null, v, g, m, p, bspc, quop, u, o, y, b, null]
     - [j, k, s, n, d, coda, repeat, a, e, i, h, qu]
@@ -96,6 +101,9 @@ layers:
     - [null, null, null, null, null, null, null, null, null, null, null, null]
     - [null, null, null, null, null]
 combos:
+  - {l: [ComboKeys], p: [33, 34], k: Enter, a: right, o: 1}
+
+
   - {l: [ComboMods], p: [16, 38], k: Shift, a: right, o: 1}
   - {l: [ComboMods], p: [15, 38], k: Ctrl, a: top, o: 1.1}
   - {l: [ComboMods], p: [14, 38], k: Alt, a: top, o: 1.5, s: -1}
