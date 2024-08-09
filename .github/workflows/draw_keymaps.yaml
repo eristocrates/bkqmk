@@ -41,18 +41,9 @@ jobs:
           cd ${{ github.workspace }}/qmk_firmware
           git submodule update --init --recursive
 
-      - name: Set up QMK environment
-        run: |
-          cd ${{ github.workspace }}/qmk_firmware
-          qmk setup
-
       - name: Run qmk c2json
         run: |
-          cd ${{ github.workspace }}/qmk_firmware
-          make git-submodule
-          keymap_c_path=${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.c
-          c2_json_path=${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json
-          make -C ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot c2json > $c2_json_path
+          qmk c2json ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.c > ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json
 
       - name: Run keymap parse
         run: |
