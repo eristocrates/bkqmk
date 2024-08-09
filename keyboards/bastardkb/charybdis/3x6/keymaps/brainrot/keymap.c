@@ -25,7 +25,7 @@ enum charybdis_keymap_layers {
 };
 enum my_keycodes {
     KC_QU = SAFE_RANGE,
-}
+};
 
 /** \brief Automatically enable sniping-mode on the pointer layer. */
 #define CHARYBDIS_AUTO_SNIPING_ON_LAYER LAYER_POINTER
@@ -154,10 +154,12 @@ void rgb_matrix_update_pwm_buffers(void);
 #endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    static uint16_t qu_timer;
     switch (keycode) {
         case KC_QU:
-            int16_t tapping_term = get_tapping_term(KC_QU, record);
+            uint16_t tapping_term = get_tapping_term(KC_QU, record);
             if (record->event.pressed) {
+                qu_timer = timer_read();
             } else {
                 if (timer_elapsed(qu_timer) < tapping_term) {
                     // Send "qu" if tapped
