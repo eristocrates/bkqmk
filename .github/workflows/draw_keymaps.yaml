@@ -46,11 +46,21 @@ jobs:
         run: |
           ~/.local/bin/qmk setup --home ${{ github.workspace }}/qmk_firmware
 
+      - name: Debug QMK environment
+        run: |
+          ~/.local/bin/qmk doctor
+
       - name: Run qmk c2json
         run: |
           ~/.local/bin/qmk c2json ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.c > ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json
+        continue-on-error: true
+
+      - name: Check qmk c2json output
+        run: |
+          cat ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json || echo "c2.json not created"
 
       - name: Run keymap parse
+        if: success()
         run: |
           keymap parse ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json > ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.json
 
