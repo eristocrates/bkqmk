@@ -1,33 +1,38 @@
 layout: {qmk_keyboard: bastardkb/charybdis/3x6, qmk_layout: LAYOUT}
 layers:
   L0:
+  - [LGUI, V, G, M, P, BSPC, '', U, O, Y, B, '']
+  - [J, K, S, N, D, '', '', A, E, I, H, Q]
+  - [X, 'LT(LAYER POINTER,W)', F, L, C, '', '', '', '', ',', 'LT(LAYER POINTER,DOT)', Z]
+  - [MO(LAYER LOWER), R, MO(LAYER RAISE), SPC, T]
+  L1:
   - [LGUI, Q, W, E, R, T, Y, U, I, O, P, RGUI]
   - [LCTL, A, S, D, F, G, H, J, K, L, ;, RCTL]
-  - [LSFT, 'LT(LAYER POINTER,Z)', X, C, V, B, N, M, ',', ., 'LT(LAYER POINTER,SL)', RSFT]
+  - [LSFT, 'LT(LAYER POINTER,Z)', X, C, V, B, N, M, ',', ., 'LT(LAYER POINTER,SLSH)', RSFT]
   - [BSPC, SPC, MO(LAYER LOWER), MO(LAYER RAISE), ENT]
-  L1:
+  L2:
   - ['', RGB TOG, MNXT, MPLY, MPRV, '', '[', '7', '8', '9', ']', '']
   - ['', LGUI, LALT, LCTL, LSFT, '', PPLS, '4', '5', '6', PMNS, '']
   - ['', '', '', '', EE CLR, QK BOOT, PAST, '1', '2', '3', PSLS, '']
   - - ''
     - ''
-    - {t: "", type: trans}
+    - {t: Å§, type: trans}
     - ''
-    - {t: "", type: trans}
-  L2:
+    - {t: Å§, type: trans}
+  L3:
   - ['', '', '', '', '', '', '', VOLU, MUTE, VOLD, '', '']
   - ['', LEFT, UP, DOWN, RGHT, '', '', RSFT, RCTL, RALT, RGUI, '']
   - ['', HOME, PGUP, PGDN, END, '', QK BOOT, EE CLR, '', '', '', '']
-  - - {t: "", type: trans}
-    - {t: "", type: trans}
+  - - {t: Å§, type: trans}
+    - {t: Å§, type: trans}
     - ''
-    - {t: "", type: trans}
+    - {t: Å§, type: trans}
     - ''
-  L3:
+  L4:
   - [QK BOOT, EE CLR, '', '', DPI MOD, S D MOD, S D MOD, DPI MOD, '', '', EE CLR, QK BOOT]
   - ['', LGUI, LALT, LCTL, LSFT, '', '', RSFT, RCTL, RALT, RGUI, '']
   - - ''
-    - {t: "", type: trans}
+    - {t: Å§, type: trans}
     - DRGSCRL
     - SNIPING
     - ''
@@ -36,6 +41,6 @@ layers:
     - ''
     - SNIPING
     - DRGSCRL
-    - {t: "", type: trans}
+    - {t: Å§, type: trans}
     - ''
   - [BTN2, BTN1, BTN3, BTN3, BTN1]

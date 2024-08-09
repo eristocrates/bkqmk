@@ -1,4 +1,4 @@
-name: Draw Keymaps
+name: Keymap Drawer
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main  # Change this to the branch you want to trigger the workflow on
 
 jobs:
-  draw-keymaps:
+  keymap-drawer:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,6 +22,22 @@ jobs:
         run: |
           pip install keymap-drawer
 
+      - name: Install QMK CLI
+        run: |
+          pip install qmk
+
+      - name: Run qmk c2json
+        run: |
+          qmk c2json ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.c > ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json
+
+      - name: Run keymap parse
+        run: |
+          keymap parse ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json > ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.json
+
+      - name: Replace problematic characters in keymap.yaml
+        run: |
+          sed -i "s/��/''/g" ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.yaml
+
       - name: Run keymap-drawer for keymap.yaml
         run: |
           keymap -c ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/config.yaml draw ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.yaml > ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.svg
@@ -30,11 +46,13 @@ jobs:
         run: |
           keymap -c ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/config.yaml draw ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymapDesign.yaml > ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymapDesign.svg
 
-      - name: Commit and push updated SVG files
+      - name: Commit and push updated files
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json
+          git add ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.json
           git add ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.svg
           git add ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymapDesign.svg
-          git commit -m "Update keymap SVGs"
+          git commit -m "Update keymap JSON and SVG files"
           git push

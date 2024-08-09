@@ -18,6 +18,7 @@
 
 enum charybdis_keymap_layers {
     LAYER_BASE = 0,
+    LAYER_QWERTY,
     LAYER_LOWER,
     LAYER_RAISE,
     LAYER_POINTER,
@@ -41,11 +42,25 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LOWER MO(LAYER_LOWER)
 #define RAISE MO(LAYER_RAISE)
 #define PT_Z LT(LAYER_POINTER, KC_Z)
+#define PT_W LT(LAYER_POINTER, KC_W)
 #define PT_SLSH LT(LAYER_POINTER, KC_SLSH)
+#define PT_DOT LT(LAYER_POINTER, KC_DOT)
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_BASE] = LAYOUT(
+  // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
+       KC_LGUI,    KC_V,    KC_G,    KC_M,    KC_P, KC_BSPC,    XXXXXXX,    KC_U,    KC_O,    KC_Y,    KC_B, XXXXXXX,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
+          KC_J,    KC_K,    KC_S,    KC_N,    KC_D, XXXXXXX,    XXXXXXX,    KC_A,    KC_E,    KC_I,    KC_H,   KC_Q,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
+          KC_X,    PT_W,    KC_F,    KC_L,    KC_C, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, KC_COMM,   PT_DOT,   KC_Z,
+  // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
+                                    LOWER,    KC_R,   RAISE,     KC_SPC,    KC_T
+  //                            ╰───────────────────────────╯ ╰──────────────────╯
+  ),
+
+  [LAYER_QWERTY] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
        KC_LGUI,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,       KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_RGUI,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
