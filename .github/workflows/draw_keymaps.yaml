@@ -46,6 +46,10 @@ jobs:
           cd ${{ github.workspace }}/qmk_firmware
           qmk setup
 
+      - name: List qmk_firmware directory contents
+        run: |
+          ls -R ${{ github.workspace }}/qmk_firmware
+
       - name: Run qmk c2json
         run: |
           cd ${{ github.workspace }}/qmk_firmware
