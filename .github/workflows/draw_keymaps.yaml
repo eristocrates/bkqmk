@@ -26,6 +26,10 @@ jobs:
         run: |
           pip install qmk
 
+      - name: Set up QMK environment
+        run: |
+          qmk setup
+
       - name: Run qmk c2json
         run: |
           qmk c2json ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.c > ./keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json
