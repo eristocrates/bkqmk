@@ -1,7 +1,7 @@
 draw_config:
   key_w: 60.0
   key_h: 56.0
-  split_gap: 30.0
+  split_gap: 10.0
   combo_w: 28.0
   combo_h: 26.0
   key_rx: 6.0
