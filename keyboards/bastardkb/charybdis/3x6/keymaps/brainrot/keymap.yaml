@@ -16,23 +16,23 @@ layers:
   - ['', '', '', '', EE CLR, QK BOOT, PAST, '1', '2', '3', PSLS, '']
   - - ''
     - ''
-    - {t: Å§, type: trans}
+    - {t: ‚ñΩ, type: trans}
     - ''
-    - {t: Å§, type: trans}
+    - {t: ‚ñΩ, type: trans}
   L3:
   - ['', '', '', '', '', '', '', VOLU, MUTE, VOLD, '', '']
   - ['', LEFT, UP, DOWN, RGHT, '', '', RSFT, RCTL, RALT, RGUI, '']
   - ['', HOME, PGUP, PGDN, END, '', QK BOOT, EE CLR, '', '', '', '']
-  - - {t: Å§, type: trans}
-    - {t: Å§, type: trans}
+  - - {t: ‚ñΩ, type: trans}
+    - {t: ‚ñΩ, type: trans}
     - ''
-    - {t: Å§, type: trans}
+    - {t: ‚ñΩ, type: trans}
     - ''
   L4:
   - [QK BOOT, EE CLR, '', '', DPI MOD, S D MOD, S D MOD, DPI MOD, '', '', EE CLR, QK BOOT]
   - ['', LGUI, LALT, LCTL, LSFT, '', '', RSFT, RCTL, RALT, RGUI, '']
   - - ''
-    - {t: Å§, type: trans}
+    - {t: ‚ñΩ, type: trans}
     - DRGSCRL
     - SNIPING
     - ''
@@ -41,6 +41,6 @@ layers:
     - ''
     - SNIPING
     - DRGSCRL
-    - {t: Å§, type: trans}
+    - {t: ‚ñΩ, type: trans}
     - ''
   - [BTN2, BTN1, BTN3, BTN3, BTN1]
