@@ -48,10 +48,9 @@ jobs:
 
       - name: Run qmk c2json
         run: |
-          qmk_firmware_path=$(pwd)/qmk_firmware
           keymap_c_path=$(pwd)/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.c
           c2_json_path=$(pwd)/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json
-          $qmk_firmware_path/bin/qmk c2json $keymap_c_path > $c2_json_path
+          qmk c2json $keymap_c_path > $c2_json_path
 
       - name: Run keymap parse
         run: |
