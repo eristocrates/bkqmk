@@ -3,7 +3,7 @@ layers:
   L0:
   - [LGUI, V, G, M, P, BSPC, '', U, O, Y, B, '']
   - [J, K, S, N, D, '', '', A, E, I, H, Q]
-  - [X, 'LT(LAYER POINTER,W)', F, L, C, '', '', LNG5, '', ',', 'LT(LAYER POINTER,DOT)', Z]
+  - [X, 'LT(LAYER POINTER,W)', F, L, C, '', '', '', '', ',', 'LT(LAYER POINTER,DOT)', Z]
   - [MO(LAYER LOWER), R, MO(LAYER RAISE), SPC, T]
   L1:
   - [LGUI, Q, W, E, R, T, Y, U, I, O, P, RGUI]
@@ -14,19 +14,19 @@ layers:
   - ['', RGB TOG, MNXT, MPLY, MPRV, '', '[', '7', '8', '9', ']', '']
   - ['', LGUI, LALT, LCTL, LSFT, '', PPLS, '4', '5', '6', PMNS, '']
   - ['', '', '', '', EE CLR, QK BOOT, PAST, '1', '2', '3', PSLS, '']
-  - - ''
+  - - {t: ▽, type: trans}
     - ''
-    - {t: ▽, type: trans}
     - ''
-    - {t: ▽, type: trans}
+    - ''
+    - ''
   L3:
   - ['', '', '', '', '', '', '', VOLU, MUTE, VOLD, '', '']
   - ['', LEFT, UP, DOWN, RGHT, '', '', RSFT, RCTL, RALT, RGUI, '']
   - ['', HOME, PGUP, PGDN, END, '', QK BOOT, EE CLR, '', '', '', '']
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+  - - ''
     - ''
     - {t: ▽, type: trans}
+    - ''
     - ''
   L4:
   - [QK BOOT, EE CLR, '', '', DPI MOD, S D MOD, S D MOD, DPI MOD, '', '', EE CLR, QK BOOT]
