@@ -37,24 +37,29 @@ jobs:
                         owner: context.repo.owner,
                         repo: context.repo.repo,
                       });
-                      return releases[0];
+                      if (releases.length === 0) {
+                        throw new Error('No releases found');
+                      }
+                      return { id: releases[0].id, name: releases[0].name, body: releases[0].body, tag_name: releases[0].tag_name, target_commitish: releases[0].target_commitish };
 
             - name: Update release timestamp
               uses: actions/github-script@v3
               with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
                   script: |
-                      const release_id = ${{ steps.get_release.outputs.result.id }};
-                      const releases = ${{ steps.get_release.outputs.result }};
-                      const { data: release } = await github.repos.updateRelease({
+                      const release_id = core.getInput('release_id');
+                      const { id, name, body, tag_name, target_commitish } = JSON.parse(core.getInput('release_data'));
+                      await github.repos.updateRelease({
                         owner: context.repo.owner,
                         repo: context.repo.repo,
-                        release_id: release_id,
+                        release_id: id,
                         draft: false,
                         prerelease: false,
-                        name: releases.name,
-                        body: releases.body,
-                        tag_name: releases.tag_name,
-                        target_commitish: releases.target_commitish,
+                        name: name,
+                        body: body,
+                        tag_name: tag_name,
+                        target_commitish: target_commitish,
                         created_at: new Date().toISOString(),
                       });
+                  inputs:
+                      release_id: ${{ steps.get_release.outputs.id }}
+                      release_data: ${{ steps.get_release.outputs }}
