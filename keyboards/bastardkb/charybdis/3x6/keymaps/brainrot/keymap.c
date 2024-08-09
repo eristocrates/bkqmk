@@ -157,10 +157,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static uint16_t qu_timer;
     switch (keycode) {
         case KC_QU:
-            uint16_t tapping_term = get_tapping_term(KC_QU, record);
             if (record->event.pressed) {
                 qu_timer = timer_read();
             } else {
+                uint16_t tapping_term = get_tapping_term(KC_QU, record);
                 if (timer_elapsed(qu_timer) < tapping_term) {
                     // Send "qu" if tapped
                     SEND_STRING("qu");
