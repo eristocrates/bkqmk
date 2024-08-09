@@ -43,7 +43,7 @@ jobs:
 
       - name: Set up QMK environment
         run: |
-          qmk setup -y --baseurl https://github.com/qmk/qmk_firmware.git
+          qmk setup -y
 
       - name: Verify QMK CLI after setup
         run: |
