@@ -26,6 +26,11 @@ jobs:
         run: |
           python3 -m pip install --user qmk
           echo "${HOME}/.local/bin" >> $GITHUB_PATH
+          export PATH="${HOME}/.local/bin:$PATH"
+
+      - name: Verify QMK CLI version
+        run: |
+          qmk --version
 
       - name: Install required tools
         run: |
@@ -44,16 +49,15 @@ jobs:
 
       - name: Set up QMK environment
         run: |
-          ~/.local/bin/qmk setup --home ${{ github.workspace }}/qmk_firmware
+          qmk setup --home ${{ github.workspace }}/qmk_firmware
 
-      - name: Debug QMK environment
+      - name: Verify QMK CLI after setup
         run: |
-          ~/.local/bin/qmk doctor
+          qmk --version
 
       - name: Run qmk c2json
         run: |
-          ~/.local/bin/qmk c2json ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.c > ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json
-        continue-on-error: true
+          qmk c2json ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.c > ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json
 
       - name: Check qmk c2json output
         run: |
