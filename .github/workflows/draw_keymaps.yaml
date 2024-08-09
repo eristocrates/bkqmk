@@ -24,7 +24,8 @@ jobs:
 
       - name: Install QMK CLI
         run: |
-          pip install qmk
+          python3 -m pip install --user qmk
+          echo "${HOME}/.local/bin" >> $GITHUB_PATH
 
       - name: Install required tools
         run: |
@@ -41,9 +42,13 @@ jobs:
           cd ${{ github.workspace }}/qmk_firmware
           git submodule update --init --recursive
 
+      - name: Set up QMK environment
+        run: |
+          ~/.local/bin/qmk setup --home ${{ github.workspace }}/qmk_firmware
+
       - name: Run qmk c2json
         run: |
-          qmk c2json ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.c > ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json
+          ~/.local/bin/qmk c2json ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.c > ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json
 
       - name: Run keymap parse
         run: |
