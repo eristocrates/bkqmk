@@ -66,5 +66,5 @@ jobs:
                         body: process.env.RELEASE_BODY,
                         tag_name: process.env.RELEASE_TAG_NAME,
                         target_commitish: process.env.RELEASE_TARGET_COMMITISH,
-                        created_at: new Date().toISOString(),
+                        published_at: new Date().toISOString(),
                       });
