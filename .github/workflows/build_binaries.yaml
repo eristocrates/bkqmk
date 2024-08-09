@@ -3,18 +3,58 @@ name: Build QMK firmware
 on: [push, workflow_dispatch]
 
 permissions:
-  contents: write
+    contents: write
 
 jobs:
-  build:
-    name: 'QMK Userspace Build'
-    uses: qmk/.github/.github/workflows/qmk_userspace_build.yml@main
-    with:
-      qmk_repo: bastardkb/bastardkb-qmk
-      qmk_ref: bkb-master
+    build:
+        name: "QMK Userspace Build"
+        uses: qmk/.github/.github/workflows/qmk_userspace_build.yml@main
+        with:
+            qmk_repo: bastardkb/bastardkb-qmk
+            qmk_ref: bkb-master
 
-  publish:
-    name: 'QMK Userspace Publish'
-    uses: qmk/.github/.github/workflows/qmk_userspace_publish.yml@main
-    if: always() && !cancelled()
-    needs: build
+    publish:
+        name: "QMK Userspace Publish"
+        uses: qmk/.github/.github/workflows/qmk_userspace_publish.yml@main
+        if: always() && !cancelled()
+        needs: build
+
+    update-release:
+        name: "Update Release Timestamp"
+        runs-on: ubuntu-latest
+        needs: publish
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Get the latest release
+              id: get_release
+              uses: actions/github-script@v3
+              with:
+                  script: |
+                      const { data: releases } = await github.repos.listReleases({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                      });
+                      return releases[0];
+
+            - name: Update release timestamp
+              uses: actions/github-script@v3
+              with:
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  script: |
+                      const release_id = ${{ steps.get_release.outputs.result.id }};
+                      const releases = ${{ steps.get_release.outputs.result }};
+                      const { data: release } = await github.repos.updateRelease({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        release_id: release_id,
+                        draft: false,
+                        prerelease: false,
+                        name: releases.name,
+                        body: releases.body,
+                        tag_name: releases.tag_name,
+                        target_commitish: releases.target_commitish,
+                        created_at: new Date().toISOString(),
+                      });

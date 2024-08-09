@@ -67,7 +67,8 @@ jobs:
               run: |
                   keymap -c ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/config.yaml draw ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymapDesign.yaml > ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymapDesign.svg
 
-            - name: Commit and push updated files
+            - name: Check for changes
+              id: git_status
               run: |
                   git config --global user.name 'github-actions[bot]'
                   git config --global user.email 'github-actions[bot]@users.noreply.github.com'
@@ -75,5 +76,16 @@ jobs:
                   git add ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.yaml
                   git add ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.svg
                   git add ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymapDesign.svg
+                  if git diff-index --quiet HEAD; then
+                    echo "No changes to commit"
+                    echo "::set-output name=changes::false"
+                  else
+                    echo "Changes to commit"
+                    echo "::set-output name=changes::true"
+                  fi
+
+            - name: Commit and push updated files
+              if: steps.git_status.outputs.changes == 'true'
+              run: |
                   git commit -m "Update keymap JSON and SVG files"
                   git push
