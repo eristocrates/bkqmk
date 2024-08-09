@@ -1,7 +1,7 @@
 layout: {qmk_keyboard: bastardkb/charybdis/3x6, qmk_layout: LAYOUT}
 layers:
   Base:
-    - [null, v, g, m, p, bspc, quop, u, o, y, b, null]
+    - ['test', v, g, m, p, bspc, quop, u, o, y, b, null]
     - [j, k, s, n, d, coda, repeat, a, e, i, h, qu]
     - [x, w, f, l, c, null, null, jp, null, ',', '.', z]
     - [shiftish, r, altish, spc, t]
