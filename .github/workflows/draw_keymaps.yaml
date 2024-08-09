@@ -65,7 +65,7 @@ jobs:
 
       - name: Run keymap parse
         run: |
-          keymap parse -c 12 -q ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/config.yaml draw ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.yaml > ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.json
+          keymap parse -c 12 -q ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json > ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.yaml
 
       - name: Replace problematic characters in keymap.yaml
         run: |
