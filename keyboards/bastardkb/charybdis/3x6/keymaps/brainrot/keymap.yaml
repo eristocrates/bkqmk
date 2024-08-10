@@ -3,7 +3,7 @@ layers:
   L0:
   - [X, V, G, M, P, BSPC, SPC, U, O, Y, B, Z]
   - [J, 'LT(LAYER POINTER,K)', S, N, D, '', '', A, E, I, 'LT(LAYER POINTER,H)', QU]
-  - ['', W, F, L, C, '', '', '', '', ',', ., '']
+  - ['', W, F, L, C, '', '', '', ',', ., '', '']
   - [MO(LAYER LOWER), R, MO(LAYER RAISE), SPC, T]
   L1:
   - [LGUI, Q, W, E, R, T, Y, U, I, O, P, RGUI]
