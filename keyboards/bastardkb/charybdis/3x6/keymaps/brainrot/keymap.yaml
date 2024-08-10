@@ -37,8 +37,8 @@ layers:
     - BTN3
     - ''
     - ''
-    - ''
-    - SNIPING
+    - BTN1
+    - BTN2
     - DRGSCRL
     - {t: ▽, type: trans}
     - ''
