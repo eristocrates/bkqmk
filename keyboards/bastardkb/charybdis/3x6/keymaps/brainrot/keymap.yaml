@@ -34,12 +34,12 @@ layers:
     - {t: ▽, type: trans}
     - DRGSCRL
     - SNIPING
+    - BTN3
     - ''
     - ''
     - ''
-    - BTN1
-    - BTN2
     - SNIPING
+    - DRGSCRL
     - {t: ▽, type: trans}
     - ''
   - ['', LGUI, LALT, LCTL, LSFT, '', '', RSFT, RCTL, RALT, RGUI, '']
