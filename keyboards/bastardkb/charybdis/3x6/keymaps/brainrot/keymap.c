@@ -31,78 +31,19 @@ static uint16_t auto_pointer_layer_timer = 0;
 #    endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD
 #endif     // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 
-// layers
-enum charybdis_keymap_layers {
-    LAYER_BASE = 0,
-    LAYER_QWERTY,
-    LAYER_LOWER,
-    LAYER_RAISE,
-    LAYER_POINTER,
-    LAYER_LAYER,
-};
-
-#define BASE TO(LAYER_BASE)
-#define LAYER TT(LAYER_LAYER)
-#define LOWER TG(LAYER_LOWER)
-#define RAISE TG(LAYER_RAISE)
-
-#define PT_K LT(LAYER_POINTER, KC_K)
-#define PT_H LT(LAYER_POINTER, KC_H)
-// default LTs
-#define PT_Z LT(LAYER_POINTER, KC_Z)
-#define PT_SLSH LT(LAYER_POINTER, KC_SLSH)
-
-// Keycodes
-enum my_keycodes {
-    KC_QU = SAFE_RANGE,
-    SC_RMDT,
-};
-
-// Combos
-// TODO change this from enter to other more useful ones
-const uint16_t PROGMEM enter_combo[] = {KC_COMM, KC_DOT, COMBO_END};
-combo_t                key_combos[]  = {
-    COMBO(enter_combo, KC_ENT),
-};
-
-// Tap Dance
-enum {
-    TD_SPC_ENT,
-    TD_SPC_ESC,
-    TD_BSPC_WRD,
-    TD_DEL_WRD,
-};
-
-tap_dance_action_t tap_dance_actions[] = {
-    [TD_SPC_ENT]  = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ENT),
-    [TD_SPC_ESC]  = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ESC),
-    [TD_BSPC_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_BSPC), KC_BSPC),
-    [TD_DEL_WRD]  = ACTION_TAP_DANCE_DOUBLE(C(KC_DEL), KC_DEL),
-};
-
-#define SPC_ENT TD(TD_SPC_ENT)
-#define SPC_ESC TD(TD_SPC_ESC)
-#define BSPC_WRD TD(TD_BSPC_WRD)
-#define DEL_WRD TD(TD_DEL_WRD)
-
-// Hold Timers
-static uint16_t qu_tapping_term;
-static uint16_t qu_timer   = 0;
-bool            is_qu_held = false;
-
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [LAYER_BASE] = LAYOUT(
+  [LAYER_BRAINROT] = HRM(LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
           KC_X,    KC_V,    KC_G,    KC_M,    KC_P, XXXXXXX,    XXXXXXX,    KC_U,    KC_O,    KC_Y,    KC_B,    KC_Z,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-          KC_J,    PT_K,    KC_S,    KC_N,    KC_D,BSPC_WRD,    DEL_WRD,    KC_A,    KC_E,    KC_I,    PT_H,   KC_QU,
+          KC_J,    KC_K,    KC_S,    KC_N,    KC_D,BSPC_WRD,    DEL_WRD,    KC_A,    KC_E,    KC_I,    KC_H,   KC_QU,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
           BASE,    KC_W,    KC_F,    KC_L,    KC_C, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, KC_COMM, KC_DOT,    LAYER,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
                                     LAYER,    KC_R, SPC_ESC,    SPC_ENT,    KC_T
   //                            ╰───────────────────────────╯ ╰──────────────────╯
-  ),
+  )),
 
   [LAYER_QWERTY] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
@@ -142,13 +83,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [LAYER_POINTER] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
-       QK_BOOT,  EE_CLR, XXXXXXX, XXXXXXX, DPI_MOD, S_D_MOD,    S_D_MOD, DPI_MOD, XXXXXXX, XXXXXXX,  EE_CLR, QK_BOOT,
+       QK_BOOT,  EE_CLR, XXXXXXX, XXXXXXX, DPI_MOD, S_D_MOD,    S_D_MOD, DPI_MOD,  KC_F11, XXXXXXX,  EE_CLR, QK_BOOT,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       XXXXXXX, _______, DRG_TOG, SNIPING, KC_BTN3, XXXXXXX,    XXXXXXX, KC_BTN1, KC_BTN2, DRG_TOG, _______, XXXXXXX,
+       XXXXXXX, _______, DRG_TOG, SNIPING, KC_BTN3, XXXXXXX,    TG_SHFT, KC_BTN1, KC_BTN2, DRG_TOG, _______, XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       _______, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX,    XXXXXXX, KC_RSFT, KC_RCTL, KC_RALT, KC_RGUI, XXXXXXX,
+       _______, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX,    XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                                  KC_BTN2, KC_BTN1, KC_BTN3,    KC_BTN3, KC_BTN1
+                                  KC_BTN2, KC_BTN1, KC_BTN3,    KC_LEFT, KC_RGHT
   //                            ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
@@ -220,68 +161,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 #ifdef RGB_MATRIX_ENABLE
 // Forward-declare this helper function since it is defined in rgb_matrix.c.
 void rgb_matrix_update_pwm_buffers(void);
-#endif
+#endif // RGB_MATRIX_ENABLE
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case KC_QU:
-            qu_tapping_term = get_tapping_term(KC_QU, record);
-            if (record->event.pressed) {
-                if (!is_qu_held) {
-                    is_qu_held = true;
-                    qu_timer   = timer_read();
-                }
-            } else {
-                is_qu_held = false;
-                if (timer_elapsed(qu_timer) < qu_tapping_term) {
-                    // Send "qu" if tapped
-                    SEND_STRING("qu");
-                }
-            }
-            return false; // Skip all further processing of this key
-        case SC_RMDT:
-            if (record->event.pressed) {
-                // When keycode is pressed
-                register_code(KC_LCTL);
-                register_code(KC_LALT);
-                register_code(KC_PAUSE);
-            } else {
-                // When keycode is released
-                unregister_code(KC_PAUSE);
-                unregister_code(KC_LALT);
-                unregister_code(KC_LCTL);
-            }
-            return false; // Skip all further processing of this key
-        default:
-            return true; // Process all other keycodes normally
-    }
-}
-void matrix_scan_user(void) {
-    if (is_qu_held)
-        if (timer_elapsed(qu_timer) == qu_tapping_term) {
-            tap_code(KC_Q);
-        }
-
-#ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
-    if (auto_pointer_layer_timer != 0 && TIMER_DIFF_16(timer_read(), auto_pointer_layer_timer) >= CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS) {
-        auto_pointer_layer_timer = 0;
-        layer_off(LAYER_POINTER);
-#    ifdef RGB_MATRIX_ENABLE
-        rgb_matrix_mode_noeeprom(RGB_MATRIX_DEFAULT_MODE);
-#    endif // RGB_MATRIX_ENABLE
-    }
-#endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
-}
-
-// Define the tapping term for the custom keycode
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case KC_QU:
-            return 175;
-        case PT_K:
-        case PT_H:
-            return 333;
-        default:
-            return TAPPING_TERM; // Default tapping term
-    }
-}
+bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
+    return true;
+};
