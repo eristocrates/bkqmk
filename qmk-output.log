@@ -10,105 +10,400 @@ Copyright (C) 2023 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-Generating: .build/obj_bastardkb_charybdis_3x6_brainrot/src/default_keyboard.c                      [32;01m[OK][0m
 Generating: .build/obj_bastardkb_charybdis_3x6_brainrot/src/info_config.h                           [32;01m[OK][0m
 Generating: .build/obj_bastardkb_charybdis_3x6_brainrot/src/default_keyboard.h                      [32;01m[OK][0m
-Compiling: .build/obj_bastardkb_charybdis_3x6_brainrot/src/default_keyboard.c                       [32;01m[OK][0m
-Compiling: keyboards/bastardkb/charybdis/3x6/3x6.c                                                  [32;01m[OK][0m
-Compiling: keyboards/bastardkb/charybdis/charybdis.c                                                [32;01m[OK][0m
-Compiling: quantum/keymap_introspection.c                                                           [32;01m[OK][0m
-Compiling: quantum/quantum.c                                                                        [32;01m[OK][0m
+Generating: .build/obj_bastardkb_charybdis_3x6_brainrot/src/default_keyboard.c                      [32;01m[OK][0m
 Compiling: quantum/bitwise.c                                                                        [32;01m[OK][0m
-Compiling: quantum/led.c                                                                            [32;01m[OK][0m
-Compiling: quantum/action_layer.c                                                                   [32;01m[OK][0m
-Compiling: quantum/action_tapping.c                                                                 [32;01m[OK][0m
-Compiling: quantum/action.c                                                                         [32;01m[OK][0m
-Compiling: quantum/eeconfig.c                                                                       [32;01m[OK][0m
-Compiling: quantum/action_util.c                                                                    [32;01m[OK][0m
-Compiling: quantum/keyboard.c                                                                       [32;01m[OK][0m
-Compiling: quantum/keymap_common.c                                                                  [32;01m[OK][0m
-Compiling: quantum/sync_timer.c                                                                     [32;01m[OK][0m
-Compiling: quantum/keycode_config.c                                                                 [32;01m[OK][0m
-Compiling: quantum/logging/sendchar.c                                                               [32;01m[OK][0m
-Compiling: quantum/logging/debug.c                                                                  [32;01m[OK][0m
-Compiling: quantum/matrix_common.c                                                                  [32;01m[OK][0m
-Compiling: quantum/logging/print.c                                                                  [32;01m[OK][0m
-Compiling: quantum/debounce/sym_defer_g.c                                                           [32;01m[OK][0m
-Compiling: quantum/matrix.c                                                                         [32;01m[OK][0m
-Compiling: quantum/split_common/transport.c                                                         [32;01m[OK][0m
-Compiling: quantum/split_common/split_util.c                                                        [32;01m[OK][0m
-Compiling: quantum/main.c                                                                           [32;01m[OK][0m
-Compiling: quantum/split_common/transactions.c                                                      [32;01m[OK][0m
-Compiling: quantum/pointing_device/pointing_device_drivers.c                                        [32;01m[OK][0m
-Compiling: quantum/pointing_device/pointing_device.c                                                [32;01m[OK][0m
-Compiling: lib/printf/src/printf/printf.c                                                           [32;01m[OK][0m
-Compiling: quantum/pointing_device/pointing_device_auto_mouse.c                                     [32;01m[OK][0m
-Compiling: drivers/sensors/pmw3360.c                                                                [32;01m[OK][0m
-Compiling: drivers/eeprom/eeprom_driver.c                                                           [32;01m[OK][0m
-Compiling: drivers/sensors/pmw33xx_common.c                                                         [32;01m[OK][0m
-Compiling: drivers/eeprom/eeprom_wear_leveling.c                                                    [32;01m[OK][0m
-Compiling: quantum/wear_leveling/wear_leveling.c                                                    [32;01m[OK][0m
-Compiling: quantum/color.c                                                                          [32;01m[OK][0m
-Compiling: platforms/chibios/drivers/wear_leveling/wear_leveling_rp2040_flash.c                     [32;01m[OK][0m
-Compiling: quantum/rgb_matrix/rgb_matrix_drivers.c                                                  [32;01m[OK][0m
-Compiling: quantum/process_keycode/process_rgb.c                                                    [32;01m[OK][0m
-Compiling: quantum/led_tables.c                                                                     [32;01m[OK][0m
-Compiling: lib/fnv/hash_32a.c                                                                       [32;01m[OK][0m
-Compiling: lib/fnv/hash_64a.c                                                                       [32;01m[OK][0m
-Compiling: lib/fnv/qmk_fnv_type_validation.c                                                        [32;01m[OK][0m
-Compiling: quantum/bootmagic/bootmagic.c                                                            [32;01m[OK][0m
-Compiling: lib/lib8tion/lib8tion.c                                                                  [32;01m[OK][0m
-Compiling: quantum/crc.c                                                                            [32;01m[OK][0m
-Compiling: platforms/chibios/drivers/vendor/RP/RP2040/ws2812_vendor.c                              In file included from ./lib/pico-sdk/src/common/pico_base/include/pico/types.h:12,
-                 from ./lib/pico-sdk/src/common/pico_base/include/pico.h:24,
-                 from ./lib/pico-sdk/src/rp2_common/hardware_clocks/include/hardware/clocks.h:10,
-                 from ./lib/chibios/os/hal/ports/RP/RP2040/hal_lld.h:34,
-                 from ./lib/chibios/os/hal/include/hal.h:249,
-                 from platforms/chibios/platform_deps.h:18,
-                 from quantum/quantum.h:18,
+Compiling: keyboards/bastardkb/charybdis/charybdis.c                                               In file included from quantum/keymap_extras/keymap_us.h:27,
+                 from quantum/quantum_keycodes.h:23,
+                 from quantum/quantum.h:40,
                  from keyboards/bastardkb/charybdis/charybdis.h:21,
-                 from I:/coding/bkqmk/users/brainrot/keycodes.h:3,
-                 from I:/coding/bkqmk/users/brainrot/mods.h:2,
-                 from I:/coding/bkqmk/users/brainrot/config.h:16,
-                 from <command-line>:
-./lib/pico-sdk/src/rp2_common/hardware_timer/include/hardware/timer.h: In function 'check_hardware_alarm_num_param':
-./lib/pico-sdk/src/common/pico_base/include/pico/assert.h:32:39: error: pasting "PARAM_ASSERTIONS_ENABLED_" and "(" does not give a valid preprocessing token
-   32 | #define PARAM_ASSERTIONS_ENABLED(x) ((PARAM_ASSERTIONS_ENABLED_ ## x || PARAM_ASSERTIONS_ENABLE_ALL) && !PARAM_ASSERTIONS_DISABLE_ALL)
-      |                                       ^~~~~~~~~~~~~~~~~~~~~~~~~
-./lib/pico-sdk/src/common/pico_base/include/pico/assert.h:34:42: note: in expansion of macro 'PARAM_ASSERTIONS_ENABLED'
-   34 | #define invalid_params_if(x, test) ({if (PARAM_ASSERTIONS_ENABLED(x)) assert(!(test));})
-      |                                          ^~~~~~~~~~~~~~~~~~~~~~~~
-./lib/pico-sdk/src/rp2_common/hardware_timer/include/hardware/timer.h:54:5: note: in expansion of macro 'invalid_params_if'
-   54 |     invalid_params_if(TIMER, alarm_num >= NUM_TIMERS);
-      |     ^~~~~~~~~~~~~~~~~
-./lib/pico-sdk/src/common/pico_base/include/pico/assert.h:32:39: error: implicit declaration of function 'PARAM_ASSERTIONS_ENABLED_'; did you mean 'PARAM_ASSERTIONS_ENABLED'? [-Werror=implicit-function-declaration]
-   32 | #define PARAM_ASSERTIONS_ENABLED(x) ((PARAM_ASSERTIONS_ENABLED_ ## x || PARAM_ASSERTIONS_ENABLE_ALL) && !PARAM_ASSERTIONS_DISABLE_ALL)
-      |                                       ^~~~~~~~~~~~~~~~~~~~~~~~~
-./lib/pico-sdk/src/common/pico_base/include/pico/assert.h:34:42: note: in expansion of macro 'PARAM_ASSERTIONS_ENABLED'
-   34 | #define invalid_params_if(x, test) ({if (PARAM_ASSERTIONS_ENABLED(x)) assert(!(test));})
-      |                                          ^~~~~~~~~~~~~~~~~~~~~~~~
-./lib/pico-sdk/src/rp2_common/hardware_timer/include/hardware/timer.h:54:5: note: in expansion of macro 'invalid_params_if'
-   54 |     invalid_params_if(TIMER, alarm_num >= NUM_TIMERS);
-      |     ^~~~~~~~~~~~~~~~~
+                 from keyboards/bastardkb/charybdis/charybdis.c:20:
+I:/coding/bkqmk/users/brainrot/keycodes.h:14:13: error: 'SAFE_RANGE' undeclared here (not in a function)
+   14 |     KC_QU = SAFE_RANGE,
+      |             ^~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:29:1: error: unknown type name 'tap_dance_action_t'
+   29 | tap_dance_action_t tap_dance_actions[] = {
+      | ^~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:30:20: error: implicit declaration of function 'ACTION_TAP_DANCE_DOUBLE' [-Werror=implicit-function-declaration]
+   30 |     [TD_SPC_ENT] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ENT),
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:30:20: error: initializer element is not constant
+I:/coding/bkqmk/users/brainrot/keycodes.h:30:20: note: (near initialization for 'tap_dance_actions[0]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:31:20: error: initializer element is not constant
+   31 |     [TD_SPC_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ESC),
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:31:20: note: (near initialization for 'tap_dance_actions[1]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:32:45: error: implicit declaration of function 'C' [-Werror=implicit-function-declaration]
+   32 |     [TD_BSPC_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_BSPC), KC_BSPC),
+      |                                             ^
+I:/coding/bkqmk/users/brainrot/keycodes.h:32:21: error: initializer element is not constant
+   32 |     [TD_BSPC_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_BSPC), KC_BSPC),
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:32:21: note: (near initialization for 'tap_dance_actions[2]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:33:20: error: initializer element is not constant
+   33 |     [TD_DEL_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_DEL), KC_DEL),
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:33:20: note: (near initialization for 'tap_dance_actions[3]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:34:44: error: 'DRGSCRL' undeclared here (not in a function)
+   34 |     [TD_DRG_TOG] = ACTION_TAP_DANCE_DOUBLE(DRGSCRL, DRG_TOG)
+      |                                            ^~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:34:53: error: 'DRG_TOG' undeclared here (not in a function); did you mean 'RGB_TOG'?
+   34 |     [TD_DRG_TOG] = ACTION_TAP_DANCE_DOUBLE(DRGSCRL, DRG_TOG)
+      |                                                     ^~~~~~~
+      |                                                     RGB_TOG
+In file included from quantum/quantum.h:122:
+quantum/process_keycode/process_tap_dance.h:81:27: error: conflicting types for 'tap_dance_actions'; have 'tap_dance_action_t[]'
+   81 | extern tap_dance_action_t tap_dance_actions[];
+      |                           ^~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:29:20: note: previous definition of 'tap_dance_actions' with type 'int[1]'
+   29 | tap_dance_action_t tap_dance_actions[] = {
+      |                    ^~~~~~~~~~~~~~~~~
 cc1.exe: all warnings being treated as errors
  [31;01m[ERRORS][0m
  | 
  | 
  | 
-make: *** [builddefs/common_rules.mk:369: .build/obj_bastardkb_charybdis_3x6_brainrot/ws2812_vendor.o] Error 1
+make: *** [builddefs/common_rules.mk:373: .build/obj_bastardkb_charybdis_3x6_brainrot/keyboards/bastardkb/charybdis/charybdis.o] Error 1
 make: *** Waiting for unfinished jobs....
-Compiling: quantum/process_keycode/process_grave_esc.c                                              [32;01m[OK][0m
-Compiling: quantum/rgb_matrix/rgb_matrix.c                                                          [32;01m[OK][0m
-Compiling: quantum/process_keycode/process_magic.c                                                  [32;01m[OK][0m
-Compiling: quantum/send_string/send_string.c                                                        [32;01m[OK][0m
-Compiling: quantum/process_keycode/process_space_cadet.c                                            [32;01m[OK][0m
-Compiling: quantum/process_keycode/process_tap_dance.c                                              [32;01m[OK][0m
-Compiling: tmk_core/protocol/host.c                                                                 [32;01m[OK][0m
-Compiling: tmk_core/protocol/report.c                                                               [32;01m[OK][0m
-Compiling: tmk_core/protocol/usb_device_state.c                                                     [32;01m[OK][0m
-Compiling: platforms/suspend.c                                                                      [32;01m[OK][0m
-Compiling: tmk_core/protocol/usb_util.c                                                             [32;01m[OK][0m
-Compiling: platforms/synchronization_util.c                                                         [32;01m[OK][0m
-Compiling: platforms/timer.c                                                                        [32;01m[OK][0m
-Compiling: platforms/chibios/hardware_id.c                                                          [32;01m[OK][0m
-Compiling: platforms/chibios/platform.c                                                             [32;01m[OK][0m
+Compiling: keyboards/bastardkb/charybdis/3x6/3x6.c                                                 In file included from quantum/keymap_extras/keymap_us.h:27,
+                 from quantum/quantum_keycodes.h:23,
+                 from quantum/quantum.h:40,
+                 from keyboards/bastardkb/charybdis/3x6/3x6.c:18:
+I:/coding/bkqmk/users/brainrot/keycodes.h:14:13: error: 'SAFE_RANGE' undeclared here (not in a function)
+   14 |     KC_QU = SAFE_RANGE,
+      |             ^~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:29:1: error: unknown type name 'tap_dance_action_t'
+   29 | tap_dance_action_t tap_dance_actions[] = {
+      | ^~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:30:20: error: implicit declaration of function 'ACTION_TAP_DANCE_DOUBLE' [-Werror=implicit-function-declaration]
+   30 |     [TD_SPC_ENT] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ENT),
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:30:20: error: initializer element is not constant
+I:/coding/bkqmk/users/brainrot/keycodes.h:30:20: note: (near initialization for 'tap_dance_actions[0]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:31:20: error: initializer element is not constant
+   31 |     [TD_SPC_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ESC),
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:31:20: note: (near initialization for 'tap_dance_actions[1]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:32:45: error: implicit declaration of function 'C' [-Werror=implicit-function-declaration]
+   32 |     [TD_BSPC_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_BSPC), KC_BSPC),
+      |                                             ^
+I:/coding/bkqmk/users/brainrot/keycodes.h:32:21: error: initializer element is not constant
+   32 |     [TD_BSPC_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_BSPC), KC_BSPC),
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:32:21: note: (near initialization for 'tap_dance_actions[2]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:33:20: error: initializer element is not constant
+   33 |     [TD_DEL_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_DEL), KC_DEL),
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:33:20: note: (near initialization for 'tap_dance_actions[3]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:34:20: error: initializer element is not constant
+   34 |     [TD_DRG_TOG] = ACTION_TAP_DANCE_DOUBLE(DRGSCRL, DRG_TOG)
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:34:20: note: (near initialization for 'tap_dance_actions[4]')
+In file included from quantum/quantum.h:122:
+quantum/process_keycode/process_tap_dance.h:81:27: error: conflicting types for 'tap_dance_actions'; have 'tap_dance_action_t[]'
+   81 | extern tap_dance_action_t tap_dance_actions[];
+      |                           ^~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:29:20: note: previous definition of 'tap_dance_actions' with type 'int[1]'
+   29 | tap_dance_action_t tap_dance_actions[] = {
+      |                    ^~~~~~~~~~~~~~~~~
+cc1.exe: all warnings being treated as errors
+ [31;01m[ERRORS][0m
+ | 
+ | 
+ | 
+make: *** [builddefs/common_rules.mk:373: .build/obj_bastardkb_charybdis_3x6_brainrot/keyboards/bastardkb/charybdis/3x6/3x6.o] Error 1
+Compiling: quantum/keymap_introspection.c                                                          In file included from quantum/keymap_extras/keymap_us.h:27,
+                 from quantum/quantum_keycodes.h:23,
+                 from quantum/quantum.h:40,
+                 from ./.build/obj_bastardkb_charybdis_3x6_brainrot/src/default_keyboard.h:27,
+                 from I:/coding/bkqmk/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.c:17,
+                 from quantum/keymap_introspection.c:5:
+I:/coding/bkqmk/users/brainrot/keycodes.h:14:13: error: 'SAFE_RANGE' undeclared here (not in a function)
+   14 |     KC_QU = SAFE_RANGE,
+      |             ^~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:29:1: error: unknown type name 'tap_dance_action_t'
+   29 | tap_dance_action_t tap_dance_actions[] = {
+      | ^~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:30:20: error: implicit declaration of function 'ACTION_TAP_DANCE_DOUBLE' [-Werror=implicit-function-declaration]
+   30 |     [TD_SPC_ENT] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ENT),
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:30:20: error: initializer element is not constant
+I:/coding/bkqmk/users/brainrot/keycodes.h:30:20: note: (near initialization for 'tap_dance_actions[0]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:31:20: error: initializer element is not constant
+   31 |     [TD_SPC_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ESC),
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:31:20: note: (near initialization for 'tap_dance_actions[1]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:32:45: error: implicit declaration of function 'C' [-Werror=implicit-function-declaration]
+   32 |     [TD_BSPC_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_BSPC), KC_BSPC),
+      |                                             ^
+I:/coding/bkqmk/users/brainrot/keycodes.h:32:21: error: initializer element is not constant
+   32 |     [TD_BSPC_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_BSPC), KC_BSPC),
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:32:21: note: (near initialization for 'tap_dance_actions[2]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:33:20: error: initializer element is not constant
+   33 |     [TD_DEL_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_DEL), KC_DEL),
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:33:20: note: (near initialization for 'tap_dance_actions[3]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:34:20: error: initializer element is not constant
+   34 |     [TD_DRG_TOG] = ACTION_TAP_DANCE_DOUBLE(DRGSCRL, DRG_TOG)
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:34:20: note: (near initialization for 'tap_dance_actions[4]')
+In file included from quantum/quantum.h:122:
+quantum/process_keycode/process_tap_dance.h:81:27: error: conflicting types for 'tap_dance_actions'; have 'tap_dance_action_t[]'
+   81 | extern tap_dance_action_t tap_dance_actions[];
+      |                           ^~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:29:20: note: previous definition of 'tap_dance_actions' with type 'int[1]'
+   29 | tap_dance_action_t tap_dance_actions[] = {
+      |                    ^~~~~~~~~~~~~~~~~
+cc1.exe: all warnings being treated as errors
+ [31;01m[ERRORS][0m
+ | 
+ | 
+ | 
+make: *** [builddefs/common_rules.mk:373: .build/obj_bastardkb_charybdis_3x6_brainrot/quantum/keymap_introspection.o] Error 1
+Compiling: .build/obj_bastardkb_charybdis_3x6_brainrot/src/default_keyboard.c                      In file included from quantum/keymap_extras/keymap_us.h:27,
+                 from quantum/quantum_keycodes.h:23,
+                 from quantum/quantum.h:40,
+                 from ./.build/obj_bastardkb_charybdis_3x6_brainrot/src/default_keyboard.h:27,
+                 from .build/obj_bastardkb_charybdis_3x6_brainrot/src/default_keyboard.c:26:
+I:/coding/bkqmk/users/brainrot/keycodes.h:14:13: error: 'SAFE_RANGE' undeclared here (not in a function)
+   14 |     KC_QU = SAFE_RANGE,
+      |             ^~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:29:1: error: unknown type name 'tap_dance_action_t'
+   29 | tap_dance_action_t tap_dance_actions[] = {
+      | ^~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:30:20: error: implicit declaration of function 'ACTION_TAP_DANCE_DOUBLE' [-Werror=implicit-function-declaration]
+   30 |     [TD_SPC_ENT] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ENT),
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:30:20: error: initializer element is not constant
+I:/coding/bkqmk/users/brainrot/keycodes.h:30:20: note: (near initialization for 'tap_dance_actions[0]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:31:20: error: initializer element is not constant
+   31 |     [TD_SPC_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ESC),
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:31:20: note: (near initialization for 'tap_dance_actions[1]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:32:45: error: implicit declaration of function 'C' [-Werror=implicit-function-declaration]
+   32 |     [TD_BSPC_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_BSPC), KC_BSPC),
+      |                                             ^
+I:/coding/bkqmk/users/brainrot/keycodes.h:32:21: error: initializer element is not constant
+   32 |     [TD_BSPC_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_BSPC), KC_BSPC),
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:32:21: note: (near initialization for 'tap_dance_actions[2]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:33:20: error: initializer element is not constant
+   33 |     [TD_DEL_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_DEL), KC_DEL),
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:33:20: note: (near initialization for 'tap_dance_actions[3]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:34:20: error: initializer element is not constant
+   34 |     [TD_DRG_TOG] = ACTION_TAP_DANCE_DOUBLE(DRGSCRL, DRG_TOG)
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:34:20: note: (near initialization for 'tap_dance_actions[4]')
+In file included from quantum/quantum.h:122:
+quantum/process_keycode/process_tap_dance.h:81:27: error: conflicting types for 'tap_dance_actions'; have 'tap_dance_action_t[]'
+   81 | extern tap_dance_action_t tap_dance_actions[];
+      |                           ^~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:29:20: note: previous definition of 'tap_dance_actions' with type 'int[1]'
+   29 | tap_dance_action_t tap_dance_actions[] = {
+      |                    ^~~~~~~~~~~~~~~~~
+cc1.exe: all warnings being treated as errors
+ [31;01m[ERRORS][0m
+ | 
+ | 
+ | 
+make: *** [builddefs/common_rules.mk:373: .build/obj_bastardkb_charybdis_3x6_brainrot/.build/obj_bastardkb_charybdis_3x6_brainrot/src/default_keyboard.o] Error 1
+Compiling: quantum/quantum.c                                                                       In file included from quantum/keymap_extras/keymap_us.h:27,
+                 from quantum/quantum_keycodes.h:23,
+                 from quantum/quantum.h:40,
+                 from quantum/quantum.c:17:
+I:/coding/bkqmk/users/brainrot/keycodes.h:14:13: error: 'SAFE_RANGE' undeclared here (not in a function)
+   14 |     KC_QU = SAFE_RANGE,
+      |             ^~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:29:1: error: unknown type name 'tap_dance_action_t'
+   29 | tap_dance_action_t tap_dance_actions[] = {
+      | ^~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:30:20: error: implicit declaration of function 'ACTION_TAP_DANCE_DOUBLE' [-Werror=implicit-function-declaration]
+   30 |     [TD_SPC_ENT] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ENT),
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:30:20: error: initializer element is not constant
+I:/coding/bkqmk/users/brainrot/keycodes.h:30:20: note: (near initialization for 'tap_dance_actions[0]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:31:20: error: initializer element is not constant
+   31 |     [TD_SPC_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ESC),
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:31:20: note: (near initialization for 'tap_dance_actions[1]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:32:45: error: implicit declaration of function 'C' [-Werror=implicit-function-declaration]
+   32 |     [TD_BSPC_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_BSPC), KC_BSPC),
+      |                                             ^
+I:/coding/bkqmk/users/brainrot/keycodes.h:32:21: error: initializer element is not constant
+   32 |     [TD_BSPC_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_BSPC), KC_BSPC),
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:32:21: note: (near initialization for 'tap_dance_actions[2]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:33:20: error: initializer element is not constant
+   33 |     [TD_DEL_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_DEL), KC_DEL),
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:33:20: note: (near initialization for 'tap_dance_actions[3]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:34:20: error: initializer element is not constant
+   34 |     [TD_DRG_TOG] = ACTION_TAP_DANCE_DOUBLE(DRGSCRL, DRG_TOG)
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:34:20: note: (near initialization for 'tap_dance_actions[4]')
+In file included from quantum/quantum.h:122:
+quantum/process_keycode/process_tap_dance.h:81:27: error: conflicting types for 'tap_dance_actions'; have 'tap_dance_action_t[]'
+   81 | extern tap_dance_action_t tap_dance_actions[];
+      |                           ^~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:29:20: note: previous definition of 'tap_dance_actions' with type 'int[1]'
+   29 | tap_dance_action_t tap_dance_actions[] = {
+      |                    ^~~~~~~~~~~~~~~~~
+cc1.exe: all warnings being treated as errors
+ [31;01m[ERRORS][0m
+ | 
+ | 
+ | 
+make: *** [builddefs/common_rules.mk:373: .build/obj_bastardkb_charybdis_3x6_brainrot/quantum/quantum.o] Error 1
+Compiling: quantum/led.c                                                                            [32;01m[OK][0m
+Compiling: quantum/action_layer.c                                                                   [32;01m[OK][0m
+Compiling: quantum/action_tapping.c                                                                 [32;01m[OK][0m
+Compiling: quantum/eeconfig.c                                                                       [32;01m[OK][0m
+Compiling: quantum/action.c                                                                        In file included from quantum/keymap_extras/keymap_us.h:27,
+                 from quantum/quantum_keycodes.h:23,
+                 from quantum/quantum.h:40,
+                 from quantum/action.c:33:
+I:/coding/bkqmk/users/brainrot/keycodes.h:14:13: error: 'SAFE_RANGE' undeclared here (not in a function)
+   14 |     KC_QU = SAFE_RANGE,
+      |             ^~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:29:1: error: unknown type name 'tap_dance_action_t'
+   29 | tap_dance_action_t tap_dance_actions[] = {
+      | ^~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:30:20: error: implicit declaration of function 'ACTION_TAP_DANCE_DOUBLE'; did you mean 'ACTION_SWAP_HANDS_TOGGLE'? [-Werror=implicit-function-declaration]
+   30 |     [TD_SPC_ENT] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ENT),
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+      |                    ACTION_SWAP_HANDS_TOGGLE
+I:/coding/bkqmk/users/brainrot/keycodes.h:30:20: error: initializer element is not constant
+I:/coding/bkqmk/users/brainrot/keycodes.h:30:20: note: (near initialization for 'tap_dance_actions[0]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:31:20: error: initializer element is not constant
+   31 |     [TD_SPC_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ESC),
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:31:20: note: (near initialization for 'tap_dance_actions[1]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:32:45: error: implicit declaration of function 'C' [-Werror=implicit-function-declaration]
+   32 |     [TD_BSPC_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_BSPC), KC_BSPC),
+      |                                             ^
+I:/coding/bkqmk/users/brainrot/keycodes.h:32:21: error: initializer element is not constant
+   32 |     [TD_BSPC_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_BSPC), KC_BSPC),
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:32:21: note: (near initialization for 'tap_dance_actions[2]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:33:20: error: initializer element is not constant
+   33 |     [TD_DEL_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_DEL), KC_DEL),
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:33:20: note: (near initialization for 'tap_dance_actions[3]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:34:20: error: initializer element is not constant
+   34 |     [TD_DRG_TOG] = ACTION_TAP_DANCE_DOUBLE(DRGSCRL, DRG_TOG)
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:34:20: note: (near initialization for 'tap_dance_actions[4]')
+In file included from quantum/quantum.h:122:
+quantum/process_keycode/process_tap_dance.h:81:27: error: conflicting types for 'tap_dance_actions'; have 'tap_dance_action_t[]'
+   81 | extern tap_dance_action_t tap_dance_actions[];
+      |                           ^~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:29:20: note: previous definition of 'tap_dance_actions' with type 'int[1]'
+   29 | tap_dance_action_t tap_dance_actions[] = {
+      |                    ^~~~~~~~~~~~~~~~~
+cc1.exe: all warnings being treated as errors
+ [31;01m[ERRORS][0m
+ | 
+ | 
+ | 
+make: *** [builddefs/common_rules.mk:369: .build/obj_bastardkb_charybdis_3x6_brainrot/quantum/action.o] Error 1
+Compiling: quantum/action_util.c                                                                    [32;01m[OK][0m
+Compiling: quantum/sync_timer.c                                                                     [32;01m[OK][0m
+Compiling: quantum/keycode_config.c                                                                 [32;01m[OK][0m
+Compiling: quantum/logging/sendchar.c                                                               [32;01m[OK][0m
+Compiling: quantum/keymap_common.c                                                                 In file included from quantum/keymap_extras/keymap_us.h:27,
+                 from quantum/quantum_keycodes.h:23,
+                 from quantum/keymap_common.c:26:
+I:/coding/bkqmk/users/brainrot/keycodes.h:14:13: error: 'SAFE_RANGE' undeclared here (not in a function)
+   14 |     KC_QU = SAFE_RANGE,
+      |             ^~~~~~~~~~
+In file included from quantum/quantum.h:122,
+                 from keyboards/bastardkb/charybdis/charybdis.h:21,
+                 from I:/coding/bkqmk/users/brainrot/keycodes.h:3:
+I:/coding/bkqmk/users/brainrot/keycodes.h:32:45: error: implicit declaration of function 'C' [-Werror=implicit-function-declaration]
+   32 |     [TD_BSPC_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_BSPC), KC_BSPC),
+      |                                             ^
+quantum/process_keycode/process_tap_dance.h:61:138: note: in definition of macro 'ACTION_TAP_DANCE_DOUBLE'
+   61 |     { .fn = {tap_dance_pair_on_each_tap, tap_dance_pair_finished, tap_dance_pair_reset, NULL}, .user_data = (void *)&((tap_dance_pair_t){kc1, kc2}), }
+      |                                                                                                                                          ^~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:32:45: error: initializer element is not constant
+   32 |     [TD_BSPC_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_BSPC), KC_BSPC),
+      |                                             ^
+quantum/process_keycode/process_tap_dance.h:61:138: note: in definition of macro 'ACTION_TAP_DANCE_DOUBLE'
+   61 |     { .fn = {tap_dance_pair_on_each_tap, tap_dance_pair_finished, tap_dance_pair_reset, NULL}, .user_data = (void *)&((tap_dance_pair_t){kc1, kc2}), }
+      |                                                                                                                                          ^~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:32:45: note: (near initialization for '(anonymous).kc1')
+   32 |     [TD_BSPC_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_BSPC), KC_BSPC),
+      |                                             ^
+quantum/process_keycode/process_tap_dance.h:61:138: note: in definition of macro 'ACTION_TAP_DANCE_DOUBLE'
+   61 |     { .fn = {tap_dance_pair_on_each_tap, tap_dance_pair_finished, tap_dance_pair_reset, NULL}, .user_data = (void *)&((tap_dance_pair_t){kc1, kc2}), }
+      |                                                                                                                                          ^~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:33:44: error: initializer element is not constant
+   33 |     [TD_DEL_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_DEL), KC_DEL),
+      |                                            ^
+quantum/process_keycode/process_tap_dance.h:61:138: note: in definition of macro 'ACTION_TAP_DANCE_DOUBLE'
+   61 |     { .fn = {tap_dance_pair_on_each_tap, tap_dance_pair_finished, tap_dance_pair_reset, NULL}, .user_data = (void *)&((tap_dance_pair_t){kc1, kc2}), }
+      |                                                                                                                                          ^~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:33:44: note: (near initialization for '(anonymous).kc1')
+   33 |     [TD_DEL_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_DEL), KC_DEL),
+      |                                            ^
+quantum/process_keycode/process_tap_dance.h:61:138: note: in definition of macro 'ACTION_TAP_DANCE_DOUBLE'
+   61 |     { .fn = {tap_dance_pair_on_each_tap, tap_dance_pair_finished, tap_dance_pair_reset, NULL}, .user_data = (void *)&((tap_dance_pair_t){kc1, kc2}), }
+      |                                                                                                                                          ^~~
+cc1.exe: all warnings being treated as errors
+ [31;01m[ERRORS][0m
+ | 
+ | 
+ | 
+make: *** [builddefs/common_rules.mk:369: .build/obj_bastardkb_charybdis_3x6_brainrot/quantum/keymap_common.o] Error 1
+Compiling: quantum/logging/debug.c                                                                  [32;01m[OK][0m
+Compiling: quantum/logging/print.c                                                                  [32;01m[OK][0m
+Compiling: quantum/keyboard.c                                                                      In file included from quantum/keymap_extras/keymap_us.h:27,
+                 from quantum/quantum_keycodes.h:23,
+                 from quantum/process_keycode/process_tap_dance.h:22,
+                 from quantum/keyboard.c:75:
+I:/coding/bkqmk/users/brainrot/keycodes.h:14:13: error: 'SAFE_RANGE' undeclared here (not in a function)
+   14 |     KC_QU = SAFE_RANGE,
+      |             ^~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:29:1: error: unknown type name 'tap_dance_action_t'
+   29 | tap_dance_action_t tap_dance_actions[] = {
+      | ^~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:30:20: error: implicit declaration of function 'ACTION_TAP_DANCE_DOUBLE'; did you mean 'ACTION_SWAP_HANDS_TOGGLE'? [-Werror=implicit-function-declaration]
+   30 |     [TD_SPC_ENT] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ENT),
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+      |                    ACTION_SWAP_HANDS_TOGGLE
+I:/coding/bkqmk/users/brainrot/keycodes.h:30:20: error: initializer element is not constant
+I:/coding/bkqmk/users/brainrot/keycodes.h:30:20: note: (near initialization for 'tap_dance_actions[0]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:31:20: error: initializer element is not constant
+   31 |     [TD_SPC_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ESC),
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:31:20: note: (near initialization for 'tap_dance_actions[1]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:32:45: error: implicit declaration of function 'C' [-Werror=implicit-function-declaration]
+   32 |     [TD_BSPC_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_BSPC), KC_BSPC),
+      |                                             ^
+I:/coding/bkqmk/users/brainrot/keycodes.h:32:21: error: initializer element is not constant
+   32 |     [TD_BSPC_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_BSPC), KC_BSPC),
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:32:21: note: (near initialization for 'tap_dance_actions[2]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:33:20: error: initializer element is not constant
+   33 |     [TD_DEL_WRD] = ACTION_TAP_DANCE_DOUBLE(C(KC_DEL), KC_DEL),
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:33:20: note: (near initialization for 'tap_dance_actions[3]')
+I:/coding/bkqmk/users/brainrot/keycodes.h:34:20: error: initializer element is not constant
+   34 |     [TD_DRG_TOG] = ACTION_TAP_DANCE_DOUBLE(DRGSCRL, DRG_TOG)
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:34:20: note: (near initialization for 'tap_dance_actions[4]')
+quantum/process_keycode/process_tap_dance.h:81:27: error: conflicting types for 'tap_dance_actions'; have 'tap_dance_action_t[]'
+   81 | extern tap_dance_action_t tap_dance_actions[];
+      |                           ^~~~~~~~~~~~~~~~~
+I:/coding/bkqmk/users/brainrot/keycodes.h:29:20: note: previous definition of 'tap_dance_actions' with type 'int[1]'
+   29 | tap_dance_action_t tap_dance_actions[] = {
+      |                    ^~~~~~~~~~~~~~~~~
+cc1.exe: all warnings being treated as errors
+ [31;01m[ERRORS][0m
+ | 
+ | 
+ | 
+make: *** [builddefs/common_rules.mk:369: .build/obj_bastardkb_charybdis_3x6_brainrot/quantum/keyboard.o] Error 1
