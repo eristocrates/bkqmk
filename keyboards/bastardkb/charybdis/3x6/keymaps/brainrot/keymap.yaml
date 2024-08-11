@@ -1,46 +1,84 @@
 layout: {qmk_keyboard: bastardkb/charybdis/3x6, qmk_layout: LAYOUT}
 layers:
   L0:
-  - [X, V, G, M, P, ESC, ENT, U, O, Y, B, Z]
-  - [J, 'LT(LAYER POINTER,K)', S, N, D, BSPC, SPC, A, E, I, 'LT(LAYER POINTER,H)', QU]
-  - ['', W, F, L, C, '', '', '', '', ',', ., '']
-  - [MO(LAYER LOWER), R, MO(LAYER RAISE), SPC, T]
+  - [X, V, G, M, P, '', '', U, O, Y, B, Z]
+  - [J, PT K, S, N, D, BSPC WRD, DEL WRD, A, E, I, PT H, QU]
+  - [BASE, W, F, L, C, '', '', '', '', ',', ., LAYER]
+  - [LAYER, R, SPC ESC, SPC ENT, T]
   L1:
   - [LGUI, Q, W, E, R, T, Y, U, I, O, P, RGUI]
   - [LCTL, A, S, D, F, G, H, J, K, L, ;, RCTL]
-  - [LSFT, 'LT(LAYER POINTER,Z)', X, C, V, B, N, M, ',', ., 'LT(LAYER POINTER,SLSH)', RSFT]
-  - [BSPC, SPC, MO(LAYER LOWER), MO(LAYER RAISE), ENT]
+  - [LSFT, PT Z, X, C, V, B, N, M, ',', ., PT SLSH, RSFT]
+  - [BSPC, SPC, LOWER, RAISE, ENT]
   L2:
   - ['', RGB TOG, MNXT, MPLY, MPRV, '', '[', '7', '8', '9', ']', '']
   - ['', LGUI, LALT, LCTL, LSFT, '', PPLS, '4', '5', '6', PMNS, '']
-  - ['', '', '', '', EE CLR, QK BOOT, PAST, '1', '2', '3', PSLS, '']
-  - - {t: ▽, type: trans}
+  - - {t: '', type: trans}
     - ''
     - ''
     - ''
     - ''
+    - QK BOOT
+    - PAST
+    - '1'
+    - '2'
+    - '3'
+    - PSLS
+    - ''
+  - - LOWER
+    - ''
+    - ''
+    - {t: '', type: trans}
+    - {t: '', type: trans}
   L3:
   - ['', '', '', '', '', '', RGB MOD, RGB HUI, RGB SAI, RGB VAI, RGB SPI, '']
-  - ['', LEFT, UP, DOWN, RGHT, '', RGB RMOD, RGB HUD, RGB SAD, RGB VAD, RGB SPD, '']
-  - ['', HOME, PGUP, PGDN, END, '', QK BOOT, EE CLR, '', '', '', '']
-  - - ''
+  - ['', LEFT, DOWN, UP, RGHT, '', RGB RMOD, RGB HUD, RGB SAD, RGB VAD, RGB SPD, '']
+  - - {t: '', type: trans}
+    - HOME
+    - PGUP
+    - PGDN
+    - END
     - ''
-    - {t: ▽, type: trans}
+    - QK BOOT
     - ''
     - ''
+    - ''
+    - ''
+    - ''
+  - - RAISE
+    - ''
+    - ''
+    - {t: '', type: trans}
+    - {t: '', type: trans}
   L4:
   - [QK BOOT, EE CLR, '', '', DPI MOD, S D MOD, S D MOD, DPI MOD, '', '', EE CLR, QK BOOT]
   - - ''
-    - {t: ▽, type: trans}
-    - DRGSCRL
+    - {t: '', type: trans}
+    - DRG TOG
     - SNIPING
     - BTN3
     - ''
     - ''
     - BTN1
     - BTN2
-    - DRGSCRL
-    - {t: ▽, type: trans}
+    - DRG TOG
+    - {t: '', type: trans}
     - ''
-  - ['', LGUI, LALT, LCTL, LSFT, '', '', RSFT, RCTL, RALT, RGUI, '']
+  - - {t: '', type: trans}
+    - LGUI
+    - LALT
+    - LCTL
+    - LSFT
+    - ''
+    - ''
+    - RSFT
+    - RCTL
+    - RALT
+    - RGUI
+    - ''
   - [BTN2, BTN1, BTN3, BTN3, BTN1]
+  L5:
+  - ['', '', '', '', Ctl+ S, '', '', Ctl+ S, '', '', '', '']
+  - ['', '', '', '', LOWER, '', '', RAISE, '', '', '', '']
+  - ['', '', '', Ctl+ V, Ctl+ X, '', '', Ctl+ C, Ctl+ V, '', SC RMDT, '']
+  - [LAYER, '', '', ESC, ENT]

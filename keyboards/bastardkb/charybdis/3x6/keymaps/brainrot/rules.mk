@@ -1,2 +1,4 @@
+USER_NAME : eristocrates
 VIA_ENABLE = no
 COMBO_ENABLE = yes
+TAP_DANCE_ENABLE = yes
