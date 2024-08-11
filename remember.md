@@ -17,3 +17,5 @@ keymap -c I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\brainrot\con
 qmk compile -c -j 0 -kb bastardkb/charybdis/3x6 -km brainrot
 
 qmk compile -c -kb bastardkb/charybdis/3x6 -km brainrot
+
+qmk compile -c -j 0 -kb bastardkb/charybdis/3x6 -km brainrot > qmk-output.log 2>&1
