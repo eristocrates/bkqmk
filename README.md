@@ -1,3 +1,5 @@
+Output is at qmk-output.log tysm for tryin to help!
+
 # QMK Userspace
 
 This is the QMK Userspace for the Bastard Keyboards keymaps.

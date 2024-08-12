@@ -1,16 +1,23 @@
 layout: {qmk_keyboard: bastardkb/charybdis/3x6, qmk_layout: LAYOUT}
 layers:
   L0:
-  - [X, V, G, M, P, '', '', U, O, Y, B, Z]
-  - [J, 'LT(LAYER POINTER,K)', S, N, D, TD(TD BSPC WRD), TD(TD DEL WRD), A, E, I, 'LT(LAYER POINTER,H)', QU]
-  - [TO(LAYER BASE), W, F, L, C, '', '', '', '', ',', ., TT(LAYER LAYER)]
-  - [TT(LAYER LAYER), R, TD(TD SPC ESC), TD(TD SPC ENT), T]
+
+  - [X, V, G, M, P, (, ), U, O, Y, B, Z]
+  - [J, K, S, N, D, BSPC WRD, DEL WRD, A, E, I, H, QU]
+  - [BASE, W, F, L, C, \, /, ;, '''', ',', ., LAYER]
+  - [LAYER, R, SPC ESC, SPC ENT, T]
+
   L1:
   - [LGUI, Q, W, E, R, T, Y, U, I, O, P, RGUI]
   - [LCTL, A, S, D, F, G, H, J, K, L, ;, RCTL]
   - [LSFT, 'LT(LAYER POINTER,Z)', X, C, V, B, N, M, ',', ., 'LT(LAYER POINTER,SLSH)', RSFT]
   - [BSPC, SPC, TG(LAYER LOWER), TG(LAYER RAISE), ENT]
   L2:
+  - ['', '', '', '', Ctl+ S, '', '', Ctl+ S, '', '', '', '']
+  - ['', '', '', '', LOWER, '', '', RAISE, '', '', '', '']
+  - ['', '', '', Ctl+ V, Ctl+ X, '', '', Ctl+ C, Ctl+ V, '', SC RMDT, '']
+  - [LAYER, '', '', ESC, ENT]
+  L3:
   - ['', RGB TOG, MNXT, MPLY, MPRV, '', '[', '7', '8', '9', ']', '']
   - ['', LGUI, LALT, LCTL, LSFT, '', PPLS, '4', '5', '6', PMNS, '']
   - - {t: ▽, type: trans}
@@ -28,9 +35,11 @@ layers:
   - - TG(LAYER LOWER)
     - ''
     - ''
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  L3:
+
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  L4:
+
   - ['', '', '', '', '', '', RGB MOD, RGB HUI, RGB SAI, RGB VAI, RGB SPI, '']
   - ['', LEFT, DOWN, UP, RGHT, '', RGB RMOD, RGB HUD, RGB SAD, RGB VAD, RGB SPD, '']
   - - {t: ▽, type: trans}
@@ -48,17 +57,19 @@ layers:
   - - TG(LAYER RAISE)
     - ''
     - ''
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  L4:
-  - [QK BOOT, EE CLR, '', '', DPI MOD, S D MOD, S D MOD, DPI MOD, '', '', EE CLR, QK BOOT]
+
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  L5:
+  - [QK BOOT, EE CLR, '', '', DPI MOD, S D MOD, S D MOD, DPI MOD, F11, '', EE CLR, QK BOOT]
+
   - - ''
     - {t: ▽, type: trans}
     - DRG TOG
     - SNIPING
     - BTN3
     - ''
-    - ''
+    - TG SHFT
     - BTN1
     - BTN2
     - DRG TOG
@@ -71,14 +82,11 @@ layers:
     - LSFT
     - ''
     - ''
-    - RSFT
-    - RCTL
-    - RALT
-    - RGUI
     - ''
-  - [BTN2, BTN1, BTN3, BTN3, BTN1]
-  L5:
-  - ['', '', '', '', Ctl+ S, '', '', Ctl+ S, '', '', '', '']
-  - ['', '', '', '', TG(LAYER LOWER), '', '', TG(LAYER RAISE), '', '', '', '']
-  - ['', '', '', Ctl+ V, Ctl+ X, '', '', Ctl+ C, Ctl+ V, '', SC RMDT, '']
-  - [TT(LAYER LAYER), '', '', ESC, ENT]
+
+    - ''
+    - ''
+    - ''
+    - ''
+  - [BTN2, BTN1, BTN3, LEFT, RGHT]
+

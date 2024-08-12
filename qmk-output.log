@@ -1,0 +1,13 @@
+INFO Compiling keymap with make --jobs --output-sync=target -r -R -f builddefs/build_keyboard.mk -s KEYBOARD=bastardkb/charybdis/3x6 KEYMAP=brainrot KEYBOARD_FILESAFE=bastardkb_charybdis_3x6 TARGET=bastardkb_charybdis_3x6_brainrot INTERMEDIATE_OUTPUT=.build/obj_bastardkb_charybdis_3x6_brainrot VERBOSE=false COLOR=true SILENT=false QMK_BIN="qmk" QMK_USERSPACE=I:/coding/bkqmk MAIN_KEYMAP_PATH_1=I:/coding/bkqmk/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot MAIN_KEYMAP_PATH_2=I:/coding/bkqmk/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot MAIN_KEYMAP_PATH_3=I:/coding/bkqmk/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot MAIN_KEYMAP_PATH_4=I:/coding/bkqmk/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot MAIN_KEYMAP_PATH_5=I:/coding/bkqmk/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot
+
+
+arm-none-eabi-gcc.exe (GCC) 13.3.0
+Copyright (C) 2023 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+Compiling: quantum/keymap_introspection.c                                                           [32;01m[OK][0m
+Linking: .build/bastardkb_charybdis_3x6_brainrot.elf                                                [32;01m[OK][0m
+Creating UF2 file for deployment: .build/bastardkb_charybdis_3x6_brainrot.uf2                       [32;01m[OK][0m
+Copying bastardkb_charybdis_3x6_brainrot.uf2 to qmk_firmware folder                                 [32;01m[OK][0m
+Copying bastardkb_charybdis_3x6_brainrot.uf2 to userspace folder                                    [32;01m[OK][0m
