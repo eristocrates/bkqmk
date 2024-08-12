@@ -1,5 +1,4 @@
 #pragma once
-#include QMK_KEYBOARD_H
 
 // TODO find and add features
 // Features

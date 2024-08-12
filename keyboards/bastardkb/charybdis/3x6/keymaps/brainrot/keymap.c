@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
-#include "mods.h"
+#include "layout.h"
 
 /** \brief Automatically enable sniping-mode on the pointer layer. */
 #define CHARYBDIS_AUTO_SNIPING_ON_LAYER LAYER_POINTER
@@ -36,11 +36,11 @@ static uint16_t auto_pointer_layer_timer = 0;
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_BRAINROT] = HRM(LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
-          KC_X,    KC_V,    KC_G,    KC_M,    KC_P, XXXXXXX,    XXXXXXX,    KC_U,    KC_O,    KC_Y,    KC_B,    KC_Z,
+          KC_X,    KC_V,    KC_G,    KC_M,    KC_P, KC_LPRN,    KC_RPRN,    KC_U,    KC_O,    KC_Y,    KC_B,    KC_Z,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-          KC_J,    KC_K,    KC_S,    KC_N,    KC_D,BSPC_WRD,    DEL_WRD,    KC_A,    KC_E,    KC_I,    KC_H,   KC_QU,
+          KC_J,    KC_K,    KC_S,    KC_N,    KC_D, BSPC_WRD,   DEL_WRD,    KC_A,    KC_E,    KC_I,    KC_H,   KC_QU,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-          BASE,    KC_W,    KC_F,    KC_L,    KC_C, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, KC_COMM, KC_DOT,    LAYER,
+          BASE,    KC_W,    KC_F,    KC_L,    KC_C, KC_BSLS,    KC_SLSH, KC_SCLN, KC_QUOT, KC_COMM, KC_DOT,    LAYER,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
                                     LAYER,    KC_R, SPC_ESC,    SPC_ENT,    KC_T
   //                            ╰───────────────────────────╯ ╰──────────────────╯
@@ -55,6 +55,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_LSFT,    PT_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_N,    KC_M, KC_COMM,  KC_DOT, PT_SLSH, KC_RSFT,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
                                   KC_BSPC,  KC_SPC,   LOWER,      RAISE,  KC_ENT
+  //                            ╰───────────────────────────╯ ╰──────────────────╯
+  ),
+
+  [LAYER_LAYER] = LAYOUT(
+  // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, C(KC_S), XXXXXXX,    XXXXXXX, C(KC_S), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   LOWER, XXXXXXX,    XXXXXXX,   RAISE, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
+       XXXXXXX, XXXXXXX, XXXXXXX, C(KC_V), C(KC_X), XXXXXXX,    XXXXXXX, C(KC_C), C(KC_V), XXXXXXX, SC_RMDT, XXXXXXX,
+  // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
+                                    LAYER, XXXXXXX, XXXXXXX,     KC_ESC,  KC_ENT
   //                            ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
@@ -94,17 +106,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //                            ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
-  [LAYER_LAYER] = LAYOUT(
-  // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
-       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, C(KC_S), XXXXXXX,    XXXXXXX, C(KC_S), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   LOWER, XXXXXXX,    XXXXXXX,   RAISE, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       XXXXXXX, XXXXXXX, XXXXXXX, C(KC_V), C(KC_X), XXXXXXX,    XXXXXXX, C(KC_C), C(KC_V), XXXXXXX, SC_RMDT, XXXXXXX,
-  // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                                    LAYER, XXXXXXX, XXXXXXX,     KC_ESC,  KC_ENT
-  //                            ╰───────────────────────────╯ ╰──────────────────╯
-  ),
   /*
   [LAYER_XXXXXXX] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
