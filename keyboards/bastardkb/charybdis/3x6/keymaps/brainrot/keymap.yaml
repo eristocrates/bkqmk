@@ -1,92 +1,56 @@
 layout: {qmk_keyboard: bastardkb/charybdis/3x6, qmk_layout: LAYOUT}
 layers:
   L0:
-
-  - [X, V, G, M, P, (, ), U, O, Y, B, Z]
+  - [X, V, G, M, P, LARCANE, RARCANE, U, O, Y, B, Z]
   - [J, K, S, N, D, BSPC WRD, DEL WRD, A, E, I, H, QU]
-  - [BASE, W, F, L, C, \, /, ;, '''', ',', ., LAYER]
-  - [LAYER, R, SPC ESC, SPC ENT, T]
-
+  - [BASE, W, F, L, C, \, /, '?', ',', ., '!', LAYER]
+  - [LAYER, R, SPC, SPC, T]
   L1:
   - [LGUI, Q, W, E, R, T, Y, U, I, O, P, RGUI]
   - [LCTL, A, S, D, F, G, H, J, K, L, ;, RCTL]
-  - [LSFT, 'LT(LAYER POINTER,Z)', X, C, V, B, N, M, ',', ., 'LT(LAYER POINTER,SLSH)', RSFT]
-  - [BSPC, SPC, TG(LAYER LOWER), TG(LAYER RAISE), ENT]
+  - [LSFT, PT Z, X, C, V, B, N, M, ',', ., PT SLSH, RSFT]
+  - [BSPC, SPC, LOWER, RAISE, ENT]
   L2:
-  - ['', '', '', '', Ctl+ S, '', '', Ctl+ S, '', '', '', '']
-  - ['', '', '', '', LOWER, '', '', RAISE, '', '', '', '']
-  - ['', '', '', Ctl+ V, Ctl+ X, '', '', Ctl+ C, Ctl+ V, '', SC RMDT, '']
-  - [LAYER, '', '', ESC, ENT]
+  - ['1', Q, I, W, R, T, Y, U, I, O, P, DFBASE]
+  - [LCTL, A, A, S, D, G, H, J, K, L, ;, RCTL]
+  - [LSFT, PT Z, M, C, V, B, N, M, ',', ., PT SLSH, RSFT]
+  - [ESC, SPC, LOWER, RAISE, ENT]
   L3:
+  - ['', '', '', '', Ctl+ S, LARCANE, RARCANE, Ctl+ S, '', '', '', DFGAME]
+  - ['', '', '', '', LOWER, '', '', RAISE, '', '', '', '']
+  - [BASE, '', '', Ctl+ V, Ctl+ X, '', '', Ctl+ C, Ctl+ V, '', SC RMDT, '']
+  - [LAYER, '', '', ESC, ENT]
+  L4:
   - ['', RGB TOG, MNXT, MPLY, MPRV, '', '[', '7', '8', '9', ']', '']
   - ['', LGUI, LALT, LCTL, LSFT, '', PPLS, '4', '5', '6', PMNS, '']
-  - - {t: ▽, type: trans}
+  - [BASE, '', '', '', S SNAP, QK BOOT, PAST, '1', '2', '3', PSLS, '']
+  - - LOWER
     - ''
-    - ''
-    - ''
-    - ''
-    - QK BOOT
-    - PAST
-    - '1'
-    - '2'
-    - '3'
-    - PSLS
-    - ''
-  - - TG(LAYER LOWER)
-    - ''
-    - ''
-
     - {t: '', type: trans}
-    - {t: '', type: trans}
-  L4:
-
-  - ['', '', '', '', '', '', RGB MOD, RGB HUI, RGB SAI, RGB VAI, RGB SPI, '']
-  - ['', LEFT, DOWN, UP, RGHT, '', RGB RMOD, RGB HUD, RGB SAD, RGB VAD, RGB SPD, '']
-  - - {t: ▽, type: trans}
-    - HOME
-    - PGUP
-    - PGDN
-    - END
-    - ''
-    - QK BOOT
-    - ''
-    - ''
-    - ''
-    - ''
-    - ''
-  - - TG(LAYER RAISE)
-    - ''
-    - ''
-
     - {t: '', type: trans}
     - {t: '', type: trans}
   L5:
-  - [QK BOOT, EE CLR, '', '', DPI MOD, S D MOD, S D MOD, DPI MOD, F11, '', EE CLR, QK BOOT]
-
+  - ['', '', '', '', '', '', RGB MOD, RGB HUI, RGB SAI, RGB VAI, RGB SPI, '']
+  - ['', LEFT, DOWN, UP, RGHT, '', RGB RMOD, RGB HUD, RGB SAD, RGB VAD, RGB SPD, '']
+  - [BASE, HOME, PGUP, PGDN, END, '', QK BOOT, '', '', '', '', '']
+  - - RAISE
+    - ''
+    - ''
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  L6:
+  - [QK BOOT, EE CLR, '', BTN3, DPI RMOD, S D RMOD, S D MOD, DPI MOD, BTN3, F11, '', '']
   - - ''
-    - {t: ▽, type: trans}
-    - DRG TOG
-    - SNIPING
-    - BTN3
+    - {t: '', type: trans}
+    - DRGSCRL
+    - BTN2
+    - BTN1
     - ''
     - TG SHFT
     - BTN1
     - BTN2
     - DRG TOG
-    - {t: ▽, type: trans}
+    - {t: '', type: trans}
     - ''
-  - - {t: ▽, type: trans}
-    - LGUI
-    - LALT
-    - LCTL
-    - LSFT
-    - ''
-    - ''
-    - ''
-
-    - ''
-    - ''
-    - ''
-    - ''
-  - [BTN2, BTN1, BTN3, LEFT, RGHT]
-
+  - [BASE, LGUI, LALT, LCTL, LSFT, '', '', '', '', '', '', '']
+  - [UP, '', DOWN, LEFT, RGHT]

@@ -1,6 +1,7 @@
 #pragma once
 
 #define RGB_MATRIX_FRAMEBUFFER_EFFECTS
+#define COMBO_VARIABLE_LEN
 
 // Tapping settings
 #define TAPPING_TERM 175

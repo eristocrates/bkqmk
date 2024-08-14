@@ -1,11 +1,9 @@
 #pragma once
 
-// TODO find and add features
 // Features
+#include "features/arcane_keys.h"
+#include "features/drashna.h"
 
-// TODO investigate gboards combos
-/*
 #ifdef COMBO_ENABLE
-#include "g/keymap_combo.h"
+#    include "keymap_combo.h"
 #endif
-*/
