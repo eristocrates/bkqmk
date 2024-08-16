@@ -4,6 +4,7 @@
 enum layers {
     LAYER_BRAINROT = 0,
     LAYER_LSHIFTGR,
+    LAYER_VIMNUM,
     LAYER_RSHIFTGR,
     LAYER_QWERTY,
     LAYER_GAME,
@@ -21,6 +22,7 @@ enum layers {
 #define LAYER TT(LAYER_LAYER)
 #define LOWER TG(LAYER_LOWER)
 #define RAISE TG(LAYER_RAISE)
+#define VIMNUM MO(LAYER_VIMNUM)
 
 // default LTs
 #define PT_Z LT(LAYER_POINTER, KC_Z)

@@ -11,5 +11,7 @@
 // TODO arcane keycode? arcane macro? essentially any other feature with repeate functionality
 
 void arcane_send_string_P(const char* str, uint16_t repeat_keycode);
-void process_left_arcane(uint16_t keycode, uint8_t mods);  // LARCANE definitions
-void process_right_arcane(uint16_t keycode, uint8_t mods); // RARCANE definitions
+void process_top_left_arcane(uint16_t keycode, uint8_t mods);
+void process_top_right_arcane(uint16_t keycode, uint8_t mods);
+void process_bottom_left_arcane(uint16_t keycode, uint8_t mods);
+void process_bottom_right_arcane(uint16_t keycode, uint8_t mods);

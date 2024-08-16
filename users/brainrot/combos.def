@@ -1,38 +1,29 @@
 /*    COMBO NAME       | OUTPUT    | PARAMS    */
 
 /*---- Control ----*/
-COMB(CB_ENT, KC_ENT, MEH_T(KC_COMM), KC_DOT)
+COMB(CB_ESC, KC_ESC, MEH_T(KC_COMM), KC_DOT)
 
-/*---- 2Gram Horizontal ----*/
-SUBS(CB_BL, "bl", KC_V, LGUI_T(KC_M))
-SUBS(CB_SP, "sp", KC_G, KC_P)
+/*---- 2Grams ----*/
 SUBS(CB_GH, "gh", KC_V, KC_G)
-SUBS(CB_MN, "mn", KC_G, LGUI_T(KC_M))
 SUBS(CB_PH, "ph", LGUI_T(KC_M), KC_P)
 SUBS(CB_SH, "sh", PNT_T(KC_K), LALT_T(KC_S))
-SUBS(CB_NL, "nl", LALT_T(KC_S), LCTL_T(KC_N))
 SUBS(CB_TH, "th", LCTL_T(KC_N), LSFT_T(KC_D))
 SUBS(CB_WH, "wh", KC_W, KC_F)
-SUBS(CB_LM, "lm", KC_F, MEH_T(KC_L))
 SUBS(CB_CH, "ch", MEH_T(KC_L), HYPR_T(KC_C))
 SUBS(CB_LY, "ly", RGUI_T(KC_O), KC_Y)
 SUBS(CB_IN, "in", RCTL_T(KC_E), RALT_T(KC_I))
 
-/*---- 2Gram Diagonal ----*/
-SUBS(CB_SG, "sg", LALT_T(KC_S), KC_W)
-SUBS(CB_PD, "pd", LCTL_T(KC_N), KC_P)
-SUBS(CB_GF, "gf", KC_G, HYPR_T(KC_C))
 
+/*---- 3Grams ----*/
+SUBS(CB_THE, "the", LALT_T(KC_S), LSFT_T(KC_D))
+SUBS(CB_AND, "and", RSFT_T(KC_A), RALT_T(KC_I))
+SUBS(CB_FOR, "for", KC_F, HYPR_T(KC_C))
+SUBS(CB_YOU, "you", KC_Y, KC_U)
 
-/*---- 3+Gram ----*/
+/*---- 4Grams ----*/
 SUBS(CB_INGL, "ing", PNT_T(KC_K), LCTL_T(KC_N))
 SUBS(CB_INGR, "ing", RCTL_T(KC_E), PNT_T(KC_H))
 SUBS(CB_SION, "sion", LALT_T(KC_S), RALT_T(KC_I))
 SUBS(CB_TION, "tion", RSHGR_T(KC_T), RALT_T(KC_I))
 SUBS(CB_OULD, "ould", KC_U, RGUI_T(KC_O))
 
-/*---- words that may be a 3+Gram ----*/
-SUBS(CB_THE, "the", LALT_T(KC_S), LSFT_T(KC_D))
-SUBS(CB_AND, "and", RSFT_T(KC_A), RALT_T(KC_I))
-SUBS(CB_FOR, "for", KC_F, HYPR_T(KC_C))
-SUBS(CB_YOU, "you", KC_Y, KC_U)

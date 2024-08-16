@@ -1,9 +1,9 @@
 layout: {qmk_keyboard: bastardkb/charybdis/3x6, qmk_layout: LAYOUT}
 layers:
   L0:
-  - [X, V, G, M, P, LARCANE, RARCANE, U, O, Y, B, Z]
-  - [J, K, S, N, D, BSPC WRD, ENT, A, E, I, H, QU]
-  - [BASE, W, F, L, C, \, /, '?', ',', ., '!', LAYER]
+  - [X, V, G, M, P, LT ARC, RT ARC, U, O, Y, B, Z]
+  - [J, K, S, N, D, BSPC WD, ENT, A, E, I, H, QU]
+  - [BASE, W, F, L, C, LB ARC, RB ARC, '?', ',', ., '!', LAYER]
   - [LAYER, R, LSPC, RSPC, T]
   L1:
   - - {t: '', type: trans}
@@ -12,35 +12,35 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
+    - VIM GG
+    - ^
+    - Ctl+ D
+    - Ctl+ U
+    - 'VIM G '
     - {t: '', type: trans}
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
+    - VIMNUM
     - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
+    - B
     - H
     - J
     - K
     - L
-    - {t: '', type: trans}
+    - W
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
+    - Sft+ G
+    - '0'
+    - '}'
+    - '{'
+    - $
     - {t: '', type: trans}
   - - {t: '', type: trans}
     - {t: '', type: trans}
@@ -55,21 +55,9 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
+    - '7'
+    - '8'
+    - '9'
     - {t: '', type: trans}
     - {t: '', type: trans}
   - - {t: '', type: trans}
@@ -79,32 +67,86 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
+    - '4'
+    - '5'
+    - '6'
     - {t: '', type: trans}
     - {t: '', type: trans}
   - - {t: '', type: trans}
     - {t: '', type: trans}
-    - _
-    - _
     - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - '1'
+    - '2'
+    - '3'
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - '0'
   L3:
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - _
+    - _
+    - {t: '', type: trans}
+  L4:
   - [LGUI, Q, W, E, R, T, Y, U, I, O, P, RGUI]
   - [LCTL, A, S, D, F, G, H, J, K, L, ;, RCTL]
   - [LSFT, PT Z, X, C, V, B, N, M, ',', ., PT SLSH, RSFT]
   - [BSPC, SPC, LOWER, RAISE, ENT]
-  L4:
+  L5:
   - ['1', Q, I, W, R, T, Y, U, I, O, P, DFBASE]
   - [LCTL, A, A, S, D, G, H, J, K, L, ;, RCTL]
   - [LSFT, PT Z, M, C, V, B, N, M, ',', ., PT SLSH, RSFT]
   - [ESC, SPC, LOWER, RAISE, ENT]
-  L5:
-  - ['', '', '', '', Ctl+ S, LARCANE, RARCANE, Ctl+ S, '', '', '', DFGAME]
-  - ['', '', '', '', LOWER, DEL WRD, VIM TOG, RAISE, '', '', '', '']
-  - [BASE, '', '', Ctl+ V, Ctl+ X, '', '', Ctl+ C, Ctl+ V, '', SC RMDT, '']
-  - [LAYER, PS MSPS, PS WKPS, ESC, ENT]
   L6:
+  - ['', '', '', '', Ctl+ S, LT ARC, RT ARC, Ctl+ S, '', '', '', DFGAME]
+  - ['', '', '', '', LOWER, DEL WRD, VIM TOG, RAISE, '', '', '', '']
+  - [BASE, '', Ctl+ X, Ctl+ V, Ctl+ C, '', '', Ctl+ C, Ctl+ V, Ctl+ X, SC RMDT, '']
+  - [LAYER, PS MSPS, PS WKPS, ESC, ENT]
+  L7:
   - ['', RGB TOG, MNXT, MPLY, MPRV, '', '[', '7', '8', '9', ']', '']
   - ['', LGUI, LALT, LCTL, LSFT, '', PPLS, '4', '5', '6', PMNS, '']
   - [BASE, '', '', '', S SNAP, QK BOOT, PAST, '1', '2', '3', PSLS, '']
@@ -113,7 +155,7 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - '0'
-  L7:
+  L8:
   - ['', '', '', '', '', '', RGB MOD, RGB HUI, RGB SAI, RGB VAI, RGB SPI, '']
   - ['', LEFT, DOWN, UP, RGHT, '', RGB RMOD, RGB HUD, RGB SAD, RGB VAD, RGB SPD, '']
   - [BASE, HOME, PGUP, PGDN, END, '', QK BOOT, '', '', '', '', '']
@@ -122,8 +164,8 @@ layers:
     - ''
     - {t: '', type: trans}
     - {t: '', type: trans}
-  L8:
-  - [QK BOOT, EE CLR, '', BTN3, DPI RMOD, S D RMOD, S D MOD, DPI MOD, BTN3, F11, '', '']
-  - ['', SNIPING, DRGSCRL, BTN2, BTN1, '', TG SHFT, BTN1, BTN2, DRG TOG, SNP TOG, '']
-  - [BASE, LGUI, LALT, LCTL, LSFT, '', '', '', '', '', '', '']
+  L9:
+  - ['', '', '', BTN3, DPI RMOD, S D RMOD, S D MOD, DPI MOD, BTN3, F11, '', '']
+  - ['', SNIPING, DRGSCRL, BTN2, BTN1, '', TG SHFT, BTN1, BTN2, DRGSCRL, SNIPING, '']
+  - [BASE, SNP TOG, DRG TOG, '', '', '', '', '', '', DRG TOG, SNP TOG, '']
   - [UP, '', DOWN, LEFT, RGHT]

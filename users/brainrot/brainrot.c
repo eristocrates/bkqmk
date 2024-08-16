@@ -4,9 +4,11 @@
 
 // Hold Timers
 static uint16_t qu_tapping_term;
-static uint16_t qu_timer         = 0;
-bool            is_qu_held       = false;
-bool            is_shift_toggled = false; // Variable to track the toggled Shift state
+static uint16_t qu_timer           = 0;
+static uint16_t last_keycode_timer = 0;
+static uint16_t last_keycode_term  = 1000;
+bool            is_qu_held         = false;
+bool            is_shift_toggled   = false; // Variable to track the toggled Shift state
 
 // https://github.com/possumvibes/qmk_firmware/blob/e0e939ef77e531966c86a1dc06315458d5a5547c/users/possumvibes/possumvibes.c#L5
 static uint16_t    next_keycode;
@@ -88,15 +90,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             return false; // Skip all further processing of this key
-        case LARCANE: {
+        case LT_ARC: {
             if (record->event.pressed) {
-                process_left_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
+                process_top_left_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
             }
         }
             return false;
-        case RARCANE: {
+        case RT_ARC: {
             if (record->event.pressed) {
-                process_right_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
+                process_top_right_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
+            }
+        }
+            return false;
+        case LB_ARC: {
+            if (record->event.pressed) {
+                process_bottom_left_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
+            }
+        }
+            return false;
+        case RB_ARC: {
+            if (record->event.pressed) {
+                process_bottom_right_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
             }
         }
             return false;
@@ -133,6 +147,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 toggle_vim_mode();
             }
             return false;
+        case VIM_G_:
+            if (record->event.pressed) {
+                tap_code(KC_G);
+                tap_code16(KC_UNDS);
+            }
+            return false;
+        case VIM_GG:
+            if (record->event.pressed) {
+                tap_code(KC_G);
+                tap_code(KC_G);
+            }
+            return false;
+
         default:
             return true; // Process all other keycodes normally
     }
@@ -143,10 +170,13 @@ bool remember_last_key_user(uint16_t keycode, keyrecord_t *record, uint8_t *reme
         case KC_BSPC:
         case KC_DEL:
 
-        case LARCANE:
-        case RARCANE:
+        case LT_ARC:
+        case RT_ARC:
+        case LB_ARC:
+        case RB_ARC:
             return false; // Arcane keys will ignore the above keycodes.
     }
+    last_keycode_timer = timer_read();
     return true; // Other keys can be repeated.
 }
 
@@ -168,10 +198,14 @@ static bool process_tap_or_long_press_key( // Tap for number, hold for F-key
 */
 
 void matrix_scan_user(void) {
-    if (is_qu_held)
+    if (is_qu_held) {
         if (timer_elapsed(qu_timer) == qu_tapping_term) {
             tap_code(KC_Q);
         }
+    }
+    if (timer_elapsed(last_keycode_timer) >= last_keycode_term) {
+        set_last_keycode(KC_SPC);
+    }
 
 #ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
     if (auto_pointer_layer_timer != 0 && TIMER_DIFF_16(timer_read(), auto_pointer_layer_timer) >= CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS) {

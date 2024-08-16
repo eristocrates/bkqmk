@@ -26,7 +26,7 @@ void arcane_send_string_P(const char* str, uint16_t repeat_keycode) {
     */
 }
 
-void process_left_arcane(uint16_t keycode, uint8_t mods) { // LARCANE definitions
+void process_top_left_arcane(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
         // left outer column
         case KC_X: {
@@ -43,9 +43,6 @@ void process_left_arcane(uint16_t keycode, uint8_t mods) { // LARCANE definition
         case KC_K: {
             ARCANE_STRING("k", KC_K);
         } break;
-        case KC_W: {
-            ARCANE_STRING("w", KC_W);
-        } break;
 
         // left ring column
         case KC_G: {
@@ -53,9 +50,6 @@ void process_left_arcane(uint16_t keycode, uint8_t mods) { // LARCANE definition
         } break;
         case KC_S: {
             ARCANE_STRING("s", KC_S);
-        } break;
-        case KC_F: {
-            ARCANE_STRING("f", KC_F);
         } break;
 
         // left middle column
@@ -66,13 +60,197 @@ void process_left_arcane(uint16_t keycode, uint8_t mods) { // LARCANE definition
             ARCANE_STRING("n", KC_N);
         } break;
         case KC_L: {
-            ARCANE_STRING("l", KC_L);
+            ARCANE_STRING("ly", KC_SPC);
         } break;
 
         // left index column
         case KC_P: {
             ARCANE_STRING("p", KC_P);
         } break;
+        case KC_D: {
+            ARCANE_STRING("d", KC_D);
+        } break;
+
+        // left thumb
+
+        // right outer column
+        case KC_Z: {
+            ARCANE_STRING("qu", KC_QU);
+        } break;
+        case KC_QU: {
+            ARCANE_STRING("z", KC_Z);
+        } break;
+
+        // right pinky column
+        case KC_B: {
+            ARCANE_STRING("h", KC_H);
+        } break;
+        case KC_H: {
+            ARCANE_STRING("b", KC_B);
+        } break;
+
+        // right ring column
+        case KC_Y: {
+            ARCANE_STRING("i", KC_I);
+        } break;
+        case KC_I: {
+            ARCANE_STRING("y", KC_Y);
+        } break;
+
+        // right middle column
+        case KC_O: {
+            ARCANE_STRING("e", KC_E);
+        } break;
+        case KC_E: {
+            ARCANE_STRING("o", KC_O);
+        } break;
+
+        // right index column
+        case KC_U: {
+            ARCANE_STRING("a", KC_A);
+        } break;
+        case KC_A: {
+            ARCANE_STRING("u", KC_U);
+        } break;
+
+            // right thumb
+
+        default:
+            tap_code(KC_EQL);
+    }
+}
+
+void process_top_right_arcane(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+        // left outer column
+        case KC_X: {
+            ARCANE_STRING("j", KC_J);
+        } break;
+        case KC_J: {
+            ARCANE_STRING("x", KC_X);
+        } break;
+
+            // left pinky column
+        case KC_V: {
+            ARCANE_STRING("k", KC_K);
+        } break;
+        case KC_K: {
+            ARCANE_STRING("v", KC_V);
+        } break;
+        case KC_W: {
+            ARCANE_STRING("v", KC_V);
+        } break;
+
+        // left ring column
+        case KC_G: {
+            ARCANE_STRING("s", KC_S);
+        } break;
+        case KC_S: {
+            ARCANE_STRING("g", KC_G);
+        } break;
+        case KC_F: {
+            ARCANE_STRING("g", KC_G);
+        } break;
+
+        // left middle column
+        case KC_M: {
+            ARCANE_STRING("n", KC_N);
+        } break;
+        case KC_N: {
+            ARCANE_STRING("m", KC_M);
+        } break;
+        case KC_L: {
+            ARCANE_STRING("m", KC_M);
+        } break;
+
+        // left index column
+        case KC_P: {
+            ARCANE_STRING("d", KC_D);
+        } break;
+        case KC_D: {
+            ARCANE_STRING("p", KC_P);
+        } break;
+        case KC_C: {
+            ARCANE_STRING("p", KC_P);
+        } break;
+
+        // left thumb
+
+        // right outer column
+        case KC_Z: {
+            ARCANE_STRING("z", KC_Z);
+        } break;
+
+        // right pinky column
+        case KC_B: {
+            ARCANE_STRING("b", KC_B);
+        } break;
+        case KC_H: {
+            ARCANE_STRING("h", KC_H);
+        } break;
+
+        // right ring column
+        case KC_Y: {
+            ARCANE_STRING("y", KC_Y);
+        } break;
+        case KC_I: {
+            ARCANE_STRING("i", KC_I);
+        } break;
+
+        // right middle column
+        case KC_O: {
+            ARCANE_STRING("o", KC_O);
+        } break;
+        case KC_E: {
+            ARCANE_STRING("e", KC_E);
+        } break;
+
+        // right index column
+        case KC_U: {
+            ARCANE_STRING("a", KC_A);
+        } break;
+        case KC_A: {
+            ARCANE_STRING("u", KC_U);
+        } break;
+
+            // right thumb
+
+        default:
+            tap_code(KC_QUOT);
+    }
+}
+void process_bottom_left_arcane(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+            // left outer column
+        case KC_J: {
+            ARCANE_STRING("j", KC_J);
+        } break;
+
+        // left pinky column
+        case KC_K: {
+            ARCANE_STRING("k", KC_K);
+        } break;
+        case KC_W: {
+            ARCANE_STRING("w", KC_W);
+        } break;
+
+        // left ring column
+        case KC_S: {
+            ARCANE_STRING("s", KC_S);
+        } break;
+        case KC_F: {
+            ARCANE_STRING("f", KC_F);
+        } break;
+
+        // left middle column
+        case KC_N: {
+            ARCANE_STRING("n", KC_N);
+        } break;
+        case KC_L: {
+            ARCANE_STRING("l", KC_L);
+        } break;
+
+        // left index column
         case KC_D: {
             ARCANE_STRING("d", KC_D);
         } break;
@@ -90,77 +268,48 @@ void process_left_arcane(uint16_t keycode, uint8_t mods) { // LARCANE definition
 
         // right outer column
         case KC_Z: {
-            ARCANE_STRING("y", KC_Y);
-        } break;
-        case KC_QU: {
             ARCANE_STRING("qu", KC_QU);
         } break;
 
-        // right pinky column
-        case KC_B: {
-            ARCANE_STRING("h", KC_H);
-        } break;
-        case KC_H: {
-            ARCANE_STRING("b", KC_B);
-        } break;
+            // right pinky column
+            // TODO add whatever bottom key becomes
 
         // right ring column
-        case KC_Y: {
-            ARCANE_STRING("i", KC_I);
-        } break;
         case KC_I: {
-            ARCANE_STRING("y", KC_Y);
+            ARCANE_STRING(".", KC_DOT);
         } break;
         case KC_DOT: {
-            ARCANE_STRING(".", KC_DOT);
+            ARCANE_STRING("i", KC_I);
         } break;
 
         // right middle column
         case KC_O: {
-            ARCANE_STRING("e", KC_E);
-        } break;
-        case KC_E: {
-            ARCANE_STRING("o", KC_O);
-        } break;
-        case KC_COMM: {
             ARCANE_STRING(",", KC_COMM);
         } break;
-
-        // right index column
-        case KC_U: {
-            ARCANE_STRING("a", KC_A);
+        case KC_E: {
+            ARCANE_STRING(",", KC_COMM);
         } break;
-        case KC_A: {
-            ARCANE_STRING("u", KC_U);
+        case KC_COMM: {
+            ARCANE_STRING("e", KC_E);
         } break;
 
-        // right thumb
-        case KC_T: {
-            ARCANE_STRING("t", KC_T);
-        } break;
-        case KC_RSPC: {
-            ARCANE_STRING(" ", KC_SPC);
-        } break;
+            // right index column
+            // TODO add whatever bottom key becomes
+
+            // right thumb
+
+        default:
+            tap_code(KC_NUHS);
     }
 }
 
-void process_right_arcane(uint16_t keycode, uint8_t mods) { // RARCANE definitions
-#ifdef CONSOLE_ENABLE
-    uprintf("right arcane: kc: 0x%04X\n", keycode);
-#endif
-
+void process_bottom_right_arcane(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        // left outer column
-        case KC_X: {
-            ARCANE_STRING("x", KC_X);
-        } break;
-        case KC_J: {
-            ARCANE_STRING("j", KC_J);
-        } break;
+            // left outer column
 
             // left pinky column
         case KC_V: {
-            ARCANE_STRING("v", KC_V);
+            ARCANE_STRING("w", KC_W);
         } break;
         case KC_K: {
             ARCANE_STRING("w", KC_W);
@@ -171,7 +320,7 @@ void process_right_arcane(uint16_t keycode, uint8_t mods) { // RARCANE definitio
 
         // left ring column
         case KC_G: {
-            ARCANE_STRING("s", KC_S);
+            ARCANE_STRING("f", KC_F);
         } break;
         case KC_S: {
             ARCANE_STRING("f", KC_F);
@@ -185,51 +334,33 @@ void process_right_arcane(uint16_t keycode, uint8_t mods) { // RARCANE definitio
             ARCANE_STRING("l", KC_L);
         } break;
         case KC_N: {
-            ARCANE_STRING("n", KC_N);
+            ARCANE_STRING("l", KC_L);
         } break;
         case KC_L: {
-            ARCANE_STRING("ly", KC_SPC);
+            ARCANE_STRING("n", KC_N);
         } break;
 
         // left index column
         case KC_P: {
-            ARCANE_STRING("d", KC_D);
+            ARCANE_STRING("c", KC_C);
         } break;
         case KC_D: {
-            ARCANE_STRING("p", KC_P);
+            ARCANE_STRING("c", KC_C);
         } break;
         case KC_C: {
             ARCANE_STRING("d", KC_D);
         } break;
 
         // left thumb
-        case KC_R: {
-            ARCANE_STRING("r", KC_R);
-        } break;
-        case KC_LSPC: {
-            ARCANE_STRING(" ", KC_SPC);
-        } break;
 
         // right outer column
-        case KC_Z: {
-            ARCANE_STRING("z", KC_Z);
-        } break;
-        case KC_Q: {
-            ARCANE_STRING("q", KC_Q);
-        } break;
 
         // right pinky column
-        case KC_B: {
-            ARCANE_STRING("b", KC_B);
-        } break;
         case KC_H: {
             ARCANE_STRING("h", KC_H);
         } break;
 
         // right ring column
-        case KC_Y: {
-            ARCANE_STRING("y", KC_Y);
-        } break;
         case KC_I: {
             ARCANE_STRING("i", KC_I);
         } break;
@@ -238,14 +369,16 @@ void process_right_arcane(uint16_t keycode, uint8_t mods) { // RARCANE definitio
         } break;
 
         // right middle column
-        case KC_O: {
-            ARCANE_STRING("o", KC_O);
-        } break;
         case KC_E: {
             ARCANE_STRING("e", KC_E);
         } break;
         case KC_DOT: {
             ARCANE_STRING(".", KC_DOT);
+        } break;
+
+        // right index column
+        case KC_A: {
+            ARCANE_STRING("a", KC_A);
         } break;
 
         // right thumb
@@ -256,12 +389,7 @@ void process_right_arcane(uint16_t keycode, uint8_t mods) { // RARCANE definitio
             ARCANE_STRING("t", KC_T);
         } break;
 
-        // right index column to avoid sfb
-        case KC_U: {
-            ARCANE_STRING("a", KC_A);
-        } break;
-        case KC_A: {
-            ARCANE_STRING("u", KC_U);
-        } break;
+        default:
+            tap_code(KC_SCLN);
     }
 }
