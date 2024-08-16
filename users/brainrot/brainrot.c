@@ -1,4 +1,6 @@
 #include "brainrot.h"
+#include "secret.h"
+#include "features/qmk-vim/vim.h"
 
 // Hold Timers
 static uint16_t qu_tapping_term;
@@ -33,6 +35,7 @@ bool pre_process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 }
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef CONSOLE_ENABLE
     if (record->event.pressed) uprintf("KL: kc: 0x%04X, col: %u, row: %u, pressed: %b, time: %u, interrupt: %b, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
@@ -44,7 +47,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (!process_custom_shift_keys(keycode, record)) { return false; }
 
     */
-
+    if (!process_vim_mode(keycode, record)) {
+        return false;
+    }
     switch (keycode) {
         case KC_QU:
             qu_tapping_term = get_tapping_term(KC_QU, record);
@@ -63,12 +68,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false; // Skip all further processing of this key
         case SC_RMDT:
             if (record->event.pressed) {
-                // When keycode is pressed
                 register_code(KC_LCTL);
                 register_code(KC_LALT);
                 register_code(KC_PAUSE);
             } else {
-                // When keycode is released
                 unregister_code(KC_PAUSE);
                 unregister_code(KC_LALT);
                 unregister_code(KC_LCTL);
@@ -97,7 +100,39 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
         }
             return false;
-
+        case KC_LSPC: {
+            if (record->event.pressed) {
+                register_code(KC_SPC);
+            } else {
+                unregister_code(KC_SPC);
+            }
+        }
+            return false;
+        case KC_RSPC: {
+            if (record->event.pressed) {
+                register_code(KC_SPC);
+            } else {
+                unregister_code(KC_SPC);
+            }
+        }
+            return false;
+        case PS_MSPS: {
+            if (record->event.pressed) {
+                SEND_STRING(MAINPASS);
+            }
+        }
+            return false;
+        case PS_WKPS: {
+            if (record->event.pressed) {
+                SEND_STRING(WORKPASS);
+            }
+        }
+            return false;
+        case VIM_TOG:
+            if (record->event.pressed) {
+                toggle_vim_mode();
+            }
+            return false;
         default:
             return true; // Process all other keycodes normally
     }
@@ -143,7 +178,7 @@ void matrix_scan_user(void) {
         auto_pointer_layer_timer = 0;
         layer_off(LAYER_POINTER);
 #    ifdef RGB_MATRIX_ENABLE
-        rgb_matrix_mode_noeeprom(RGB_MATRIX_DEFAULT_MODE);
+        // rgb_matrix_mode_noeeprom(RGB_MATRIX_DEFAULT_MODE);
 #    endif // RGB_MATRIX_ENABLE
     }
 #endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE

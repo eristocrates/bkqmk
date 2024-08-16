@@ -21,7 +21,7 @@
 #include "brainrot_tap_dances.h"
 
 /** \brief Automatically enable sniping-mode on the pointer layer. */
-#define CHARYBDIS_AUTO_SNIPING_ON_LAYER LAYER_POINTER
+// #define CHARYBDIS_AUTO_SNIPING_ON_LAYER LAYER_POINTER
 
 #ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 static uint16_t auto_pointer_layer_timer = 0;
@@ -41,13 +41,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
           KC_X,    KC_V,    KC_G,    KC_M,    KC_P, LARCANE,    RARCANE,    KC_U,    KC_O,    KC_Y,    KC_B,    KC_Z,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-          KC_J,    KC_K,    KC_S,    KC_N,    KC_D, BSPC_WRD,   DEL_WRD,    KC_A,    KC_E,    KC_I,    KC_H,   KC_QU,
+          KC_J,    KC_K,    KC_S,    KC_N,    KC_D, BSPC_WRD,    KC_ENT,    KC_A,    KC_E,    KC_I,    KC_H,   KC_QU,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
           BASE,    KC_W,    KC_F,    KC_L,    KC_C, KC_BSLS,    KC_SLSH, KC_QUES, KC_COMM, KC_DOT, KC_EXLM,    LAYER,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                                    LAYER,    KC_R, KC_SPC,      KC_SPC,    KC_T
+                                    LAYER,    KC_R, KC_LSPC,      KC_RSPC,    KC_T
   //                            ╰───────────────────────────╯ ╰──────────────────╯
   )),
+
+  [LAYER_LSHIFTGR] = LAYOUT(
+  // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
+       _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
+       _______, _______, _______, _______, _______, _______,    _______,    KC_H,    KC_J,    KC_K,    KC_L, _______,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
+       _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______,
+  // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
+                                  _______, _______, KC_UNDS,    KC_UNDS, _______
+  //                            ╰───────────────────────────╯ ╰──────────────────╯
+  ),
+
+  [LAYER_RSHIFTGR] = LAYOUT(
+  // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
+       _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
+       _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
+       _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______,
+  // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
+                                  _______, _______, KC_UNDS,    KC_UNDS, _______
+  //                            ╰───────────────────────────╯ ╰──────────────────╯
+  ),
 
   [LAYER_QWERTY] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
@@ -77,11 +101,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, C(KC_S), LARCANE,    RARCANE, C(KC_S), XXXXXXX, XXXXXXX, XXXXXXX, DFGAME,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   LOWER, XXXXXXX,    XXXXXXX,   RAISE, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   LOWER, DEL_WRD,    VIM_TOG,   RAISE, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
           BASE, XXXXXXX, XXXXXXX, C(KC_V), C(KC_X), XXXXXXX,    XXXXXXX, C(KC_C), C(KC_V), XXXXXXX, SC_RMDT, XXXXXXX,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                                    LAYER, XXXXXXX, XXXXXXX,     KC_ESC,  KC_ENT
+                                    LAYER, PS_MSPS, PS_WKPS,     KC_ESC,  KC_ENT
   //                            ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
@@ -93,7 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
           BASE, XXXXXXX, XXXXXXX, XXXXXXX,  S_SNAP, QK_BOOT,    KC_PAST,    KC_1,    KC_2,    KC_3, KC_PSLS, XXXXXXX,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                                    LOWER, XXXXXXX, _______,    _______, _______
+                                    LOWER, XXXXXXX, _______,    _______,    KC_0
   //                            ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
@@ -113,7 +137,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
       QK_BOOT, EE_CLR, XXXXXXX, KC_BTN3, DPI_RMOD, S_D_RMOD,    S_D_MOD, DPI_MOD, KC_BTN3,  KC_F11, XXXXXXX, XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       XXXXXXX, _______, DRGSCRL, KC_BTN2, KC_BTN1, XXXXXXX,    TG_SHFT, KC_BTN1, KC_BTN2, DRG_TOG, _______, XXXXXXX,
+       XXXXXXX, SNIPING, DRGSCRL, KC_BTN2, KC_BTN1, XXXXXXX,    TG_SHFT, KC_BTN1, KC_BTN2, DRG_TOG, SNP_TOG, XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
          BASE, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX,    XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
@@ -156,8 +180,8 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
         if (auto_pointer_layer_timer == 0) {
             layer_on(LAYER_POINTER);
 #        ifdef RGB_MATRIX_ENABLE
-            rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
-            rgb_matrix_sethsv_noeeprom(HSV_GREEN);
+            // rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
+            // rgb_matrix_sethsv_noeeprom(HSV_RED);
 #        endif // RGB_MATRIX_ENABLE
         }
         auto_pointer_layer_timer = timer_read();
@@ -177,7 +201,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 #ifdef RGB_MATRIX_ENABLE
 // Forward-declare this helper function since it is defined in rgb_matrix.c.
-void rgb_matrix_update_pwm_buffers(void);
+// void rgb_matrix_update_pwm_buffers(void);
 #endif // RGB_MATRIX_ENABLE
 
 bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {

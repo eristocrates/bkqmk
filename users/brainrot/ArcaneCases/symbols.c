@@ -34,3 +34,6 @@ case KC_DOT: {
 case KC_SLSH: {
     ARCANE_STRING("/", KC_SLSH);
 } break;
+case KC_NONUS_BSLASH: {
+    ARCANE_STRING("Non-US \\ and |", KC_NONUS_BSLASH);
+} break;

@@ -2,25 +2,109 @@ layout: {qmk_keyboard: bastardkb/charybdis/3x6, qmk_layout: LAYOUT}
 layers:
   L0:
   - [X, V, G, M, P, LARCANE, RARCANE, U, O, Y, B, Z]
-  - [J, K, S, N, D, BSPC WRD, DEL WRD, A, E, I, H, QU]
+  - [J, K, S, N, D, BSPC WRD, ENT, A, E, I, H, QU]
   - [BASE, W, F, L, C, \, /, '?', ',', ., '!', LAYER]
-  - [LAYER, R, SPC, SPC, T]
+  - [LAYER, R, LSPC, RSPC, T]
   L1:
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - H
+    - J
+    - K
+    - L
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - _
+    - _
+    - {t: '', type: trans}
+  L2:
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - _
+    - _
+    - {t: '', type: trans}
+  L3:
   - [LGUI, Q, W, E, R, T, Y, U, I, O, P, RGUI]
   - [LCTL, A, S, D, F, G, H, J, K, L, ;, RCTL]
   - [LSFT, PT Z, X, C, V, B, N, M, ',', ., PT SLSH, RSFT]
   - [BSPC, SPC, LOWER, RAISE, ENT]
-  L2:
+  L4:
   - ['1', Q, I, W, R, T, Y, U, I, O, P, DFBASE]
   - [LCTL, A, A, S, D, G, H, J, K, L, ;, RCTL]
   - [LSFT, PT Z, M, C, V, B, N, M, ',', ., PT SLSH, RSFT]
   - [ESC, SPC, LOWER, RAISE, ENT]
-  L3:
+  L5:
   - ['', '', '', '', Ctl+ S, LARCANE, RARCANE, Ctl+ S, '', '', '', DFGAME]
-  - ['', '', '', '', LOWER, '', '', RAISE, '', '', '', '']
+  - ['', '', '', '', LOWER, DEL WRD, VIM TOG, RAISE, '', '', '', '']
   - [BASE, '', '', Ctl+ V, Ctl+ X, '', '', Ctl+ C, Ctl+ V, '', SC RMDT, '']
-  - [LAYER, '', '', ESC, ENT]
-  L4:
+  - [LAYER, PS MSPS, PS WKPS, ESC, ENT]
+  L6:
   - ['', RGB TOG, MNXT, MPLY, MPRV, '', '[', '7', '8', '9', ']', '']
   - ['', LGUI, LALT, LCTL, LSFT, '', PPLS, '4', '5', '6', PMNS, '']
   - [BASE, '', '', '', S SNAP, QK BOOT, PAST, '1', '2', '3', PSLS, '']
@@ -28,8 +112,8 @@ layers:
     - ''
     - {t: '', type: trans}
     - {t: '', type: trans}
-    - {t: '', type: trans}
-  L5:
+    - '0'
+  L7:
   - ['', '', '', '', '', '', RGB MOD, RGB HUI, RGB SAI, RGB VAI, RGB SPI, '']
   - ['', LEFT, DOWN, UP, RGHT, '', RGB RMOD, RGB HUD, RGB SAD, RGB VAD, RGB SPD, '']
   - [BASE, HOME, PGUP, PGDN, END, '', QK BOOT, '', '', '', '', '']
@@ -38,19 +122,8 @@ layers:
     - ''
     - {t: '', type: trans}
     - {t: '', type: trans}
-  L6:
+  L8:
   - [QK BOOT, EE CLR, '', BTN3, DPI RMOD, S D RMOD, S D MOD, DPI MOD, BTN3, F11, '', '']
-  - - ''
-    - {t: '', type: trans}
-    - DRGSCRL
-    - BTN2
-    - BTN1
-    - ''
-    - TG SHFT
-    - BTN1
-    - BTN2
-    - DRG TOG
-    - {t: '', type: trans}
-    - ''
+  - ['', SNIPING, DRGSCRL, BTN2, BTN1, '', TG SHFT, BTN1, BTN2, DRG TOG, SNP TOG, '']
   - [BASE, LGUI, LALT, LCTL, LSFT, '', '', '', '', '', '', '']
   - [UP, '', DOWN, LEFT, RGHT]
