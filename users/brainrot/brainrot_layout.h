@@ -3,36 +3,53 @@
 
 enum layers {
     LAYER_BRAINROT = 0,
+    LAYER_POINTER,
     LAYER_LSHIFTGR,
-    LAYER_VIMNUM,
     LAYER_RSHIFTGR,
+    LAYER_VIMNAV,
+    LAYER_VIMNUM,
+    LAYER_NAGINATA,
+    LAYER_SHINGETA,
     LAYER_QWERTY,
+    LAYER_THINQU,
     LAYER_GAME,
     LAYER_LAYER,
-    LAYER_LOWER,
-    LAYER_RAISE,
-    LAYER_POINTER,
+    LAYER_SHORTCUT,
+    LAYER_KEYBOARD,
+    LAYER_MATH,
+    LAYER_MEDIA,
+    // LT/LM threshold https://github.com/qmk/qmk_firmware/blob/master/docs/feature_layers.md#switching-and-toggling-layers-switching-and-toggling-layers
+    LAYER_SECRET,
+    LAYER_RANDOM,
 };
 
 // layers & their behavior
 // TODO consider decoupling this, maybe a modular wrapper macro to assign behavior
 #define BASE TO(LAYER_BRAINROT)
-#define DFGAME DF(LAYER_GAME)
-#define DFBASE DF(LAYER_BRAINROT)
-#define LAYER TT(LAYER_LAYER)
-#define LOWER TG(LAYER_LOWER)
-#define RAISE TG(LAYER_RAISE)
+#define GAME TG(LAYER_GAME)
+#define THINQU TG(LAYER_THINQU)
+#define QWERTY TG(LAYER_QWERTY)
+#define LAYER MO(LAYER_LAYER)
+#define SHRTCUT OSL(LAYER_SHORTCUT)
+#define KEYBRD TG(LAYER_KEYBOARD)
+#define MEDIA OSL(LAYER_MEDIA)
+#define MATH TG(LAYER_MATH)
+#define RANDOM TG(LAYER_RANDOM)
+#define VIMNAV MO(LAYER_VIMNAV)
 #define VIMNUM MO(LAYER_VIMNUM)
 
 // default LTs
 #define PT_Z LT(LAYER_POINTER, KC_Z)
 #define PT_SLSH LT(LAYER_POINTER, KC_SLSH)
 
-// shortcuts
-#define S_SNAP S(G(KC_S))
-
 // custom LTs
+#define PT_K LT(LAYER_POINTER, KC_K)
+#define PT_H LT(LAYER_POINTER, KC_H)
 #define PNT_T(k0) LT(LAYER_POINTER, k0)
+#define LAYER_T(k0) LT(LAYER_LAYER, k0)
+#define LAYR_TB LT(LAYER_LAYER, KC_TAB)
+#define VIMNAV_T(k0) LT(LAYER_VIMNAV, k0)
+#define VIMNV_S LT(LAYER_VIMNAV, KC_SPC)
 #define LSHGR_T(k0) LT(LAYER_LSHIFTGR, k0)
 #define RSHGR_T(k0) LT(LAYER_RSHIFTGR, k0)
 
@@ -41,17 +58,15 @@ enum layers {
 
 #define URM_L(k0) LGUI_T(k0)
 #define URM_R(k0) RGUI_T(k0)
-#define HRM_L(k0, k1, k2, k3) PNT_T(k0), LALT_T(k1), LCTL_T(k2), LSFT_T(k3)
-#define HRM_R(k0, k1, k2, k3) PNT_T(k0), RALT_T(k1), RCTL_T(k2), RSFT_T(k3)
+#define HRM_L(k1, k2, k3) LALT_T(k1), LCTL_T(k2), LSFT_T(k3)
+#define HRM_R(k1, k2, k3) RALT_T(k1), RCTL_T(k2), RSFT_T(k3)
 #define BRM(k0, k1) MEH_T(k0), HYPR_T(k1)
-#define TRM_L(k0) LSHGR_T(k0)
-#define TRM_R(k0) RSHGR_T(k0)
-// TODO consider adding meh and hyper to bottom row
-
+#define TRM_LR(k0) VIMNAV_T(k0)
+#define TRM_LL(k0) LAYER_T(k0)
+#define TRM_RM(k0) RSHGR_T(k0)
+#define TRM_LM(k0) LSHGR_T(k0)
 // TODO remember if i add a new mod to update combo.def
-
 #define HRM(k) HR_MODTAP(k)
-
 // clang-format off
 // just following the labels from https://github.com/Bastardkb/bastardkb-qmk/blob/f4166fca223f500c5e048617a619e01c66db96db/keyboards/bastardkb/charybdis/3x6/info.json#L41
 /*
@@ -91,10 +106,10 @@ L_B_Out, L_B_Pin, L_B_Rin, L_B_Mid, L_B_Ind, L_B_Inn,       k5F, L_RThmb, k5D, L
 R_T_Out, R_T_Pin, R_T_Rin, R_T_Mid, R_T_Ind, R_T_Inn,       R_H_Out, R_H_Pin, R_H_Rin, R_H_Mid, R_H_Ind, R_H_Inn, \
 R_B_Out, R_B_Pin, R_B_Rin, R_B_Mid, R_B_Ind, R_B_Inn,       K7F, R_LThmb, K7D, R_MThmb, K7B, K7A \
 ) \
-L_T_Out, L_T_Pin, L_T_Rin, URM_L(L_T_Mid), L_T_Ind, L_T_Inn,       L_H_Out, HRM_L(L_H_Pin, L_H_Rin, L_H_Mid, L_H_Ind), L_H_Inn, \
-L_B_Out, L_B_Pin, L_B_Rin,   BRM(L_B_Mid, L_B_Ind), L_B_Inn,       k5F,            L_RThmb, k5D,    L_LThmb, TRM_L(L_MThmb), k5A, \
-R_T_Out, R_T_Pin, R_T_Rin, URM_R(R_T_Mid), R_T_Ind, R_T_Inn,       R_H_Out, HRM_R(R_H_Pin, R_H_Rin, R_H_Mid, R_H_Ind), R_H_Inn, \
-R_B_Out, R_B_Pin, R_B_Rin,   BRM(R_B_Mid, R_B_Ind), R_B_Inn,       K7F,            R_LThmb, K7D,  TRM_R(R_MThmb), K7B,     K7A
+L_T_Out, L_T_Pin, L_T_Rin, URM_L(L_T_Mid), L_T_Ind, L_T_Inn,       L_H_Out, L_H_Pin, HRM_L(L_H_Rin, L_H_Mid, L_H_Ind), L_H_Inn, \
+L_B_Out, L_B_Pin, L_B_Rin,   L_B_Mid, L_B_Ind, L_B_Inn,       k5F,            L_RThmb, k5D,    L_LThmb, TRM_LM(L_MThmb), k5A, \
+R_T_Out, R_T_Pin, R_T_Rin, URM_R(R_T_Mid), R_T_Ind, R_T_Inn,       R_H_Out, R_H_Pin, HRM_R(R_H_Rin, R_H_Mid, R_H_Ind), R_H_Inn, \
+R_B_Out, R_B_Pin, R_B_Rin,   R_B_Mid, R_B_Ind, R_B_Inn,       K7F,            R_LThmb, K7D,  TRM_RM(R_MThmb), K7B,     K7A
 
 /*/
 from I:\coding\bastardkb-qmk\.build\obj_bastardkb_charybdis_3x6_brainrot\src\default_keyboard.h

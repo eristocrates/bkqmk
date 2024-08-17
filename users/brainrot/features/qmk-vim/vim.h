@@ -46,3 +46,5 @@ void toggle_vim_for_mac(void);
 #endif
 // Process keycode for vim mode
 bool process_vim_mode(uint16_t keycode, const keyrecord_t *record);
+
+extern bool vim_enabled;

@@ -2,6 +2,9 @@
 TAP_DANCE_ENABLE = yes
 REPEAT_KEY_ENABLE = yes
 COMBO_ENABLE = yes
+LEADER_ENABLE = yes
+CAPS_WORD_ENABLE = yes
+AUTOCORRECT_ENABLE = yes
 
 # Disable unused features
 VIA_ENABLE = no

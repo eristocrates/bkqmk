@@ -1,7 +1,7 @@
 /*    COMBO NAME       | OUTPUT    | PARAMS    */
 
 /*---- Control ----*/
-COMB(CB_ESC, KC_ESC, MEH_T(KC_COMM), KC_DOT)
+COMB(CB_ESC, KC_ESC, KC_COMM, MD_DTSC)
 
 /*---- 2Grams ----*/
 SUBS(CB_GH, "gh", KC_V, KC_G)
@@ -16,7 +16,7 @@ SUBS(CB_IN, "in", RCTL_T(KC_E), RALT_T(KC_I))
 
 /*---- 3Grams ----*/
 SUBS(CB_THE, "the", LALT_T(KC_S), LSFT_T(KC_D))
-SUBS(CB_AND, "and", RSFT_T(KC_A), RALT_T(KC_I))
+COMB(CB_AND, MD_AND, RSFT_T(KC_A), RALT_T(KC_I))
 SUBS(CB_FOR, "for", KC_F, HYPR_T(KC_C))
 SUBS(CB_YOU, "you", KC_Y, KC_U)
 

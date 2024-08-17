@@ -6,9 +6,16 @@
 static uint16_t qu_tapping_term;
 static uint16_t qu_timer           = 0;
 static uint16_t last_keycode_timer = 0;
-static uint16_t last_keycode_term  = 1000;
 bool            is_qu_held         = false;
-bool            is_shift_toggled   = false; // Variable to track the toggled Shift state
+bool            is_shift_toggled   = false;
+// modes for modal keys
+bool semicolon_mode   = false;
+bool smart_space_mode = false;
+bool pair_mode        = false; // auto  pairs of ()[]{} '' "" `` <>
+bool ampersand_mode   = false; // and/&
+bool word_erase_mode  = false; // bspc+del word erase
+bool kana_input_mode  = false; // romaji/kana input
+bool infor_mode       = false; // swap enter with ctrl+h
 
 // https://github.com/possumvibes/qmk_firmware/blob/e0e939ef77e531966c86a1dc06315458d5a5547c/users/possumvibes/possumvibes.c#L5
 static uint16_t    next_keycode;
@@ -53,6 +60,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     }
     switch (keycode) {
+        /*------------------------------digraphs------------------------------*/
+        case KC_TH:
+            if (record->event.pressed) {
+                SEND_STRING("th");
+            }
+            return false;
+        case KC_IN:
+            if (record->event.pressed) {
+                SEND_STRING("in");
+            }
+            return false;
         case KC_QU:
             qu_tapping_term = get_tapping_term(KC_QU, record);
             if (record->event.pressed) {
@@ -68,18 +86,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             return false; // Skip all further processing of this key
-        case SC_RMDT:
+        /*------------------------------split spaces------------------------------*/
+        case KC_LSPC: {
+            if (record->event.pressed) {
+                register_code(KC_SPC);
+            } else {
+                unregister_code(KC_SPC);
+            }
+        }
+            return false;
+        case KC_RSPC: {
+            if (record->event.pressed) {
+                register_code(KC_SPC);
+            } else {
+                unregister_code(KC_SPC);
+            }
+        }
+            return false;
+        /*------------------------------shortcuts------------------------------*/
+        case SH_RMDT:
             if (record->event.pressed) {
                 register_code(KC_LCTL);
                 register_code(KC_LALT);
-                register_code(KC_PAUSE);
-            } else {
-                unregister_code(KC_PAUSE);
+                tap_code(KC_PAUSE);
                 unregister_code(KC_LALT);
                 unregister_code(KC_LCTL);
             }
-            return false; // Skip all further processing of this key
-        case TG_SHFT:
+            return false;
+        case SCN_TOG:
             if (record->event.pressed) {
                 if (is_shift_toggled) {
                     unregister_mods(MOD_BIT(KC_LSFT)); // Unregister Shift
@@ -90,6 +124,182 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             return false; // Skip all further processing of this key
+        /*------------------------------semantic keys------------------------------*/
+        // TODO figure out raw hid
+        // TODO figure out appropriate shift overrides/holds for vim versions of semantic keys eg save tap/save all hold
+        case SM_COPY:
+            if (record->event.pressed) {
+                if (vim_enabled) {
+                    // Send 'y' for copy in Vim
+                    tap_code(KC_Y);
+                } else {
+                    // Send Ctrl+C for copy
+                    register_code(KC_LCTL);
+                    tap_code(KC_C);
+                    unregister_code(KC_LCTL);
+                }
+            }
+            return false;
+        case SM_CUT:
+            if (record->event.pressed) {
+                if (vim_enabled) {
+                    // Send 'd' for cut in Vim
+                    tap_code(KC_D);
+                } else {
+                    // Send Ctrl+X for cut
+                    register_code(KC_LCTL);
+                    tap_code(KC_X);
+                    unregister_code(KC_LCTL);
+                }
+            }
+            return false;
+        case SM_PASTE:
+            if (record->event.pressed) {
+                if (vim_enabled) {
+                    // Send 'p' for paste in Vim
+                    tap_code(KC_P);
+                } else {
+                    // Send Ctrl+V for paste
+                    register_code(KC_LCTL);
+                    tap_code(KC_V);
+                    unregister_code(KC_LCTL);
+                }
+            }
+            return false;
+        case SM_SAVE:
+            if (record->event.pressed) {
+                if (vim_enabled) {
+                    // Send ':w' for save in Vim
+                    SEND_STRING(":w");
+                    tap_code(KC_ENT);
+                } else {
+                    // Send Ctrl+S for save
+                    register_code(KC_LCTL);
+                    tap_code(KC_S);
+                    unregister_code(KC_LCTL);
+                }
+            }
+            return false;
+        case SM_SNAP:
+            if (record->event.pressed) {
+                register_code(KC_LGUI);
+                register_code(KC_LSFT);
+                tap_code(KC_S);
+                unregister_code(KC_LSFT);
+                unregister_code(KC_LGUI);
+            }
+            return false;
+        /*------------------------------modal keys------------------------------*/
+        case MD_DTSC:
+            if (record->event.pressed) {
+                if (semicolon_mode) {
+                    // Output ';' in semicolon mode
+                    tap_code(KC_SCLN);
+                } else {
+                    // Output '.' in normal mode
+                    tap_code(KC_DOT);
+                }
+            }
+            return false;
+        case MD_AND:
+            if (record->event.pressed) {
+                if (ampersand_mode) {
+                    // Output '&' in ampersand mode
+                    tap_code16(KC_AMPR);
+                } else {
+                    SEND_STRING("and");
+                }
+            }
+            return false;
+        case MD_BSPC:
+            if (record->event.pressed) {
+                if (word_erase_mode) {
+                    register_code(KC_LCTL);
+                    tap_code(KC_BSPC);
+                    unregister_code(KC_LCTL);
+                } else {
+                    tap_code(KC_BSPC);
+                }
+            }
+            return false;
+        case MD_DEL:
+            if (record->event.pressed) {
+                if (word_erase_mode) {
+                    register_code(KC_LCTL);
+                    tap_code(KC_DEL);
+                    unregister_code(KC_LCTL);
+                } else {
+                    tap_code(KC_DEL);
+                }
+            }
+            return false;
+        case MD_IME:
+            if (record->event.pressed) {
+                if (kana_input_mode) {
+                    tap_code16(KC_RO);
+                } else {
+                    tap_code16(KC_KANA);
+                }
+                kana_input_mode = !kana_input_mode;
+            }
+            return false;
+        case MD_YES:
+            if (record->event.pressed) {
+                if (infor_mode) {
+                    register_code(KC_LCTL);
+                    tap_code(KC_H);
+                    unregister_code(KC_LCTL);
+                } else {
+                    tap_code(KC_ENTER);
+                }
+            }
+            return false;
+        case MD_RNPO:
+            if (record->event.pressed) {
+                if (pair_mode) {
+                    SEND_STRING("()");
+                    tap_code(KC_LEFT);
+                } else {
+                    tap_code16(KC_LPRN);
+                }
+            }
+            return false;
+        case MD_SQPO:
+            if (record->event.pressed) {
+                if (pair_mode) {
+                    SEND_STRING("[]");
+                    tap_code(KC_LEFT);
+                } else {
+                    tap_code16(KC_LBRC);
+                }
+            }
+            return false;
+        case MD_CRPO:
+            if (record->event.pressed) {
+                if (pair_mode) {
+                    SEND_STRING("{}");
+                    tap_code(KC_LEFT);
+                } else {
+                    tap_code16(KC_LCBR);
+                }
+            }
+            return false;
+        case MD_RNPC:
+            if (record->event.pressed) {
+                tap_code16(KC_RPRN);
+            }
+            return false;
+        case MD_SQPC:
+            if (record->event.pressed) {
+                tap_code16(KC_RBRC);
+            }
+            return false;
+        case MD_CRPC:
+            if (record->event.pressed) {
+                tap_code16(KC_RCBR);
+            }
+            return false;
+        /*------------------------------arcane------------------------------*/
         case LT_ARC: {
             if (record->event.pressed) {
                 process_top_left_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
@@ -114,34 +324,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
         }
             return false;
-        case KC_LSPC: {
+
+        /*------------------------------secrets------------------------------*/
+        case SECRET1: {
             if (record->event.pressed) {
-                register_code(KC_SPC);
-            } else {
-                unregister_code(KC_SPC);
+                SEND_STRING(SECRET_ONE);
             }
         }
             return false;
-        case KC_RSPC: {
+        case SECRET2: {
             if (record->event.pressed) {
-                register_code(KC_SPC);
-            } else {
-                unregister_code(KC_SPC);
+                SEND_STRING(SECRET_TWO);
             }
         }
             return false;
-        case PS_MSPS: {
-            if (record->event.pressed) {
-                SEND_STRING(MAINPASS);
-            }
-        }
-            return false;
-        case PS_WKPS: {
-            if (record->event.pressed) {
-                SEND_STRING(WORKPASS);
-            }
-        }
-            return false;
+        /*------------------------------vim------------------------------*/
         case VIM_TOG:
             if (record->event.pressed) {
                 toggle_vim_mode();
@@ -159,17 +356,37 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code(KC_G);
             }
             return false;
+        /*------------------------------math------------------------------*/
+        case KC_SQRT:
+            if (record->event.pressed) {
+                SEND_STRING("sqrt()");
+                tap_code(KC_LEFT);
+            }
+            return false;
+        /*------------------------------randumb------------------------------*/
+        case KC_RAND:
+            if (record->event.pressed) {
+                tap_random_base64();
+            }
+            return false;
 
         default:
             return true; // Process all other keycodes normally
     }
 }
+void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (smart_space_mode) {
+        if (record->event.pressed) {
+            switch (keycode) {
+                // TODO add smart space candidates
+                // TODO check if combos are possible?
+            }
+        }
+    }
+}
 bool remember_last_key_user(uint16_t keycode, keyrecord_t *record, uint8_t *remembered_mods) {
     switch (keycode) {
-        case KC_ESC:
-        case KC_BSPC:
-        case KC_DEL:
-
+        case QK_LEAD:
         case LT_ARC:
         case RT_ARC:
         case LB_ARC:
@@ -203,7 +420,7 @@ void matrix_scan_user(void) {
             tap_code(KC_Q);
         }
     }
-    if (timer_elapsed(last_keycode_timer) >= last_keycode_term) {
+    if (timer_elapsed(last_keycode_timer) >= LAST_KEYCODE_TIMEOUT_MS) {
         set_last_keycode(KC_SPC);
     }
 
@@ -216,4 +433,47 @@ void matrix_scan_user(void) {
 #    endif // RGB_MATRIX_ENABLE
     }
 #endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+}
+
+void leader_end_user(void) {
+    if (leader_sequence_two_keys(KC_N, KC_4)) {
+        infor_mode = !infor_mode;
+    } else if (leader_sequence_three_keys(KC_D, KC_O, KC_T)) {
+        semicolon_mode = !semicolon_mode;
+    } else if (leader_sequence_three_keys(KC_C, KC_L, KC_N)) {
+        semicolon_mode = !semicolon_mode;
+    } else if (leader_sequence_three_keys(KC_A, KC_N, KC_D)) {
+        ampersand_mode = !ampersand_mode;
+    } else if (leader_sequence_three_keys(KC_O, KC_T, KC_O)) {
+        autocorrect_toggle();
+    } else if (leader_sequence_three_keys(KC_7, KC_2, KC_7)) {
+        layer_on(LAYER_SECRET);
+    } else if (leader_sequence_three_keys(KC_V, KC_I, KC_M)) {
+        toggle_vim_mode();
+    } else if (leader_sequence_two_keys(KC_F, KC_L)) {
+        reset_keyboard();
+    } else if (leader_sequence_two_keys(KC_W, KC_E)) {
+        word_erase_mode = !word_erase_mode;
+    }
+}
+
+// TODO investigate what characters need to be added
+bool caps_word_press_user(uint16_t keycode) {
+    switch (keycode) {
+        // Keycodes that continue Caps Word, with shift applied.
+        case KC_A ... KC_Z:
+        case KC_MINS:
+            add_weak_mods(MOD_BIT(KC_LSFT)); // Apply shift to next key.
+            return true;
+
+        // Keycodes that continue Caps Word, without shifting.
+        case KC_1 ... KC_0:
+        case KC_BSPC:
+        case KC_DEL:
+        case KC_UNDS:
+            return true;
+
+        default:
+            return false; // Deactivate Caps Word.
+    }
 }

@@ -5,25 +5,21 @@
 // https://github.com/empressabyss/nordrassil?tab=readme-ov-file#implementation
 
 void arcane_send_string_P(const char* str, uint16_t repeat_keycode) {
-    /*
-        uint8_t saved_mods = 0;
-      if (is_caps_word_on()) { // If Caps Word is on, save the mods and hold Shift.
+    uint8_t saved_mods = 0;
+    if (is_caps_word_on()) { // If Caps Word is on, save the mods and hold Shift.
         saved_mods = get_mods();
         register_mods(MOD_BIT(KC_LSFT));
-      }
+    }
 
-    */
     send_string_with_delay_P(str, TAP_CODE_DELAY); // Send the string.
     set_last_keycode(repeat_keycode);              // 2024-03-09 Disabled sending of string for mag-rep / rep-mag consistency.
-    // TODO ask embressabyss about his disabling of string
-    // TODOtry just un/register keycodes
+                                                   // TODO ask embressabyss about his disabling of string
+                                                   // TODOtry just un/register keycodes
 
-    /*
-      // If Caps Word is on, restore the mods.
-      if (is_caps_word_on()) {
+    // If Caps Word is on, restore the mods.
+    if (is_caps_word_on()) {
         set_mods(saved_mods);
-      }
-    */
+    }
 }
 
 void process_top_left_arcane(uint16_t keycode, uint8_t mods) {
@@ -216,7 +212,7 @@ void process_top_right_arcane(uint16_t keycode, uint8_t mods) {
             // right thumb
 
         default:
-            tap_code(KC_QUOT);
+            tap_code16(KC_AT);
     }
 }
 void process_bottom_left_arcane(uint16_t keycode, uint8_t mods) {
@@ -263,6 +259,9 @@ void process_bottom_left_arcane(uint16_t keycode, uint8_t mods) {
             ARCANE_STRING("r", KC_R);
         } break;
         case KC_LSPC: {
+            ARCANE_STRING("r", KC_R);
+        } break;
+        case KC_SPC: {
             ARCANE_STRING("r", KC_R);
         } break;
 
@@ -390,6 +389,6 @@ void process_bottom_right_arcane(uint16_t keycode, uint8_t mods) {
         } break;
 
         default:
-            tap_code(KC_SCLN);
+            tap_code16(KC_PERC);
     }
 }

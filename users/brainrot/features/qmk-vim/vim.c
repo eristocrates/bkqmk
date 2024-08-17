@@ -22,7 +22,7 @@
 // the current process func, from in process_func.c
 extern process_func_t process_func;
 
-static bool vim_enabled = false;
+bool vim_enabled = false;
 
 #ifdef VIM_FOR_ALL
 // Check to see if mac mode is enabled
@@ -60,8 +60,7 @@ void disable_vim_mode(void) {
 void toggle_vim_mode(void) {
     if (vim_enabled) {
         disable_vim_mode();
-    }
-    else {
+    } else {
         enable_vim_mode();
     }
 }
@@ -70,12 +69,12 @@ void toggle_vim_mode(void) {
 extern bool process_normal_mode(uint16_t keycode, const keyrecord_t *record);
 extern bool process_insert_mode(uint16_t keycode, const keyrecord_t *record);
 
-static bool oneshot_vim_enabled = false;
+static bool           oneshot_vim_enabled = false;
 static process_func_t last_process_func;
 // Start vim mode
 void start_oneshot_vim(void) {
     oneshot_vim_enabled = true;
-    last_process_func = process_normal_mode;
+    last_process_func   = process_normal_mode;
     enable_vim_mode();
 }
 // Stop vim mode
@@ -84,10 +83,7 @@ void stop_oneshot_vim(void) {
     disable_vim_mode();
 }
 static inline void vim_oneshot_termination(uint16_t keycode) {
-    if (oneshot_vim_enabled &&
-        (keycode == KC_ESC ||
-            process_func == process_insert_mode ||
-            (process_func == process_normal_mode && last_process_func != process_func))) {
+    if (oneshot_vim_enabled && (keycode == KC_ESC || process_func == process_insert_mode || (process_func == process_normal_mode && last_process_func != process_func))) {
         stop_oneshot_vim();
     }
     last_process_func = process_func;
@@ -98,11 +94,9 @@ static inline void vim_oneshot_termination(uint16_t keycode) {
 bool process_vim_mode(uint16_t keycode, const keyrecord_t *record) {
     if (vim_enabled) {
         // Get the base keycode of a mod or layer tap key
-        if ((QK_MOD_TAP <= keycode && keycode <= QK_MOD_TAP_MAX)
-            || (QK_LAYER_TAP <= keycode && keycode <= QK_LAYER_TAP_MAX)) {
+        if ((QK_MOD_TAP <= keycode && keycode <= QK_MOD_TAP_MAX) || (QK_LAYER_TAP <= keycode && keycode <= QK_LAYER_TAP_MAX)) {
             // Earlier return if this has not been considered tapped yet
-            if (record->tap.count == 0)
-                return true;
+            if (record->tap.count == 0) return true;
             keycode = keycode & 0xFF;
         }
 
@@ -111,7 +105,7 @@ bool process_vim_mode(uint16_t keycode, const keyrecord_t *record) {
             return true;
         }
 
-        const uint8_t mods = get_mods();
+        const uint8_t mods         = get_mods();
         const uint8_t oneshot_mods = get_oneshot_mods();
         // hoping this gets optimized away by the compiler
         const uint8_t all_mods = mods | oneshot_mods;

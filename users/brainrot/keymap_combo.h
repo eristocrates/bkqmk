@@ -1,5 +1,6 @@
 #pragma once
 #include "brainrot_layout.h"
+#include "brainrot_keycodes.h"
 
 // Keymap helpers
 // define reference layers per layer.
