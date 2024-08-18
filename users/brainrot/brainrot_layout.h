@@ -1,57 +1,20 @@
 #pragma once
 #include "charybdis.h"
 
-enum layers {
-    LAYER_BRAINROT = 0,
-    LAYER_POINTER,
-    LAYER_LSHIFTGR,
-    LAYER_RSHIFTGR,
-    LAYER_VIMNAV,
-    LAYER_VIMNUM,
-    LAYER_NAGINATA,
-    LAYER_SHINGETA,
-    LAYER_QWERTY,
-    LAYER_THINQU,
-    LAYER_GAME,
-    LAYER_LAYER,
-    LAYER_SHORTCUT,
-    LAYER_KEYBOARD,
-    LAYER_MATH,
-    LAYER_MEDIA,
-    // LT/LM threshold https://github.com/qmk/qmk_firmware/blob/master/docs/feature_layers.md#switching-and-toggling-layers-switching-and-toggling-layers
-    LAYER_SECRET,
-    LAYER_RANDOM,
-};
-
-// layers & their behavior
-// TODO consider decoupling this, maybe a modular wrapper macro to assign behavior
-#define BASE TO(LAYER_BRAINROT)
-#define GAME TG(LAYER_GAME)
-#define THINQU TG(LAYER_THINQU)
-#define QWERTY TG(LAYER_QWERTY)
-#define LAYER MO(LAYER_LAYER)
-#define SHRTCUT OSL(LAYER_SHORTCUT)
-#define KEYBRD TG(LAYER_KEYBOARD)
-#define MEDIA OSL(LAYER_MEDIA)
-#define MATH TG(LAYER_MATH)
-#define RANDOM TG(LAYER_RANDOM)
-#define VIMNAV MO(LAYER_VIMNAV)
-#define VIMNUM MO(LAYER_VIMNUM)
-
 // default LTs
-#define PT_Z LT(LAYER_POINTER, KC_Z)
-#define PT_SLSH LT(LAYER_POINTER, KC_SLSH)
+#define PT_Z LT(_POINTER, KC_Z)
+#define PT_SLSH LT(_POINTER, KC_SLSH)
 
 // custom LTs
-#define PT_K LT(LAYER_POINTER, KC_K)
-#define PT_H LT(LAYER_POINTER, KC_H)
-#define PNT_T(k0) LT(LAYER_POINTER, k0)
-#define LAYER_T(k0) LT(LAYER_LAYER, k0)
-#define LAYR_TB LT(LAYER_LAYER, KC_TAB)
-#define VIMNAV_T(k0) LT(LAYER_VIMNAV, k0)
-#define VIMNV_S LT(LAYER_VIMNAV, KC_SPC)
-#define LSHGR_T(k0) LT(LAYER_LSHIFTGR, k0)
-#define RSHGR_T(k0) LT(LAYER_RSHIFTGR, k0)
+#define PT_K LT(_POINTER, KC_K)
+#define PT_H LT(_POINTER, KC_H)
+#define PNT_T(k0) LT(_POINTER, k0)
+#define _T(k0) LT(_LAYER, k0)
+#define LAYR_TB LT(_LAYER, KC_TAB)
+#define VIMNAV_T(k0) LT(_VIMMOTION, k0)
+#define VIMNV_S LT(_VIMMOTION, KC_SPC)
+#define LSHGR_T(k0) LT(_LSHIFTGR, k0)
+#define RSHGR_T(k0) LT(_RSHIFTGR, k0)
 
 // Adapted from https://github.com/possumvibes/qmk_firmware/blob/e0e939ef77e531966c86a1dc06315458d5a5547c/users/possumvibes/layout.h#L79
 // Macros to add mods
@@ -62,7 +25,7 @@ enum layers {
 #define HRM_R(k1, k2, k3) RALT_T(k1), RCTL_T(k2), RSFT_T(k3)
 #define BRM(k0, k1) MEH_T(k0), HYPR_T(k1)
 #define TRM_LR(k0) VIMNAV_T(k0)
-#define TRM_LL(k0) LAYER_T(k0)
+#define TRM_LL(k0) _T(k0)
 #define TRM_RM(k0) RSHGR_T(k0)
 #define TRM_LM(k0) LSHGR_T(k0)
 // TODO remember if i add a new mod to update combo.def

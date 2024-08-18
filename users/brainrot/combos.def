@@ -2,28 +2,33 @@
 
 /*---- Control ----*/
 COMB(CB_ESC, KC_ESC, KC_COMM, MD_DTSC)
+COMB(CB_LEAD, QK_LEAD, KC_LSPC, KC_RSPC)
+COMB(vim_motion, VIMMOTIONMODE, KC_LSPC, KC_V)
+COMB(CB_POINTER, POINTERMODE, KC_T, KC_TEST)
+COMB(CB_PANIC, PANIC, LAYR_TB, KC_LSPC)
 
 /*---- 2Grams ----*/
 SUBS(CB_GH, "gh", KC_V, KC_G)
-SUBS(CB_PH, "ph", LGUI_T(KC_M), KC_P)
-SUBS(CB_SH, "sh", PNT_T(KC_K), LALT_T(KC_S))
-SUBS(CB_TH, "th", LCTL_T(KC_N), LSFT_T(KC_D))
+SUBS(CB_PH, "ph", KC_M, KC_P)
+SUBS(CB_SH, "sh", KC_K, KC_S)
+SUBS(CB_TH, "th", KC_N, KC_D)
 SUBS(CB_WH, "wh", KC_W, KC_F)
-SUBS(CB_CH, "ch", MEH_T(KC_L), HYPR_T(KC_C))
-SUBS(CB_LY, "ly", RGUI_T(KC_O), KC_Y)
-SUBS(CB_IN, "in", RCTL_T(KC_E), RALT_T(KC_I))
+SUBS(CB_CH, "ch", KC_L, KC_C)
+SUBS(CB_LY, "ly", KC_O, KC_Y)
+SUBS(CB_IN, "in", KC_A, KC_E)
 
-
+// TODO make md keys for these
 /*---- 3Grams ----*/
-SUBS(CB_THE, "the", LALT_T(KC_S), LSFT_T(KC_D))
-COMB(CB_AND, MD_AND, RSFT_T(KC_A), RALT_T(KC_I))
-SUBS(CB_FOR, "for", KC_F, HYPR_T(KC_C))
+SUBS(CB_THE, "the", KC_S, KC_D)
+COMB(CB_AND, MD_AND, KC_A, KC_I)
+SUBS(CB_FOR, "for", KC_F, KC_C)
 SUBS(CB_YOU, "you", KC_Y, KC_U)
 
 /*---- 4Grams ----*/
-SUBS(CB_INGL, "ing", PNT_T(KC_K), LCTL_T(KC_N))
-SUBS(CB_INGR, "ing", RCTL_T(KC_E), PNT_T(KC_H))
-SUBS(CB_SION, "sion", LALT_T(KC_S), RALT_T(KC_I))
-SUBS(CB_TION, "tion", RSHGR_T(KC_T), RALT_T(KC_I))
-SUBS(CB_OULD, "ould", KC_U, RGUI_T(KC_O))
+SUBS(CB_INGL, "ing", KC_K, KC_N)
+SUBS(CB_INGR, "ing", KC_E, KC_H)
+SUBS(CB_SION, "sion", KC_S, KC_N)
+SUBS(CB_TION, "tion", KC_E, KC_I)
+SUBS(CB_OULD, "ould", KC_U, KC_O)
 
+/*---- 4Grams ----*/

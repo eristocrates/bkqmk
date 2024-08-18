@@ -5,10 +5,10 @@ $userspacePathMingw = "I:/coding/bkqmk/users/brainrot"
 $keymapPath = "I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\brainrot"
 
 # Define the commands
-$compile2jsonCmd = "qmk generate-autocorrect-data $userspacePathMingw/autocorrect_dictionary.txt ; qmk compile -j 0 -kb bastardkb/charybdis/3x6 -km brainrot > qmk-output.log 2>&1 ; qmk c2json --no-cpp $keymapPathMingw/keymap.c > $keymapPathMingw/c2.json"
+$compile2jsonCmd = "qmk generate-autocorrect-data $userspacePathMingw/autocorrect_dictionary.txt -kb bastardkb/charybdis/3x6 -km brainrot ; qmk compile -j 0 -kb bastardkb/charybdis/3x6 -km brainrot > qmk-output.log 2>&1 ; qmk c2json --no-cpp $keymapPathMingw/keymap.c > $keymapPathMingw/c2.json"
 
 
-$keymapPreParseCmd = ".\keymapPreParse.ps1"
+#$keymapPreParseCmd = ".\keymapPreParse.ps1"
 $keymapParseCmd = "keymap parse -c 12 -q $keymapPath\c2.json > $keymapPath\keymap.yaml"
 $keymapPostParseCmd = ".\keymapPostParse.ps1"
 $keymapDrawCmd1 = "keymap -c $keymapPath\config.yaml draw $keymapPath\keymap.yaml > $keymapPath\keymap.svg"
@@ -27,7 +27,7 @@ function Invoke-InMinGW {
 Invoke-InMinGW $compile2jsonCmd
 
 # Run the remaining commands in PowerShell
-Invoke-Expression $keymapPreParseCmd
+#Invoke-Expression $keymapPreParseCmd
 Invoke-Expression $keymapParseCmd
 Invoke-Expression $keymapPostParseCmd
 Invoke-Expression $keymapDrawCmd1

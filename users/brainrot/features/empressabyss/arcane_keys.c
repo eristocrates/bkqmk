@@ -71,9 +71,9 @@ void process_top_left_arcane(uint16_t keycode, uint8_t mods) {
 
         // right outer column
         case KC_Z: {
-            ARCANE_STRING("qu", KC_QU);
+            ARCANE_STRING("qu", TH_QU);
         } break;
-        case KC_QU: {
+        case TH_QU: {
             ARCANE_STRING("z", KC_Z);
         } break;
 
@@ -223,6 +223,9 @@ void process_bottom_left_arcane(uint16_t keycode, uint8_t mods) {
         } break;
 
         // left pinky column
+        case KC_V: {
+            ARCANE_STRING("x", KC_X);
+        } break;
         case KC_K: {
             ARCANE_STRING("k", KC_K);
         } break;
@@ -261,13 +264,10 @@ void process_bottom_left_arcane(uint16_t keycode, uint8_t mods) {
         case KC_LSPC: {
             ARCANE_STRING("r", KC_R);
         } break;
-        case KC_SPC: {
-            ARCANE_STRING("r", KC_R);
-        } break;
 
         // right outer column
         case KC_Z: {
-            ARCANE_STRING("qu", KC_QU);
+            ARCANE_STRING("qu", TH_QU);
         } break;
 
             // right pinky column

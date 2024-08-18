@@ -2,26 +2,10 @@ layout: {qmk_keyboard: bastardkb/charybdis/3x6, qmk_layout: LAYOUT}
 layers:
   Brainrot:
   - [X, V, G, M, P, LT ARC, RT ARC, U, O, Y, B, Z]
-  - [J, PT K, S, N, D, MD BSPC, MD YES, A, E, I, PT H, QU]
-  - [BASE, W, F, L, C, LB ARC, RB ARC, MD RNPO, ',', MD DTSC, MD RNPC, QK LEAD]
-  - [LAYR TB, R, VIMNV S, RSPC, T]
+  - [J, K, S, N, D, BSPC WD, MD YES, A, E, I, H, TH QU]
+  - [QK LEAD, W, F, L, C, LB ARC, RB ARC, MD RNPO, ',', MD DTSC, MD RNPC, TEST]
+  - [LAYR TB, R, LSPC, RSPC, T]
   Pointer:
-  - ['', '', '', BTN3, DPI RMOD, S D RMOD, S D MOD, DPI MOD, BTN3, F11, SM SNAP, '']
-  - - ''
-    - {t: '', type: trans}
-    - DRGSCRL
-    - BTN2
-    - BTN1
-    - SNIPING
-    - SNIPING
-    - BTN1
-    - BTN2
-    - DRGSCRL
-    - {t: '', type: trans}
-    - ''
-  - ['', SNP TOG, DRG TOG, '', '', '', '', SCN TOG, '', DRG TOG, SNP TOG, BASE]
-  - [UP, '', DOWN, LEFT, RGHT]
-  Left Shift Gr:
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -39,9 +23,9 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-    - MD DEL
+    - DEL WRD
     - MD NO
-    - {t: '', type: trans}
+    - PMNS
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -63,7 +47,7 @@ layers:
     - {t: '', type: trans}
     - _
     - {t: '', type: trans}
-  Right Shift Gr:
+  Left Shift Gr:
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -81,7 +65,7 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-    - MD DEL
+    - DEL WRD
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -105,6 +89,48 @@ layers:
     - _
     - {t: '', type: trans}
     - {t: '', type: trans}
+  Right Shift Gr:
+  - - {t: '', type: trans}
+    - '%'
+    - ^
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - $
+    - '['
+    - '7'
+    - '8'
+    - '9'
+    - ']'
+    - {t: '', type: trans}
+  - - ','
+    - PSLS
+    - PAST
+    - PMNS
+    - PPLS
+    - .
+    - (
+    - '4'
+    - '5'
+    - '6'
+    - )
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - SQRT
+    - '!'
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - <
+    - '1'
+    - '2'
+    - '3'
+    - '>'
+    - BASE
+  - - {t: '', type: trans}
+    - '='
+    - PENT
+    - SPC
+    - '0'
   Vim Navigation:
   - - {t: '', type: trans}
     - {t: '', type: trans}
@@ -114,8 +140,8 @@ layers:
     - {t: '', type: trans}
     - VIM GG
     - ^
-    - Ctl+ D
-    - Ctl+ U
+    - {t: '', type: trans}
+    - {t: '', type: trans}
     - 'VIM G '
     - {t: '', type: trans}
   - - {t: '', type: trans}
@@ -136,7 +162,7 @@ layers:
     - P
     - Y
     - {t: '', type: trans}
-    - Sft+ G
+    - {t: '', type: trans}
     - '0'
     - '}'
     - '{'
@@ -190,31 +216,90 @@ layers:
     - {t: '', type: trans}
     - '0'
   Naginata:
-  - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '']
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
   Shingeta:
-  - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '']
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - MSEL
+    - MRWD
+    - BRID
+    - BRIU
+    - MFFD
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - MPLY
+    - MPRV
+    - VOLD
+    - VOLU
+    - MNXT
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - MSTP
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - MUTE
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
   Qwerty:
-  - [LGUI, Q, W, E, R, T, Y, U, I, O, P, RGUI]
-  - [LCTL, A, S, D, F, G, H, J, K, L, ;, RCTL]
-  - [LSFT, PT Z, X, C, V, B, N, M, ',', ., PT SLSH, BASE]
-  - ['', SPC, BSPC, DEL, ENT]
-  Thinqu:
-  - [TAB, B, D, L, TH, V, Z, '''', U, H, K, '']
-  - [BSPC, N, T, S, R, W, Y, A, E, O, I, ENT]
-  - [LSFT, X, G, M, C, ;, J, F, P, ',', ., BASE]
-  - ['', '', SPC, SPC, '']
-  Game:
-  - ['1', Q, I, W, R, T, Y, U, I, O, P, '']
-  - [LCTL, A, A, S, D, G, H, J, K, L, ;, RCTL]
-  - [LSFT, PT Z, M, C, V, B, N, M, ',', ., PT SLSH, BASE]
-  - [ESC, SPC, '', '', ENT]
-  Layer:
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', MEDIA, KEYBRD, MATH, SHRTCUT, '', '', '', '', '', '', '']
   - [RANDOM, '', '', '', '', '', '', '', '', '', '', '']
@@ -223,6 +308,58 @@ layers:
     - ''
     - ''
     - ''
+  Thinqu:
+  - ['1', Q, I, W, R, T, Y, U, I, O, P, '']
+  - [LCTL, A, A, S, D, G, H, J, K, L, ;, RCTL]
+  - [LSFT, PT Z, M, C, V, B, N, M, ',', ., PT SLSH, BASE]
+  - [ESC, SPC, '', '', ENT]
+  Game:
+  - [TAB, B, D, L, TH, V, Z, '''', U, H, K, '']
+  - [BSPC, N, T, S, R, W, Y, A, E, O, I, ENT]
+  - [LSFT, X, G, M, C, ;, J, F, P, ',', ., BASE]
+  - ['', THINQUL, SPC, SPC, THINQUR]
+  Layer:
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
   Shortcut:
   - - {t: '', type: trans}
     - {t: '', type: trans}
@@ -240,7 +377,7 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-    - SM SAVE
+    - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -250,9 +387,9 @@ layers:
     - {t: '', type: trans}
   - - {t: '', type: trans}
     - {t: '', type: trans}
-    - SM CUT
-    - SM PASTE
-    - SM COPY
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -308,90 +445,22 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
   Math:
-  - - {t: '', type: trans}
-    - '%'
-    - ^
+  - ['', '', '', BTN3, DPI RMOD, S D RMOD, S D MOD, DPI MOD, BTN3, F11, SM SNAP, '']
+  - - ''
     - {t: '', type: trans}
+    - DRGSCRL
+    - BTN2
+    - BTN1
+    - SNIPING
+    - SNIPING
+    - BTN1
+    - BTN2
+    - DRGSCRL
     - {t: '', type: trans}
-    - $
-    - '['
-    - '7'
-    - '8'
-    - '9'
-    - ']'
-    - {t: '', type: trans}
-  - - ','
-    - PSLS
-    - PAST
-    - PMNS
-    - PPLS
-    - .
-    - (
-    - '4'
-    - '5'
-    - '6'
-    - )
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - SQRT
-    - '!'
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - <
-    - '1'
-    - '2'
-    - '3'
-    - '>'
-    - BASE
-  - - {t: '', type: trans}
-    - '='
-    - PENT
-    - SPC
-    - '0'
+    - ''
+  - ['', SNP TOG, DRG TOG, '', '', '', '', SCN TOG, '', DRG TOG, SNP TOG, BASE]
+  - [UP, '', DOWN, LEFT, RGHT]
   Media:
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - MSEL
-    - MRWD
-    - BRID
-    - BRIU
-    - MFFD
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - MPLY
-    - MPRV
-    - VOLD
-    - VOLU
-    - MNXT
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - MSTP
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - MUTE
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  Secret:
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -433,7 +502,22 @@ layers:
     - SECRET2
     - {t: '', type: trans}
     - {t: '', type: trans}
+  Secret:
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '']
   Random:
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '']
+  L18:
+  - [LGUI, Q, W, E, R, T, Y, U, I, O, P, RGUI]
+  - [LCTL, A, S, D, F, G, H, J, K, L, ;, RCTL]
+  - [LSFT, PT Z, X, C, V, B, N, M, ',', ., PT SLSH, BASE]
+  - ['', SPC, BSPC, DEL, ENT]
+  L19:
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND]
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND]
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, BASE]

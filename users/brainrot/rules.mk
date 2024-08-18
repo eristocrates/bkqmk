@@ -13,15 +13,20 @@ CONSOLE_ENABLE = no
 INTROSPECTION_KEYMAP_C = brainrot.c
 
 # Add custom features
-SRC += features/arcane_keys.c
-SRC += features/drashna.c
-SRC += features/qmk-vim/mac_mode.c
-SRC += features/qmk-vim/process_func.c
-SRC += features/qmk-vim/numbered_actions.c
-SRC += features/qmk-vim/motions.c
-SRC += features/qmk-vim/actions.c
-SRC += features/qmk-vim/modes.c
-SRC += features/qmk-vim/vim.c
+SRC += features/andrewjrae/qmk-vim/mac_mode.c
+SRC += features/andrewjrae/qmk-vim/process_func.c
+SRC += features/andrewjrae/qmk-vim/numbered_actions.c
+SRC += features/andrewjrae/qmk-vim/motions.c
+SRC += features/andrewjrae/qmk-vim/actions.c
+SRC += features/andrewjrae/qmk-vim/modes.c
+SRC += features/andrewjrae/qmk-vim/vim.c
+SRC += features/drashna/utilities.c
+SRC += features/empressabyss/arcane_keys.c
+SRC += features/eristocrates/modal_keys.c
+SRC += features/possumvibes/mod_lock.c
+SRC += features/possumvibes/nshot_mod.c
+SRC += features/possumvibes/override_keys.c
+SRC += features/possumvibes/smart_layer.c
 
 
 # VPATH += keyboards/gboards
