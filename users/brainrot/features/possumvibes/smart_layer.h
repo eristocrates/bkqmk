@@ -31,6 +31,8 @@ void pointer_mode_disable(void);
 // Handle each key for number mode.
 void pointer_mode_process(uint16_t keycode, keyrecord_t *record);
 
+extern bool _pointer_mode_active;
+
 /* -------- Vim Motion Mode -------- */
 // Turn number mode on. To be called from a custom keycode
 bool vim_motion_mode_enable(keyrecord_t *record);

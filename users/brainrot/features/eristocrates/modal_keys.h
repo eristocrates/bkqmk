@@ -5,6 +5,7 @@
 
 extern bool semicolon_mode;
 extern bool smart_space_mode;
+extern bool last_smart_space;
 extern bool pair_mode;
 extern bool ampersand_mode;
 extern bool delete_word_mode;

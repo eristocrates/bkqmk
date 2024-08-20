@@ -1,12 +1,35 @@
 #include "smart_layer.h"
 #include "brainrot_keycodes.h"
-#include "brainrot_tap_dances.h"
 
 // TODO keep this in sync with the defines in brainrot.c & keymap.c
 #define BSPC_WD TD(TD_BSPC)
 #define DEL_WRD TD(TD_DEL)
-#define N_LEAD TD(TD_N_LEAD)
-#define E_LEAD TD(TD_E_LEAD)
+#define TD____A TD(TD_A)
+#define TD____B TD(TD_B)
+#define TD____C TD(TD_C)
+#define TD____D TD(TD_D)
+#define TD____E TD(TD_E)
+#define TD____F TD(TD_F)
+#define TD____G TD(TD_G)
+#define TD____H TD(TD_H)
+#define TD____I TD(TD_I)
+#define TD____J TD(TD_J)
+#define TD____K TD(TD_K)
+#define TD____L TD(TD_L)
+#define TD____M TD(TD_M)
+#define TD____N TD(TD_N)
+#define TD____O TD(TD_O)
+#define TD____P TD(TD_P)
+#define TD___QU TD(TD_QU)
+#define TD____R TD(TD_R)
+#define TD____S TD(TD_S)
+#define TD____T TD(TD_T)
+#define TD____U TD(TD_U)
+#define TD____V TD(TD_V)
+#define TD____W TD(TD_W)
+#define TD____X TD(TD_X)
+#define TD____Y TD(TD_Y)
+#define TD____Z TD(TD_Z)
 
 /*--------- Left Shift Gr Mode ---------------*/
 static bool     _rshiftgr_mode_active = false;
@@ -109,11 +132,15 @@ void lshiftgr_mode_process(uint16_t keycode, keyrecord_t *record) {
 }
 
 /* -------- Pointer Mode -------- */
-static bool _pointer_mode_active = false;
+bool _pointer_mode_active = false;
 // Turn number mode on. To be called from a custom keycode
 bool pointer_mode_enable(keyrecord_t *record) {
     _pointer_mode_active = true;
     layer_on(_POINTER);
+#ifdef RGB_MATRIX_ENABLE
+    rgb_matrix_mode_noeeprom(RGB_MATRIX_BREATHING);
+    rgb_matrix_sethsv_noeeprom(HSV_RED);
+#endif // RGB_MATRIX_ENABLE
     return false;
 }
 
@@ -121,6 +148,9 @@ bool pointer_mode_enable(keyrecord_t *record) {
 void pointer_mode_disable(void) {
     _pointer_mode_active = false;
     layer_off(_POINTER);
+#ifdef RGB_MATRIX_ENABLE
+    rgb_matrix_mode_noeeprom(RGB_MATRIX_DEFAULT_MODE);
+#endif // RGB_MATRIX_ENABLE
 }
 
 void pointer_mode_process(uint16_t keycode, keyrecord_t *record) {
@@ -138,11 +168,12 @@ void pointer_mode_process(uint16_t keycode, keyrecord_t *record) {
         case DRGSCRL:
         case SNIPING:
         case SNP_TOG:
-        case SM_SNAP:
+        case DRG_TOG:
         case KC_LEFT:
         case KC_RGHT:
         case KC_DOWN:
         case KC_UP:
+        case PNTROPT:
             // process the code and stay in the mode *dabs*
             break;
         default:
@@ -182,6 +213,8 @@ void vim_motion_mode_process(uint16_t keycode, keyrecord_t *record) {
         case KC_K:
         case KC_J:
         case KC_L:
+        case LB_ARC:
+        case LSHGR_R:
             // process the code and stay in the mode *dabs*
             break;
         default:

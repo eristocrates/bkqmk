@@ -1,5 +1,5 @@
 # Define the source and destination paths
-$sourcePath = "bastardkb_charybdis_3x6_brainrot.uf2"
+$sourcePath = "I:\coding\bkqmk\bastardkb_charybdis_3x6_brainrot.uf2"
 $destinationPath = "N:\bastardkb_charybdis_3x6_brainrot.uf2"
 
 # Check if the source file exists

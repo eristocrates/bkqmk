@@ -1,7 +1,8 @@
 #include "modal_keys.h"
 
 bool semicolon_mode   = false;
-bool smart_space_mode = false;
+bool smart_space_mode = true;
+bool last_smart_space = false;
 bool pair_mode        = false; // auto  pairs of ()[]{} '' "" `` <>
 // TOOD hook into/toggle extant pair symbol implementation
 bool ampersand_mode   = false; // and/&

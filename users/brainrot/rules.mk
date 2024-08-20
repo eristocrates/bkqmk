@@ -4,11 +4,11 @@ REPEAT_KEY_ENABLE = yes
 COMBO_ENABLE = yes
 LEADER_ENABLE = yes
 CAPS_WORD_ENABLE = yes
-AUTOCORRECT_ENABLE = yes
+CONSOLE_ENABLE = yes
 
 # Disable unused features
 VIA_ENABLE = no
-CONSOLE_ENABLE = no
+#AUTOCORRECT_ENABLE = yes
 
 INTROSPECTION_KEYMAP_C = brainrot.c
 
@@ -23,6 +23,7 @@ SRC += features/andrewjrae/qmk-vim/vim.c
 SRC += features/drashna/utilities.c
 SRC += features/empressabyss/arcane_keys.c
 SRC += features/eristocrates/modal_keys.c
+SRC += features/eristocrates/utilities.c
 SRC += features/possumvibes/mod_lock.c
 SRC += features/possumvibes/nshot_mod.c
 SRC += features/possumvibes/override_keys.c

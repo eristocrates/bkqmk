@@ -2,10 +2,15 @@ layout: {qmk_keyboard: bastardkb/charybdis/3x6, qmk_layout: LAYOUT}
 layers:
   Brainrot:
   - [X, V, G, M, P, LT ARC, RT ARC, U, O, Y, B, Z]
-  - [J, K, S, N, D, BSPC WD, MD YES, A, E, I, H, TH QU]
-  - [QK LEAD, W, F, L, C, LB ARC, RB ARC, MD RNPO, ',', MD DTSC, MD RNPC, TEST]
-  - [LAYR TB, R, LSPC, RSPC, T]
-  Pointer:
+  - [J, K, S, N, D, BSPC WD, MD YES, A, E, I, H, TD   QU]
+  - [QK LEAD, W, F, L, C, LB ARC, RB ARC, MD RNPO, COM ARC, DOT ARC, MD RNPC, TEST]
+  - [LAYR TB, LSHGR R, LSPC, RSPC, RSHGR T]
+  Combo Reference:
+  - [L T Out, L T Pin, L T Rin, L T Mid, L T Ind, L T Inn, R T Inn, R T Ind, R T Mid, R T Rin, R T Pin, R T Out]
+  - [L H Out, L H Pin, L H Rin, L H Mid, L H Ind, L H Inn, R H Inn, R H Ind, R H Mid, R H Rin, R H Pin, R H Out]
+  - [L B Out, L B Pin, L B Rin, L B Mid, L B Ind, L B Inn, R B Inn, R B Ind, R B Mid, R B Rin, R B Pin, R B Out]
+  - [L LThmb, L MThmb, L RThmb, R LThmb, R MThmb]
+  Left Shift Gr:
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -47,7 +52,7 @@ layers:
     - {t: '', type: trans}
     - _
     - {t: '', type: trans}
-  Left Shift Gr:
+  Right Shift Gr:
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -80,8 +85,8 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - MD CRPO
-    - '!'
     - /
+    - '!'
     - MD CRPC
     - MHEN
   - - {t: '', type: trans}
@@ -89,7 +94,7 @@ layers:
     - _
     - {t: '', type: trans}
     - {t: '', type: trans}
-  Right Shift Gr:
+  Math:
   - - {t: '', type: trans}
     - '%'
     - ^
@@ -131,7 +136,7 @@ layers:
     - PENT
     - SPC
     - '0'
-  Vim Navigation:
+  Vim Motion:
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -215,7 +220,7 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - '0'
-  Naginata:
+  Function:
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -257,7 +262,7 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-  Shingeta:
+  Media:
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -299,7 +304,7 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-  Qwerty:
+  Layer:
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', MEDIA, KEYBRD, MATH, SHRTCUT, '', '', '', '', '', '', '']
   - [RANDOM, '', '', '', '', '', '', '', '', '', '', '']
@@ -308,17 +313,17 @@ layers:
     - ''
     - ''
     - ''
-  Thinqu:
+  Game:
   - ['1', Q, I, W, R, T, Y, U, I, O, P, '']
   - [LCTL, A, A, S, D, G, H, J, K, L, ;, RCTL]
   - [LSFT, PT Z, M, C, V, B, N, M, ',', ., PT SLSH, BASE]
   - [ESC, SPC, '', '', ENT]
-  Game:
+  Thinqu:
   - [TAB, B, D, L, TH, V, Z, '''', U, H, K, '']
   - [BSPC, N, T, S, R, W, Y, A, E, O, I, ENT]
   - [LSFT, X, G, M, C, ;, J, F, P, ',', ., BASE]
   - ['', THINQUL, SPC, SPC, THINQUR]
-  Layer:
+  Thinqu Left Shift Gr:
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -360,7 +365,7 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-  Shortcut:
+  Thinqu Right Shift Gr:
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -444,23 +449,91 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-  Math:
-  - ['', '', '', BTN3, DPI RMOD, S D RMOD, S D MOD, DPI MOD, BTN3, F11, SM SNAP, '']
-  - - ''
+  Pointer:
+  - - {t: '', type: trans}
     - {t: '', type: trans}
+    - {t: '', type: trans}
+    - BTN3
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - BTN3
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - SNIPING
     - DRGSCRL
     - BTN2
     - BTN1
-    - SNIPING
-    - SNIPING
+    - {t: '', type: trans}
+    - {t: '', type: trans}
     - BTN1
     - BTN2
     - DRGSCRL
+    - SNIPING
     - {t: '', type: trans}
-    - ''
-  - ['', SNP TOG, DRG TOG, '', '', '', '', SCN TOG, '', DRG TOG, SNP TOG, BASE]
-  - [UP, '', DOWN, LEFT, RGHT]
-  Media:
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - LEFT
+    - DOWN
+    - UP
+    - RGHT
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - PNTROPT
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - PNTROPT
+  Pointer Options:
+  - - {t: '', type: trans}
+    - SD  MOD
+    - DPI MOD
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - DPI MOD
+    - SD  MOD
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - SNP TOG
+    - DRG TOG
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - DRG TOG
+    - SNP TOG
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - SD RMOD
+    - DPI RMD
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - DPI RMD
+    - SD RMOD
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  Secret:
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -502,22 +575,22 @@ layers:
     - SECRET2
     - {t: '', type: trans}
     - {t: '', type: trans}
-  Secret:
+  Naginata:
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', '', '', '', '']
-  Random:
+  Shingeta:
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', '', '', '', '']
-  L18:
+  Qwerty:
   - [LGUI, Q, W, E, R, T, Y, U, I, O, P, RGUI]
   - [LCTL, A, S, D, F, G, H, J, K, L, ;, RCTL]
   - [LSFT, PT Z, X, C, V, B, N, M, ',', ., PT SLSH, BASE]
   - ['', SPC, BSPC, DEL, ENT]
-  L19:
+  Random:
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND]
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND]
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, BASE]

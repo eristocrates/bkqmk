@@ -1,11 +1,12 @@
 # Define the paths
 $mingwPath = "I:\msys2\usr\bin\bash.exe"
 $keymapPathMingw = "I:/coding/bkqmk/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot"
-$userspacePathMingw = "I:/coding/bkqmk/users/brainrot"
+#$userspacePathMingw = "I:/coding/bkqmk/users/brainrot"
 $keymapPath = "I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\brainrot"
 
 # Define the commands
-$compile2jsonCmd = "qmk generate-autocorrect-data $userspacePathMingw/autocorrect_dictionary.txt -kb bastardkb/charybdis/3x6 -km brainrot ; qmk compile -j 0 -kb bastardkb/charybdis/3x6 -km brainrot > qmk-output.log 2>&1 ; qmk c2json --no-cpp $keymapPathMingw/keymap.c > $keymapPathMingw/c2.json"
+$compile2jsonCmd = "qmk compile -j 0 -kb bastardkb/charybdis/3x6 -km brainrot > qmk-output.log 2>&1 ; qmk c2json --no-cpp $keymapPathMingw/keymap.c > $keymapPathMingw/c2.json"
+#$compile2jsonCmd = "qmk generate-autocorrect-data $userspacePathMingw/autocorrect_dictionary.txt -kb bastardkb/charybdis/3x6 -km brainrot ; qmk compile -j 0 -kb bastardkb/charybdis/3x6 -km brainrot > qmk-output.log 2>&1 ; qmk c2json --no-cpp $keymapPathMingw/keymap.c > $keymapPathMingw/c2.json"
 
 
 #$keymapPreParseCmd = ".\keymapPreParse.ps1"

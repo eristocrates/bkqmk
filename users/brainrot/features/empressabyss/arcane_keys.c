@@ -1,7 +1,9 @@
 // Copyright 2023 Cyboard LLC (@Cyboard-DigitalTailor)
 // SPDX-License-Identifier: GPL-2.0-or-later
+#include QMK_KEYBOARD_H
 #include "arcane_keys.h"
 #include "brainrot_keycodes.h"
+#include "features/eristocrates/modal_keys.h"
 // https://github.com/empressabyss/nordrassil?tab=readme-ov-file#implementation
 
 void arcane_send_string_P(const char* str, uint16_t repeat_keycode) {
@@ -71,9 +73,9 @@ void process_top_left_arcane(uint16_t keycode, uint8_t mods) {
 
         // right outer column
         case KC_Z: {
-            ARCANE_STRING("qu", TH_QU);
+            ARCANE_STRING("qu", TD(TD_QU));
         } break;
-        case TH_QU: {
+        case TD(TD_QU): {
             ARCANE_STRING("z", KC_Z);
         } break;
 
@@ -117,6 +119,9 @@ void process_top_left_arcane(uint16_t keycode, uint8_t mods) {
 }
 
 void process_top_right_arcane(uint16_t keycode, uint8_t mods) {
+#ifdef CONSOLE_ENABLE
+    uprintf("arcane_keys.c: kc: 0x%04X\n", keycode);
+#endif
     switch (keycode) {
         // left outer column
         case KC_X: {
@@ -206,6 +211,10 @@ void process_top_right_arcane(uint16_t keycode, uint8_t mods) {
             ARCANE_STRING("a", KC_A);
         } break;
         case KC_A: {
+#ifdef CONSOLE_ENABLE
+            uprintf("A was pressed");
+            uprintf("arcane_keys.c: kc: 0x%04X\n", keycode);
+#endif
             ARCANE_STRING("u", KC_U);
         } break;
 
@@ -267,7 +276,7 @@ void process_bottom_left_arcane(uint16_t keycode, uint8_t mods) {
 
         // right outer column
         case KC_Z: {
-            ARCANE_STRING("qu", TH_QU);
+            ARCANE_STRING("qu", TD(TD_QU));
         } break;
 
             // right pinky column
@@ -390,5 +399,74 @@ void process_bottom_right_arcane(uint16_t keycode, uint8_t mods) {
 
         default:
             tap_code16(KC_PERC);
+    }
+}
+// inspired from https://www.reddit.com/r/KeyboardLayouts/comments/1cc2yri/oneshot_shift_via_adaptive_keys/?share_id=J_a-r4rEr1p26tZg4lRpc&utm_content=1&utm_medium=android_app&utm_name=androidcss&utm_source=share&utm_term=1
+// inspired from https://www.reddit.com/r/KeyboardLayouts/comments/1cc2yri/comment/l12n0qr/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+void process_comma_arcane(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+        case KC_A:
+        case KC_B:
+        case KC_C:
+        case KC_D:
+        case KC_E:
+        case KC_F:
+        case KC_G:
+        case KC_H:
+        case KC_I:
+        case KC_J:
+        case KC_K:
+        case KC_L:
+        case KC_M:
+        case KC_N:
+        case KC_O:
+        case KC_P:
+        case KC_Q:
+        case TD(TD_QU):
+        case KC_R:
+        case KC_S:
+        case KC_T:
+        case KC_U:
+        case KC_V:
+        case KC_W:
+        case KC_X:
+        case KC_Y:
+        case KC_Z:
+            ARCANE_STRING(",", KC_COMM);
+            break;
+        default:
+            add_oneshot_mods(MOD_LSFT);
+            ARCANE_STRING("", KC_COMM);
+    }
+}
+
+void process_dot_arcane(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+        case KC_SPC:
+            if (is_caps_word_on()) {
+                ARCANE_STRING(".", KC_DOT);
+                caps_word_off();
+            } else {
+                ARCANE_STRING("", KC_DOT);
+                caps_word_on();
+            }
+            break;
+        default:
+            // last keycode is a smart combos that would need that prior space smartly removed
+            if (smart_space_mode && last_smart_space) {
+                tap_code(KC_BSPC);
+            }
+            if (semicolon_mode) {
+                ARCANE_STRING(";", KC_SCLN);
+                if (smart_space_mode) {
+                    tap_code(KC_ENT);
+                }
+            } else {
+                ARCANE_STRING(".", KC_DOT);
+                if (smart_space_mode) {
+                    tap_code(KC_SPC);
+                    add_oneshot_mods(MOD_LSFT);
+                }
+            }
     }
 }

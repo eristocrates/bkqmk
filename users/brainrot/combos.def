@@ -1,34 +1,34 @@
 /*    COMBO NAME       | OUTPUT    | PARAMS    */
+DEFAULT_REF_LAYER(_COMBOREF)
 
 /*---- Control ----*/
-COMB(CB_ESC, KC_ESC, KC_COMM, MD_DTSC)
-COMB(CB_LEAD, QK_LEAD, KC_LSPC, KC_RSPC)
-COMB(vim_motion, VIMMOTIONMODE, KC_LSPC, KC_V)
-COMB(CB_POINTER, POINTERMODE, KC_T, KC_TEST)
-COMB(CB_PANIC, PANIC, LAYR_TB, KC_LSPC)
+COMB(CB_ESC, KC_ESC, R_B_Mid, R_B_Rin)
+COMB(CB_LEAD, QK_LEAD, L_RThmb, R_LThmb)
+COMB(vim_motion, VIMMOTIONMODE, L_B_Inn, L_MThmb)
+COMB(CB_POINTER, POINTERMODE, R_B_Inn, R_MThmb)
+COMB(CB_PANICL, PANIC, L_T_Inn, L_B_Inn)
+COMB(CB_PANICR, PANIC, R_T_Inn, R_B_Inn)
 
 /*---- 2Grams ----*/
-SUBS(CB_GH, "gh", KC_V, KC_G)
-SUBS(CB_PH, "ph", KC_M, KC_P)
-SUBS(CB_SH, "sh", KC_K, KC_S)
-SUBS(CB_TH, "th", KC_N, KC_D)
-SUBS(CB_WH, "wh", KC_W, KC_F)
-SUBS(CB_CH, "ch", KC_L, KC_C)
-SUBS(CB_LY, "ly", KC_O, KC_Y)
-SUBS(CB_IN, "in", KC_A, KC_E)
+COMB(CB_GH, MD_GH, L_T_Pin, L_T_Rin)
+COMB(CB_PH, KC_PH, L_T_Mid, L_T_Ind)
+COMB(CB_SH, KC_SH, L_H_Pin, L_H_Rin)
+COMB(CB_TH, KC_TH, L_H_Mid, L_H_Ind)
+COMB(CB_WH, KC_WH, L_B_Pin, L_B_Rin)
+COMB(CB_CH, KC_CH, L_B_Mid, L_B_Ind)
+COMB(CB_LY, MD_LY, R_T_Mid, R_T_Rin)
+COMB(CB_IN, KC_IN, R_H_Ind, R_H_Mid)
 
 // TODO make md keys for these
 /*---- 3Grams ----*/
-SUBS(CB_THE, "the", KC_S, KC_D)
-COMB(CB_AND, MD_AND, KC_A, KC_I)
-SUBS(CB_FOR, "for", KC_F, KC_C)
-SUBS(CB_YOU, "you", KC_Y, KC_U)
+COMB(CB_THE, MD_THE, L_H_Rin, L_H_Ind)
+COMB(CB_AND, MD_AND, R_H_Ind, R_H_Rin)
+COMB(CB_FOR, MD_FOR, L_B_Rin, L_B_Ind)
+COMB(CB_YOU, MD_YOU, R_T_Rin, R_T_Ind)
 
 /*---- 4Grams ----*/
-SUBS(CB_INGL, "ing", KC_K, KC_N)
-SUBS(CB_INGR, "ing", KC_E, KC_H)
-SUBS(CB_SION, "sion", KC_S, KC_N)
-SUBS(CB_TION, "tion", KC_E, KC_I)
-SUBS(CB_OULD, "ould", KC_U, KC_O)
-
-/*---- 4Grams ----*/
+COMB(CB_INGL, MD_ING, L_H_Pin, L_H_Mid)
+COMB(CB_INGR, MD_ING, R_H_Mid, R_H_Pin)
+COMB(CB_SION, MD_SION, L_H_Rin, L_H_Mid)
+COMB(CB_TION, MD_TION, R_H_Mid, R_H_Rin)
+COMB(CB_OULD, MD_OULD, R_T_Ind, R_T_Mid)
