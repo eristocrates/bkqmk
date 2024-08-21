@@ -53,7 +53,7 @@ bool send_autopair_on_shift(bool is_shifted, uint16_t left_keycode, uint16_t rig
     if (record->event.pressed) {
         if (is_shifted) {
             send_autopair(left_keycode, right_keycode, record);
-            layer_off(_LSHIFTGR);
+            // layer_off(_LSHIFTGR); // TODO review the source to see how this worked there, and apply to my own code
         } else {
             tap_code16(keycode);
         }

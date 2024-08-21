@@ -8,12 +8,12 @@
 static uint16_t last_keycode_timer = 0;
 
 // piercing holds
-// TODO double check if these should be iniitialized per case
 uint16_t tap_keycode;
-uint16_t mod_intent;
+uint16_t hold_keycode;
+uint16_t hold_mod;
 
 // for SCN
-bool is_shift_toggled = false;
+bool is_ALT___Roggled = false;
 
 /* Return an integer that corresponds to what kind of tap dance should be executed.
  *
@@ -316,26 +316,144 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             // powerful stuff, unironically surprised myself with this one
             // TODO think of keys that would want to be tapped, prefereably without wanting other mods
             // TODO ensure nshot mod layer interacts properly with this
-        case SRHINDX:
+
+        case GLTOUTR:
+        case CLTOUTR:
+        case ALTOUTR:
+        case TH____X:
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+
+        case GLTPNKY:
+        case CLTPNKY:
+        case ALTPNKY:
+        case TH____V:
+
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+
+        case GLTRING:
+        case CLTRING:
+        case ALTRING:
+        case TH____G:
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GLTMDLE:
+        case CLTMDLE:
+        case ALTMDLE:
+        case TH____M:
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GLTINDX:
+        case CLTINDX:
+        case ALTINDX:
+        case TH____P:
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+
+        // TODO think of cool things arcane could do on hold
+        case GLTINNR:
+        case CLTINNR:
+        case ALTINNR:
+            // arcane
+
+        case GRTOUTR:
+        case CRTOUTR:
+        case ARTOUTR:
+            // arcane
+            return false;
+
+        case GRHINDX:
         case CRHINDX:
         case ARHINDX:
-        case GRHINDX:
-            if (IS_LAYER_ON(_ALTGR)) {
-                tap_keycode = KC_AMPR;
-                mod_intent  = KC_LALT;
-            } else if (IS_LAYER_ON(_SHIFTGR)) {
-                tap_keycode = KC_HASH;
-                mod_intent  = KC_LSFT;
-            } else if (IS_LAYER_ON(_CTRLGR)) {
-                tap_keycode = KC_DLR;
-                mod_intent  = KC_LCTL;
-            } else if (IS_LAYER_ON(_GUIGR)) {
-                tap_keycode = KC_PERC;
-                mod_intent  = KC_LGUI;
+        case TH____A:
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
             } else {
-                mod_intent = 0;
+                hold_mod = KC_LSFT;
             }
-            if (process_tap_or_long_mod_press_key(record, KC_A, mod_intent)) {
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
                 if (record->event.pressed) {
                     tap_code16(tap_keycode);
                 }
@@ -343,6 +461,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
             /*------------------------------consequtive keys------------------------------*/
             /* ya now i see why tap dances need tapping term（︶^︶）
+            BUT! from that realization i still think this can be pretty useful
             if (!process_consecutive_key(record, keycode, KC_LCTL)) {
                 return false;
             }
@@ -351,12 +470,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         /*------------------------------smart layers------------------------------*/
         case VIMMOTIONMODE:
             return vim_motion_mode_enable(record);
+
         case POINTERMODE:
             return pointer_mode_enable(record);
-        case SHIFTGRMODE:
-            return shiftgr_mode_enable(record);
-        case CTLGRMODE:
-            return ctrlgr_mode_enable(record);
 
         case CLEAR:
             clear_oneshot_mods();
@@ -442,12 +558,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case SCN_TOG:
             if (record->event.pressed) {
-                if (is_shift_toggled) {
+                if (is_ALT___Roggled) {
                     unregister_mods(MOD_BIT(KC_LSFT)); // Unregister Shift
-                    is_shift_toggled = false;
+                    is_ALT___Roggled = false;
                 } else {
                     register_mods(MOD_BIT(KC_LSFT)); // Register Shift
-                    is_shift_toggled = true;
+                    is_ALT___Roggled = true;
                 }
             }
             return false; // Skip all further processing of this key
@@ -946,7 +1062,7 @@ bool process_combo_key_release(uint16_t combo_INDXex, combo_t *combo, uint8_t ke
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    state = update_tri_layer_state(state, _SHIFTGR, _CTRLGR, _ALTGR);
+    state = update_tri_layer_state(state, _CTRLPR, _ALTPR, _GUIPR);
     // TODO might as well find an excuse to put layer taps on my spaces and add a tri layer here
     return state;
 }

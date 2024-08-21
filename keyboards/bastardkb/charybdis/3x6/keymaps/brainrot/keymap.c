@@ -45,7 +45,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* ├───────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────┤ */
      QK_LEAD, TH____W, TH____F, TH____L, TH____C, LBM_ARC, RBM_ARC, MD_RNPO, COM_ARC, DOT_ARC, MD_RNPC, KC_TEST,
   /* ╰───────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────╯ */
-                                GUGR_TB, SHFGR_R, KC_LSPC, KC_RSPC, RSHGR_T
+                                MATH_TB, CTRL__R, KC_LSPC, KC_RSPC, ALT___T
   /*                            ╰────────────────────────╯ ╰──────────────╯                                      */
   ),
 
@@ -61,19 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
   ),
 
-  [_SHIFTGR] = LAYOUT(
-  /* ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮ */
-       SLTOUTR, SLTPNKY, SLTRING, SLTMDLE, SLTINDX, SLTINNR,    SRTINNR, SRTINDX, SRTMDLE, SRTRING, SRTPNKY, SRTOUTR,
-  /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       SLHOUTR, SLHPNKY, SLHRING, SLHMDLE, SLHINDX, SLHINNR,    SRHINNR, SRHINDX, SRHMDLE, SRHRING, SRHPNKY, SRHOUTR,
-  /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       SLBOUTR, SLBPNKY, SLBRING, SLBMDLE, SLBINDX, SLBINNR,    SRBINNR, SRBINDX, SRBMDLE, SRBRING, SRBPNKY, SRBOUTR,
-  /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
-                                  XXXXXXX, _______, XXXXXXX,    KC_UNDS,  RSHGR_T
-  /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
-  ),
-
-  [_CTRLGR] = LAYOUT(
+  [_CTRLPR] = LAYOUT(
   /* ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮ */
        CLTOUTR, CLTPNKY, CLTRING, CLTMDLE, CLTINDX, CLTINNR,    CRTINNR, CRTINDX, CRTMDLE, CRTRING, CRTPNKY, CRTOUTR,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
@@ -81,10 +69,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
        CLBOUTR, CLBPNKY, CLBRING, CLBMDLE, CLBINDX, CLBINNR,    CRBINNR, CRBINDX, CRBMDLE, CRBRING, CRBPNKY, CRBOUTR,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
-                                  _______,  SHFGR_R, KC_UNDS,    XXXXXXX, _______
+                                  XXXXXXX, _______, XXXXXXX,    KC_UNDS,  ALT___T
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
   ),
-  [_ALTGR] = LAYOUT(
+  [_ALTPR] = LAYOUT(
   /* ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮ */
        ALTOUTR, ALTPNKY, ALTRING, ALTMDLE, ALTINDX, ALTINNR,    ARTINNR, ARTINDX, ARTMDLE, ARTRING, ARTPNKY, ARTOUTR,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
@@ -92,11 +80,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
        ALBOUTR, ALBPNKY, ALBRING, ALBMDLE, ALBINDX, ALBINNR,    ARBINNR, ARBINDX, ARBMDLE, ARBRING, ARBPNKY, ARBOUTR,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
-                                  XXXXXXX, _______, XXXXXXX,    XXXXXXX, _______
+                                  XXXXXXX, _______, KC_UNDS,    XXXXXXX, _______
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
   ),
 
-  [_GUIGR] = LAYOUT(
+  [_GUIPR] = LAYOUT(
   /* ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮ */
        GLTOUTR, GLTPNKY, GLTRING, GLTMDLE, GLTINDX, GLTINNR,    GRTINNR, GRTINDX, GRTMDLE, GRTRING, GRTPNKY, GRTOUTR,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
@@ -115,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
        _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       _______, _______, _______, _______, _______, _______,    KC_BTN3, KC_BTN1, KC_BTN2, DRGSCRL, SNIPING, _______,
+       _______, _______, _______, _______, _______, _______,      CLEAR, KC_BTN1, KC_BTN2, DRGSCRL, SNIPING, _______,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
                                   _______, _______, _______,    PNTRNAV, PNTROPT
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
@@ -254,8 +242,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
   ),
 
-// 15 layer LT/LM threshold https://github.com/qmk/qmk_firmware/blob/master/docs/feature_layers.md#switching-and-toggling-layers-switching-and-toggling-layers
-
   [_KEYBOARD] = LAYOUT(
   /* ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮ */
        _______,  _______, QWERTY, THINQU,     GAME, _______,    RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, RGB_SPI, _______,
@@ -268,6 +254,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
   ),
 
+// 15 layer LT/LM threshold https://github.com/qmk/qmk_firmware/blob/master/docs/feature_layers.md#switching-and-toggling-layers-switching-and-toggling-layers
   [_SECRET] = LAYOUT(
  /* ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮ */
        _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______,

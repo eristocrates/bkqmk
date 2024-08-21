@@ -5,10 +5,10 @@
 enum layers {
     _BRAINROT,
     _COMBOREF,
-    _SHIFTGR,
-    _CTRLGR,
-    _ALTGR,
-    _GUIGR,
+    // _SHIFTPR,
+    _CTRLPR,
+    _ALTPR,
+    _GUIPR,
     _POINTER,
     _POINTEROPT,
     _POINTERNAV,
@@ -21,8 +21,8 @@ enum layers {
     _THINQU,
     _THINQUL,
     _THINQUR,
-    // 15 layer LT/LM threshold https://github.com/qmk/qmk_firmware/blob/master/docs/feature_layers.md#switching-and-toggling-layers-switching-and-toggling-layers
     _KEYBOARD,
+    // 15 layer LT/LM threshold https://github.com/qmk/qmk_firmware/blob/master/docs/feature_layers.md#switching-and-toggling-layers-switching-and-toggling-layers
     _SECRET,
     _NAGINATA,
     _SHINGETA,
@@ -269,10 +269,10 @@ enum keycodes {
 // macros
 
 #define TH(k) LT(_BRAINROT, k)
-#define SG(k) LT(_SHIFTGR, k)
-#define CG(k) LT(_CTRLGR, k)
-#define AG(k) LT(_ALTGR, k)
-#define GG(k) LT(_GUIGR, k)
+#define SG(k) LT(_SHIFTPR, k)
+#define CG(k) LT(_CTRLPR, k)
+#define AG(k) LT(_ALTPR, k)
+#define GG(k) LT(_GUIPR, k)
 
 // base layers
 #define BASE TO(_BRAINROT)
@@ -281,9 +281,9 @@ enum keycodes {
 #define THINQU TO(_THINQU)
 
 // layer taps
-#define GUGR_TB LT(_GUIGR, KC_TAB)
-#define SHFGR_R LT(_SHIFTGR, KC_R)
-#define RSHGR_T LT(_CTRLGR, KC_T)
+#define CTRL__R LT(_CTRLPR, KC_R)
+#define ALT___T LT(_ALTPR, KC_T)
+#define MATH_TB LT(_MATH, KC_TAB)
 // default LTs
 #define PT_Z LT(_POINTER, KC_Z)
 #define PT_SLSH LT(_POINTER, KC_SLSH)
@@ -361,203 +361,208 @@ enum keycodes {
 // standardized width keycodes
 #define KC___UP KC_UP
 
-// custom base tap holds
-#define TH____A TH(KC_A)
-#define TH____B TH(KC_B)
-#define TH____C TH(KC_C)
-#define TH____D TH(KC_D)
-#define TH____E TH(KC_E)
-#define TH____F TH(KC_F)
-#define TH____G TH(KC_G)
-#define TH____H TH(KC_H)
-#define TH____I TH(KC_I)
-#define TH____J TH(KC_J)
-#define TH____K TH(KC_K)
-#define TH____L TH(KC_L)
-#define TH____M TH(KC_M)
-#define TH____N TH(KC_N)
-#define TH____O TH(KC_O)
-#define TH____P TH(KC_P)
-#define TH____Q TH(KC_Q)
-#define TH___QU TH(KC_Q) // tap qu, hold q
-#define TH____R TH(KC_R)
-#define TH____S TH(KC_S)
-#define TH____T TH(KC_T)
-#define TH____U TH(KC_U)
-#define TH____V TH(KC_V)
-#define TH____W TH(KC_W)
+// custom tap holds grouped by row
+#define GLTOUTR GG(LT_OUTR)
+#define CLTOUTR CG(LT_OUTR)
+#define ALTOUTR AG(LT_OUTR)
 #define TH____X TH(KC_X)
+
+#define GLTPNKY GG(LT_PNKY)
+#define CLTPNKY CG(LT_PNKY)
+#define ALTPNKY AG(LT_PNKY)
+#define TH____V TH(KC_V)
+
+#define GLTRING GG(LT_RING)
+#define CLTRING CG(LT_RING)
+#define ALTRING AG(LT_RING)
+#define TH____G TH(KC_G)
+
+#define GLTMDLE GG(LT_MDLE)
+#define CLTMDLE CG(LT_MDLE)
+#define ALTMDLE AG(LT_MDLE)
+#define TH____M TH(KC_M)
+
+#define GLTINDX GG(LT_INDX)
+#define CLTINDX CG(LT_INDX)
+#define ALTINDX AG(LT_INDX)
+#define TH____P TH(KC_P)
+
+#define GLTINNR GG(LT_INNR)
+#define CLTINNR CG(LT_INNR)
+#define ALTINNR AG(LT_INNR)
+// arcane
+
+#define GRTOUTR GG(RT_OUTR)
+#define CRTOUTR CG(RT_OUTR)
+#define ARTOUTR AG(RT_OUTR)
+// arcane
+
+#define GRTPNKY GG(RT_PNKY)
+#define CRTPNKY CG(RT_PNKY)
+#define ARTPNKY AG(RT_PNKY)
+#define TH____U TH(KC_U)
+
+#define GRTRING GG(RT_RING)
+#define CRTRING CG(RT_RING)
+#define ARTRING AG(RT_RING)
+#define TH____O TH(KC_O)
+
+#define GRTMDLE GG(RT_MDLE)
+#define CRTMDLE CG(RT_MDLE)
+#define ARTMDLE AG(RT_MDLE)
 #define TH____Y TH(KC_Y)
+
+#define GRTINDX GG(RT_INDX)
+#define CRTINDX CG(RT_INDX)
+#define ARTINDX AG(RT_INDX)
+#define TH____B TH(KC_B)
+
+#define GRTINNR GG(RT_INNR)
+#define CRTINNR CG(RT_INNR)
+#define ARTINNR AG(RT_INNR)
 #define TH____Z TH(KC_Z)
 
-// custom Shift tap holds
-#define SLTOUTR SG(LT_OUTR)
-#define SLTPNKY SG(LT_PNKY)
-#define SLTRING SG(LT_RING)
-#define SLTMDLE SG(LT_MDLE)
-#define SLTINDX SG(LT_INDX)
-#define SLTINNR SG(LT_INNR)
-#define SRTOUTR SG(RT_OUTR)
-#define SRTPNKY SG(RT_PNKY)
-#define SRTRING SG(RT_RING)
-#define SRTMDLE SG(RT_MDLE)
-#define SRTINDX SG(RT_INDX)
-#define SRTINNR SG(RT_INNR)
-#define SLHOUTR SG(LH_OUTR)
-#define SLHPNKY SG(LH_PNKY)
-#define SLHRING SG(LH_RING)
-#define SLHMDLE SG(LH_MDLE)
-#define SLHINDX SG(LH_INDX)
-#define SLHINNR SG(LH_INNR)
-#define SRHOUTR SG(RH_OUTR)
-#define SRHPNKY SG(RH_PNKY)
-#define SRHRING SG(RH_RING)
-#define SRHMDLE SG(RH_MDLE)
-#define SRHINDX SG(RH_INDX)
-#define SRHINNR SG(RH_INNR)
-#define SLBOUTR SG(LB_OUTR)
-#define SLBPNKY SG(LB_PNKY)
-#define SLBRING SG(LB_RING)
-#define SLBMDLE SG(LB_MDLE)
-#define SLBINDX SG(LB_INDX)
-#define SLBINNR SG(LB_INNR)
-#define SRBOUTR SG(RB_OUTR)
-#define SRBPNKY SG(RB_PNKY)
-#define SRBRING SG(RB_RING)
-#define SRBMDLE SG(RB_MDLE)
-#define SRBINDX SG(RB_INDX)
-#define SRBINNR SG(RB_INNR)
-#define SLLTHMB SG(L_LTHMB)
-#define SLMTHMB SG(L_MTHMB)
-#define SLRTHMB SG(L_RTHMB)
-#define SRLTHMB SG(R_LTHMB)
-#define SRMTHMB SG(R_MTHMB)
-
-// custom Ctrl tap holds
-#define CLTOUTR CG(LT_OUTR)
-#define CLTPNKY CG(LT_PNKY)
-#define CLTRING CG(LT_RING)
-#define CLTMDLE CG(LT_MDLE)
-#define CLTINDX CG(LT_INDX)
-#define CLTINNR CG(LT_INNR)
-#define CRTOUTR CG(RT_OUTR)
-#define CRTPNKY CG(RT_PNKY)
-#define CRTRING CG(RT_RING)
-#define CRTMDLE CG(RT_MDLE)
-#define CRTINDX CG(RT_INDX)
-#define CRTINNR CG(RT_INNR)
-#define CLHOUTR CG(LH_OUTR)
-#define CLHPNKY CG(LH_PNKY)
-#define CLHRING CG(LH_RING)
-#define CLHMDLE CG(LH_MDLE)
-#define CLHINDX CG(LH_INDX)
-#define CLHINNR CG(LH_INNR)
-#define CRHOUTR CG(RH_OUTR)
-#define CRHPNKY CG(RH_PNKY)
-#define CRHRING CG(RH_RING)
-#define CRHMDLE CG(RH_MDLE)
-#define CRHINDX CG(RH_INDX)
-#define CRHINNR CG(RH_INNR)
-#define CLBOUTR CG(LB_OUTR)
-#define CLBPNKY CG(LB_PNKY)
-#define CLBRING CG(LB_RING)
-#define CLBMDLE CG(LB_MDLE)
-#define CLBINDX CG(LB_INDX)
-#define CLBINNR CG(LB_INNR)
-#define CRBOUTR CG(RB_OUTR)
-#define CRBPNKY CG(RB_PNKY)
-#define CRBRING CG(RB_RING)
-#define CRBMDLE CG(RB_MDLE)
-#define CRBINDX CG(RB_INDX)
-#define CRBINNR CG(RB_INNR)
-#define CLLTHMB CG(L_LTHMB)
-#define CLMTHMB CG(L_MTHMB)
-#define CLRTHMB CG(L_RTHMB)
-#define CRLTHMB CG(R_LTHMB)
-#define CRMTHMB CG(R_MTHMB)
-
-// custom Alt tap holds
-#define ALTOUTR AG(LT_OUTR)
-#define ALTPNKY AG(LT_PNKY)
-#define ALTRING AG(LT_RING)
-#define ALTMDLE AG(LT_MDLE)
-#define ALTINDX AG(LT_INDX)
-#define ALTINNR AG(LT_INNR)
-#define ARTOUTR AG(RT_OUTR)
-#define ARTPNKY AG(RT_PNKY)
-#define ARTRING AG(RT_RING)
-#define ARTMDLE AG(RT_MDLE)
-#define ARTINDX AG(RT_INDX)
-#define ARTINNR AG(RT_INNR)
-#define ALHOUTR AG(LH_OUTR)
-#define ALHPNKY AG(LH_PNKY)
-#define ALHRING AG(LH_RING)
-#define ALHMDLE AG(LH_MDLE)
-#define ALHINDX AG(LH_INDX)
-#define ALHINNR AG(LH_INNR)
-#define ARHOUTR AG(RH_OUTR)
-#define ARHPNKY AG(RH_PNKY)
-#define ARHRING AG(RH_RING)
-#define ARHMDLE AG(RH_MDLE)
-#define ARHINDX AG(RH_INDX)
-#define ARHINNR AG(RH_INNR)
-#define ALBOUTR AG(LB_OUTR)
-#define ALBPNKY AG(LB_PNKY)
-#define ALBRING AG(LB_RING)
-#define ALBMDLE AG(LB_MDLE)
-#define ALBINDX AG(LB_INDX)
-#define ALBINNR AG(LB_INNR)
-#define ARBOUTR AG(RB_OUTR)
-#define ARBPNKY AG(RB_PNKY)
-#define ARBRING AG(RB_RING)
-#define ARBMDLE AG(RB_MDLE)
-#define ARBINDX AG(RB_INDX)
-#define ARBINNR AG(RB_INNR)
-#define ALLTHMB AG(L_LTHMB)
-#define ALMTHMB AG(L_MTHMB)
-#define ALRTHMB AG(L_RTHMB)
-#define ARLTHMB AG(R_LTHMB)
-#define ARMTHMB AG(R_MTHMB)
-
-// custom Gui tap holds
-#define GLTOUTR GG(LT_OUTR)
-#define GLTPNKY GG(LT_PNKY)
-#define GLTRING GG(LT_RING)
-#define GLTMDLE GG(LT_MDLE)
-#define GLTINDX GG(LT_INDX)
-#define GLTINNR GG(LT_INNR)
-#define GRTOUTR GG(RT_OUTR)
-#define GRTPNKY GG(RT_PNKY)
-#define GRTRING GG(RT_RING)
-#define GRTMDLE GG(RT_MDLE)
-#define GRTINDX GG(RT_INDX)
-#define GRTINNR GG(RT_INNR)
 #define GLHOUTR GG(LH_OUTR)
+#define CLHOUTR CG(LH_OUTR)
+#define ALHOUTR AG(LH_OUTR)
+#define TH____J TH(KC_J)
+
 #define GLHPNKY GG(LH_PNKY)
+#define CLHPNKY CG(LH_PNKY)
+#define ALHPNKY AG(LH_PNKY)
+#define TH____K TH(KC_K)
+
 #define GLHRING GG(LH_RING)
+#define CLHRING CG(LH_RING)
+#define ALHRING AG(LH_RING)
+#define TH____S TH(KC_S)
+
 #define GLHMDLE GG(LH_MDLE)
+#define CLHMDLE CG(LH_MDLE)
+#define ALHMDLE AG(LH_MDLE)
+#define TH____N TH(KC_N)
+
 #define GLHINDX GG(LH_INDX)
+#define CLHINDX CG(LH_INDX)
+#define ALHINDX AG(LH_INDX)
+#define TH____D TH(KC_D)
+
 #define GLHINNR GG(LH_INNR)
+#define CLHINNR CG(LH_INNR)
+#define ALHINNR AG(LH_INNR)
+// backspace
+
 #define GRHOUTR GG(RH_OUTR)
+#define CRHOUTR CG(RH_OUTR)
+#define ARHOUTR AG(RH_OUTR)
+// delete
+
 #define GRHPNKY GG(RH_PNKY)
+#define CRHPNKY CG(RH_PNKY)
+#define ARHPNKY AG(RH_PNKY)
+#define TH____A TH(KC_A)
+
 #define GRHRING GG(RH_RING)
+#define CRHRING CG(RH_RING)
+#define ARHRING AG(RH_RING)
+#define TH____E TH(KC_E)
+
 #define GRHMDLE GG(RH_MDLE)
+#define CRHMDLE CG(RH_MDLE)
+#define ARHMDLE AG(RH_MDLE)
+#define TH____I TH(KC_I)
+
 #define GRHINDX GG(RH_INDX)
+#define CRHINDX CG(RH_INDX)
+#define ARHINDX AG(RH_INDX)
+#define TH____H TH(KC_H)
+
 #define GRHINNR GG(RH_INNR)
+#define CRHINNR CG(RH_INNR)
+#define ARHINNR AG(RH_INNR)
+#define TH___QU TH(KC_Q) // tap qu, hold q
+
 #define GLBOUTR GG(LB_OUTR)
+#define CLBOUTR CG(LB_OUTR)
+#define ALBOUTR AG(LB_OUTR)
+// core leader key
+
 #define GLBPNKY GG(LB_PNKY)
+#define CLBPNKY CG(LB_PNKY)
+#define ALBPNKY AG(LB_PNKY)
+#define TH____W TH(KC_W)
+
 #define GLBRING GG(LB_RING)
+#define CLBRING CG(LB_RING)
+#define ALBRING AG(LB_RING)
+#define TH____F TH(KC_F)
+
 #define GLBMDLE GG(LB_MDLE)
+#define CLBMDLE CG(LB_MDLE)
+#define ALBMDLE AG(LB_MDLE)
+#define TH____L TH(KC_L)
+
 #define GLBINDX GG(LB_INDX)
+#define CLBINDX CG(LB_INDX)
+#define ALBINDX AG(LB_INDX)
+#define TH____C TH(KC_C)
+
 #define GLBINNR GG(LB_INNR)
+#define CLBINNR CG(LB_INNR)
+#define ALBINNR AG(LB_INNR)
+// arcane
+
 #define GRBOUTR GG(RB_OUTR)
+#define CRBOUTR CG(RB_OUTR)
+#define ARBOUTR AG(RB_OUTR)
+// arcane
+
 #define GRBPNKY GG(RB_PNKY)
+#define CRBPNKY CG(RB_PNKY)
+#define ARBPNKY AG(RB_PNKY)
+// parenthesis opening
+
 #define GRBRING GG(RB_RING)
+#define CRBRING CG(RB_RING)
+#define ARBRING AG(RB_RING)
+// comma
+
 #define GRBMDLE GG(RB_MDLE)
+#define CRBMDLE CG(RB_MDLE)
+#define ARBMDLE AG(RB_MDLE)
+// period
+
 #define GRBINDX GG(RB_INDX)
+#define CRBINDX CG(RB_INDX)
+#define ARBINDX AG(RB_INDX)
+// parenthesis closing
+
 #define GRBINNR GG(RB_INNR)
+#define CRBINNR CG(RB_INNR)
+#define ARBINNR AG(RB_INNR)
+// test
+
 #define GLLTHMB GG(L_LTHMB)
+#define CLLTHMB CG(L_LTHMB)
+#define ALLTHMB AG(L_LTHMB)
+// math/tab
+
 #define GLMTHMB GG(L_MTHMB)
+#define CLMTHMB CG(L_MTHMB)
+#define ALMTHMB AG(L_MTHMB)
+#define TH____R TH(KC_R)
+
 #define GLRTHMB GG(L_RTHMB)
+#define CLRTHMB CG(L_RTHMB)
+#define ALRTHMB AG(L_RTHMB)
+// left space
+
 #define GRLTHMB GG(R_LTHMB)
+#define CRLTHMB CG(R_LTHMB)
+#define ARLTHMB AG(R_LTHMB)
+// right space
+
 #define GRMTHMB GG(R_MTHMB)
+#define CRMTHMB CG(R_MTHMB)
+#define ARMTHMB AG(R_MTHMB)
+#define TH____T TH(KC_T)

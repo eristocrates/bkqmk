@@ -1,106 +1,6 @@
 #include "smart_layer.h"
 #include "brainrot_keycodes.h"
 
-/*--------- Left Shift Gr Mode ---------------*/
-static bool     _ctrlgr_mode_active = false;
-static uint16_t ctrlgr_mode_timer;
-// Turn nav mode on. To be called from a custom keycode.
-bool ctrlgr_mode_enable(keyrecord_t *record) {
-    if (record->event.pressed) {
-        layer_on(_CTRLGR);
-        ctrlgr_mode_timer = timer_read();
-    } else {
-        if (timer_elapsed(ctrlgr_mode_timer) < TAPPING_TERM) {
-            // Tapping enables layer mode
-            _ctrlgr_mode_active = true;
-        } else {
-            // Holding treats as a normal LT
-            layer_off(_CTRLGR);
-        }
-    }
-    return false;
-}
-
-// Turn nav mode off.
-void ctrlgr_mode_disable(void) {
-    _ctrlgr_mode_active = false;
-    layer_off(_CTRLGR);
-}
-
-void ctrlgr_mode_process(uint16_t keycode, keyrecord_t *record) {
-    // Assess if we should exit layermode or continue processing normally.
-    switch (keycode) {
-        case OS_LSFT ... OSR_SFT:
-        case ML_LCTL ... ML_LGUI:
-        case CW_TOGG:
-        case TD(TDW):
-        case KC_UNDS:
-        case MD_CRPO:
-        case KC_EXLM:
-        case KC_SLSH:
-        case MD_CRPC:
-        case KC_MHEN:
-            break;
-        default:
-            // All other keys disable the layer mode.
-            if (!record->event.pressed) {
-                ctrlgr_mode_disable();
-            }
-            break;
-    }
-}
-/*--------- Left Shift Gr Mode ---------------*/
-static bool     _shiftgr_mode_active = false;
-static uint16_t shiftgr_mode_timer;
-// Turn nav mode on. To be called from a custom keycode.
-bool shiftgr_mode_enable(keyrecord_t *record) {
-    if (record->event.pressed) {
-        layer_on(_SHIFTGR);
-        shiftgr_mode_timer = timer_read();
-    } else {
-        if (timer_elapsed(shiftgr_mode_timer) < TAPPING_TERM) {
-            // Tapping enables layer mode
-            _shiftgr_mode_active = true;
-        } else {
-            // Holding treats as a normal LT
-            layer_off(_SHIFTGR);
-        }
-    }
-    return false;
-}
-
-// Turn nav mode off.
-void shiftgr_mode_disable(void) {
-    _shiftgr_mode_active = false;
-    layer_off(_SHIFTGR);
-}
-
-void shiftgr_mode_process(uint16_t keycode, keyrecord_t *record) {
-    // Assess if we should exit layermode or continue processing normally.
-    switch (keycode) {
-        case OS_LSFT ... OSR_SFT:
-        case ML_LCTL ... ML_LGUI:
-        case KC_CAPS:
-        case TD(TDW):
-        case MD_NO:
-        case KC_PMNS:
-        case MD_SQPO:
-        case KC_COLN:
-        case KC_QUES:
-        case MD_SQPC:
-        case KC_HENK:
-        case KC_UNDS:
-
-            break;
-        default:
-            // All other keys disable the layer mode.
-            if (!record->event.pressed) {
-                shiftgr_mode_disable();
-            }
-            break;
-    }
-}
-
 /* -------- Pointer Mode -------- */
 bool _pointer_mode_active = false;
 // Turn number mode on. To be called from a custom keycode
@@ -145,6 +45,7 @@ void pointer_mode_process(uint16_t keycode, keyrecord_t *record) {
         case KC_UP:
         case PNTROPT:
         case PNTRNAV:
+        case MD_YES:
             // process the code and stay in the mode *dabs*
             break;
         default:
@@ -184,7 +85,7 @@ void vim_motion_mode_process(uint16_t keycode, keyrecord_t *record) {
         case KC_J:
         case KC_L:
         case LBM_ARC:
-        case SHFGR_R:
+        case CTRL__R:
             // process the code and stay in the mode *dabs*
             break;
         default:
@@ -315,11 +216,7 @@ void macro_mode_process(uint16_t keycode, keyrecord_t *record) {
 
 /* -------- Process Record -------- */
 void process_layermodes(uint16_t keycode, keyrecord_t *record) {
-    if (_ctrlgr_mode_active) {
-        ctrlgr_mode_process(keycode, record);
-    } else if (_shiftgr_mode_active) {
-        shiftgr_mode_process(keycode, record);
-    } else if (_pointer_mode_active) {
+    if (_pointer_mode_active) {
         pointer_mode_process(keycode, record);
     } else if (_vim_motion_mode_active) {
         vim_motion_mode_process(keycode, record);

@@ -7,3 +7,193 @@ Potenti aptent malesuada senectus massa augue praesent mi. Maecenas orci sed him
 Pretium tellus malesuada, dis ac aenean sociosqu placerat nam. Neque suscipit magna mi, porta sodales maecenas. Elit volutpat ante semper habitant mattis? Varius fringilla ridiculus ultrices nullam faucibus magna donec. Litora lectus quis integer mauris amet. Neque tincidunt montes diam platea sagittis dui augue. Leo mi vel, interdum porttitor dictumst elementum. Pellentesque pellentesque ligula inceptos nostra donec.
 
 Auctor diam fusce sociosqu neque pretium volutpat nec libero. Metus ullamcorper dui fusce rhoncus praesent ultrices ut. Aliquam nullam inceptos nostra arcu quam habitasse donec ultricies hendrerit. Eget taciti enim porta viverra interdum consequat ipsum. Condimentum platea egestas suscipit dictumst taciti pharetra elit bibendum rutrum. Himenaeos varius elementum ante etiam varius, taciti eleifend. Commodo leo suscipit libero erat, sapien lobortis dui.
+
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+
+
+
+case GRTPNKY:
+case CRTPNKY:
+case ARTPNKY:
+case TH____U:
+
+case GRTRING:
+case CRTRING:
+case ARTRING:
+case TH____O:
+
+case GRTMDLE:
+case CRTMDLE:
+case ARTMDLE:
+case TH____Y:
+
+case GRTINDX:
+case CRTINDX:
+case ARTINDX:
+case TH____B:
+
+case GRTINNR:
+case CRTINNR:
+case ARTINNR:
+case TH____Z:
+
+case GLHOUTR:
+case CLHOUTR:
+case ALHOUTR:
+case TH____J:
+
+case GLHPNKY:
+case CLHPNKY:
+case ALHPNKY:
+case TH____K:
+
+case GLHRING:
+case CLHRING:
+case ALHRING:
+case TH____S:
+
+case GLHMDLE:
+case CLHMDLE:
+case ALHMDLE:
+case TH____N:
+
+case GLHINDX:
+case CLHINDX:
+case ALHINDX:
+case TH____D:
+
+case GLHINNR:
+case CLHINNR:
+case ALHINNR:
+// backspace
+
+case GRHOUTR:
+case CRHOUTR:
+case ARHOUTR:
+// delete
+
+case GRHPNKY:
+case CRHPNKY:
+case ARHPNKY:
+case TH____A:
+
+case GRHRING:
+case CRHRING:
+case ARHRING:
+case TH____E:
+
+case GRHMDLE:
+case CRHMDLE:
+case ARHMDLE:
+case TH____I:
+
+case GRHINDX:
+case CRHINDX:
+case ARHINDX:
+case TH____H:
+
+case GRHINNR:
+case CRHINNR:
+case ARHINNR:
+case TH___QU:
+
+case GLBOUTR:
+case CLBOUTR:
+case ALBOUTR:
+// core leader key
+
+case GLBPNKY:
+case CLBPNKY:
+case ALBPNKY:
+case TH____W:
+
+case GLBRING:
+case CLBRING:
+case ALBRING:
+case TH____F:
+
+case GLBMDLE:
+case CLBMDLE:
+case ALBMDLE:
+case TH____L:
+
+case GLBINDX:
+case CLBINDX:
+case ALBINDX:
+case TH____C:
+
+case GLBINNR:
+case CLBINNR:
+case ALBINNR:
+// arcane
+
+case GRBOUTR:
+case CRBOUTR:
+case ARBOUTR:
+// arcane
+
+case GRBPNKY:
+case CRBPNKY:
+case ARBPNKY:
+// parenthesis opening
+
+case GRBRING:
+case CRBRING:
+case ARBRING:
+// comma
+
+case GRBMDLE:
+case CRBMDLE:
+case ARBMDLE:
+// period
+
+case GRBINDX:
+case CRBINDX:
+case ARBINDX:
+// parenthesis closing
+
+case GRBINNR:
+case CRBINNR:
+case ARBINNR:
+// test
+
+case GLLTHMB:
+case CLLTHMB:
+case ALLTHMB:
+// math/tab
+
+case GLMTHMB:
+case CLMTHMB:
+case ALMTHMB:
+case TH____R:
+
+case GLRTHMB:
+case CLRTHMB:
+case ALRTHMB:
+// left space
+
+case GRLTHMB:
+case CRLTHMB:
+case ARLTHMB:
+// right space
+
+case GRMTHMB:
+case CRMTHMB:
+case ARMTHMB:
+case TH____T:

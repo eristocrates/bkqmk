@@ -1,6 +1,5 @@
 
 #pragma once
-
 #include QMK_KEYBOARD_H
 
 extern bool semicolon_mode;

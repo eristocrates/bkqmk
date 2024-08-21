@@ -11,7 +11,7 @@
 #define BRM(k0, k1) MEH_T(k0), HYPR_T(k1)
 #define TRM_LR(k0) VIMNAV_T(k0)
 #define TRM_LL(k0) _T(k0)
-#define TRM_RM(k0) RSHGR_T(k0)
+#define TRM_RM(k0) ALT___R(k0)
 #define TRM_LM(k0) LSHGR_T(k0)
 // TODO remember if i add a new mod to update combo.def
 #define HRM(k) HR_MODTAP(k)

@@ -1,26 +1,6 @@
 #pragma once
 #include QMK_KEYBOARD_H
 
-/* -------- ctrlGr Mode -------- */
-// Turn ctrlgr mode on. To be called from a custom keycode.
-bool ctrlgr_mode_enable(keyrecord_t *record);
-
-// Turn ctrlgr mode off.
-void ctrlgr_mode_disable(void);
-
-// Handle each key for ctrlgr mode.
-void ctrlgr_mode_process(uint16_t keycode, keyrecord_t *record);
-
-/* -------- _shiftGr Mode -------- */
-// Turn _shiftgr mode on. To be called from a custom keycode.
-bool shiftgr_mode_enable(keyrecord_t *record);
-
-// Turn _shiftgr mode off.
-void shiftgr_mode_disable(void);
-
-// Handle each key for _shiftgr mode.
-void shiftgr_mode_process(uint16_t keycode, keyrecord_t *record);
-
 /* -------- Pointer Mode -------- */
 // Turn number mode on. To be called from a custom keycode
 bool pointer_mode_enable(keyrecord_t *record);
