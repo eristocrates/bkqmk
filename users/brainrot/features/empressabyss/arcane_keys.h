@@ -15,3 +15,5 @@ void process_top_left_arcane(uint16_t keycode, uint8_t mods);
 void process_top_right_arcane(uint16_t keycode, uint8_t mods);
 void process_bottom_left_arcane(uint16_t keycode, uint8_t mods);
 void process_bottom_right_arcane(uint16_t keycode, uint8_t mods);
+void process_comma_arcane(uint16_t keycode, uint8_t mods);
+void process_dot_arcane(uint16_t keycode, uint8_t mods);

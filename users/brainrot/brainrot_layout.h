@@ -1,21 +1,6 @@
 #pragma once
 #include "charybdis.h"
 
-// default LTs
-#define PT_Z LT(_POINTER, KC_Z)
-#define PT_SLSH LT(_POINTER, KC_SLSH)
-
-// custom LTs
-#define PT_K LT(_POINTER, KC_K)
-#define PT_H LT(_POINTER, KC_H)
-#define PNT_T(k0) LT(_POINTER, k0)
-#define _T(k0) LT(_LAYER, k0)
-#define LAYR_TB LT(_LAYER, KC_TAB)
-#define VIMNAV_T(k0) LT(_VIMMOTION, k0)
-#define VIMNV_S LT(_VIMMOTION, KC_SPC)
-#define LSHGR_T(k0) LT(_LSHIFTGR, k0)
-#define RSHGR_T(k0) LT(_RSHIFTGR, k0)
-
 // Adapted from https://github.com/possumvibes/qmk_firmware/blob/e0e939ef77e531966c86a1dc06315458d5a5547c/users/possumvibes/layout.h#L79
 // Macros to add mods
 
@@ -51,28 +36,28 @@
  RThmb = Right Thumb button
 
    ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
-     L_T_Out, L_T_Pin, L_T_Rin, L_T_Mid, L_T_Ind, L_T_Inn,    R_T_Inn, R_T_Ind, R_T_Mid, R_T_Rin, R_T_Pin, R_T_Out,
+     LT_OUTR, LT_PNKY, LT_RING, LT_MDLE, LT_INDX, LT_INNR,    RT_INNR, RT_INDX, RT_MDLE, RT_RING, RT_PNKY, RT_OUTR,
    ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-     L_H_Out, L_H_Pin, L_H_Rin, L_H_Mid, L_H_Ind, L_H_Inn,    R_H_Inn, R_H_Ind, R_H_Mid, R_H_Rin, R_H_Pin, R_H_Out,
+     LH_OUTR, LH_PNKY, LH_RING, LH_MDLE, LH_INDX, LH_INNR,    RH_INNR, RH_INDX, RH_MDLE, RH_RING, RH_PNKY, RH_OUTR,
    ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-     L_B_Out, L_B_Pin, L_B_Rin, L_B_Mid, L_B_Ind, L_B_Inn,    R_M_Inn, R_M_Ind, R_M_Mid, R_M_Rin, R_M_Pin, R_M_Out,
+     LB_OUTR, LB_PNKY, LB_RING, LB_MDLE, LB_INDX, LB_INNR,    R_M_INNR, R_M_INDX, R_M_MDLE, R_M_RING, R_M_PNKY, R_M_OUTR,
    ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                                L_LThmb, L_MThmb, L_RThmb,    R_LThmb, R_MThmb
+                                L_LTHMB, L_MTHMB, L_RTHMB,    R_LTHMB, R_MTHMB
                               ╰───────────────────────────╯ ╰──────────────────╯
 
 
 */
 
 #define HR_MODTAP( \
-L_T_Out, L_T_Pin, L_T_Rin, L_T_Mid, L_T_Ind, L_T_Inn,       L_H_Out, L_H_Pin, L_H_Rin, L_H_Mid, L_H_Ind, L_H_Inn, \
-L_B_Out, L_B_Pin, L_B_Rin, L_B_Mid, L_B_Ind, L_B_Inn,       k5F, L_RThmb, k5D, L_LThmb, L_MThmb, k5A, \
-R_T_Out, R_T_Pin, R_T_Rin, R_T_Mid, R_T_Ind, R_T_Inn,       R_H_Out, R_H_Pin, R_H_Rin, R_H_Mid, R_H_Ind, R_H_Inn, \
-R_B_Out, R_B_Pin, R_B_Rin, R_B_Mid, R_B_Ind, R_B_Inn,       K7F, R_LThmb, K7D, R_MThmb, K7B, K7A \
+LT_OUTR, LT_PNKY, LT_RING, LT_MDLE, LT_INDX, LT_INNR,   LH_OUTR, LH_PNKY, LH_RING, LH_MDLE, LH_INDX, LH_INNR, \
+LB_OUTR, LB_PNKY, LB_RING, LB_MDLE, LB_INDX, LB_INNR,   k5F, L_RTHMB, k5D, L_LTHMB, L_MTHMB, k5A, \
+RT_OUTR, RT_PNKY, RT_RING, RT_MDLE, RT_INDX, RT_INNR,   RH_OUTR, RH_PNKY, RH_RING, RH_MDLE, RH_INDX, RH_INNR, \
+RB_OUTR, RB_PNKY, RB_RING, RB_MDLE, RB_INDX, RB_INNR,   K7F, R_LTHMB, K7D, R_MTHMB, K7B, K7A \
 ) \
-L_T_Out, L_T_Pin, L_T_Rin, URM_L(L_T_Mid), L_T_Ind, L_T_Inn,       L_H_Out, L_H_Pin, HRM_L(L_H_Rin, L_H_Mid, L_H_Ind), L_H_Inn, \
-L_B_Out, L_B_Pin, L_B_Rin,   L_B_Mid, L_B_Ind, L_B_Inn,       k5F,            L_RThmb, k5D,    L_LThmb, TRM_LM(L_MThmb), k5A, \
-R_T_Out, R_T_Pin, R_T_Rin, URM_R(R_T_Mid), R_T_Ind, R_T_Inn,       R_H_Out, R_H_Pin, HRM_R(R_H_Rin, R_H_Mid, R_H_Ind), R_H_Inn, \
-R_B_Out, R_B_Pin, R_B_Rin,   R_B_Mid, R_B_Ind, R_B_Inn,       K7F,            R_LThmb, K7D,  TRM_RM(R_MThmb), K7B,     K7A
+LT_OUTR, LT_PNKY, LT_RING, URM_L(LT_MDLE), LT_INDX, LT_INNR,       LH_OUTR, LH_PNKY, HRM_L(LH_RING, LH_MDLE, LH_INDX), LH_INNR, \
+LB_OUTR, LB_PNKY, LB_RING,   LB_MDLE, LB_INDX, LB_INNR,       k5F,            L_RTHMB, k5D,    L_LTHMB, TRM_LM(L_MTHMB), k5A, \
+RT_OUTR, RT_PNKY, RT_RING, URM_R(RT_MDLE), RT_INDX, RT_INNR,       RH_OUTR, RH_PNKY, HRM_R(RH_RING, RH_MDLE, RH_INDX), RH_INNR, \
+RB_OUTR, RB_PNKY, RB_RING,   RB_MDLE, RB_INDX, RB_INNR,       K7F,            R_LTHMB, K7D,  TRM_RM(R_MTHMB), K7B,     K7A
 
 /*/
 from I:\coding\bastardkb-qmk\.build\obj_bastardkb_charybdis_3x6_brainrot\src\default_keyboard.h

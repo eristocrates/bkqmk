@@ -2,6 +2,7 @@
 
 // Features
 #include "features/eristocrates/modal_keys.h"
+#include "features/eristocrates/utilities.h"
 #include "features/empressabyss/arcane_keys.h"
 #include "features/drashna/utilities.h"
 #include "features/andrewjrae/qmk-vim/mac_mode.h"
@@ -20,6 +21,7 @@
 #    include "keymap_combo.h"
 #endif
 
+// TODO double check if this can be removed
 extern void               bspc_finished(tap_dance_state_t *state, void *user_data);
-extern void               bspc_cln_reset(tap_dance_state_t *state, void *user_data);
+extern void               bspc_reset(tap_dance_state_t *state, void *user_data);
 extern tap_dance_action_t tap_dance_actions[];

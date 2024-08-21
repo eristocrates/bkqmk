@@ -1,25 +1,25 @@
 #pragma once
 #include QMK_KEYBOARD_H
 
-/* -------- rshiftGr Mode -------- */
-// Turn rshiftgr mode on. To be called from a custom keycode.
-bool rshiftgr_mode_enable(keyrecord_t *record);
+/* -------- ctrlGr Mode -------- */
+// Turn ctrlgr mode on. To be called from a custom keycode.
+bool ctrlgr_mode_enable(keyrecord_t *record);
 
-// Turn rshiftgr mode off.
-void rshiftgr_mode_disable(void);
+// Turn ctrlgr mode off.
+void ctrlgr_mode_disable(void);
 
-// Handle each key for rshiftgr mode.
-void rshiftgr_mode_process(uint16_t keycode, keyrecord_t *record);
+// Handle each key for ctrlgr mode.
+void ctrlgr_mode_process(uint16_t keycode, keyrecord_t *record);
 
-/* -------- lshiftGr Mode -------- */
-// Turn lshiftgr mode on. To be called from a custom keycode.
-bool lshiftgr_mode_enable(keyrecord_t *record);
+/* -------- _shiftGr Mode -------- */
+// Turn _shiftgr mode on. To be called from a custom keycode.
+bool shiftgr_mode_enable(keyrecord_t *record);
 
-// Turn lshiftgr mode off.
-void lshiftgr_mode_disable(void);
+// Turn _shiftgr mode off.
+void shiftgr_mode_disable(void);
 
-// Handle each key for lshiftgr mode.
-void lshiftgr_mode_process(uint16_t keycode, keyrecord_t *record);
+// Handle each key for _shiftgr mode.
+void shiftgr_mode_process(uint16_t keycode, keyrecord_t *record);
 
 /* -------- Pointer Mode -------- */
 // Turn number mode on. To be called from a custom keycode
@@ -30,6 +30,8 @@ void pointer_mode_disable(void);
 
 // Handle each key for number mode.
 void pointer_mode_process(uint16_t keycode, keyrecord_t *record);
+
+extern bool _pointer_mode_active;
 
 /* -------- Vim Motion Mode -------- */
 // Turn number mode on. To be called from a custom keycode
@@ -60,16 +62,6 @@ void func_mode_disable(void);
 
 // Handle each key for func mode.
 void func_mode_process(uint16_t keycode, keyrecord_t *record);
-
-/* -------- Nav Mode -------- */
-// Turn Nav mode on. To be called from a custom keycode.
-bool nav_mode_enable(keyrecord_t *record);
-
-// Turn nav mode off.
-void nav_mode_disable(void);
-
-// Handle each key for nav mode.
-void nav_mode_process(uint16_t keycode, keyrecord_t *record);
 
 /* -------- Sym Mode -------- */
 // Turn Sym mode on. To be called from a custom keycode.
