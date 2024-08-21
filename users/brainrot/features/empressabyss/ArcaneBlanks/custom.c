@@ -1,3 +1,3 @@
-case TD(TD_QU): {
-    ARCANE_STRING("qu", TH_QU);
+case TD(DTQU): {
+    ARCANE_STRING("qu", THTQU);
 } break;

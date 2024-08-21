@@ -4,12 +4,16 @@
 #include "features/possumvibes/smart_layer.h"
 #include "brainrot_keycodes.h"
 
-// Hold Timers
-static uint16_t qu_tapping_term;
-static uint16_t qu_timer           = 0;
+// Timers
 static uint16_t last_keycode_timer = 0;
-bool            is_qu_held         = false;
-bool            is_shift_toggled   = false;
+
+// piercing holds
+// TODO double check if these should be iniitialized per case
+uint16_t tap_keycode;
+uint16_t mod_intent;
+
+// for SCN
+bool is_shift_toggled = false;
 
 /* Return an integer that corresponds to what kind of tap dance should be executed.
  *
@@ -95,20 +99,12 @@ void qu_finished(tap_dance_state_t *state, void *user_data) {
 
 void qu_reset(tap_dance_state_t *state, void *user_data) {
     switch (qutap_state.state) {
-        case TD_SINGLE_TAP:
-            unregister_code(KC_X);
-            break;
         case TD_SINGLE_HOLD:
-            unregister_code(KC_LCTL);
+            unregister_code(KC_Q);
             break;
         case TD_DOUBLE_TAP:
-            unregister_code(KC_ESC);
-            break;
-        case TD_DOUBLE_HOLD:
-            unregister_code(KC_LALT);
-            break;
-        case TD_DOUBLE_SINGLE_TAP:
-            unregister_code(KC_X);
+            unregister_code(KC_LCTL);
+            unregister_code(KC_Q);
             break;
         default:
             break;
@@ -218,68 +214,10 @@ void del_reset(tap_dance_state_t *state, void *user_data) {
 
 // clang-format off
 tap_dance_action_t tap_dance_actions[] = {
-    [TD_BSPC] = ACTION_TAP_DANCE_FN_ADVANCED (NULL, bspc_finished, bspc_reset),
-    [TD_DEL] = ACTION_TAP_DANCE_FN_ADVANCED (NULL, del_finished, del_reset),
-
-    [TD_A] = ACTION_TAP_DANCE_DOUBLE(KC_A, LCTL(KC_A)),
-    [TD_B] = ACTION_TAP_DANCE_DOUBLE(KC_B, LCTL(KC_B)),
-    [TD_C] = ACTION_TAP_DANCE_DOUBLE(KC_C, LCTL(KC_C)),
-    [TD_D] = ACTION_TAP_DANCE_DOUBLE(KC_D, LCTL(KC_D)),
-    [TD_E] = ACTION_TAP_DANCE_DOUBLE(KC_E, LCTL(KC_E)),
-    [TD_F] = ACTION_TAP_DANCE_DOUBLE(KC_F, LCTL(KC_F)),
-    [TD_G] = ACTION_TAP_DANCE_DOUBLE(KC_G, LCTL(KC_G)),
-    [TD_H] = ACTION_TAP_DANCE_DOUBLE(KC_H, LCTL(KC_H)),
-    [TD_I] = ACTION_TAP_DANCE_DOUBLE(KC_I, LCTL(KC_I)),
-    [TD_J] = ACTION_TAP_DANCE_DOUBLE(KC_J, LCTL(KC_J)),
-    [TD_K] = ACTION_TAP_DANCE_DOUBLE(KC_K, LCTL(KC_K)),
-    [TD_L] = ACTION_TAP_DANCE_DOUBLE(KC_L, LCTL(KC_L)),
-    [TD_M] = ACTION_TAP_DANCE_DOUBLE(KC_M, LCTL(KC_M)),
-    [TD_N] = ACTION_TAP_DANCE_DOUBLE(KC_N, LCTL(KC_N)),
-    [TD_O] = ACTION_TAP_DANCE_DOUBLE(KC_O, LCTL(KC_O)),
-    [TD_P] = ACTION_TAP_DANCE_DOUBLE(KC_P, LCTL(KC_P)),
-    [TD_QU] = ACTION_TAP_DANCE_FN_ADVANCED (NULL, qu_finished, qu_reset),
-    [TD_R] = ACTION_TAP_DANCE_DOUBLE(KC_R, LCTL(KC_R)),
-    [TD_S] = ACTION_TAP_DANCE_DOUBLE(KC_S, LCTL(KC_S)),
-    [TD_T] = ACTION_TAP_DANCE_DOUBLE(KC_T, LCTL(KC_T)),
-    [TD_U] = ACTION_TAP_DANCE_DOUBLE(KC_U, LCTL(KC_U)),
-    [TD_V] = ACTION_TAP_DANCE_DOUBLE(KC_V, LCTL(KC_V)),
-    [TD_W] = ACTION_TAP_DANCE_DOUBLE(KC_W, LCTL(KC_W)),
-    [TD_X] = ACTION_TAP_DANCE_DOUBLE(KC_X, LCTL(KC_X)),
-    [TD_Y] = ACTION_TAP_DANCE_DOUBLE(KC_Y, LCTL(KC_Y)),
-    [TD_Z] = ACTION_TAP_DANCE_DOUBLE(KC_Z, LCTL(KC_Z)),
-
+    [TBW] = ACTION_TAP_DANCE_FN_ADVANCED (NULL, bspc_finished, bspc_reset),
+    [TDW] = ACTION_TAP_DANCE_FN_ADVANCED (NULL, del_finished, del_reset),
     };
 // clang-format on
-
-// TODO keep in sync with smart_layer.c & keymap.c
-#define BSPC_WD TD(TD_BSPC)
-#define DEL_WRD TD(TD_DEL)
-#define TD____A TD(TD_A)
-#define TD____B TD(TD_B)
-#define TD____C TD(TD_C)
-#define TD____D TD(TD_D)
-#define TD____E TD(TD_E)
-#define TD____F TD(TD_F)
-#define TD____G TD(TD_G)
-#define TD____H TD(TD_H)
-#define TD____I TD(TD_I)
-#define TD____J TD(TD_J)
-#define TD____K TD(TD_K)
-#define TD____L TD(TD_L)
-#define TD____M TD(TD_M)
-#define TD____N TD(TD_N)
-#define TD____O TD(TD_O)
-#define TD____P TD(TD_P)
-#define TD___QU TD(TD_QU)
-#define TD____R TD(TD_R)
-#define TD____S TD(TD_S)
-#define TD____T TD(TD_T)
-#define TD____U TD(TD_U)
-#define TD____V TD(TD_V)
-#define TD____W TD(TD_W)
-#define TD____X TD(TD_X)
-#define TD____Y TD(TD_Y)
-#define TD____Z TD(TD_Z)
 
 // static bool is_windows = true;
 
@@ -296,6 +234,7 @@ void call_keycode(uint16_t keycode) {
     record.event.pressed = false;
     process_record_user(keycode, &record);
 }
+
 bool pre_process_record_user(uint16_t keycode, keyrecord_t *record) {
     // static uint16_t prev_keycode;
     if (record->event.pressed) {
@@ -308,11 +247,42 @@ bool pre_process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 }
-static bool process_tap_or_long_press_key( // Tap for number, hold for F-key
-    keyrecord_t *record, uint16_t long_press_keycode) {
+
+// TODO move this into my own feature
+// TODO look for repeated keys that would benefit from evolving/expanding on every repeat. probably needs a mode toggle too
+/*
+static bool process_consecutive_key(keyrecord_t *record, uint16_t current_keycode, uint8_t mod_intent) {
+    if (current_keycode == prev_keycode) {
+        if (record->event.pressed) {
+            add_weak_mods(MOD_BIT(mod_intent));
+            tap_code16(current_keycode);
+        }
+        return false; // Skip default handling.
+    }
+    return true; // Continue default handling.
+}
+*/
+
+static bool process_tap_or_long_press_key(keyrecord_t *record, uint16_t long_press_keycode) {
     if (record->tap.count == 0) { // Key is being held.
         if (record->event.pressed) {
             tap_code16(long_press_keycode);
+        }
+        return false; // Skip default handling.
+    }
+    return true; // Continue default handling.
+}
+
+static bool process_tap_or_long_mod_press_key(keyrecord_t *record, uint16_t long_press_keycode, uint16_t mod) {
+    if (record->tap.count == 0) { // Key is being held.
+        if (record->event.pressed) {
+            if (mod != 0) {
+                register_code(mod);
+            }
+            tap_code16(long_press_keycode);
+            if (mod != 0) {
+                unregister_code(mod);
+            }
         }
         return false; // Skip default handling.
     }
@@ -342,15 +312,68 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     process_nshot_state(keycode, record);
     process_layermodes(keycode, record);
     switch (keycode) {
-        /*------------------------------layer modes------------------------------*/
+            /*------------------------------piercing mods------------------------------*/
+            // powerful stuff, unironically surprised myself with this one
+            // TODO think of keys that would want to be tapped, prefereably without wanting other mods
+            // TODO ensure nshot mod layer interacts properly with this
+        case SRHINDX:
+        case CRHINDX:
+        case ARHINDX:
+        case GRHINDX:
+            if (IS_LAYER_ON(_ALTGR)) {
+                tap_keycode = KC_AMPR;
+                mod_intent  = KC_LALT;
+            } else if (IS_LAYER_ON(_SHIFTGR)) {
+                tap_keycode = KC_HASH;
+                mod_intent  = KC_LSFT;
+            } else if (IS_LAYER_ON(_CTRLGR)) {
+                tap_keycode = KC_DLR;
+                mod_intent  = KC_LCTL;
+            } else if (IS_LAYER_ON(_GUIGR)) {
+                tap_keycode = KC_PERC;
+                mod_intent  = KC_LGUI;
+            } else {
+                mod_intent = 0;
+            }
+            if (process_tap_or_long_mod_press_key(record, KC_A, mod_intent)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+            /*------------------------------consequtive keys------------------------------*/
+            /* ya now i see why tap dances need tapping term（︶^︶）
+            if (!process_consecutive_key(record, keycode, KC_LCTL)) {
+                return false;
+            }
+            return true;
+            */
+        /*------------------------------smart layers------------------------------*/
         case VIMMOTIONMODE:
             return vim_motion_mode_enable(record);
         case POINTERMODE:
             return pointer_mode_enable(record);
-        case LSHIFTGRMODE:
-            return lshiftgr_mode_enable(record);
-        case RSHIFTGRMODE:
-            return rshiftgr_mode_enable(record);
+        case SHIFTGRMODE:
+            return shiftgr_mode_enable(record);
+        case CTLGRMODE:
+            return ctrlgr_mode_enable(record);
+
+        case CLEAR:
+            clear_oneshot_mods();
+            clear_mods();
+            pointer_mode_disable();
+            return false;
+
+        case PANIC: {
+            clear_oneshot_mods();
+            clear_mods();
+            if (get_oneshot_layer() != 0) {
+                clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
+            }
+            layer_move(0);
+            caps_word_off();
+            return false;
+        }
 
         /*------------------------------digraphs------------------------------*/
         case KC_TH:
@@ -363,13 +386,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 send_string_with_caps_word("in");
             }
             return true;
-        case TD___QU:
+        case TH___QU:
             if (process_tap_or_long_press_key(record, KC_Q)) {
                 if (record->event.pressed) {
                     send_string_with_caps_word("qu");
                 }
             }
-            return true;
+            return false;
         case KC_PH:
             if (record->event.pressed) {
                 send_string_with_caps_word("ph");
@@ -539,9 +562,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case MD_GH:
             if (record->event.pressed) {
                 send_string_with_caps_word("gh");
-                if (smart_space_mode) {
-                    tap_code(KC_SPC);
-                }
             }
             return true;
         case MD_LY:
@@ -617,7 +637,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 } else {
                     tap_code(KC_ENTER);
                 }
-                // caps_word_off();
+            }
+            return true;
+        case MD_NO:
+            if (record->event.pressed) {
+                tap_code(KC_ESC);
             }
             return true;
         case MD_RNPO:
@@ -666,25 +690,25 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
         /*------------------------------arcane------------------------------*/
-        case LT_ARC: {
+        case LTP_ARC: {
             if (record->event.pressed) {
                 process_top_left_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
             }
         }
             return false;
-        case RT_ARC: {
+        case RTP_ARC: {
             if (record->event.pressed) {
                 process_top_right_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
             }
         }
             return false;
-        case LB_ARC: {
+        case LBM_ARC: {
             if (record->event.pressed) {
                 process_bottom_left_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
             }
         }
             return false;
-        case RB_ARC: {
+        case RBM_ARC: {
             if (record->event.pressed) {
                 process_bottom_right_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
             }
@@ -769,11 +793,11 @@ void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 bool remember_last_key_user(uint16_t keycode, keyrecord_t *record, uint8_t *remembered_mods) {
     switch (keycode) {
-        case QK_LEAD:
-        case LT_ARC:
-        case RT_ARC:
-        case LB_ARC:
-        case RB_ARC:
+        // case QK_LEAD:
+        case LTP_ARC:
+        case RTP_ARC:
+        case LBM_ARC:
+        case RBM_ARC:
         case COM_ARC:
         case DOT_ARC:
             return false; // Arcane keys will ignore the above keycodes.
@@ -783,17 +807,13 @@ bool remember_last_key_user(uint16_t keycode, keyrecord_t *record, uint8_t *reme
 }
 
 void matrix_scan_user(void) {
-    if (is_qu_held) {
-        if (timer_elapsed(qu_timer) == qu_tapping_term) {
-            tap_code(KC_Q);
-        }
-    }
     if (timer_elapsed(last_keycode_timer) == LAST_KEYCODE_TIMEOUT_MS) {
         set_last_keycode(KC_SPC);
     }
 
 #ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
-    if (auto_pointer_layer_timer != 0 && TIMER_DIFF_16(timer_read(), auto_pointer_layer_timer) >= CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS && _pointer_mode_active == false) {
+    // if (auto_pointer_layer_timer != 0 && TIMER_DIFF_16(timer_read(), auto_pointer_layer_timer) >= CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS && _pointer_mode_active == false) {
+    if (_pointer_mode_active == false) {
         auto_pointer_layer_timer = 0;
         charybdis_set_pointer_dragscroll_enabled(false);
         /*
@@ -878,13 +898,12 @@ bool caps_word_press_user(uint16_t keycode) {
         case KC_BSPC:
         case KC_DEL:
         case KC_UNDS:
-        case BSPC_WD:
-        case DEL_WRD:
+        case TD(TBW):
+        case TD(TDW):
 
         // special keys that need to not break caps word but apply shift on their own
         case KC_TH:
         case KC_IN:
-        case TD___QU:
         case KC_PH:
         case KC_SH:
         case KC_WH:
@@ -899,16 +918,14 @@ bool caps_word_press_user(uint16_t keycode) {
 // Define the tapping term for the custom keycode
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case TD___QU:
-            return 175;
         default:
             return TAPPING_TERM; // Default tapping term
     }
 }
 
-bool process_combo_key_release(uint16_t combo_index, combo_t *combo, uint8_t key_index, uint16_t keycode) {
+bool process_combo_key_release(uint16_t combo_INDXex, combo_t *combo, uint8_t key_INDXex, uint16_t keycode) {
     // TODO keep in sync with combos
-    switch (combo_index) {
+    switch (combo_INDXex) {
         case CB_GH:
         case CB_LY:
         case CB_THE:
@@ -926,4 +943,10 @@ bool process_combo_key_release(uint16_t combo_index, combo_t *combo, uint8_t key
         default:
             return true;
     }
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    state = update_tri_layer_state(state, _SHIFTGR, _CTRLGR, _ALTGR);
+    // TODO might as well find an excuse to put layer taps on my spaces and add a tri layer here
+    return state;
 }

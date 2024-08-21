@@ -60,8 +60,7 @@ static bool process_colon_cmd(uint16_t keycode, const keyrecord_t *record) {
 
 // Allow the user to add their own bindings to both normal modes
 // Note, this should be optimized away unless there is a user definition
-__attribute__ ((weak))
-bool process_normal_mode_user(uint16_t keycode, const keyrecord_t *record) {
+__attribute__((weak)) bool process_normal_mode_user(uint16_t keycode, const keyrecord_t *record) {
     return true;
 }
 
@@ -72,9 +71,9 @@ bool process_normal_mode(uint16_t keycode, const keyrecord_t *record) {
     }
 #ifdef VIM_DOT_REPEAT
     bool should_record_action = true;
-    #define NO_RECORD_ACTION() should_record_action = false;
+#    define NO_RECORD_ACTION() should_record_action = false;
 #else
-    #define NO_RECORD_ACTION()
+#    define NO_RECORD_ACTION()
 #endif
 
     // process numbers for numbered actions
@@ -156,7 +155,7 @@ bool process_normal_mode(uint16_t keycode, const keyrecord_t *record) {
             case KC_P:
                 paste_action();
                 break;
-            // visual modes
+                // visual modes
 #ifndef NO_VISUAL_LINE_MODE
             case LSFT(KC_V):
                 visual_line_mode();
@@ -235,8 +234,7 @@ bool process_normal_mode(uint16_t keycode, const keyrecord_t *record) {
 
 // Allow the user to add their own bindings to visual mode
 // Note, this should be optimized away unless there is a user definition
-__attribute__ ((weak))
-bool process_visual_mode_user(uint16_t keycode, const keyrecord_t *record) {
+__attribute__((weak)) bool process_visual_mode_user(uint16_t keycode, const keyrecord_t *record) {
     return true;
 }
 
@@ -300,8 +298,7 @@ bool process_visual_mode(uint16_t keycode, const keyrecord_t *record) {
 
 // Allow the user to add their own bindings to visual line mode
 // Note, this should be optimized away unless there is a user definition
-__attribute__ ((weak))
-bool process_visual_line_mode_user(uint16_t keycode, const keyrecord_t *record) {
+__attribute__((weak)) bool process_visual_line_mode_user(uint16_t keycode, const keyrecord_t *record) {
     return true;
 }
 
@@ -334,7 +331,7 @@ bool process_visual_line_mode(uint16_t keycode, const keyrecord_t *record) {
             set_visual_direction(V_BACKWARD);
             register_motion(LSFT(VIM_K), record);
             return false;
-        }
+    }
     if (record->event.pressed) {
         switch (keycode) {
             case KC_C:
@@ -374,11 +371,9 @@ bool process_visual_line_mode(uint16_t keycode, const keyrecord_t *record) {
     return false;
 }
 
-
 // Allow the user to add their own bindings to insert mode
 // Note, this should be optimized away unless there is a user definition
-__attribute__ ((weak))
-bool process_insert_mode_user(uint16_t keycode, const keyrecord_t *record) {
+__attribute__((weak)) bool process_insert_mode_user(uint16_t keycode, const keyrecord_t *record) {
     return true;
 }
 
@@ -400,23 +395,18 @@ bool process_insert_mode(uint16_t keycode, const keyrecord_t *record) {
     return true;
 }
 
-
 // Allow the user to set custom state when normal mode is entered
-__attribute__ ((weak))
-void normal_mode_user(void) {
-}
+__attribute__((weak)) void normal_mode_user(void) {}
 
 // Function to enter into normal mode
 void normal_mode(void) {
     normal_mode_user();
     vim_current_mode = NORMAL_MODE;
-    process_func = process_normal_mode;
+    process_func     = process_normal_mode;
 }
 
 // Allow the user to set custom state when insert mode is entered
-__attribute__ ((weak))
-void insert_mode_user(void) {
-}
+__attribute__((weak)) void insert_mode_user(void) {}
 
 // Function to enter into insert mode
 void insert_mode(void) {
@@ -428,38 +418,33 @@ void insert_mode(void) {
 }
 
 // Allow the user to set custom state when visual mode is entered
-__attribute__ ((weak))
-void visual_mode_user(void) {
-}
+__attribute__((weak)) void visual_mode_user(void) {}
 
 // Function to enter into visual mode
 void visual_mode(void) {
     visual_mode_user();
     vim_current_mode = VISUAL_MODE;
 #ifndef NO_VISUAL_MODE
-#ifdef BETTER_VISUAL_MODE
+#    ifdef BETTER_VISUAL_MODE
     visual_direction = V_NONE;
-#endif
+#    endif
     // this sets up the actions states so we can use text objects
     start_visual_action();
     process_func = process_visual_mode;
 #endif
 }
 
-
 // Allow the user to set custom state when visual line mode is entered
-__attribute__ ((weak))
-void visual_line_mode_user(void) {
-}
+__attribute__((weak)) void visual_line_mode_user(void) {}
 
 // Function to enter into visual line mode
 void visual_line_mode(void) {
     visual_line_mode_user();
     vim_current_mode = VISUAL_LINE_MODE;
 #ifndef NO_VISUAL_LINE_MODE
-#ifdef BETTER_VISUAL_MODE
+#    ifdef BETTER_VISUAL_MODE
     visual_direction = V_NONE;
-#endif
+#    endif
     VIM_END();
     tap_code(KC_RIGHT);
     tap_code16(LSFT(KC_UP));

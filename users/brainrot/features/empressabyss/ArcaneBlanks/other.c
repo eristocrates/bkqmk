@@ -37,14 +37,14 @@ case KC_PASTE: {
 case KC_FIND: {
     ARCANE_STRING("Find", KC_FIND);
 } break;
-case KC__MUTE: {
-    ARCANE_STRING("Mute", KC__MUTE);
+case KCT_MUTE: {
+    ARCANE_STRING("Mute", KCT_MUTE);
 } break;
-case KC__VOLUP: {
-    ARCANE_STRING("Volume Up", KC__VOLUP);
+case KCT_VOLUP: {
+    ARCANE_STRING("Volume Up", KCT_VOLUP);
 } break;
-case KC__VOLDOWN: {
-    ARCANE_STRING("Volume Down", KC__VOLDOWN);
+case KCT_VOLDOWN: {
+    ARCANE_STRING("Volume Down", KCT_VOLDOWN);
 } break;
 case KC_LOCKING_CAPS: {
     ARCANE_STRING("Locking Caps Lock", KC_LOCKING_CAPS);

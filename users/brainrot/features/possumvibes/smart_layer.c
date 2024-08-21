@@ -1,69 +1,39 @@
 #include "smart_layer.h"
 #include "brainrot_keycodes.h"
 
-// TODO keep this in sync with the defines in brainrot.c & keymap.c
-#define BSPC_WD TD(TD_BSPC)
-#define DEL_WRD TD(TD_DEL)
-#define TD____A TD(TD_A)
-#define TD____B TD(TD_B)
-#define TD____C TD(TD_C)
-#define TD____D TD(TD_D)
-#define TD____E TD(TD_E)
-#define TD____F TD(TD_F)
-#define TD____G TD(TD_G)
-#define TD____H TD(TD_H)
-#define TD____I TD(TD_I)
-#define TD____J TD(TD_J)
-#define TD____K TD(TD_K)
-#define TD____L TD(TD_L)
-#define TD____M TD(TD_M)
-#define TD____N TD(TD_N)
-#define TD____O TD(TD_O)
-#define TD____P TD(TD_P)
-#define TD___QU TD(TD_QU)
-#define TD____R TD(TD_R)
-#define TD____S TD(TD_S)
-#define TD____T TD(TD_T)
-#define TD____U TD(TD_U)
-#define TD____V TD(TD_V)
-#define TD____W TD(TD_W)
-#define TD____X TD(TD_X)
-#define TD____Y TD(TD_Y)
-#define TD____Z TD(TD_Z)
-
 /*--------- Left Shift Gr Mode ---------------*/
-static bool     _rshiftgr_mode_active = false;
-static uint16_t rshiftgr_mode_timer;
+static bool     _ctrlgr_mode_active = false;
+static uint16_t ctrlgr_mode_timer;
 // Turn nav mode on. To be called from a custom keycode.
-bool rshiftgr_mode_enable(keyrecord_t *record) {
+bool ctrlgr_mode_enable(keyrecord_t *record) {
     if (record->event.pressed) {
-        layer_on(_RSHIFTGR);
-        rshiftgr_mode_timer = timer_read();
+        layer_on(_CTRLGR);
+        ctrlgr_mode_timer = timer_read();
     } else {
-        if (timer_elapsed(rshiftgr_mode_timer) < TAPPING_TERM) {
+        if (timer_elapsed(ctrlgr_mode_timer) < TAPPING_TERM) {
             // Tapping enables layer mode
-            _rshiftgr_mode_active = true;
+            _ctrlgr_mode_active = true;
         } else {
             // Holding treats as a normal LT
-            layer_off(_RSHIFTGR);
+            layer_off(_CTRLGR);
         }
     }
     return false;
 }
 
 // Turn nav mode off.
-void rshiftgr_mode_disable(void) {
-    _rshiftgr_mode_active = false;
-    layer_off(_RSHIFTGR);
+void ctrlgr_mode_disable(void) {
+    _ctrlgr_mode_active = false;
+    layer_off(_CTRLGR);
 }
 
-void rshiftgr_mode_process(uint16_t keycode, keyrecord_t *record) {
+void ctrlgr_mode_process(uint16_t keycode, keyrecord_t *record) {
     // Assess if we should exit layermode or continue processing normally.
     switch (keycode) {
         case OS_LSFT ... OSR_SFT:
         case ML_LCTL ... ML_LGUI:
         case CW_TOGG:
-        case DEL_WRD:
+        case TD(TDW):
         case KC_UNDS:
         case MD_CRPO:
         case KC_EXLM:
@@ -74,44 +44,44 @@ void rshiftgr_mode_process(uint16_t keycode, keyrecord_t *record) {
         default:
             // All other keys disable the layer mode.
             if (!record->event.pressed) {
-                rshiftgr_mode_disable();
+                ctrlgr_mode_disable();
             }
             break;
     }
 }
 /*--------- Left Shift Gr Mode ---------------*/
-static bool     _lshiftgr_mode_active = false;
-static uint16_t lshiftgr_mode_timer;
+static bool     _shiftgr_mode_active = false;
+static uint16_t shiftgr_mode_timer;
 // Turn nav mode on. To be called from a custom keycode.
-bool lshiftgr_mode_enable(keyrecord_t *record) {
+bool shiftgr_mode_enable(keyrecord_t *record) {
     if (record->event.pressed) {
-        layer_on(_LSHIFTGR);
-        lshiftgr_mode_timer = timer_read();
+        layer_on(_SHIFTGR);
+        shiftgr_mode_timer = timer_read();
     } else {
-        if (timer_elapsed(lshiftgr_mode_timer) < TAPPING_TERM) {
+        if (timer_elapsed(shiftgr_mode_timer) < TAPPING_TERM) {
             // Tapping enables layer mode
-            _lshiftgr_mode_active = true;
+            _shiftgr_mode_active = true;
         } else {
             // Holding treats as a normal LT
-            layer_off(_LSHIFTGR);
+            layer_off(_SHIFTGR);
         }
     }
     return false;
 }
 
 // Turn nav mode off.
-void lshiftgr_mode_disable(void) {
-    _lshiftgr_mode_active = false;
-    layer_off(_LSHIFTGR);
+void shiftgr_mode_disable(void) {
+    _shiftgr_mode_active = false;
+    layer_off(_SHIFTGR);
 }
 
-void lshiftgr_mode_process(uint16_t keycode, keyrecord_t *record) {
+void shiftgr_mode_process(uint16_t keycode, keyrecord_t *record) {
     // Assess if we should exit layermode or continue processing normally.
     switch (keycode) {
         case OS_LSFT ... OSR_SFT:
         case ML_LCTL ... ML_LGUI:
         case KC_CAPS:
-        case DEL_WRD:
+        case TD(TDW):
         case MD_NO:
         case KC_PMNS:
         case MD_SQPO:
@@ -125,7 +95,7 @@ void lshiftgr_mode_process(uint16_t keycode, keyrecord_t *record) {
         default:
             // All other keys disable the layer mode.
             if (!record->event.pressed) {
-                lshiftgr_mode_disable();
+                shiftgr_mode_disable();
             }
             break;
     }
@@ -174,6 +144,7 @@ void pointer_mode_process(uint16_t keycode, keyrecord_t *record) {
         case KC_DOWN:
         case KC_UP:
         case PNTROPT:
+        case PNTRNAV:
             // process the code and stay in the mode *dabs*
             break;
         default:
@@ -207,14 +178,13 @@ void vim_motion_mode_process(uint16_t keycode, keyrecord_t *record) {
         case KC_1 ... KC_0:
         case KC_P:
         case KC_Y:
-        case VIMNUM:
         case MATH:
         case KC_H:
         case KC_K:
         case KC_J:
         case KC_L:
-        case LB_ARC:
-        case LSHGR_R:
+        case LBM_ARC:
+        case SHFGR_R:
             // process the code and stay in the mode *dabs*
             break;
         default:
@@ -314,85 +284,6 @@ void func_mode_process(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-/*--------- Nav Mode ---------------*/
-static bool     _nav_mode_active = false;
-static uint16_t nav_mode_timer;
-// Turn nav mode on. To be called from a custom keycode.
-bool nav_mode_enable(keyrecord_t *record) {
-    if (record->event.pressed) {
-        layer_on(_VIMMOTION);
-        nav_mode_timer = timer_read();
-    } else {
-        if (timer_elapsed(nav_mode_timer) < TAPPING_TERM) {
-            // Tapping enables layer mode
-            _nav_mode_active = true;
-        } else {
-            // Holding treats as a normal LT
-            layer_off(_VIMMOTION);
-        }
-    }
-    return false;
-}
-
-// Turn nav mode off.
-void nav_mode_disable(void) {
-    _nav_mode_active = false;
-    layer_off(_VIMMOTION);
-}
-
-void nav_mode_process(uint16_t keycode, keyrecord_t *record) {
-    // Assess if we should exit layermode or continue processing normally.
-    switch (keycode) {
-        case OS_LSFT ... OSR_SFT:
-        case ML_LCTL ... ML_LGUI:
-        case KC_HOME ... KC_UP:
-        case KC_MS_U ... KC_ACL2:
-        case CLEAR:
-            // case F12_TH:
-            // case CTL_U:
-            break;
-        default:
-            // All other keys disable the layer mode.
-            if (!record->event.pressed) {
-                nav_mode_disable();
-            }
-            break;
-    }
-}
-
-/*--------- Sym Mode ---------------*/
-static bool _sym_mode_active = false;
-
-// Turn sym mode on. To be called from a custom keycode.
-bool sym_mode_enable(keyrecord_t *record) {
-    _sym_mode_active = true;
-    layer_on(_LSHIFTGR);
-    return false;
-}
-
-// Turn sym mode off.
-void sym_mode_disable(void) {
-    _sym_mode_active = false;
-    layer_off(_LSHIFTGR);
-}
-
-void sym_mode_process(uint16_t keycode, keyrecord_t *record) {
-    // todo possum strip keycode from lt/modtaps if needed
-
-    // Assess if we should exit layermode or continue processing normally.
-    switch (keycode) {
-        // SYMMODE is a glorified oneshot layer that lets you hit shift without breaking.
-        case OS_LSFT ... OSR_SFT:
-            break;
-        default:
-            // All other keys disable the layer mode.
-            if (!record->event.pressed) {
-                sym_mode_disable();
-            }
-            break;
-    }
-}
-
 /* -------- Macro Mode -------- */
 static bool _macro_mode_active = false;
 // Turn macro mode on. To be called from a custom keycode
@@ -424,10 +315,10 @@ void macro_mode_process(uint16_t keycode, keyrecord_t *record) {
 
 /* -------- Process Record -------- */
 void process_layermodes(uint16_t keycode, keyrecord_t *record) {
-    if (_rshiftgr_mode_active) {
-        rshiftgr_mode_process(keycode, record);
-    } else if (_lshiftgr_mode_active) {
-        lshiftgr_mode_process(keycode, record);
+    if (_ctrlgr_mode_active) {
+        ctrlgr_mode_process(keycode, record);
+    } else if (_shiftgr_mode_active) {
+        shiftgr_mode_process(keycode, record);
     } else if (_pointer_mode_active) {
         pointer_mode_process(keycode, record);
     } else if (_vim_motion_mode_active) {
@@ -436,10 +327,6 @@ void process_layermodes(uint16_t keycode, keyrecord_t *record) {
         math_mode_process(keycode, record);
     } else if (_func_mode_active) {
         func_mode_process(keycode, record);
-    } else if (_nav_mode_active) {
-        nav_mode_process(keycode, record);
-    } else if (_sym_mode_active) {
-        sym_mode_process(keycode, record);
     } else if (_macro_mode_active) {
         macro_mode_process(keycode, record);
     }

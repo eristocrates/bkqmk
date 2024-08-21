@@ -1,97 +1,175 @@
 layout: {qmk_keyboard: bastardkb/charybdis/3x6, qmk_layout: LAYOUT}
 layers:
   Brainrot:
-  - [X, V, G, M, P, LT ARC, RT ARC, U, O, Y, B, Z]
-  - [J, K, S, N, D, BSPC WD, MD YES, A, E, I, H, TD   QU]
-  - [QK LEAD, W, F, L, C, LB ARC, RB ARC, MD RNPO, COM ARC, DOT ARC, MD RNPC, TEST]
-  - [LAYR TB, LSHGR R, LSPC, RSPC, RSHGR T]
+  - [TH    X, TH    V, TH    G, TH    M, TH    P, LTP ARC, RTP ARC, TH    U, TH    O, TH    Y, TH    B, TH    Z]
+  - [TH    J, TH    K, TH    S, TH    N, TH    D, TD(TBW), TD(TDW), TH    A, TH    E, TH    I, TH    H, TH   QU]
+  - [QK LEAD, TH    W, TH    F, TH    L, TH    C, LBM ARC, RBM ARC, MD RNPO, COM ARC, DOT ARC, MD RNPC, TEST]
+  - [GUGR TB, SHFGR R, LSPC, RSPC, RSHGR T]
   Combo Reference:
-  - [L T Out, L T Pin, L T Rin, L T Mid, L T Ind, L T Inn, R T Inn, R T Ind, R T Mid, R T Rin, R T Pin, R T Out]
-  - [L H Out, L H Pin, L H Rin, L H Mid, L H Ind, L H Inn, R H Inn, R H Ind, R H Mid, R H Rin, R H Pin, R H Out]
-  - [L B Out, L B Pin, L B Rin, L B Mid, L B Ind, L B Inn, R B Inn, R B Ind, R B Mid, R B Rin, R B Pin, R B Out]
-  - [L LThmb, L MThmb, L RThmb, R LThmb, R MThmb]
-  Left Shift Gr:
-  - - {t: '', type: trans}
+  - [LT OUTR, LT PNKY, LT RING, LT MDLE, LT INDX, LT INNR, RT INNR, RT INDX, RT MDLE, RT RING, RT PNKY, RT OUTR]
+  - [LH OUTR, LH PNKY, LH RING, LH MDLE, LH INDX, LH INNR, RH INNR, RH INDX, RH MDLE, RH RING, RH PNKY, RH OUTR]
+  - [LB OUTR, LB PNKY, LB RING, LB MDLE, LB INDX, LB INNR, RB INNR, RB INDX, RB MDLE, RB RING, RB PNKY, RB OUTR]
+  - [L LTHMB, L MTHMB, L RTHMB, R LTHMB, R MTHMB]
+  Shift Gr:
+  - [SLTOUTR, SLTPNKY, SLTRING, SLTMDLE, SLTINDX, SLTINNR, SRTINNR, SRTINDX, SRTMDLE, SRTRING, SRTPNKY, SRTOUTR]
+  - [SLHOUTR, SLHPNKY, SLHRING, SLHMDLE, SLHINDX, SLHINNR, SRHINNR, SRHINDX, SRHMDLE, SRHRING, SRHPNKY, SRHOUTR]
+  - [SLBOUTR, SLBPNKY, SLBRING, SLBMDLE, SLBINDX, SLBINNR, SRBINNR, SRBINDX, SRBMDLE, SRBRING, SRBPNKY, SRBOUTR]
+  - - ''
     - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - CAPS
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - DEL WRD
-    - MD NO
-    - PMNS
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - MD SQPO
-    - ':'
-    - '?'
-    - MD SQPC
-    - HENK
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
+    - ''
     - _
-    - {t: '', type: trans}
-  Right Shift Gr:
+    - RSHGR T
+  Ctrl Gr:
+  - [CLTOUTR, CLTPNKY, CLTRING, CLTMDLE, CLTINDX, CLTINNR, CRTINNR, CRTINDX, CRTMDLE, CRTRING, CRTPNKY, CRTOUTR]
+  - [CLHOUTR, CLHPNKY, CLHRING, CLHMDLE, CLHINDX, CLHINNR, CRHINNR, CRHINDX, CRHMDLE, CRHRING, CRHPNKY, CRHOUTR]
+  - [CLBOUTR, CLBPNKY, CLBRING, CLBMDLE, CLBINDX, CLBINNR, CRBINNR, CRBINDX, CRBMDLE, CRBRING, CRBPNKY, CRBOUTR]
   - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - CW TOGG
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - DEL WRD
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - MD CRPO
-    - /
-    - '!'
-    - MD CRPC
-    - MHEN
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
+    - SHFGR R
     - _
+    - ''
+    - {t: '', type: trans}
+  Alt Gr:
+  - [ALTOUTR, ALTPNKY, ALTRING, ALTMDLE, ALTINDX, ALTINNR, ARTINNR, ARTINDX, ARTMDLE, ARTRING, ARTPNKY, ARTOUTR]
+  - [ALHOUTR, ALHPNKY, ALHRING, ALHMDLE, ALHINDX, ALHINNR, ARHINNR, ARHINDX, ARHMDLE, ARHRING, ARHPNKY, ARHOUTR]
+  - [ALBOUTR, ALBPNKY, ALBRING, ALBMDLE, ALBINDX, ALBINNR, ARBINNR, ARBINDX, ARBMDLE, ARBRING, ARBPNKY, ARBOUTR]
+  - - ''
+    - {t: '', type: trans}
+    - ''
+    - ''
+    - {t: '', type: trans}
+  Gui Gr:
+  - [GLTOUTR, GLTPNKY, GLTRING, GLTMDLE, GLTINDX, GLTINNR, GRTINNR, GRTINDX, GRTMDLE, GRTRING, GRTPNKY, GRTOUTR]
+  - [GLHOUTR, GLHPNKY, GLHRING, GLHMDLE, GLHINDX, GLHINNR, GRHINNR, GRHINDX, GRHMDLE, GRHRING, GRHPNKY, GRHOUTR]
+  - [GLBOUTR, GLBPNKY, GLBRING, GLBMDLE, GLBINDX, GLBINNR, GRBINNR, GRBINDX, GRBMDLE, GRBRING, GRBPNKY, GRBOUTR]
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - ''
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  Pointer:
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - BTN3
+    - BTN1
+    - BTN2
+    - DRGSCRL
+    - SNIPING
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - PNTRNAV
+    - PNTROPT
+  Pointer Options:
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - DPI MOD
+    - SDT MOD
+    - SCN TOG
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - DPI RMD
+    - SD RMOD
+    - DRG TOG
+    - SNP TOG
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  Pointer Navigation:
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - LEFT
+    - DOWN
+    - '  UP'
+    - RGHT
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
   Math:
@@ -154,7 +232,7 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-    - VIMNUM
+    - {t: '', type: trans}
     - B
     - H
     - J
@@ -178,48 +256,6 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-  Vim Numbers:
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - '7'
-    - '8'
-    - '9'
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - '4'
-    - '5'
-    - '6'
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - '1'
-    - '2'
-    - '3'
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - '0'
   Function:
   - - {t: '', type: trans}
     - {t: '', type: trans}
@@ -304,7 +340,7 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-  Layer:
+  N-Shot Mods:
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', MEDIA, KEYBRD, MATH, SHRTCUT, '', '', '', '', '', '', '']
   - [RANDOM, '', '', '', '', '', '', '', '', '', '', '']
@@ -323,7 +359,7 @@ layers:
   - [BSPC, N, T, S, R, W, Y, A, E, O, I, ENT]
   - [LSFT, X, G, M, C, ;, J, F, P, ',', ., BASE]
   - ['', THINQUL, SPC, SPC, THINQUR]
-  Thinqu Left Shift Gr:
+  Thinqu Left:
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -365,7 +401,7 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-  Thinqu Right Shift Gr:
+  Thinqu Right:
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -444,90 +480,6 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - BASE
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  Pointer:
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - BTN3
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - BTN3
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - SNIPING
-    - DRGSCRL
-    - BTN2
-    - BTN1
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - BTN1
-    - BTN2
-    - DRGSCRL
-    - SNIPING
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - LEFT
-    - DOWN
-    - UP
-    - RGHT
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - PNTROPT
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - PNTROPT
-  Pointer Options:
-  - - {t: '', type: trans}
-    - SD  MOD
-    - DPI MOD
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - DPI MOD
-    - SD  MOD
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - SNP TOG
-    - DRG TOG
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - DRG TOG
-    - SNP TOG
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - SD RMOD
-    - DPI RMD
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - DPI RMD
-    - SD RMOD
-    - {t: '', type: trans}
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
