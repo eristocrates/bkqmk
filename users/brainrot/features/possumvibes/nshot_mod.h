@@ -11,18 +11,18 @@ typedef enum {
 } oneshot_state;
 
 typedef struct {
-    uint16_t      trigger;          // Keycode to activate the n-shot mod
-    uint8_t       modbit;           // Modbit allows for mod combos.
-    uint8_t       max_count;        // one-shot, two-shot, ..., n-shot.
-    bool          active_on_rolls;  // Behavior for A down, Mod down, A up = (active_on_rolls == true ? Mod-A : a)
-    oneshot_state state;            // Direct from users/callum
-    uint8_t       count;            // N-shot count state
-    uint16_t      timer;            // N-shot timer for tracking use as held mod
-    bool          had_keydown;      // keydown state for (active_on_rolls == false)
+    uint16_t      trigger;         // Keycode to activate the n-shot mod
+    uint8_t       modbit;          // Modbit allows for mod combos.
+    uint8_t       max_count;       // one-shot, two-shot, ..., n-shot.
+    bool          active_on_rolls; // Behavior for A down, Mod down, A up = (active_on_rolls == true ? Mod-A : a)
+    oneshot_state state;           // Direct from users/callum
+    uint8_t       count;           // N-shot count state
+    uint16_t      timer;           // N-shot timer for tracking use as held mod
+    bool          had_keydown;     // keydown state for (active_on_rolls == false)
 } nshot_state_t;
 
 extern nshot_state_t nshot_states[];
-extern uint8_t             NUM_NSHOT_STATES;
+extern uint8_t       NUM_NSHOT_STATES;
 
 // Custom one-or-more-shot sticky mod key implementation that
 // prevents extra mod activation when rolling out of the mod,

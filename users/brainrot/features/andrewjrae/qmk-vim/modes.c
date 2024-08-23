@@ -3,6 +3,7 @@
 #include "motions.h"
 #include "actions.h"
 #include "process_func.h"
+#include "vim.h"
 
 extern process_func_t process_func;
 
@@ -18,15 +19,17 @@ vim_mode_t get_vim_mode(void) {
 extern visual_direction_t visual_direction;
 #endif
 
-#ifdef VIM_G_MOTIONS
+#ifdef QMK_VIM_G_MOTIONS
 static bool process_g_cmd(uint16_t keycode, const keyrecord_t *record) {
     if (record->event.pressed) {
         switch (keycode) {
             case KC_G:
                 // this doesn't quite work for all programs
-                tap_code16(VCMD(KC_A));
-                wait_ms(200);
-                tap_code(KC_UP);
+                if (vim_emulation) {
+                    tap_code16(VCMD(KC_A));
+                    wait_ms(200);
+                    tap_code(KC_UP);
+                }
                 break;
             default:
                 break;
@@ -37,7 +40,7 @@ static bool process_g_cmd(uint16_t keycode, const keyrecord_t *record) {
 }
 #endif
 
-#ifdef VIM_COLON_CMDS
+#ifdef QMK_VIM_COLON_CMDS
 static bool process_colon_cmd(uint16_t keycode, const keyrecord_t *record) {
     if (record->event.pressed) {
         switch (keycode) {
@@ -45,7 +48,7 @@ static bool process_colon_cmd(uint16_t keycode, const keyrecord_t *record) {
                 disable_vim_mode();
                 break;
             case KC_W:
-                tap_code16(VIM_SAVE);
+                tap_code16(QMK_VIM_SAVE);
                 break;
             case KC_ENTER:
                 normal_mode();
@@ -69,7 +72,7 @@ bool process_normal_mode(uint16_t keycode, const keyrecord_t *record) {
     if (!process_normal_mode_user(keycode, record)) {
         return false;
     }
-#ifdef VIM_DOT_REPEAT
+#ifdef QMK_VIM_DOT_REPEAT
     bool should_record_action = true;
 #    define NO_RECORD_ACTION() should_record_action = false;
 #else
@@ -77,7 +80,7 @@ bool process_normal_mode(uint16_t keycode, const keyrecord_t *record) {
 #endif
 
     // process numbers for numbered actions
-#ifdef VIM_NUMBERED_JUMPS
+#ifdef QMK_VIM_NUMBERED_JUMPS
     if (!process_numbers(keycode, record)) {
         return false;
     }
@@ -90,56 +93,76 @@ bool process_normal_mode(uint16_t keycode, const keyrecord_t *record) {
         switch (keycode) {
             // insert keys
             case LSFT(KC_I):
-                VIM_HOME();
+                if (vim_emulation) {
+                    QMK_VIM_HOME();
+                }
                 // fallthrough to lowercase i
             case KC_I:
                 insert_mode();
                 break;
             case LSFT(KC_A):
-                VIM_END();
+                if (vim_emulation) {
+                    QMK_VIM_END();
+                }
                 insert_mode();
                 break;
             case KC_A:
-                tap_code(KC_RIGHT);
+                if (vim_emulation) {
+                    tap_code(KC_RIGHT);
+                }
                 insert_mode();
                 break;
             case LSFT(KC_O):
-                VIM_HOME();
-                tap_code(KC_ENTER);
-                tap_code(KC_UP);
+                if (vim_emulation) {
+                    QMK_VIM_HOME();
+                    tap_code(KC_ENTER);
+                    tap_code(KC_UP);
+                }
                 insert_mode();
                 break;
             case KC_O:
-                VIM_END();
-                tap_code(KC_ENTER);
+                if (vim_emulation) {
+                    QMK_VIM_END();
+                    tap_code(KC_ENTER);
+                }
                 insert_mode();
                 break;
             // actions
             case LSFT(KC_C):
-                VIM_SHIFT_END();
+                if (vim_emulation) {
+                    QMK_VIM_SHIFT_END();
+                }
                 change_action();
                 break;
             case KC_C:
                 start_change_action();
                 break;
             case LSFT(KC_D):
-                VIM_SHIFT_END();
+                if (vim_emulation) {
+                    QMK_VIM_SHIFT_END();
+                }
                 delete_action();
                 break;
             case KC_D:
                 start_delete_action();
                 break;
             case LSFT(KC_S):
-                VIM_HOME();
-                VIM_SHIFT_END();
+                if (vim_emulation) {
+                    QMK_VIM_HOME();
+                    QMK_VIM_SHIFT_END();
+                }
                 change_action();
                 break;
             case KC_S:
-                tap_code16(LSFT(KC_RIGHT));
+                if (vim_emulation) {
+                    tap_code16(LSFT(KC_RIGHT));
+                }
                 change_action();
                 break;
             case LSFT(KC_Y):
-                VIM_SHIFT_END();
+                if (vim_emulation) {
+                    QMK_VIM_SHIFT_END();
+                }
                 yank_action();
                 NO_RECORD_ACTION();
                 break;
@@ -147,7 +170,7 @@ bool process_normal_mode(uint16_t keycode, const keyrecord_t *record) {
                 start_yank_action();
                 NO_RECORD_ACTION();
                 break;
-#ifdef VIM_PASTE_BEFORE
+#ifdef QMK_VIM_PASTE_BEFORE
             case LSFT(KC_P):
                 paste_before_action();
                 break;
@@ -158,51 +181,65 @@ bool process_normal_mode(uint16_t keycode, const keyrecord_t *record) {
                 // visual modes
 #ifndef NO_VISUAL_LINE_MODE
             case LSFT(KC_V):
-                visual_line_mode();
+                if (vim_emulation) {
+                    visual_line_mode();
+                }
                 NO_RECORD_ACTION();
                 break;
 #endif
 #ifndef NO_VISUAL_MODE
             case KC_V:
-                visual_mode();
+                if (vim_emulation) {
+                    visual_mode();
+                }
                 NO_RECORD_ACTION();
                 break;
 #endif
             // undo redo
             case KC_U:
-                tap_code16(VIM_UNDO);
-                wait_ms(10);
-                tap_code(KC_LEFT);
+                if (vim_emulation) {
+                    tap_code16(QMK_VIM_UNDO);
+                    wait_ms(10);
+                    tap_code(KC_LEFT);
+                }
                 NO_RECORD_ACTION();
                 break;
             case LCTL(KC_R):
-                tap_code16(VIM_REDO);
+                if (vim_emulation) {
+                    tap_code16(QMK_VIM_REDO);
+                }
                 NO_RECORD_ACTION();
                 break;
-#ifdef VIM_REPLACE
+#ifdef QMK_VIM_REPLACE
             case KC_R:
                 replace_action();
                 break;
 #endif
             case KC_X:
-                tap_code16(VIM_X);
+                if (vim_emulation) {
+                    tap_code16(QMK_VIM_X);
+                }
                 break;
             case LSFT(KC_X):
-                tap_code16(VIM_SHIFT_X);
+                if (vim_emulation) {
+                    tap_code16(QMK_VIM_SHIFT_X);
+                }
                 break;
-#ifdef VIM_COLON_CMDS
+#ifdef QMK_VIM_COLON_CMDS
             case KC_COLON:
                 process_func = process_colon_cmd;
                 NO_RECORD_ACTION();
                 break;
 #endif
-#ifdef VIM_G_MOTIONS
+#ifdef QMK_VIM_G_MOTIONS
             // g motions
             case LSFT(KC_G):
                 // this doesn't quite work for all programs
-                tap_code16(VCMD(KC_A));
-                wait_ms(200);
-                tap_code(KC_DOWN);
+                if (vim_emulation) {
+                    tap_code16(VCMD(KC_A));
+                    wait_ms(200);
+                    tap_code(KC_DOWN);
+                }
                 NO_RECORD_ACTION();
                 break;
             case KC_G:
@@ -210,7 +247,7 @@ bool process_normal_mode(uint16_t keycode, const keyrecord_t *record) {
                 NO_RECORD_ACTION();
                 break;
 #endif
-#ifdef VIM_DOT_REPEAT
+#ifdef QMK_VIM_DOT_REPEAT
             case KC_DOT:
                 repeat_action(record);
                 NO_RECORD_ACTION();
@@ -218,13 +255,13 @@ bool process_normal_mode(uint16_t keycode, const keyrecord_t *record) {
 #endif
             default:
                 NO_RECORD_ACTION();
-                if (keycode >= QK_MODS && (keycode & 0xFF00) != QK_LSFT) {
+                if (vim_emulation && keycode >= QK_MODS && (keycode & 0xFF00) != QK_LSFT) {
                     tap_code16(keycode);
                 }
                 break;
         }
-#ifdef VIM_DOT_REPEAT
-        if (should_record_action) {
+#ifdef QMK_VIM_DOT_REPEAT
+        if (vim_emulation && should_record_action) {
             start_recording_repeat();
         }
 #endif
@@ -244,7 +281,7 @@ bool process_visual_mode(uint16_t keycode, const keyrecord_t *record) {
         return false;
     }
     // process numbers for numbered actions
-#ifdef VIM_NUMBERED_JUMPS
+#ifdef QMK_VIM_NUMBERED_JUMPS
     if (!process_numbers(keycode, record)) {
         return false;
     }
@@ -253,7 +290,7 @@ bool process_visual_mode(uint16_t keycode, const keyrecord_t *record) {
     if (!process_motions(keycode, record, QK_LSFT)) {
         return false;
     }
-#ifdef _VIM_TEXT_OBJECTS
+#ifdef QMK_VIM_TEXT_OBJECTS
     if (!process_text_objects(keycode, record)) {
         return false;
     }
@@ -272,22 +309,28 @@ bool process_visual_mode(uint16_t keycode, const keyrecord_t *record) {
                 yank_action();
                 return false;
             case KC_P:
-                tap_code16(VIM_PASTE);
+                if (vim_emulation) {
+                    tap_code16(QMK_VIM_PASTE);
+                }
                 normal_mode();
                 return false;
             case KC_ESC:
 #ifdef BETTER_VISUAL_MODE
-                if (visual_direction == V_FORWARD)
-                    tap_code(KC_RIGHT);
-                else
-                    tap_code(KC_LEFT);
+                if (vim_emulation) {
+                    if (visual_direction == V_FORWARD)
+                        tap_code(KC_RIGHT);
+                    else
+                        tap_code(KC_LEFT);
+                }
 #else
-                tap_code(KC_RIGHT);
+                if (vim_emulation) {
+                    tap_code(KC_RIGHT);
+                }
 #endif
                 normal_mode();
                 return false;
             default:
-                if (keycode >= QK_MODS && (keycode & 0xFF00) != QK_LSFT) {
+                if (vim_emulation && keycode >= QK_MODS && (keycode & 0xFF00) != QK_LSFT) {
                     tap_code16(keycode);
                 }
                 break;
@@ -308,7 +351,7 @@ bool process_visual_line_mode(uint16_t keycode, const keyrecord_t *record) {
         return false;
     }
     // process numbers for numbered actions
-#ifdef VIM_NUMBERED_JUMPS
+#ifdef QMK_VIM_NUMBERED_JUMPS
     if (!process_numbers(keycode, record)) {
         return false;
     }
@@ -316,27 +359,33 @@ bool process_visual_line_mode(uint16_t keycode, const keyrecord_t *record) {
     // handle motions on their own so they can be pressed and held
     switch (keycode) {
         case KC_J:
-        case VIM_J:
+        case QMK_VIM_J:
 #ifdef BETTER_VISUAL_MODE
-            if (visual_direction == V_NONE) {
+            if (vim_emulation && visual_direction == V_NONE) {
                 tap_code(KC_LEFT);
-                tap_code16(LSFT(VIM_J));
+                tap_code16(LSFT(QMK_VIM_J));
             }
 #endif
-            set_visual_direction(V_FORWARD);
-            register_motion(LSFT(VIM_J), record);
+            if (vim_emulation) {
+                set_visual_direction(V_FORWARD);
+                register_motion(LSFT(QMK_VIM_J), record);
+            }
             return false;
         case KC_K:
-        case VIM_K:
-            set_visual_direction(V_BACKWARD);
-            register_motion(LSFT(VIM_K), record);
+        case QMK_VIM_K:
+            if (vim_emulation) {
+                set_visual_direction(V_BACKWARD);
+                register_motion(LSFT(QMK_VIM_K), record);
+            }
             return false;
     }
     if (record->event.pressed) {
         switch (keycode) {
             case KC_C:
             case KC_S:
-                tap_code16(LSFT(KC_LEFT));
+                if (vim_emulation) {
+                    tap_code16(LSFT(KC_LEFT));
+                }
                 change_action();
                 return false;
             case KC_D:
@@ -347,22 +396,28 @@ bool process_visual_line_mode(uint16_t keycode, const keyrecord_t *record) {
                 yank_line_action();
                 return false;
             case KC_P:
-                tap_code16(VIM_PASTE);
+                if (vim_emulation) {
+                    tap_code16(QMK_VIM_PASTE);
+                }
                 normal_mode();
                 return false;
             case KC_ESC:
 #ifdef BETTER_VISUAL_MODE
-                if (visual_direction == V_FORWARD)
-                    tap_code(KC_RIGHT);
-                else
-                    tap_code(KC_LEFT);
+                if (vim_emulation) {
+                    if (visual_direction == V_FORWARD)
+                        tap_code(KC_RIGHT);
+                    else
+                        tap_code(KC_LEFT);
+                }
 #else
-                tap_code(KC_RIGHT);
+                if (vim_emulation) {
+                    tap_code(KC_RIGHT);
+                }
 #endif
                 normal_mode();
                 return false;
             default:
-                if (keycode >= QK_MODS && (keycode & 0xFF00) != QK_LSFT) {
+                if (vim_emulation && keycode >= QK_MODS && (keycode & 0xFF00) != QK_LSFT) {
                     tap_code16(keycode);
                 }
                 break;
@@ -445,9 +500,11 @@ void visual_line_mode(void) {
 #    ifdef BETTER_VISUAL_MODE
     visual_direction = V_NONE;
 #    endif
-    VIM_END();
-    tap_code(KC_RIGHT);
-    tap_code16(LSFT(KC_UP));
+    if (vim_emulation) {
+        QMK_VIM_END();
+        tap_code(KC_RIGHT);
+        tap_code16(LSFT(KC_UP));
+    }
 
     process_func = process_visual_line_mode;
 #endif

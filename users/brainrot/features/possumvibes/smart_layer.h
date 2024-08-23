@@ -13,16 +13,6 @@ void pointer_mode_process(uint16_t keycode, keyrecord_t *record);
 
 extern bool _pointer_mode_active;
 
-/* -------- Vim Motion Mode -------- */
-// Turn number mode on. To be called from a custom keycode
-bool vim_motion_mode_enable(keyrecord_t *record);
-
-// Turn number mode off.
-void vim_motion_mode_disable(void);
-
-// Handle each key for number mode.
-void vim_motion_mode_process(uint16_t keycode, keyrecord_t *record);
-
 /* -------- Number Mode -------- */
 // Turn number mode on. To be called from a custom keycode
 bool math_mode_enable(keyrecord_t *record);

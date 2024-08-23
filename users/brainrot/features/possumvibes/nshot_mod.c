@@ -21,7 +21,6 @@ bool is_nshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
         case PANIC:
         case CLEAR:
-        case NAVMODE:
             return true;
         default:
             return false;
@@ -30,18 +29,19 @@ bool is_nshot_cancel_key(uint16_t keycode) {
 
 bool is_nshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
-        case NAVMODE:
-        case MAT_OSL:
-        case MATHMODE:
-        case VIMMOTIONMODE:
-        case FUNMODE:
-        case SYMMODE:
-        case MCRMODE:
-        case SHC_OSL:
         case OS_LSFT:
         case OS_LCTL:
         case OS_LALT:
         case OS_LGUI:
+        case OS_LGLC:
+        case TS_LCTL:
+        case OSR_SFT:
+        case MATH_TB:
+        case CTRL__R:
+        case SML_SPC:
+        case SMR_SPC:
+        case ALT___T:
+
             return true;
         default:
             return false;
@@ -55,7 +55,7 @@ void process_nshot_state(uint16_t keycode, keyrecord_t *record) {
 
     for (int i = 0; i < NUM_NSHOT_STATES; ++i) {
         curr_state        = &nshot_states[i];
-        uint8_t max_count = curr_state->max_count * 2;
+        uint8_t max_count = curr_state->max_count * 3;
 
         if (keycode == curr_state->trigger) {
             if (record->event.pressed) {

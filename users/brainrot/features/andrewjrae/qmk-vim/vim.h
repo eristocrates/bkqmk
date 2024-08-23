@@ -27,14 +27,23 @@ void disable_vim_mode(void);
 // Toggle vim mode
 void toggle_vim_mode(void);
 
-#ifdef ONESHOT_VIM
+// Check to see if vim should be emulated with qmk_vim
+bool vim_emulation_enabled(void);
+// Enable vim emulation
+void enable_vim_emulation(void);
+// Disable vim emulation
+void disable_vim_emulation(void);
+// Toggle vim emulation
+void toggle_vim_emulation(void);
+
+#ifdef ONESHOT_QMK_VIM
 // Start vim mode
 void start_oneshot_vim(void);
 // Stop vim mode
 void stop_oneshot_vim(void);
 #endif
 
-#ifdef VIM_FOR_ALL
+#ifdef QMK_VIM_FOR_ALL
 // Check to see if mac mode is enabled
 bool vim_for_mac_enabled(void);
 // Enable mac mode
@@ -47,4 +56,5 @@ void toggle_vim_for_mac(void);
 // Process keycode for vim mode
 bool process_vim_mode(uint16_t keycode, const keyrecord_t *record);
 
-extern bool vim_enabled;
+extern bool qmk_vim_enabled;
+extern bool vim_emulation; // false when in a genuine vim environment

@@ -56,7 +56,13 @@
 #define TAPPING_TERM_PER_KEY
 #define TAPPING_TOGGLE 2
 
-#define LAST_KEYCODE_TIMEOUT_MS 1000
+// Auto shift
+#define AUTO_SHIFT_TIMEOUT 170
+#define NO_AUTO_SHIFT_SPECIAL
+#define RETRO_SHIFT 500
+#define AUTO_SHIFT_MODIFIERS
+
+#define LAST_KEYCODE_TIMEOUT_MS 500
 #define COMBO_PROCESS_KEY_RELEASE
 
 // caps word
@@ -65,7 +71,7 @@
 
 /* Charybdis-specific features. */
 #define CHARYBDIS_CONFIG_SYNC
-#define MOUSE_EXTENDED_REPORT
+// #define MOUSE_EXTENDED_REPORT
 
 // honestly not sure if i should try to use core auto pointer or stay with bastardkb's implementation
 // #define AUTO_MOUSE_THRESHOLD 100
@@ -81,13 +87,13 @@
 
 // qmk-vim
 #define BETTER_VISUAL_MODE
-#define VIM_PASTE_BEFORE
-#define VIM_I_TEXT_OBJECTS
-#define VIM_A_TEXT_OBJECTS
-#define VIM_G_MOTIONS
-#define VIM_COLON_CMDS
-#define VIM_REPLACE
-#define VIM_DOT_REPEAT
-#define VIM_W_BEGINNING_OF_WORD
-#define VIM_NUMBERED_JUMPS
-#define ONESHOT_VIM
+#define QMK_VIM_PASTE_BEFORE
+#define QMK_VIM_I_TEXT_OBJECTS
+#define QMK_VIM_A_TEXT_OBJECTS
+#define QMK_VIM_G_MOTIONS
+// #define QMK_VIM_COLON_CMDS // replace with leader keys
+#define QMK_VIM_REPLACE
+#define QMK_VIM_DOT_REPEAT
+#define QMK_VIM_W_BEGINNING_OF_WORD
+#define QMK_VIM_NUMBERED_JUMPS
+#define ONESHOT_QMK_VIM

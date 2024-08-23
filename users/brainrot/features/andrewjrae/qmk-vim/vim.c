@@ -22,9 +22,11 @@
 // the current process func, from in process_func.c
 extern process_func_t process_func;
 
-bool vim_enabled = false;
+// TODO consider moving to user init?
+bool qmk_vim_enabled = true;
+bool vim_emulation   = true;
 
-#ifdef VIM_FOR_ALL
+#ifdef QMK_VIM_FOR_ALL
 // Check to see if mac mode is enabled
 bool vim_for_mac_enabled(void) {
     return vim_for_mac;
@@ -45,45 +47,66 @@ void toggle_vim_for_mac(void) {
 
 // Check to see if vim mode is enabled
 bool vim_mode_enabled(void) {
-    return vim_enabled;
+    return qmk_vim_enabled;
 }
 // Enable vim mode
 void enable_vim_mode(void) {
-    vim_enabled = true;
+    qmk_vim_enabled = true;
     normal_mode();
 }
 // Disable vim mode
 void disable_vim_mode(void) {
-    vim_enabled = false;
+    qmk_vim_enabled = false;
 }
 // Toggle vim mode
 void toggle_vim_mode(void) {
-    if (vim_enabled) {
+    if (qmk_vim_enabled) {
         disable_vim_mode();
     } else {
         enable_vim_mode();
     }
 }
 
-#ifdef ONESHOT_VIM
+// Check to see if vim mode is enabled
+bool vim_emulation_enabled(void) {
+    return vim_emulation;
+}
+// Enable vim emulation
+void enable_vim_emulation(void) {
+    vim_emulation = true;
+}
+// Disable vim emulation
+void disable_vim_emulation(void) {
+    vim_emulation = false;
+}
+// Toggle vim emulation
+void toggle_vim_emulation(void) {
+    if (vim_emulation) {
+        disable_vim_emulation();
+    } else {
+        enable_vim_emulation();
+    }
+}
+
+#ifdef ONESHOT_QMK_VIM
 extern bool process_normal_mode(uint16_t keycode, const keyrecord_t *record);
 extern bool process_insert_mode(uint16_t keycode, const keyrecord_t *record);
 
-static bool           oneshot_vim_enabled = false;
+static bool           oneshot_qmk_vim_enabled = false;
 static process_func_t last_process_func;
 // Start vim mode
 void start_oneshot_vim(void) {
-    oneshot_vim_enabled = true;
-    last_process_func   = process_normal_mode;
+    oneshot_qmk_vim_enabled = true;
+    last_process_func       = process_normal_mode;
     enable_vim_mode();
 }
 // Stop vim mode
 void stop_oneshot_vim(void) {
-    oneshot_vim_enabled = false;
+    oneshot_qmk_vim_enabled = false;
     disable_vim_mode();
 }
 static inline void vim_oneshot_termination(uint16_t keycode) {
-    if (oneshot_vim_enabled && (keycode == KC_ESC || process_func == process_insert_mode || (process_func == process_normal_mode && last_process_func != process_func))) {
+    if (oneshot_qmk_vim_enabled && (keycode == KC_ESC || process_func == process_insert_mode || (process_func == process_normal_mode && last_process_func != process_func))) {
         stop_oneshot_vim();
     }
     last_process_func = process_func;
@@ -92,7 +115,7 @@ static inline void vim_oneshot_termination(uint16_t keycode) {
 
 // Process keycode for leader sequences
 bool process_vim_mode(uint16_t keycode, const keyrecord_t *record) {
-    if (vim_enabled) {
+    if (qmk_vim_enabled) {
         // Get the base keycode of a mod or layer tap key
         if ((QK_MOD_TAP <= keycode && keycode <= QK_MOD_TAP_MAX) || (QK_LAYER_TAP <= keycode && keycode <= QK_LAYER_TAP_MAX)) {
             // Earlier return if this has not been considered tapped yet
@@ -120,7 +143,7 @@ bool process_vim_mode(uint16_t keycode, const keyrecord_t *record) {
         // process the current keycode
         bool do_process_key = process_func(keycode, record);
 
-#ifdef VIM_DOT_REPEAT
+#ifdef QMK_VIM_DOT_REPEAT
         if (record->event.pressed) {
             add_repeat_keycode(keycode);
         }
@@ -132,7 +155,7 @@ bool process_vim_mode(uint16_t keycode, const keyrecord_t *record) {
             set_oneshot_mods(oneshot_mods);
         }
 
-#ifdef ONESHOT_VIM
+#ifdef ONESHOT_QMK_VIM
         // this function checks for oneshot termination conditions and stops if applicable
         vim_oneshot_termination(keycode);
 #endif

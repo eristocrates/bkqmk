@@ -1,43 +1,103 @@
 layout: {qmk_keyboard: bastardkb/charybdis/3x6, qmk_layout: LAYOUT}
 layers:
   Brainrot:
-  - [TH    X, TH    V, TH    G, TH    M, TH    P, LTP ARC, RTP ARC, TH    U, TH    O, TH    Y, TH    B, TH    Z]
-  - [TH    J, TH    K, TH    S, TH    N, TH    D, TD(TBW), TD(TDW), TH    A, TH    E, TH    I, TH    H, TH   QU]
-  - [QK LEAD, TH    W, TH    F, TH    L, TH    C, LBM ARC, RBM ARC, MD RNPO, COM ARC, DOT ARC, MD RNPC, TEST]
-  - [MATH TB, CTRL  R, LSPC, RSPC, ALT   T]
+  - ['   X', '   V', '   G', '   M', '   P', LTP ARC, RTP ARC, '   U', '   O', '   Y', '   B', '   Z']
+  - ['   J', '   K', '   S', '   N', '   D', TD(TBW), TD(TDW), '   A', '   E', '   I', '   H', TH   QU]
+  - [QK LEAD, '   W', '   F', '   L', '   C', LBM ARC, RBM ARC, MD RNPO, ',', ' DOT', MD RNPC, VIM TOG]
+  - [MATH TB, CTRL  R, SML SPC, SMR SPC, ALT   T]
   Combo Reference:
   - [LT OUTR, LT PNKY, LT RING, LT MDLE, LT INDX, LT INNR, RT INNR, RT INDX, RT MDLE, RT RING, RT PNKY, RT OUTR]
   - [LH OUTR, LH PNKY, LH RING, LH MDLE, LH INDX, LH INNR, RH INNR, RH INDX, RH MDLE, RH RING, RH PNKY, RH OUTR]
   - [LB OUTR, LB PNKY, LB RING, LB MDLE, LB INDX, LB INNR, RB INNR, RB INDX, RB MDLE, RB RING, RB PNKY, RB OUTR]
   - [L LTHMB, L MTHMB, L RTHMB, R LTHMB, R MTHMB]
   Piercing Ctrl:
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - '   A'
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - VIM LFT
+    - VIM DWN
+    - VIM  UP
+    - VIM RGT
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  Piercing Alt:
   - [CLTOUTR, CLTPNKY, CLTRING, CLTMDLE, CLTINDX, CLTINNR, CRTINNR, CRTINDX, CRTMDLE, CRTRING, CRTPNKY, CRTOUTR]
   - [CLHOUTR, CLHPNKY, CLHRING, CLHMDLE, CLHINDX, CLHINNR, CRHINNR, CRHINDX, CRHMDLE, CRHRING, CRHPNKY, CRHOUTR]
-  - [CLBOUTR, CLBPNKY, CLBRING, CLBMDLE, CLBINDX, CLBINNR, CRBINNR, CRBINDX, CRBMDLE, CRBRING, CRBPNKY, CRBOUTR]
+  - [CLBOUTR, CLBPNKY, CLBRING, CLBMDLE, CLBINDX, CLBINNR, CRBINNR, OS LSFT, OS LCTL, OS LALT, OS LGUI, CRBOUTR]
   - - ''
     - {t: '', type: trans}
     - ''
     - _
     - ALT   T
-  Piercing Alt:
+  Piercing Gui:
   - [ALTOUTR, ALTPNKY, ALTRING, ALTMDLE, ALTINDX, ALTINNR, ARTINNR, ARTINDX, ARTMDLE, ARTRING, ARTPNKY, ARTOUTR]
   - [ALHOUTR, ALHPNKY, ALHRING, ALHMDLE, ALHINDX, ALHINNR, ARHINNR, ARHINDX, ARHMDLE, ARHRING, ARHPNKY, ARHOUTR]
-  - [ALBOUTR, ALBPNKY, ALBRING, ALBMDLE, ALBINDX, ALBINNR, ARBINNR, ARBINDX, ARBMDLE, ARBRING, ARBPNKY, ARBOUTR]
+  - [ALBOUTR, ALBPNKY, ALBRING, ALBMDLE, ALBINDX, ALBINNR, ARBINNR, OS LSFT, TS LCTL, OS LALT, OS LGUI, ARBOUTR]
   - - ''
     - {t: '', type: trans}
     - _
     - ''
     - {t: '', type: trans}
-  Piercing Gui:
+  Pointer:
   - [GLTOUTR, GLTPNKY, GLTRING, GLTMDLE, GLTINDX, GLTINNR, GRTINNR, GRTINDX, GRTMDLE, GRTRING, GRTPNKY, GRTOUTR]
   - [GLHOUTR, GLHPNKY, GLHRING, GLHMDLE, GLHINDX, GLHINNR, GRHINNR, GRHINDX, GRHMDLE, GRHRING, GRHPNKY, GRHOUTR]
-  - [GLBOUTR, GLBPNKY, GLBRING, GLBMDLE, GLBINDX, GLBINNR, GRBINNR, GRBINDX, GRBMDLE, GRBRING, GRBPNKY, GRBOUTR]
+  - [GLBOUTR, GLBPNKY, GLBRING, GLBMDLE, GLBINDX, GLBINNR, GRBINNR, OS LSFT, OS LCTL, OS LALT, OS LGUI, GRBOUTR]
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - ''
     - {t: '', type: trans}
     - {t: '', type: trans}
-  Pointer:
+  Pointer Options:
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '[', ':', '?', ']', '']
+  - - ''
+    - ''
+    - {t: '', type: trans}
+    - ''
+    - ''
+  Pointer Navigation:
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '{', /, '!', '}', '']
+  - - ''
+    - ''
+    - ''
+    - {t: '', type: trans}
+    - ''
+  Math:
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -79,7 +139,7 @@ layers:
     - {t: '', type: trans}
     - PNTRNAV
     - PNTROPT
-  Pointer Options:
+  Vim Motion:
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -121,7 +181,7 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-  Pointer Navigation:
+  Function:
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -163,7 +223,7 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-  Math:
+  Media:
   - - {t: '', type: trans}
     - '%'
     - ^
@@ -205,49 +265,7 @@ layers:
     - PENT
     - SPC
     - '0'
-  Vim Motion:
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - VIM GG
-    - ^
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - 'VIM G '
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - B
-    - H
-    - J
-    - K
-    - L
-    - W
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - P
-    - Y
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - '0'
-    - '}'
-    - '{'
-    - $
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  Function:
+  N-Shot Mods:
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -289,7 +307,7 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-  Media:
+  Game:
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -331,7 +349,7 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-  N-Shot Mods:
+  Thinqu:
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', MEDIA, KEYBRD, MATH, SHRTCUT, '', '', '', '', '', '', '']
   - [RANDOM, '', '', '', '', '', '', '', '', '', '', '']
@@ -340,112 +358,28 @@ layers:
     - ''
     - ''
     - ''
-  Game:
+  Thinqu Left:
   - ['1', Q, I, W, R, T, Y, U, I, O, P, '']
   - [LCTL, A, A, S, D, G, H, J, K, L, ;, RCTL]
   - [LSFT, PT Z, M, C, V, B, N, M, ',', ., PT SLSH, BASE]
   - [ESC, SPC, '', '', ENT]
-  Thinqu:
+  Thinqu Right:
   - [TAB, B, D, L, TH, V, Z, '''', U, H, K, '']
   - [BSPC, N, T, S, R, W, Y, A, E, O, I, ENT]
   - [LSFT, X, G, M, C, ;, J, F, P, ',', ., BASE]
   - ['', THINQUL, SPC, SPC, THINQUR]
-  Thinqu Left:
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  Thinqu Right:
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
   Keyboard:
   - - {t: '', type: trans}
     - {t: '', type: trans}
-    - QWERTY
-    - THINQU
-    - GAME
     - {t: '', type: trans}
-    - RGB TOG
-    - RGB HUI
-    - RGB SAI
-    - RGB VAI
-    - RGB SPI
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
     - {t: '', type: trans}
   - - {t: '', type: trans}
     - {t: '', type: trans}
@@ -453,24 +387,24 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-    - RGB RMOD
-    - RGB HUD
-    - RGB SAD
-    - RGB VAD
-    - RGB SPD
-    - RGB MOD
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-    - QK BOOT
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-    - BASE
+    - {t: '', type: trans}
+    - {t: '', type: trans}
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -512,28 +446,112 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  Naginata:
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - QWERTY
+    - THINQU
+    - GAME
+    - {t: '', type: trans}
+    - RGB TOG
+    - RGB HUI
+    - RGB SAI
+    - RGB VAI
+    - RGB SPI
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - RGB RMOD
+    - RGB HUD
+    - RGB SAD
+    - RGB VAD
+    - RGB SPD
+    - RGB MOD
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - QK BOOT
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - BASE
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  Shingeta:
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
     - BASE
   - - {t: '', type: trans}
     - SECRET1
     - SECRET2
     - {t: '', type: trans}
     - {t: '', type: trans}
-  Naginata:
-  - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '']
-  Shingeta:
-  - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '']
   Qwerty:
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '']
+  Random:
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '']
+  L23:
   - [LGUI, Q, W, E, R, T, Y, U, I, O, P, RGUI]
   - [LCTL, A, S, D, F, G, H, J, K, L, ;, RCTL]
   - [LSFT, PT Z, X, C, V, B, N, M, ',', ., PT SLSH, BASE]
   - ['', SPC, BSPC, DEL, ENT]
-  Random:
+  L24:
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND]
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND]
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, BASE]

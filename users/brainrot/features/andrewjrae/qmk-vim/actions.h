@@ -4,28 +4,28 @@
 #include "motions.h"
 
 // If either of the text objects are defined, define this macro for both
-#if defined (VIM_I_TEXT_OBJECTS) || defined (VIM_A_TEXT_OBJECTS)
-#define _VIM_TEXT_OBJECTS
+#if defined(QMK_VIM_I_TEXT_OBJECTS) || defined(QMK_VIM_A_TEXT_OBJECTS)
+#    define QMK_VIM_TEXT_OBJECTS
 #endif
 
 // Define a custom variable for the common shortcut modifier
 // ie on MAC, CMD + C is copy, but on Windows/Linux it's CTRL + C
 // This should be used whenever using one of these shortcuts
 
-#define VCMD(kc) VIM_MAC_NOMAC(LCMD(kc), LCTL(kc))
-#define VIM_REDO VIM_MAC_NOMAC(VCMD(LSFT(KC_Z)), VCMD(KC_Y))
+#define VCMD(kc) QMK_VIM_MAC_NOMAC(LCMD(kc), LCTL(kc))
+#define QMK_VIM_REDO QMK_VIM_MAC_NOMAC(VCMD(LSFT(KC_Z)), VCMD(KC_Y))
 
-// These + VIM_REDO (defined above) are the main keys for each vim core vim action
-#define VIM_CHANGE KC_DEL
-#define VIM_DELETE VCMD(KC_X) // note that you may prefer a simple delete here since we only are using one clipboard
-#define VIM_YANK VCMD(KC_C)
+// These + QMK_VIM_REDO (defined above) are the main keys for each vim core vim action
+#define QMK_VIM_CHANGE KC_DEL
+#define QMK_VIM_DELETE VCMD(KC_X) // note that you may prefer a simple delete here since we only are using one clipboard
+#define QMK_VIM_YANK VCMD(KC_C)
 // Other commands
-#define VIM_PASTE VCMD(KC_V)
-#define VIM_UNDO VCMD(KC_Z)
-#define VIM_FIND VCMD(KC_F)
-#define VIM_SAVE VCMD(KC_S)
-#define VIM_X KC_DEL
-#define VIM_SHIFT_X KC_BSPC
+#define QMK_VIM_PASTE VCMD(KC_V)
+#define QMK_VIM_UNDO VCMD(KC_Z)
+#define QMK_VIM_FIND VCMD(KC_F)
+#define QMK_VIM_SAVE VCMD(KC_S)
+#define QMK_VIM_X KC_DEL
+#define QMK_VIM_SHIFT_X KC_BSPC
 
 // Process function to handle text objects ie in or around word
 bool process_text_objects(uint16_t keycode, const keyrecord_t *record);
@@ -42,7 +42,7 @@ void yank_action(void);
 void yank_line_action(void);
 // The paste action
 void paste_action(void);
-#ifdef VIM_PASTE_BEFORE
+#ifdef QMK_VIM_PASTE_BEFORE
 // Paste before, ie P
 void paste_before_action(void);
 #endif
@@ -64,11 +64,11 @@ void start_yank_action(void);
 // variables such that process_text_objects can be used without calling a random action
 void start_visual_action(void);
 
-#ifdef VIM_REPLACE
+#ifdef QMK_VIM_REPLACE
 void replace_action(void);
 #endif
 
-#ifdef VIM_DOT_REPEAT
+#ifdef QMK_VIM_DOT_REPEAT
 void start_recording_repeat(void);
 void add_repeat_keycode(uint16_t keycode);
 void repeat_action(const keyrecord_t *record);

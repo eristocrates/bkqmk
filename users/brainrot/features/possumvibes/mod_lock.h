@@ -3,9 +3,9 @@
 #include QMK_KEYBOARD_H
 
 typedef struct {
-    bool          locking;
-    uint16_t      mod;
-    uint16_t      trigger;
+    bool     locking;
+    uint16_t mod;
+    uint16_t trigger;
 } mod_lock_state_t;
 
 extern mod_lock_state_t mod_lock_states[];

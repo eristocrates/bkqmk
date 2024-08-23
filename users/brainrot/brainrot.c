@@ -6,6 +6,10 @@
 
 // Timers
 static uint16_t last_keycode_timer = 0;
+void            keyboard_post_init_user() {
+    enable_vim_mode();
+    enable_vim_emulation();
+}
 
 // piercing holds
 uint16_t tap_keycode;
@@ -13,7 +17,7 @@ uint16_t hold_keycode;
 uint16_t hold_mod;
 
 // for SCN
-bool is_ALT___Roggled = false;
+bool is_scan_toggled = false;
 
 /* Return an integer that corresponds to what kind of tap dance should be executed.
  *
@@ -266,7 +270,13 @@ static bool process_consecutive_key(keyrecord_t *record, uint16_t current_keycod
 static bool process_tap_or_long_press_key(keyrecord_t *record, uint16_t long_press_keycode) {
     if (record->tap.count == 0) { // Key is being held.
         if (record->event.pressed) {
+            if (is_caps_word_on()) {
+                register_code(KC_LSFT);
+            }
             tap_code16(long_press_keycode);
+            if (is_caps_word_on()) {
+                unregister_code(KC_LSFT);
+            }
         }
         return false; // Skip default handling.
     }
@@ -305,13 +315,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // bool is_shifted = (get_mods() & MOD_MASK_SHIFT) || (get_oneshot_mods() & MOD_MASK_SHIFT);
 
     if (!process_vim_mode(keycode, record)) {
-        return false;
+        return !vim_emulation_enabled();
     }
 
     process_mod_lock(keycode, record);
     process_nshot_state(keycode, record);
     process_layermodes(keycode, record);
     switch (keycode) {
+            /*------------------------------Break pointer mode on hold of tap hold------------------------------*/
+        case SML_SPC:
+        case CTRL__R:
+            if (record->event.pressed) {
+                pointer_mode_disable();
+            }
+            return true;
             /*------------------------------piercing mods------------------------------*/
             // powerful stuff, unironically surprised myself with this one
             // TODO think of keys that would want to be tapped, prefereably without wanting other mods
@@ -320,7 +337,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case GLTOUTR:
         case CLTOUTR:
         case ALTOUTR:
-        case TH____X:
+
             tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
             hold_keycode = tap_keycode;
             if (IS_LAYER_ON(_GUIPR)) {
@@ -342,7 +359,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case GLTPNKY:
         case CLTPNKY:
         case ALTPNKY:
-        case TH____V:
 
             tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
             hold_keycode = tap_keycode;
@@ -365,7 +381,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case GLTRING:
         case CLTRING:
         case ALTRING:
-        case TH____G:
+
             tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
             hold_keycode = tap_keycode;
             if (IS_LAYER_ON(_GUIPR)) {
@@ -386,7 +402,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case GLTMDLE:
         case CLTMDLE:
         case ALTMDLE:
-        case TH____M:
+
             tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
             hold_keycode = tap_keycode;
             if (IS_LAYER_ON(_GUIPR)) {
@@ -407,7 +423,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case GLTINDX:
         case CLTINDX:
         case ALTINDX:
-        case TH____P:
+
             tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
             hold_keycode = tap_keycode;
             if (IS_LAYER_ON(_GUIPR)) {
@@ -426,7 +442,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
-        // TODO think of cool things arcane could do on hold
         case GLTINNR:
         case CLTINNR:
         case ALTINNR:
@@ -435,13 +450,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case GRTOUTR:
         case CRTOUTR:
         case ARTOUTR:
-            // arcane
-            return false;
 
-        case GRHINDX:
-        case CRHINDX:
-        case ARHINDX:
-        case TH____A:
             tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
             hold_keycode = tap_keycode;
             if (IS_LAYER_ON(_GUIPR)) {
@@ -459,6 +468,628 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             return false;
+        case GRTPNKY:
+        case CRTPNKY:
+        case ARTPNKY:
+
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GRTRING:
+        case CRTRING:
+        case ARTRING:
+
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GRTMDLE:
+        case CRTMDLE:
+        case ARTMDLE:
+
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GRTINDX:
+        case CRTINDX:
+        case ARTINDX:
+
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GRTINNR:
+        case CRTINNR:
+        case ARTINNR:
+            // arcane
+            return false;
+        case GLHOUTR:
+        case CLHOUTR:
+        case ALHOUTR:
+
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GLHPNKY:
+        case CLHPNKY:
+        case ALHPNKY:
+
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GLHRING:
+        case CLHRING:
+        case ALHRING:
+
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GLHMDLE:
+        case CLHMDLE:
+        case ALHMDLE:
+
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GLHINDX:
+        case CLHINDX:
+        case ALHINDX:
+
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GLHINNR:
+        case CLHINNR:
+        case ALHINNR:
+            // backspace
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GRHOUTR:
+        case CRHOUTR:
+        case ARHOUTR:
+            //
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GRHPNKY:
+        case CRHPNKY:
+        case ARHPNKY:
+
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+
+        case GRHRING:
+        case CRHRING:
+        case ARHRING:
+
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GRHMDLE:
+        case CRHMDLE:
+        case ARHMDLE:
+
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+
+        case GRHINDX:
+        case CRHINDX:
+        case ARHINDX:
+
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+
+        case GRHINNR:
+        case CRHINNR:
+        case ARHINNR:
+            // delete
+            return false;
+        case GLBOUTR:
+        case CLBOUTR:
+        case ALBOUTR:
+            // core leader key
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GLBPNKY:
+        case CLBPNKY:
+        case ALBPNKY:
+
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GLBRING:
+        case CLBRING:
+        case ALBRING:
+
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GLBMDLE:
+        case CLBMDLE:
+        case ALBMDLE:
+
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GLBINDX:
+        case CLBINDX:
+        case ALBINDX:
+
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GLBINNR:
+        case CLBINNR:
+        case ALBINNR:
+            // arcane
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GRBOUTR:
+        case CRBOUTR:
+        case ARBOUTR:
+            // test
+            return false;
+        case GRBPNKY:
+        case CRBPNKY:
+        case ARBPNKY:
+            // parenthesis closing
+            tap_keycode  = KC_NO;
+            hold_keycode = tap_keycode;
+            hold_mod     = 0;
+            if (IS_LAYER_ON(_GUIPR)) {
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                tap_keycode = KC_RBRC;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                tap_keycode = KC_RCBR;
+            } else {
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GRBRING:
+        case CRBRING:
+        case ARBRING:
+            // period
+            tap_keycode  = KC_NO;
+            hold_keycode = tap_keycode;
+            hold_mod     = 0;
+            if (IS_LAYER_ON(_GUIPR)) {
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                tap_keycode = KC_QUES;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                tap_keycode = KC_EXLM;
+            } else {
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                    if (is_caps_word_on()) {
+                        tap_code16(KC_SPC);
+                    }
+                }
+            }
+            return false;
+        case GRBMDLE:
+        case CRBMDLE:
+        case ARBMDLE:
+            // comma
+            tap_keycode  = KC_NO;
+            hold_keycode = tap_keycode;
+            hold_mod     = 0;
+            if (IS_LAYER_ON(_GUIPR)) {
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                tap_keycode = KC_COLN;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                tap_keycode = KC_SLSH;
+            } else {
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GRBINDX:
+        case CRBINDX:
+        case ARBINDX:
+            // parenthesis opening
+            tap_keycode  = KC_NO;
+            hold_keycode = tap_keycode;
+            hold_mod     = 0;
+            if (IS_LAYER_ON(_GUIPR)) {
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                tap_keycode = KC_LBRC;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                tap_keycode = KC_LCBR;
+            } else {
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GRBINNR:
+        case CRBINNR:
+        case ARBINNR:
+            // arcane
+            return false;
+
+        case GLLTHMB:
+        case CLLTHMB:
+        case ALLTHMB:
+            // math/tab
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GLMTHMB:
+        case CLMTHMB:
+        case ALMTHMB:
+
+            return true;
+        case GLRTHMB:
+        case CLRTHMB:
+        case ALRTHMB:
+            // left space
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GRLTHMB:
+        case CRLTHMB:
+        case ARLTHMB:
+            // right space
+            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            hold_keycode = tap_keycode;
+            if (IS_LAYER_ON(_GUIPR)) {
+                hold_mod = KC_LGUI;
+            } else if (IS_LAYER_ON(_CTRLPR)) {
+                hold_mod = KC_LCTL;
+            } else if (IS_LAYER_ON(_ALTPR)) {
+                hold_mod = KC_LALT;
+            } else {
+                hold_mod = KC_LSFT;
+            }
+            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
+                if (record->event.pressed) {
+                    tap_code16(tap_keycode);
+                }
+            }
+            return false;
+        case GRMTHMB:
+        case CRMTHMB:
+        case ARMTHMB:
+
+            return true;
+
             /*------------------------------consequtive keys------------------------------*/
             /* ya now i see why tap dances need tapping term（︶^︶）
             BUT! from that realization i still think this can be pretty useful
@@ -468,9 +1099,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return true;
             */
         /*------------------------------smart layers------------------------------*/
-        case VIMMOTIONMODE:
-            return vim_motion_mode_enable(record);
-
         case POINTERMODE:
             return pointer_mode_enable(record);
 
@@ -530,21 +1158,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return true;
         /*------------------------------split spaces------------------------------*/
-        case KC_LSPC: {
+        // TODO decide if these are worth it
+        case KC_LSPC:
             if (record->event.pressed) {
-                register_code(KC_SPC);
-            } else {
-                unregister_code(KC_SPC);
+                tap_code(KC_SPC);
             }
-        }
             return true;
-        case KC_RSPC: {
+        case KC_RSPC:
             if (record->event.pressed) {
-                register_code(KC_SPC);
-            } else {
-                unregister_code(KC_SPC);
+                tap_code(KC_SPC);
             }
-        }
             return true;
         /*------------------------------shortcuts------------------------------*/
         case SH_RMDT:
@@ -558,12 +1181,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case SCN_TOG:
             if (record->event.pressed) {
-                if (is_ALT___Roggled) {
+                if (is_scan_toggled) {
                     unregister_mods(MOD_BIT(KC_LSFT)); // Unregister Shift
-                    is_ALT___Roggled = false;
+                    is_scan_toggled = false;
                 } else {
                     register_mods(MOD_BIT(KC_LSFT)); // Register Shift
-                    is_ALT___Roggled = true;
+                    is_scan_toggled = true;
                 }
             }
             return false; // Skip all further processing of this key
@@ -572,60 +1195,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         // TODO figure out appropriate shift overrides/holds for vim versions of semantic keys eg save tap/save all hold
         case SM_COPY:
             if (record->event.pressed) {
-                if (vim_enabled) {
-                    // Send 'y' for copy in Vim
-                    tap_code(KC_Y);
-                } else {
-                    // Send Ctrl+C for copy
-                    register_code(KC_LCTL);
-                    tap_code(KC_C);
-                    unregister_code(KC_LCTL);
-                }
+                // Send Ctrl+C for copy
+                register_code(KC_LCTL);
+                tap_code(KC_C);
+                unregister_code(KC_LCTL);
             }
             return false;
         case SM_CUT:
             if (record->event.pressed) {
-                if (vim_enabled) {
-                    // Send 'd' for cut in Vim
-                    tap_code(KC_D);
-                } else {
-                    // Send Ctrl+X for cut
-                    register_code(KC_LCTL);
-                    tap_code(KC_X);
-                    unregister_code(KC_LCTL);
-                }
+                // Send Ctrl+X for cut
+                register_code(KC_LCTL);
+                tap_code(KC_X);
+                unregister_code(KC_LCTL);
             }
             return false;
         case SM_PASTE:
             if (record->event.pressed) {
-                if (vim_enabled) {
-                    // Send 'p' for paste in Vim
-                    tap_code(KC_P);
-                    if (smart_space_mode) {
-                        // TODO double check if this is actually a good feel
-                        tap_code(KC_O);
-                        tap_code(KC_ESC);
-                    }
-                } else {
-                    // Send Ctrl+V for paste
-                    register_code(KC_LCTL);
-                    tap_code(KC_V);
-                    unregister_code(KC_LCTL);
-                }
+                // Send Ctrl+V for paste
+                register_code(KC_LCTL);
+                tap_code(KC_V);
+                unregister_code(KC_LCTL);
             }
             return false;
         case SM_SAVE:
             if (record->event.pressed) {
-                if (vim_enabled) {
-                    // Send ':w' for save in Vim
-                    SEND_STRING(":w");
-                    tap_code(KC_ENT);
-                } else {
-                    // Send Ctrl+S for save
-                    register_code(KC_LCTL);
-                    tap_code(KC_S);
-                    unregister_code(KC_LCTL);
-                }
+                // Send Ctrl+S for save
+                register_code(KC_LCTL);
+                tap_code(KC_S);
+                unregister_code(KC_LCTL);
             }
             return false;
         case SM_SNAP:
@@ -670,9 +1267,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case MD_YOU:
             if (record->event.pressed) {
                 send_string_with_caps_word("you");
-                if (smart_space_mode) {
-                    tap_code(KC_SPC);
-                }
             }
             return true;
         case MD_GH:
@@ -712,6 +1306,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             return true;
+        case MD_OULD:
+            if (record->event.pressed) {
+                send_string_with_caps_word("ould");
+                if (smart_space_mode) {
+                    tap_code(KC_SPC);
+                }
+            }
+            return true;
         case MD_BSPC:
             if (record->event.pressed) {
                 if (delete_word_mode) {
@@ -744,27 +1346,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 kana_input_mode = !kana_input_mode;
             }
             return false;
-        case MD_YES:
+        case KC_ENT:
             if (record->event.pressed) {
                 if (work_mode) {
                     register_code(KC_LCTL);
                     tap_code(KC_H);
                     unregister_code(KC_LCTL);
-                } else {
-                    tap_code(KC_ENTER);
+                    return false;
                 }
             }
-            return true;
-        case MD_NO:
-            if (record->event.pressed) {
-                tap_code(KC_ESC);
-            }
-            return true;
+            return false;
         case MD_RNPO:
             if (record->event.pressed) {
-                if (pair_mode) {
-                    SEND_STRING("()");
-                    tap_code(KC_LEFT);
+                if (autopair_mode) {
+                    send_autopair(KC_LPRN, KC_RPRN, record);
                 } else {
                     tap_code16(KC_LPRN);
                 }
@@ -772,9 +1367,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case MD_SQPO:
             if (record->event.pressed) {
-                if (pair_mode) {
-                    SEND_STRING("[]");
-                    tap_code(KC_LEFT);
+                if (autopair_mode) {
+                    send_autopair(KC_LBRC, KC_RBRC, record);
                 } else {
                     tap_code16(KC_LBRC);
                 }
@@ -782,9 +1376,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case MD_CRPO:
             if (record->event.pressed) {
-                if (pair_mode) {
-                    SEND_STRING("{}");
-                    tap_code(KC_LEFT);
+                if (autopair_mode) {
+                    send_autopair(KC_LCBR, KC_RCBR, record);
                 } else {
                     tap_code16(KC_LCBR);
                 }
@@ -830,18 +1423,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
         }
             return false;
-        case COM_ARC: {
+            /*
+        case COM_ARC:
             if (record->event.pressed) {
                 process_comma_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
             }
-        }
+
             return false;
-        case DOT_ARC: {
+        case DOT_ARC:
             if (record->event.pressed) {
                 process_dot_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
             }
-        }
+
             return false;
+            */
 
         /*------------------------------secrets------------------------------*/
         case SECRET1: {
@@ -859,7 +1454,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         /*------------------------------vim------------------------------*/
         case VIM_TOG:
             if (record->event.pressed) {
-                toggle_vim_mode();
+                toggle_vim_emulation();
             }
             return false;
         case VIM_G_:
@@ -888,6 +1483,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
+        /*-----------------------------other------------------------------*/
+        case KC_RTAB:
+            if (record->event.pressed) {
+                tap_code(KC_TAB);
+            }
+            return true;
+        case KC_LTAB:
+            if (record->event.pressed) {
+                register_code(KC_LSFT);
+                tap_code(KC_TAB);
+                unregister_code(KC_LSFT);
+            }
+
         default:
             return true; // Process all other keycodes normally
     }
@@ -895,7 +1503,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
         switch (keycode) {
-            // TODO move smart space cases here
+            // TODO try moving smart space cases here
             case KC_QUES:
             case KC_EXLM:
                 if (smart_space_mode) {
@@ -916,6 +1524,7 @@ bool remember_last_key_user(uint16_t keycode, keyrecord_t *record, uint8_t *reme
         case RBM_ARC:
         case COM_ARC:
         case DOT_ARC:
+        case OSLBASE:
             return false; // Arcane keys will ignore the above keycodes.
     }
     last_keycode_timer = timer_read();
@@ -975,7 +1584,7 @@ void leader_end_user(void) {
     if (leader_sequence_two_keys(KC_K, KC_B)) {
             layer_on(_KEYBOARD);
     } else
-    if (leader_sequence_three_keys(KC_7, KC_2, KC_7)) {
+    if (leader_sequence_four_keys(KC_S, KC_C, KC_R, KC_T)) {
             layer_on(_SECRET);
     } else
 
@@ -983,7 +1592,7 @@ void leader_end_user(void) {
     if (leader_sequence_two_keys(KC_F, KC_L)) { // bootloader
             reset_keyboard();
     }
-    if (leader_sequence_three_keys(KC_R, KC_D, KC_P)) {
+    if (leader_sequence_three_keys(KC_R, KC_D, KC_T)) {
                 call_keycode(SH_RMDT);
     } else
     if (leader_sequence_two_keys(KC_C, KC_P)) {
@@ -1016,7 +1625,8 @@ bool caps_word_press_user(uint16_t keycode) {
         case KC_UNDS:
         case TD(TBW):
         case TD(TDW):
-
+        case SML_SPC:
+        case SMR_SPC:
         // special keys that need to not break caps word but apply shift on their own
         case KC_TH:
         case KC_IN:
@@ -1047,7 +1657,6 @@ bool process_combo_key_release(uint16_t combo_INDXex, combo_t *combo, uint8_t ke
         case CB_THE:
         case CB_AND:
         case CB_FOR:
-        case CB_YOU:
         case CB_INGL:
         case CB_INGR:
         case CB_SION:
@@ -1065,4 +1674,80 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     state = update_tri_layer_state(state, _CTRLPR, _ALTPR, _GUIPR);
     // TODO might as well find an excuse to put layer taps on my spaces and add a tri layer here
     return state;
+}
+// TODO think of cool things arcane could do on hold
+bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case CTRL__R:
+        case ALT___T:
+        /*
+        case DOT_ARC:
+        case COM_ARC:
+        */
+        case SML_SPC:
+        case SMR_SPC:
+            return true;
+        default:
+            return false;
+    }
+}
+void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
+    switch (keycode) {
+        case DOT_ARC:
+            if (!shifted) {
+                process_dot_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
+            } else {
+                if (semicolon_mode) {
+                    tap_code16(KC_SCLN);
+                    tap_code16(KC_ENT);
+                } else {
+                    tap_code16(KC_DOT);
+                }
+            }
+            break;
+        case COM_ARC:
+            if (!shifted) {
+                process_comma_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
+            } else {
+                tap_code16(KC_COMM);
+            }
+            break;
+        case SML_SPC:
+            if (!shifted) {
+                tap_code16(KC_SPC);
+            } else {
+                tap_code16(KC_UNDS);
+            }
+            break;
+        case SMR_SPC:
+            if (!shifted) {
+                tap_code16(KC_SPC);
+            } else {
+                tap_code16(KC_UNDS);
+            }
+
+            break;
+        default:
+            if (shifted) {
+                add_weak_mods(MOD_BIT(KC_LSFT));
+            }
+            // & 0xFF gets the Tap key for Tap Holds, required when using Retro Shift
+            register_code16((IS_RETRO(keycode)) ? keycode & 0xFF : keycode);
+    }
+}
+void insert_mode_user(void) {
+    layer_off(_VIMMOTION);
+}
+void normal_mode_user(void) {
+    layer_on(_VIMMOTION);
+}
+void visual_mode_user(void) {
+    if (IS_LAYER_OFF(_VIMMOTION)) {
+        layer_on(_VIMMOTION);
+    }
+}
+void visual_line_mode_user(void) {
+    if (IS_LAYER_OFF(_VIMMOTION)) {
+        layer_on(_VIMMOTION);
+    }
 }

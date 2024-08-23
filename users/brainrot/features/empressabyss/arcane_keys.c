@@ -270,7 +270,8 @@ void process_bottom_left_arcane(uint16_t keycode, uint8_t mods) {
         case KC_R: {
             ARCANE_STRING("r", KC_R);
         } break;
-        case KC_LSPC: {
+        // case KC_LSPC: {
+        case KC_SPC: {
             ARCANE_STRING("r", KC_R);
         } break;
 
@@ -393,7 +394,8 @@ void process_bottom_right_arcane(uint16_t keycode, uint8_t mods) {
         case KC_T: {
             ARCANE_STRING("t", KC_T);
         } break;
-        case KC_RSPC: {
+        // case KC_RSPC: {
+        case KC_SPC: {
             ARCANE_STRING("t", KC_T);
         } break;
 
@@ -433,6 +435,9 @@ void process_comma_arcane(uint16_t keycode, uint8_t mods) {
         case KC_Y:
         case KC_Z:
             ARCANE_STRING(",", KC_COMM);
+            if (smart_space_mode) {
+                tap_code(KC_BSPC);
+            }
             break;
         default:
             add_oneshot_mods(MOD_LSFT);

@@ -45,53 +45,13 @@ void pointer_mode_process(uint16_t keycode, keyrecord_t *record) {
         case KC_UP:
         case PNTROPT:
         case PNTRNAV:
-        case MD_YES:
+        case KC_ENT:
             // process the code and stay in the mode *dabs*
             break;
         default:
             // All other keys disable the layer mode on keyup.
             if (!record->event.pressed) {
                 pointer_mode_disable();
-            }
-            break;
-    }
-}
-
-/* -------- Vim Motion Mode -------- */
-static bool _vim_motion_mode_active = false;
-// Turn number mode on. To be called from a custom keycode
-bool vim_motion_mode_enable(keyrecord_t *record) {
-    _vim_motion_mode_active = true;
-    layer_on(_VIMMOTION);
-    return false;
-}
-
-// Turn number mode off.
-void vim_motion_mode_disable(void) {
-    _vim_motion_mode_active = false;
-    layer_off(_VIMMOTION);
-}
-
-void vim_motion_mode_process(uint16_t keycode, keyrecord_t *record) {
-    // Assess if we should exit layermode or continue processing normally.
-    switch (keycode) {
-        case OS_LSFT ... OSR_SFT:
-        case KC_1 ... KC_0:
-        case KC_P:
-        case KC_Y:
-        case MATH:
-        case KC_H:
-        case KC_K:
-        case KC_J:
-        case KC_L:
-        case LBM_ARC:
-        case CTRL__R:
-            // process the code and stay in the mode *dabs*
-            break;
-        default:
-            // All other keys disable the layer mode on keyup.
-            if (!record->event.pressed) {
-                vim_motion_mode_disable();
             }
             break;
     }
@@ -218,8 +178,6 @@ void macro_mode_process(uint16_t keycode, keyrecord_t *record) {
 void process_layermodes(uint16_t keycode, keyrecord_t *record) {
     if (_pointer_mode_active) {
         pointer_mode_process(keycode, record);
-    } else if (_vim_motion_mode_active) {
-        vim_motion_mode_process(keycode, record);
     } else if (_math_mode_active) {
         math_mode_process(keycode, record);
     } else if (_func_mode_active) {

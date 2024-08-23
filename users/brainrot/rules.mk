@@ -5,6 +5,7 @@ COMBO_ENABLE = yes
 LEADER_ENABLE = yes
 CAPS_WORD_ENABLE = yes
 CONSOLE_ENABLE = yes
+AUTO_SHIFT_ENABLE = yes
 
 # Disable unused features
 VIA_ENABLE = no

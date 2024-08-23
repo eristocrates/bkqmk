@@ -5,18 +5,19 @@
 enum layers {
     _BRAINROT,
     _COMBOREF,
-    // _SHIFTPR,
+    _VIMMOTION,
     _CTRLPR,
     _ALTPR,
     _GUIPR,
+    _SYML,
+    _SYMR,
     _POINTER,
     _POINTEROPT,
     _POINTERNAV,
     _MATH,
-    _VIMMOTION,
     _FUNCTION,
     _MEDIA,
-    _NSHOT,
+    _ONESHOT,
     _GAME,
     _THINQU,
     _THINQUL,
@@ -77,6 +78,8 @@ enum keycodes {
     // split spaces
     KC_LSPC,
     KC_RSPC,
+    KC_LTAB,
+    KC_RTAB,
     // shortcuts
     SH_RMDT, // remote desktop window toggle
     SCN_TOG, // yomitan scan modifier
@@ -268,6 +271,17 @@ enum keycodes {
 /* ---------- Aliases ---------- */
 // macros
 
+#define OSMLGUI OSM(MOD_LGUI)
+#define OSMRGUI OSM(MOD_RGUI)
+#define OSMLSFT OSM(MOD_LSFT)
+#define OSMRSFT OSM(MOD_RSFT)
+#define OSMLCTL OSM(MOD_LCTL)
+#define OSMRCTL OSM(MOD_RCTL)
+#define OSMLALT OSM(MOD_LALT)
+#define OSMRALT OSM(MOD_RALT)
+#define OSMMEH OSM(MOD_MEH)
+#define OSMHYPR OSM(MOD_HYPR)
+
 #define TH(k) LT(_BRAINROT, k)
 #define SG(k) LT(_SHIFTPR, k)
 #define CG(k) LT(_CTRLPR, k)
@@ -283,6 +297,8 @@ enum keycodes {
 // layer taps
 #define CTRL__R LT(_CTRLPR, KC_R)
 #define ALT___T LT(_ALTPR, KC_T)
+#define SML_SPC LT(_SYML, KC_SPC)
+#define SMR_SPC LT(_SYMR, KC_SPC)
 #define MATH_TB LT(_MATH, KC_TAB)
 // default LTs
 #define PT_Z LT(_POINTER, KC_Z)
@@ -298,17 +314,24 @@ enum keycodes {
 #define MEDIA OSL(_MEDIA)
 #define PNTROPT OSL(_POINTEROPT)
 #define PNTRNAV OSL(_POINTERNAV)
+#define OSLBASE OSL(_BRAINROT)
 
 #define KEYBRD TG(_KEYBOARD)
 #define MATH TG(_MATH)
 #define RANDOM TG(_RANDOM)
+
+// vim motions
+#define VIM_LFT KC_H
+#define VIM_DWN KC_J
+#define VIM__UP KC_K
+#define VIM_RGT KC_L
 
 // TODO clean up these rejects from brainrot_layout.h
 #define PT_K LT(_POINTER, KC_K)
 #define PT_H LT(_POINTER, KC_H)
 #define VIMNV_S LT(_VIMMOTION, KC_SPC)
 #define PNT_T(k0) LT(_POINTER, k0)
-#define _T(k0) LT(_NSHOT, k0)
+#define _T(k0) LT(_ONESHOT, k0)
 #define VIMNAV_T(k0) LT(_VIMMOTION, k0)
 
 // TODO go through these and apply them
@@ -360,32 +383,54 @@ enum keycodes {
 
 // standardized width keycodes
 #define KC___UP KC_UP
+#define KC____A KC_A
+#define KC____B KC_B
+#define KC____C KC_C
+#define KC____D KC_D
+#define KC____E KC_E
+#define KC____F KC_F
+#define KC____G KC_G
+#define KC____H KC_H
+#define KC____I KC_I
+#define KC____J KC_J
+#define KC____K KC_K
+#define KC____L KC_L
+#define KC____M KC_M
+#define KC____N KC_N
+#define KC____O KC_O
+#define KC____P KC_P
+#define KC____Q KC_Q
+#define KC____R KC_R
+#define KC____S KC_S
+#define KC____T KC_T
+#define KC____U KC_U
+#define KC____V KC_V
+#define KC____W KC_W
+#define KC____X KC_X
+#define KC____Y KC_Y
+#define KC____Z KC_Z
+#define KC__DOT KC_DOT
 
 // custom tap holds grouped by row
 #define GLTOUTR GG(LT_OUTR)
 #define CLTOUTR CG(LT_OUTR)
 #define ALTOUTR AG(LT_OUTR)
-#define TH____X TH(KC_X)
 
 #define GLTPNKY GG(LT_PNKY)
 #define CLTPNKY CG(LT_PNKY)
 #define ALTPNKY AG(LT_PNKY)
-#define TH____V TH(KC_V)
 
 #define GLTRING GG(LT_RING)
 #define CLTRING CG(LT_RING)
 #define ALTRING AG(LT_RING)
-#define TH____G TH(KC_G)
 
 #define GLTMDLE GG(LT_MDLE)
 #define CLTMDLE CG(LT_MDLE)
 #define ALTMDLE AG(LT_MDLE)
-#define TH____M TH(KC_M)
 
 #define GLTINDX GG(LT_INDX)
 #define CLTINDX CG(LT_INDX)
 #define ALTINDX AG(LT_INDX)
-#define TH____P TH(KC_P)
 
 #define GLTINNR GG(LT_INNR)
 #define CLTINNR CG(LT_INNR)
@@ -400,52 +445,42 @@ enum keycodes {
 #define GRTPNKY GG(RT_PNKY)
 #define CRTPNKY CG(RT_PNKY)
 #define ARTPNKY AG(RT_PNKY)
-#define TH____U TH(KC_U)
 
 #define GRTRING GG(RT_RING)
 #define CRTRING CG(RT_RING)
 #define ARTRING AG(RT_RING)
-#define TH____O TH(KC_O)
 
 #define GRTMDLE GG(RT_MDLE)
 #define CRTMDLE CG(RT_MDLE)
 #define ARTMDLE AG(RT_MDLE)
-#define TH____Y TH(KC_Y)
 
 #define GRTINDX GG(RT_INDX)
 #define CRTINDX CG(RT_INDX)
 #define ARTINDX AG(RT_INDX)
-#define TH____B TH(KC_B)
 
 #define GRTINNR GG(RT_INNR)
 #define CRTINNR CG(RT_INNR)
 #define ARTINNR AG(RT_INNR)
-#define TH____Z TH(KC_Z)
 
 #define GLHOUTR GG(LH_OUTR)
 #define CLHOUTR CG(LH_OUTR)
 #define ALHOUTR AG(LH_OUTR)
-#define TH____J TH(KC_J)
 
 #define GLHPNKY GG(LH_PNKY)
 #define CLHPNKY CG(LH_PNKY)
 #define ALHPNKY AG(LH_PNKY)
-#define TH____K TH(KC_K)
 
 #define GLHRING GG(LH_RING)
 #define CLHRING CG(LH_RING)
 #define ALHRING AG(LH_RING)
-#define TH____S TH(KC_S)
 
 #define GLHMDLE GG(LH_MDLE)
 #define CLHMDLE CG(LH_MDLE)
 #define ALHMDLE AG(LH_MDLE)
-#define TH____N TH(KC_N)
 
 #define GLHINDX GG(LH_INDX)
 #define CLHINDX CG(LH_INDX)
 #define ALHINDX AG(LH_INDX)
-#define TH____D TH(KC_D)
 
 #define GLHINNR GG(LH_INNR)
 #define CLHINNR CG(LH_INNR)
@@ -460,22 +495,18 @@ enum keycodes {
 #define GRHPNKY GG(RH_PNKY)
 #define CRHPNKY CG(RH_PNKY)
 #define ARHPNKY AG(RH_PNKY)
-#define TH____A TH(KC_A)
 
 #define GRHRING GG(RH_RING)
 #define CRHRING CG(RH_RING)
 #define ARHRING AG(RH_RING)
-#define TH____E TH(KC_E)
 
 #define GRHMDLE GG(RH_MDLE)
 #define CRHMDLE CG(RH_MDLE)
 #define ARHMDLE AG(RH_MDLE)
-#define TH____I TH(KC_I)
 
 #define GRHINDX GG(RH_INDX)
 #define CRHINDX CG(RH_INDX)
 #define ARHINDX AG(RH_INDX)
-#define TH____H TH(KC_H)
 
 #define GRHINNR GG(RH_INNR)
 #define CRHINNR CG(RH_INNR)
@@ -490,22 +521,18 @@ enum keycodes {
 #define GLBPNKY GG(LB_PNKY)
 #define CLBPNKY CG(LB_PNKY)
 #define ALBPNKY AG(LB_PNKY)
-#define TH____W TH(KC_W)
 
 #define GLBRING GG(LB_RING)
 #define CLBRING CG(LB_RING)
 #define ALBRING AG(LB_RING)
-#define TH____F TH(KC_F)
 
 #define GLBMDLE GG(LB_MDLE)
 #define CLBMDLE CG(LB_MDLE)
 #define ALBMDLE AG(LB_MDLE)
-#define TH____L TH(KC_L)
 
 #define GLBINDX GG(LB_INDX)
 #define CLBINDX CG(LB_INDX)
 #define ALBINDX AG(LB_INDX)
-#define TH____C TH(KC_C)
 
 #define GLBINNR GG(LB_INNR)
 #define CLBINNR CG(LB_INNR)
@@ -550,7 +577,6 @@ enum keycodes {
 #define GLMTHMB GG(L_MTHMB)
 #define CLMTHMB CG(L_MTHMB)
 #define ALMTHMB AG(L_MTHMB)
-#define TH____R TH(KC_R)
 
 #define GLRTHMB GG(L_RTHMB)
 #define CLRTHMB CG(L_RTHMB)
@@ -565,4 +591,3 @@ enum keycodes {
 #define GRMTHMB GG(R_MTHMB)
 #define CRMTHMB CG(R_MTHMB)
 #define ARMTHMB AG(R_MTHMB)
-#define TH____T TH(KC_T)

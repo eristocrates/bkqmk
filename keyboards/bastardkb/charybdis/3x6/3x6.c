@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "quantum.h"
+#include QMK_KEYBOARD_H
 
 #define LED_FLAG_MODLIGHT 0x05
 #define LED_FLAG_INDLIGHT 0x12
