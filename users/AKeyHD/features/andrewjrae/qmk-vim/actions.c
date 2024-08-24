@@ -45,14 +45,14 @@ static bool process_vim_action(uint16_t keycode, const keyrecord_t *record) {
 
     // handle double taps, ie cc, yy, dd
     if (record->event.pressed) {
-        if (keycode == action_key) {
+        if (vim_emulation && keycode == action_key) {
             // for the change action
-            if (action_func == change_action) {
+            if (vim_emulation && action_func == change_action) {
                 QMK_VIM_HOME();
                 QMK_VIM_SHIFT_END();
 #ifdef QMK_VIM_NUMBERED_JUMPS
                 extern int16_t motion_counter;
-                if (motion_counter > 0) {
+                if (vim_emulation && motion_counter > 0) {
                     tap_code16(LSFT(KC_RIGHT));
                     decrement_motion_counter();
                     DO_NUMBERED_ACTION(tap_code16(LSFT(KC_DOWN)););
@@ -60,10 +60,12 @@ static bool process_vim_action(uint16_t keycode, const keyrecord_t *record) {
 #endif
                 action_func();
             } else {
-                QMK_VIM_END();
-                tap_code(KC_RIGHT);
-                tap_code(KC_UP);
-                DO_NUMBERED_ACTION(tap_code16(LSFT(KC_DOWN)););
+                if (vim_emulation) {
+                    QMK_VIM_END();
+                    tap_code(KC_RIGHT);
+                    tap_code(KC_UP);
+                    DO_NUMBERED_ACTION(tap_code16(LSFT(KC_DOWN)););
+                }
                 action_func();
                 yanked_line = true;
             }

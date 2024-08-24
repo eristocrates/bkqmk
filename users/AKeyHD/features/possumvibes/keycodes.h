@@ -1,7 +1,7 @@
 #pragma once
 #include "quantum/keycodes.h"
 
-enum layers { LAYER_BRAINROT = 0, _COMBOREF, LAYER_QWERTY, _FUNCTION, _MATH, _KEYBOARD, _SYM, _VIMMOTION, _SYSTEM };
+enum layers { LAYER_akeyhd = 0, _COMBOREF, LAYER_QWERTY, _FUNCTION, _MATH, _KEYBOARD, _SYM, _VIMMOTION, _SYSTEM };
 
 enum custom_keycodes {
     // OS-specific utilities

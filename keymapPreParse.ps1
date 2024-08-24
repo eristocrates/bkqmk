@@ -1,5 +1,5 @@
 # Define the file path
-$filePath = "I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\brainrot\c2.json"
+$filePath = "I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\c2.json"
 
 # Read the content of the file
 $content = Get-Content -Path $filePath -Raw

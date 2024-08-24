@@ -1,5 +1,5 @@
 # Define the file path
-$filePath = "I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\brainrot\keymap.yaml"
+$filePath = "I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\keymap.yaml"
 
 # Read the content of the file
 $content = Get-Content -Path $filePath -Raw
@@ -7,7 +7,7 @@ $content = Get-Content -Path $filePath -Raw
 # TODO add logic to draw piercing mods
 # Replace all occurrences of the specified string
 $content = $content -replace "��", "''" # clean garbled XXXXXXX
-$content = $content -replace "L0", "Brainrot"
+$content = $content -replace "L0", "AKeyHD"
 #$content = $content -replace "LTP ARC", "{t: arcane, s: anti-sfb, h: repeat}"
 $content = $content -replace "\bL1\b", "Combo Reference"
 $content = $content -replace "\bL2\b", "Piercing Ctrl"

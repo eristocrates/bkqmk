@@ -3,7 +3,7 @@
 
 // TODO keep in sync with keymapPostParse.ps1
 enum layers {
-    _BRAINROT,
+    _akeyhd,
     _COMBOREF,
     _VIMMOTION,
     _CTRLPR,
@@ -117,6 +117,8 @@ enum keycodes {
     // arcane keys
     LTP_ARC,
     RTP_ARC,
+    LMD_ARC,
+    RMD_ARC,
     LBM_ARC,
     RBM_ARC,
     COM_ARC,
@@ -132,6 +134,8 @@ enum keycodes {
     KC_SQRT,
     // randumb
     KC_RAND,
+
+    KC_DBCL, // mouse double click
 
     /* physical layout comboref keys
     legend = hand_row_column/thumb button
@@ -282,14 +286,14 @@ enum keycodes {
 #define OSMMEH OSM(MOD_MEH)
 #define OSMHYPR OSM(MOD_HYPR)
 
-#define TH(k) LT(_BRAINROT, k)
+#define TH(k) LT(_akeyhd, k)
 #define SG(k) LT(_SHIFTPR, k)
 #define CG(k) LT(_CTRLPR, k)
 #define AG(k) LT(_ALTPR, k)
 #define GG(k) LT(_GUIPR, k)
 
 // base layers
-#define BASE TO(_BRAINROT)
+#define BASE TO(_akeyhd)
 #define QWERTY TO(_QWERTY)
 #define GAME TO(_GAME)
 #define THINQU TO(_THINQU)
@@ -314,7 +318,7 @@ enum keycodes {
 #define MEDIA OSL(_MEDIA)
 #define PNTROPT OSL(_POINTEROPT)
 #define PNTRNAV OSL(_POINTERNAV)
-#define OSLBASE OSL(_BRAINROT)
+#define OSLBASE OSL(_akeyhd)
 
 #define KEYBRD TG(_KEYBOARD)
 #define MATH TG(_MATH)
@@ -326,7 +330,7 @@ enum keycodes {
 #define VIM__UP KC_K
 #define VIM_RGT KC_L
 
-// TODO clean up these rejects from brainrot_layout.h
+// TODO clean up these rejects from akeyhd_layout.h
 #define PT_K LT(_POINTER, KC_K)
 #define PT_H LT(_POINTER, KC_H)
 #define VIMNV_S LT(_VIMMOTION, KC_SPC)

@@ -60,7 +60,7 @@ RT_OUTR, RT_PNKY, RT_RING, URM_R(RT_MDLE), RT_INDX, RT_INNR,       RH_OUTR, RH_P
 RB_OUTR, RB_PNKY, RB_RING,   RB_MDLE, RB_INDX, RB_INNR,       K7F,            R_LTHMB, K7D,  TRM_RM(R_MTHMB), K7B,     K7A
 
 /*/
-from I:\coding\bastardkb-qmk\.build\obj_bastardkb_charybdis_3x6_brainrot\src\default_keyboard.h
+from I:\coding\bastardkb-qmk\.build\obj_bastardkb_charybdis_3x6_akeyhd\src\default_keyboard.h
 #define LAYOUT(k0A, k0B, k0C, k0D, k0E, k0F, k4F, k4E, k4D, k4C, k4B, k4A, k1A, k1B, k1C, k1D, k1E, k1F, k5F, k5E, k5D, k5C, k5B, k5A, k2A, k2B, k2C, k2D, k2E, k2F, k6F, k6E, k6D, k6C, k6B, k6A, k3D, k3E, k3B, k7B, k7D) { \
 	 {k0A, k0B, k0C, k0D, k0E, k0F}, \
 	 {k1A, k1B, k1C, k1D, k1E, k1F}, \

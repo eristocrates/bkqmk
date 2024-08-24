@@ -11,7 +11,7 @@ AUTO_SHIFT_ENABLE = yes
 VIA_ENABLE = no
 #AUTOCORRECT_ENABLE = yes
 
-INTROSPECTION_KEYMAP_C = brainrot.c
+INTROSPECTION_KEYMAP_C = akeyhd.c
 
 # Add custom features
 SRC += features/andrewjrae/qmk-vim/mac_mode.c

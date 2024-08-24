@@ -1,12 +1,25 @@
+Import-Module BurntToast
+
+Add-Type -AssemblyName presentationCore
+$mediaPlayer = New-Object system.windows.media.mediaplayer
+
 # Define the paths
 $mingwPath = "I:\msys2\usr\bin\bash.exe"
-$keymapPathMingw = "I:/coding/bkqmk/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot"
-#$userspacePathMingw = "I:/coding/bkqmk/users/brainrot"
-$keymapPath = "I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\brainrot"
+$keymapPathMingw = "I:/coding/bkqmk/keyboards/bastardkb/charybdis/3x6/keymaps/akeyhd"
+#$userspacePathMingw = "I:/coding/bkqmk/users/akeyhd"
+$keymapPath = "I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd"
+# Play an MP3 sound
+# https://stackoverflow.com/questions/25895428/how-to-play-mp3-with-powershell-simple
+$filesDone = "I:\coding\bkqmk\files-done.mp3"
+$baka = "I:\coding\bkqmk\naruto-saying-baka.mp3"
+
+
+$logFilePath = "./qmk-output.log"
+$searchString = "Copying bastardkb_charybdis_3x6_akeyhd.uf2 to userspace folder"
 
 # Define the commands
-$compile2jsonCmd = "qmk compile -j 0 -kb bastardkb/charybdis/3x6 -km brainrot > qmk-output.log 2>&1 ; qmk c2json --no-cpp $keymapPathMingw/keymap.c > $keymapPathMingw/c2.json"
-#$compile2jsonCmd = "qmk generate-autocorrect-data $userspacePathMingw/autocorrect_dictionary.txt -kb bastardkb/charybdis/3x6 -km brainrot ; qmk compile -j 0 -kb bastardkb/charybdis/3x6 -km brainrot > qmk-output.log 2>&1 ; qmk c2json --no-cpp $keymapPathMingw/keymap.c > $keymapPathMingw/c2.json"
+$compile2jsonCmd = "qmk compile -j 0 -kb bastardkb/charybdis/3x6 -km akeyhd > qmk-output.log 2>&1 ; qmk c2json --no-cpp $keymapPathMingw/keymap.c > $keymapPathMingw/c2.json"
+#$compile2jsonCmd = "qmk generate-autocorrect-data $userspacePathMingw/autocorrect_dictionary.txt -kb bastardkb/charybdis/3x6 -km akeyhd ; qmk compile -j 0 -kb bastardkb/charybdis/3x6 -km akeyhd > qmk-output.log 2>&1 ; qmk c2json --no-cpp $keymapPathMingw/keymap.c > $keymapPathMingw/c2.json"
 
 
 #$keymapPreParseCmd = ".\keymapPreParse.ps1"
@@ -27,9 +40,23 @@ function Invoke-InMinGW {
 # Run the commands
 Invoke-InMinGW $compile2jsonCmd
 
-# Run the remaining commands in PowerShell
-#Invoke-Expression $keymapPreParseCmd
-Invoke-Expression $keymapParseCmd
-Invoke-Expression $keymapPostParseCmd
-Invoke-Expression $keymapDrawCmd1
-Invoke-Expression $keymapDrawCmd2
+
+if (Select-String -Path $logFilePath -Pattern $searchString) {
+    # Run the remaining commands in PowerShell
+    #Invoke-Expression $keymapPreParseCmd
+    Invoke-Expression $keymapParseCmd
+    Invoke-Expression $keymapPostParseCmd
+    Invoke-Expression $keymapDrawCmd1
+    Invoke-Expression $keymapDrawCmd2
+    Write-Output "Ding! Firmware done."
+New-BurntToastNotification -Text "QMK Compilation", "Ding! Firmware done."
+    $mediaPlayer.open($filesDone)
+}
+else {
+New-BurntToastNotification -Text "QMK Compilation", "You  done goofed baka"
+    Write-Output "You  done goofed baka"
+    $mediaPlayer.open($baka)
+}
+
+
+$mediaPlayer.Play()

@@ -14,5 +14,5 @@
 .venv
 
 # secure data
-users/brainrot/secret.h
+users/akeyhd/secret.h
 *.idx

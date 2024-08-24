@@ -49,33 +49,33 @@ jobs:
 
             - name: Run qmk c2json
               run: |
-                  qmk c2json ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.c > ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json
+                  qmk c2json ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/akeyhd/keymap.c > ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/akeyhd/c2.json
 
             - name: Run keymap parse
               run: |
-                  keymap parse -c 12 -q ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json > ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.yaml
+                  keymap parse -c 12 -q ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/akeyhd/c2.json > ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/akeyhd/keymap.yaml
 
             - name: Replace problematic characters in keymap.yaml
               run: |
-                  sed -i "s/��/''/g" ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.yaml
+                  sed -i "s/��/''/g" ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/akeyhd/keymap.yaml
 
             - name: Run keymap-drawer for keymap.yaml
               run: |
-                  keymap -c ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/config.yaml draw ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.yaml > ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.svg
+                  keymap -c ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/akeyhd/config.yaml draw ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/akeyhd/keymap.yaml > ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/akeyhd/keymap.svg
 
             - name: Run keymap-drawer for keymapDesign.yaml
               run: |
-                  keymap -c ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/config.yaml draw ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymapDesign.yaml > ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymapDesign.svg
+                  keymap -c ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/akeyhd/config.yaml draw ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/akeyhd/keymapDesign.yaml > ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/akeyhd/keymapDesign.svg
 
             - name: Check for changes
               id: git_status
               run: |
                   git config --global user.name 'github-actions[bot]'
                   git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-                  git add ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/c2.json
-                  git add ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.yaml
-                  git add ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymap.svg
-                  git add ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/brainrot/keymapDesign.svg
+                  git add ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/akeyhd/c2.json
+                  git add ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/akeyhd/keymap.yaml
+                  git add ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/akeyhd/keymap.svg
+                  git add ${{ github.workspace }}/keyboards/bastardkb/charybdis/3x6/keymaps/akeyhd/keymapDesign.svg
                   if git diff-index --quiet HEAD; then
                     echo "No changes to commit"
                     echo "::set-output name=changes::false"

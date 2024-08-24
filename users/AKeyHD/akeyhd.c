@@ -1,8 +1,11 @@
-#include "brainrot.h"
+#include "akeyhd.h"
+#include "_wait.h"
+#include "keycodes.h"
+#include "quantum.h"
 #include "secret.h"
 #include "features/andrewjrae/qmk-vim/vim.h"
 #include "features/possumvibes/smart_layer.h"
-#include "brainrot_keycodes.h"
+#include "akeyhd_keycodes.h"
 
 // Timers
 static uint16_t last_keycode_timer = 0;
@@ -136,6 +139,7 @@ void bspc_finished(tap_dance_state_t *state, void *user_data) {
             }
             break;
         case TD_TRIPLE_TAP:
+        case TD_SINGLE_HOLD:
             delete_word_mode = !delete_word_mode;
             break;
         default:
@@ -186,6 +190,7 @@ void del_finished(tap_dance_state_t *state, void *user_data) {
             }
             break;
         case TD_TRIPLE_TAP:
+        case TD_SINGLE_HOLD:
             delete_word_mode = !delete_word_mode;
             break;
         default:
@@ -322,6 +327,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     process_nshot_state(keycode, record);
     process_layermodes(keycode, record);
     switch (keycode) {
+        /*------------------------------Pointer codes ------------------------------*/
+        case KC_DBCL:
+            tap_code(KC_BTN1);
+            wait_ms(180);
+            tap_code(KC_BTN1);
+            return false;
             /*------------------------------Break pointer mode on hold of tap hold------------------------------*/
         case SML_SPC:
         case CTRL__R:
@@ -1411,6 +1422,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
         }
             return false;
+        case LMD_ARC: {
+            if (record->event.pressed) {
+                process_middle_left_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
+            }
+        }
+            return false;
+        case RMD_ARC: {
+            if (record->event.pressed) {
+                process_middle_right_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
+            }
+        }
+            return false;
         case LBM_ARC: {
             if (record->event.pressed) {
                 process_bottom_left_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
@@ -1520,6 +1543,8 @@ bool remember_last_key_user(uint16_t keycode, keyrecord_t *record, uint8_t *reme
         // case QK_LEAD:
         case LTP_ARC:
         case RTP_ARC:
+        case LMD_ARC:
+        case RMD_ARC:
         case LBM_ARC:
         case RBM_ARC:
         case COM_ARC:
@@ -1533,7 +1558,7 @@ bool remember_last_key_user(uint16_t keycode, keyrecord_t *record, uint8_t *reme
 
 void matrix_scan_user(void) {
     if (timer_elapsed(last_keycode_timer) == LAST_KEYCODE_TIMEOUT_MS) {
-        set_last_keycode(KC_SPC);
+        set_last_keycode(KC_STOP);
     }
 
 #ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
@@ -1590,6 +1615,9 @@ void leader_end_user(void) {
 
     // shortcuts
     if (leader_sequence_two_keys(KC_F, KC_L)) { // bootloader
+            reset_keyboard();
+    }
+    if (leader_sequence_one_key(KC_F)) { // bootloader
             reset_keyboard();
     }
     if (leader_sequence_three_keys(KC_R, KC_D, KC_T)) {
@@ -1680,10 +1708,8 @@ bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case CTRL__R:
         case ALT___T:
-        /*
         case DOT_ARC:
         case COM_ARC:
-        */
         case SML_SPC:
         case SMR_SPC:
             return true;
@@ -1751,3 +1777,34 @@ void visual_line_mode_user(void) {
         layer_on(_VIMMOTION);
     }
 }
+bool process_normal_mode_user(uint16_t keycode, const keyrecord_t *record) {
+    if (vim_emulation_enabled()) {
+        switch (keycode) {
+            case KC_ENT:
+            case CB_ENT:
+                if (record->event.pressed) {
+                    tap_code16(KC_ENT);
+                }
+                return true;
+            default:
+                return true;
+        }
+    }
+    return true;
+}
+bool process_insert_mode_user(uint16_t keycode, const keyrecord_t *record) {
+    switch (keycode) {
+        case KC_ENT:
+        case CB_ENT:
+            if (record->event.pressed) {
+                tap_code16(KC_ENT);
+            }
+            return true;
+        default:
+            return true;
+    }
+    return true;
+}
+// bool process_insert_mode_user(uint16_t keycode, const keyrecord_t *record);
+// bool process_visual_mode_user(uint16_t keycode, const keyrecord_t *record);
+// bool process_visual_line_mode_user(uint16_t keycode, const keyrecord_t *record);

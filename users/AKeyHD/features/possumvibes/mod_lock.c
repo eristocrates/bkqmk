@@ -1,5 +1,5 @@
 #include "mod_lock.h"
-#include "brainrot_keycodes.h"
+#include "akeyhd_keycodes.h"
 
 mod_lock_state_t modlock_states[]   = {{false, KC_LSFT, ML_LSFT}, {false, KC_LCTL, ML_LCTL}, {false, KC_LALT, ML_LALT}, {false, KC_LGUI, ML_LGUI}};
 uint8_t          NUM_MODLOCK_STATES = sizeof(modlock_states) / sizeof(mod_lock_state_t);

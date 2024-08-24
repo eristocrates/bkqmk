@@ -1,5 +1,5 @@
 #include "smart_layer.h"
-#include "brainrot_keycodes.h"
+#include "akeyhd_keycodes.h"
 
 /* -------- Pointer Mode -------- */
 bool _pointer_mode_active = false;
@@ -27,8 +27,7 @@ void pointer_mode_process(uint16_t keycode, keyrecord_t *record) {
     // Assess if we should exit layermode or continue processing normally.
     switch (keycode) {
         case OS_LSFT ... OSR_SFT:
-        case KC_1 ... KC_0:
-        case KC_BTN1:
+        // case KC_BTN1:
         case KC_BTN2:
         case KC_BTN3:
         case S_D_MOD:
@@ -39,13 +38,7 @@ void pointer_mode_process(uint16_t keycode, keyrecord_t *record) {
         case SNIPING:
         case SNP_TOG:
         case DRG_TOG:
-        case KC_LEFT:
-        case KC_RGHT:
-        case KC_DOWN:
-        case KC_UP:
         case PNTROPT:
-        case PNTRNAV:
-        case KC_ENT:
             // process the code and stay in the mode *dabs*
             break;
         default:

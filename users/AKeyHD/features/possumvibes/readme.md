@@ -42,7 +42,7 @@ The base layout that all my boards use can be found in [my keyboard layout READM
 
 `./possumvibes.h` is the primary file imported into each keyboard's keymap and defines a few functions that `possumvibes.c` implements.
 
-`./brainrot_keycodes.h` holds all the enums, custom keycodes, and key aliases, while  `layout.h` holds the layer blocks of keycodes to be applied reusably per keymap.
+`./akeyhd_keycodes.h` holds all the enums, custom keycodes, and key aliases, while  `layout.h` holds the layer blocks of keycodes to be applied reusably per keymap.
 
 `./combos.def` holds the combo definitions for the `gboards` implementation, and `combos.c` holds the functions for per-combo combo terms, the must-tap and must-hold configuration.
 

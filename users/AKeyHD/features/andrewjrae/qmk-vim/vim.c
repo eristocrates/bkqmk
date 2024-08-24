@@ -52,7 +52,7 @@ bool vim_mode_enabled(void) {
 // Enable vim mode
 void enable_vim_mode(void) {
     qmk_vim_enabled = true;
-    normal_mode();
+    insert_mode();
 }
 // Disable vim mode
 void disable_vim_mode(void) {

@@ -1,9 +1,9 @@
 layout: {qmk_keyboard: bastardkb/charybdis/3x6, qmk_layout: LAYOUT}
 layers:
-  Brainrot:
+  AKeyHD:
   - ['   X', '   V', '   G', '   M', '   P', LTP ARC, RTP ARC, '   U', '   O', '   Y', '   B', '   Z']
-  - ['   J', '   K', '   S', '   N', '   D', TD(TBW), TD(TDW), '   A', '   E', '   I', '   H', TH   QU]
-  - [QK LEAD, '   W', '   F', '   L', '   C', LBM ARC, RBM ARC, MD RNPO, ',', ' DOT', MD RNPC, VIM TOG]
+  - ['   J', '   K', '   S', '   N', '   D', LMD ARC, RMD ARC, '   A', '   E', '   I', '   H', TH   QU]
+  - [QK LEAD, '   W', '   F', '   L', '   C', LBM ARC, RBM ARC, MD RNPO, COM ARC, DOT ARC, MD RNPC, VIM TOG]
   - [MATH TB, CTRL  R, SML SPC, SMR SPC, ALT   T]
   Combo Reference:
   - [LT OUTR, LT PNKY, LT RING, LT MDLE, LT INDX, LT INNR, RT INNR, RT INDX, RT MDLE, RT RING, RT PNKY, RT OUTR]
@@ -30,7 +30,7 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-    - '   A'
+    - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -82,20 +82,20 @@ layers:
   Pointer Options:
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '', '', '', '[', ':', '?', ']', '']
-  - - ''
-    - ''
-    - {t: '', type: trans}
-    - ''
-    - ''
-  Pointer Navigation:
-  - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', '', '', '', '', '', '', '{', /, '!', '}', '']
   - - ''
     - ''
     - ''
     - {t: '', type: trans}
+    - ''
+  Pointer Navigation:
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '[', ':', '?', ']', '']
+  - - ''
+    - ''
+    - {t: '', type: trans}
+    - ''
     - ''
   Math:
   - - {t: '', type: trans}
@@ -128,17 +128,17 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-    - CLEAR
+    - DBCL
     - BTN1
     - BTN2
     - DRGSCRL
+    - BTN3
     - SNIPING
-    - {t: '', type: trans}
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-    - PNTRNAV
     - PNTROPT
+    - ALT   T
   Vim Motion:
   - - {t: '', type: trans}
     - {t: '', type: trans}
@@ -158,10 +158,10 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-    - {t: '', type: trans}
-    - DPI MOD
     - SDT MOD
-    - SCN TOG
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
   - - {t: '', type: trans}
@@ -170,12 +170,12 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-    - {t: '', type: trans}
-    - DPI RMD
     - SD RMOD
+    - DPI RMD
+    - DPI MOD
     - DRG TOG
+    - SCN TOG
     - SNP TOG
-    - {t: '', type: trans}
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}

@@ -1,5 +1,5 @@
 #include "nshot_mod.h"
-#include "brainrot_keycodes.h"
+#include "akeyhd_keycodes.h"
 
 /**** n-shot mod configuration  */
 

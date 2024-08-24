@@ -1,6 +1,6 @@
 #pragma once
-#include "brainrot_layout.h"
-#include "brainrot_keycodes.h"
+#include "akeyhd_layout.h"
+#include "akeyhd_keycodes.h"
 
 // Keymap helpers
 // define reference layers per layer.
