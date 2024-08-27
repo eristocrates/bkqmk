@@ -85,17 +85,17 @@ layers:
   - ['', '', '', '', '', '', '', '{', /, '!', '}', '']
   - - ''
     - ''
-    - ''
     - {t: '', type: trans}
+    - ''
     - ''
   Pointer Navigation:
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '', '', '', '[', ':', '?', ']', '']
+  - ['', '', '', '', '', '', UCHAPPY, '[', ':', '?', ']', '']
   - - ''
     - ''
-    - {t: '', type: trans}
     - ''
+    - {t: '', type: trans}
     - ''
   Math:
   - - {t: '', type: trans}
@@ -253,7 +253,7 @@ layers:
     - '!'
     - {t: '', type: trans}
     - {t: '', type: trans}
-    - {t: '', type: trans}
+    - LR LOCK
     - <
     - '1'
     - '2'
@@ -483,7 +483,7 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-    - QK BOOT
+    - RGB MDE
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}

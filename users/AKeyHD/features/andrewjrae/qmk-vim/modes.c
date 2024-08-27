@@ -14,6 +14,24 @@ vim_mode_t vim_current_mode;
 vim_mode_t get_vim_mode(void) {
     return vim_current_mode;
 }
+void set_vim_mode(vim_mode_t mode) {
+    switch (mode) {
+        case NORMAL_MODE:
+            normal_mode();
+            break;
+        case VISUAL_MODE:
+            visual_mode();
+            break;
+        case VISUAL_LINE_MODE:
+            visual_line_mode();
+            break;
+        case INSERT_MODE:
+            insert_mode();
+            break;
+        default:
+            break;
+    }
+}
 
 #ifdef BETTER_VISUAL_MODE
 extern visual_direction_t visual_direction;

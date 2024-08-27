@@ -1,18 +1,109 @@
 #include "akeyhd.h"
 #include "_wait.h"
+#include "action.h"
+#include "action_util.h"
+#include "config.h"
 #include "keycodes.h"
 #include "quantum.h"
 #include "secret.h"
 #include "features/andrewjrae/qmk-vim/vim.h"
+#include "features/andrewjrae/qmk-vim/modes.h"
 #include "features/possumvibes/smart_layer.h"
+#include "features/eristocrates/utilities.h"
+#include "features/eristocrates/rgb_matrix_stuff.h"
+#include "features/getreuer/layer_lock.h"
+#include "features/callum/oneshot.h"
+#include "features/callum/swapper.h"
 #include "akeyhd_keycodes.h"
+#include "rgb_matrix.h"
+#include "lib/lib8tion/lib8tion.h"
+#include "transactions.h"
+
+//----------------------------------------------------------
+// RGB Matrix naming
+#include <rgb_matrix.h>
+
+#if defined(RGB_MATRIX_EFFECT)
+#    undef RGB_MATRIX_EFFECT
+#endif // defined(RGB_MATRIX_EFFECT)
+
+#define RGB_MATRIX_EFFECT(x) RGB_MATRIX_EFFECT_##x,
+enum {
+    RGB_MATRIX_EFFECT_NONE,
+#include "rgb_matrix_effects.inc"
+#ifdef RGB_MATRIX_CUSTOM_KB
+#    include "rgb_matrix_kb.inc"
+#endif
+#ifdef RGB_MATRIX_CUSTOM_USER
+#    include "rgb_matrix_user.inc"
+#endif
+#undef RGB_MATRIX_EFFECT
+};
+
+#define RGB_MATRIX_EFFECT(x)    \
+    case RGB_MATRIX_EFFECT_##x: \
+        return #x;
+const char *rgb_matrix_names(uint8_t effect) { // disgusting hack to avoid collision with rgb_matrix_stuff
+    switch (effect) {
+        case RGB_MATRIX_EFFECT_NONE:
+            return "NONE";
+#include "rgb_matrix_effects.inc"
+#ifdef RGB_MATRIX_CUSTOM_KB
+#    include "rgb_matrix_kb.inc"
+#endif
+#ifdef RGB_MATRIX_CUSTOM_USER
+#    include "rgb_matrix_user.inc"
+#endif
+#undef RGB_MATRIX_EFFECT
+        default:
+            return "UNKNOWN";
+    }
+}
+static uint8_t  current_mode;
+static uint16_t color_scheme_index           = 0;
+vim_mode_t      vim_mode_index               = INSERT_MODE;
+uint16_t        transport_color_scheme_index = 0;
+vim_mode_t      transport_vim_mode_index     = INSERT_MODE;
+
+/*
+bool is_oneshot_cancel_key(uint16_t keycode) {
+    switch (keycode) {
+        case K_CLEAR:
+            return true;
+        default:
+            return false;
+    }
+}
+
+bool is_oneshot_ignored_key(uint16_t keycode) {
+    switch (keycode) {
+        case CTRL__R:
+        case ALT___T:
+        case SML_SPC:
+        case SMR_SPC:
+        case MATH_TB:
+        case KC_LSFT:
+        case OS_SHFT:
+        case OS_CTRL:
+        case OS__ALT:
+
+        case OS__GUI:
+            return true;
+        default:
+            return false;
+    }
+}
+// one shot
+oneshot_state os_shft_state = os_up_unqueued;
+oneshot_state os_ctrl_state = os_up_unqueued;
+oneshot_state os_alt_state  = os_up_unqueued;
+oneshot_state os_gui_state  = os_up_unqueued;
+*/
+// swapper
+bool sw_win_active = false;
 
 // Timers
 static uint16_t last_keycode_timer = 0;
-void            keyboard_post_init_user() {
-    enable_vim_mode();
-    enable_vim_emulation();
-}
 
 // piercing holds
 uint16_t tap_keycode;
@@ -22,6 +113,74 @@ uint16_t hold_mod;
 // for SCN
 bool is_scan_toggled = false;
 
+static uint16_t recent[RECENT_SIZE] = {KC_NO};
+static uint16_t deadline            = 0;
+static void     clear_recent_keys(void) {
+    memset(recent, 0, sizeof(recent)); // Set all zeros (KC_NO).
+}
+
+// Generates a pseudorandom value in 0-255.
+static uint8_t simple_rand(void) {
+    static uint16_t random = 1;
+    random *= UINT16_C(36563);
+    return (uint8_t)(random >> 8);
+}
+static bool process_quopostrokey(uint16_t keycode, keyrecord_t *record) {
+    static bool within_word = false;
+
+    if (keycode == KC_QUOP) {
+        if (record->event.pressed) {
+            if (within_word) {
+                tap_code(KC_QUOT);
+            } else { // SEND_STRING("\"\"" SS_TAP(X_LEFT));
+                // send_autopair(KC_DQUO, KC_DQUO, record);
+                tap_code16(KC_DQUO);
+            }
+        }
+        return false;
+    }
+
+    switch (keycode) { // Unpack tapping keycode for tap-hold keys.
+#ifndef NO_ACTION_TAPPING
+        case QK_MOD_TAP ... QK_MOD_TAP_MAX:
+            if (record->tap.count == 0) {
+                return true;
+            }
+            keycode = QK_MOD_TAP_GET_TAP_KEYCODE(keycode);
+            break;
+#    ifndef NO_ACTION_LAYER
+        case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+            if (record->tap.count == 0) {
+                return true;
+            }
+            keycode = QK_LAYER_TAP_GET_TAP_KEYCODE(keycode);
+            break;
+#    endif // NO_ACTION_LAYER
+#endif     // NO_ACTION_TAPPING
+    }
+
+    // Determine whether the key is a letter.
+    switch (keycode) {
+        case KC_A ... KC_Z:
+            within_word = true;
+            break;
+
+        default:
+            within_word = false;
+    }
+
+    // Determine whether the key is a letter.
+    switch (get_last_keycode()) {
+        case KC_A ... KC_Z:
+            within_word = true;
+            break;
+
+        default:
+            within_word = false;
+    }
+
+    return true;
+}
 /* Return an integer that corresponds to what kind of tap dance should be executed.
  *
  * How to figure out tap dance state: interrupted and pressed.
@@ -236,12 +395,48 @@ static keyrecord_t next_record;
 static uint16_t    prev_keycode;
 
 // TODO move this into my own feature
-void call_keycode(uint16_t keycode) {
-    keyrecord_t record;
-    record.event.pressed = true;
-    process_record_user(keycode, &record);
-    record.event.pressed = false;
-    process_record_user(keycode, &record);
+
+// Handles one event. Returns true if the key was appended to `recent`.
+static bool update_recent_keys(uint16_t keycode, keyrecord_t *record) {
+    if (!record->event.pressed) {
+        return false;
+    }
+
+    if (((get_mods() | get_oneshot_mods()) & ~MOD_MASK_SHIFT) != 0) {
+        clear_recent_keys(); // Avoid interfering with hotkeys.
+        return false;
+    }
+
+    // Handle tap-hold keys.
+    switch (keycode) {
+        case QK_MOD_TAP ... QK_MOD_TAP_MAX:
+        case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+            if (record->tap.count == 0) {
+                return false;
+            }
+            keycode &= 0xff; // Get tapping keycode.
+    }
+
+    switch (keycode) {
+        case KC_A ... KC_SLASH: // These keys type letters, digits, symbols.
+            break;
+
+        case KC_LSFT: // These keys don't type anything on their own.
+        case KC_RSFT:
+        case QK_ONE_SHOT_MOD ... QK_ONE_SHOT_MOD_MAX:
+            return false;
+
+        default: // Avoid acting otherwise, particularly on navigation keys.
+            clear_recent_keys();
+            return false;
+    }
+
+    // Slide the buffer left by one element.
+    memmove(recent, recent + 1, (RECENT_SIZE - 1) * sizeof(*recent));
+
+    recent[RECENT_SIZE - 1] = keycode;
+    deadline                = record->event.time + TIMEOUT_MS;
+    return true;
 }
 
 bool pre_process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -306,8 +501,11 @@ static bool process_tap_or_long_mod_press_key(keyrecord_t *record, uint16_t long
 
 // TODO blindly calling false on these keycodes has prevented things like caps_word_press_user from working. Make sure to actually evaluate what keycodes do not require further processingr
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    static bool     tapped    = false;
+    static uint16_t tap_timer = 0;
+    // static bool     vim_dwn_is_held = false;
 #ifdef CONSOLE_ENABLE
-    if (record->event.pressed) uprintf("process_record_user: kc: 0x%04X, col: %u, row: %u, pressed: %b, time: %u, interrupt: %b, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
+    if (record->event.pressed) uprintf("process_record_user: g_led_config_matrix_co[row][col]: %d, kc: 0x%04X, col: %u, row: %u, pressed: %b, time: %u, interrupt: %b, count: %u\n", g_led_config.matrix_co[record->event.key.row][record->event.key.col], keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
 #endif
 
     // TODO see if i can ifdef this
@@ -318,16 +516,44 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     */
     // TODO find where this gets used
     // bool is_shifted = (get_mods() & MOD_MASK_SHIFT) || (get_oneshot_mods() & MOD_MASK_SHIFT);
-
+    if (!process_quopostrokey(keycode, record)) {
+        return false;
+    }
     if (!process_vim_mode(keycode, record)) {
         return !vim_emulation_enabled();
     }
 
     process_mod_lock(keycode, record);
     process_nshot_state(keycode, record);
+    if (!process_layer_lock(keycode, record, LR_LOCK)) {
+        return false;
+    }
+    /*
+    update_swapper(&sw_win_active, KC_LGUI, KC_TAB, SW_WIN, keycode, record);
+
+    update_oneshot(&os_shft_state, KC_LSFT, OS_SHFT, keycode, record);
+    update_oneshot(&os_ctrl_state, KC_RCTL, OS_CTRL, keycode, record);
+    update_oneshot(&os_alt_state, KC_LALT, OS__ALT, keycode, record);
+    update_oneshot(&os_gui_state, KC_LCMD, OS__GUI, keycode, record);
+    */
+
     process_layermodes(keycode, record);
+
+    /*------------------------------recent keys------------------------------*/
+    if (update_recent_keys(keycode, record)) {
+        // clang-format off
+ // Expand "qumk" to qmk
+    if (recent[RECENT_SIZE - 3] == KC_Q &&
+        recent[RECENT_SIZE - 2] == KC_M &&
+        recent[RECENT_SIZE - 1] == KC_K) {
+      SEND_STRING( SS_TAP(X_BSPC) SS_TAP(X_BSPC) SS_TAP(X_BSPC) "qmk");
+      return false;
+    }
+        // clang-format on
+    }
     switch (keycode) {
-        /*------------------------------Pointer codes ------------------------------*/
+            /*------------------------------Pointer codes ------------------------------*/
+
         case KC_DBCL:
             tap_code(KC_BTN1);
             wait_ms(180);
@@ -1113,7 +1339,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case POINTERMODE:
             return pointer_mode_enable(record);
 
-        case CLEAR:
+        case K_CLEAR:
             clear_oneshot_mods();
             clear_mods();
             pointer_mode_disable();
@@ -1480,18 +1706,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 toggle_vim_emulation();
             }
             return false;
-        case VIM_G_:
-            if (record->event.pressed) {
-                tap_code(KC_G);
-                tap_code16(KC_UNDS);
-            }
-            return false;
-        case VIM_GG:
-            if (record->event.pressed) {
-                tap_code(KC_G);
-                tap_code(KC_G);
-            }
-            return false;
         /*------------------------------math------------------------------*/
         case KC_SQRT:
             if (record->event.pressed) {
@@ -1518,9 +1732,88 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code(KC_TAB);
                 unregister_code(KC_LSFT);
             }
+        case UP__DIR: // Types ../ to go up a directory on the shell.
+            if (record->event.pressed) {
+                SEND_STRING("../");
+            }
+            return false;
+        case SRCHSEL: // Searches the current selection in a new tab.
+            if (record->event.pressed) {
+                // Mac users, change LCTL to LGUI.
+                SEND_STRING(SS_LCTL("ct") SS_DELAY(100) SS_LCTL("v") SS_TAP(X_ENTER));
+            }
+            return false;
+        // TODO explore this fancy key
+        case FANCY_KEY:
+            if (record->tap.count > 0) { // Key is being tapped.
+                if (record->event.pressed) {
+                    // Handle tap press event...
+                } else {
+                    // Handle tap release event...
+                }
+            } else { // Key is being held.
+                if (record->event.pressed) {
+                    // Handle hold press event...
+                } else {
+                    // Handle hold release event...
+                }
+            }
+            return false; // Skip default handling.
+        case UCHAPPY:     // Types a happy random emoji.
+                          // TODO set up wincompose
+            if (record->event.pressed) {
+                static const char *emojis[]   = {"🤩", "🌞", "👾", "👍", "😁"};
+                const int          NUM_EMOJIS = sizeof(emojis) / sizeof(*emojis);
 
+                // Pseudorandomly pick an index between 0 and NUM_EMOJIS - 2.
+                uint8_t index = ((NUM_EMOJIS - 1) * simple_rand()) >> 8;
+
+                // Don't pick the same emoji twice in a row.
+                static uint8_t last_index = 0;
+                if (index >= last_index) {
+                    ++index;
+                }
+                last_index = index;
+
+                // Produce the emoji.
+                send_unicode_string(emojis[index]);
+            }
+            return false;
+        case RGB_MDE:
+
+#ifdef CONSOLE_ENABLE
+
+            if (record->event.pressed) {
+                uprintf("rgb_matrix_get_mode(): %d\n", rgb_matrix_get_mode());
+                uprintf("RGB_MATRIX_EFFECT_BREATHING: %d\n", RGB_MATRIX_EFFECT_BREATHING);
+                uprintf("RGB_MATRIX_EFFECT_BAND_PINWHEEL_VAL: %d\n", RGB_MATRIX_EFFECT_BAND_PINWHEEL_VAL);
+            }
+#endif
+
+        case KC_CLRS:
+            if (record->event.pressed) {
+                // TODO stop using a hardcoded size
+                uint8_t index      = color_scheme_index + 1 > 7 ? 0 : color_scheme_index + 1;
+                color_scheme_index = index;
+                // uint8_t COLOR_SCHEME_MAX = sizeof(color) / sizeof(nshot_state_t);
+            }
+            return false;
         default:
             return true; // Process all other keycodes normally
+    }
+    // https://getreuer.info/posts/keyboards/triggers/index.html
+    // TODO figure out how to make this work via main switch cases
+    if (keycode == KC_TEST) {
+        if (tapped && !timer_expired(record->event.time, tap_timer)) {
+            // The key was double tapped.
+            clear_mods(); // If needed, clear the mods.
+                          // Do something interesting...
+        }
+        tapped    = true;
+        tap_timer = record->event.time + TAPPING_TERM;
+    } else {
+        // On an event with any other key, reset the double tap state.
+        tapped = false;
     }
 }
 void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -1557,9 +1850,14 @@ bool remember_last_key_user(uint16_t keycode, keyrecord_t *record, uint8_t *reme
 }
 
 void matrix_scan_user(void) {
+    if (recent[RECENT_SIZE - 1] && timer_expired(timer_read(), deadline)) {
+        clear_recent_keys(); // Timed out; clear the buffer.
+    }
+    /*
     if (timer_elapsed(last_keycode_timer) == LAST_KEYCODE_TIMEOUT_MS) {
         set_last_keycode(KC_STOP);
     }
+    */
 
 #ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
     // if (auto_pointer_layer_timer != 0 && TIMER_DIFF_16(timer_read(), auto_pointer_layer_timer) >= CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS && _pointer_mode_active == false) {
@@ -1763,9 +2061,11 @@ void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
 }
 void insert_mode_user(void) {
     layer_off(_VIMMOTION);
+    vim_mode_index = INSERT_MODE;
 }
 void normal_mode_user(void) {
     layer_on(_VIMMOTION);
+    vim_mode_index = NORMAL_MODE;
 }
 void visual_mode_user(void) {
     if (IS_LAYER_OFF(_VIMMOTION)) {
@@ -1786,12 +2086,16 @@ bool process_normal_mode_user(uint16_t keycode, const keyrecord_t *record) {
                     tap_code16(KC_ENT);
                 }
                 return true;
+                // https://getreuer.info/posts/keyboards/macros/index.html
+                // TODO Join lines section
+
             default:
                 return true;
         }
     }
     return true;
 }
+
 bool process_insert_mode_user(uint16_t keycode, const keyrecord_t *record) {
     switch (keycode) {
         case KC_ENT:
@@ -1808,3 +2112,143 @@ bool process_insert_mode_user(uint16_t keycode, const keyrecord_t *record) {
 // bool process_insert_mode_user(uint16_t keycode, const keyrecord_t *record);
 // bool process_visual_mode_user(uint16_t keycode, const keyrecord_t *record);
 // bool process_visual_line_mode_user(uint16_t keycode, const keyrecord_t *record);
+
+bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+    uint8_t current_layer         = get_highest_layer(layer_state);
+    uint8_t current_default_layer = get_highest_layer(default_layer_state);
+
+    // TODO stop using a hardcoded size
+    rgb_color_scheme_t color_schemes[] = {
+        // clang-format off
+        defaults_rcs,
+        classic_rcs,
+        voluptuous_rcs,
+        earthy_rcs,
+        positive_rcs,
+        jeweled_rcs,
+        composed_rcs,
+        afternoon_rcs,
+        // clang-format on
+    };
+    switch (current_layer) {
+        case _POINTER:
+            uint8_t speed = rgb_matrix_config.speed * 2 < 254 ? rgb_matrix_config.speed * 2 : 254;
+            rgb_matrix_layer_helper(color_schemes[color_scheme_index], vim_mode_index, current_layer, RGB_MATRIX_EFFECT_BREATHING, speed, LED_FLAG_KEYLIGHT, led_min, led_max);
+            break;
+        default:
+            switch (current_default_layer) {
+                case _AKEYHD:
+                    rgb_matrix_layer_helper(color_schemes[color_scheme_index], vim_mode_index, current_default_layer, rgb_matrix_get_mode(), rgb_matrix_config.speed, LED_FLAG_KEYLIGHT, led_min, led_max);
+                    break;
+            }
+            break;
+    }
+    return false;
+}
+
+void color_scheme_index_sync(uint8_t initiator2target_buffer_size, const void *initiator2target_buffer, uint8_t target2initiator_buffer_size, void *target2initiator_buffer) {
+    if (initiator2target_buffer_size == sizeof(transport_color_scheme_index)) {
+        memcpy(&transport_color_scheme_index, initiator2target_buffer, sizeof(transport_color_scheme_index));
+    }
+}
+
+void color_scheme_index_update(void) {
+    if (is_keyboard_master()) {
+        transport_color_scheme_index = color_scheme_index;
+    } else {
+        color_scheme_index = transport_color_scheme_index;
+    }
+}
+enum syncs {
+    SYNC_FORCE,
+    SYNC_COLOR_SCHEME,
+    SYNC_VIM_MODE,
+};
+void color_scheme_index_transport_sync(void) {
+    if (is_keyboard_master()) {
+        // Keep track of the last state, so that we can tell if we need to propagate to slave
+        // TODO stop storing data  "last index" instead of "index"
+        static uint16_t last_color_scheme_index = 0;
+
+        static uint32_t last_sync[3];
+        bool            needs_sync = false;
+
+        // Check if the state values are different
+        if (timer_elapsed32(last_sync[SYNC_COLOR_SCHEME]) > FORCED_SYNC_THROTTLE_MS && memcmp(&transport_color_scheme_index, &last_color_scheme_index, sizeof(transport_color_scheme_index))) {
+            needs_sync = true;
+            memcpy(&last_color_scheme_index, &transport_color_scheme_index, sizeof(transport_color_scheme_index));
+        }
+        // Send to target every FORCED_SYNC_THROTTLE_MS regardless of state change
+        if (timer_elapsed32(last_sync[SYNC_FORCE]) > FORCED_SYNC_THROTTLE_MS) {
+            needs_sync = true;
+        }
+
+        // Perform the sync if requested
+        if (needs_sync) {
+            if (transaction_rpc_send(RPC_ID_COLOR_SCHEME_SYNC, sizeof(color_scheme_index), &color_scheme_index)) {
+                last_sync[SYNC_COLOR_SCHEME] = timer_read32();
+            }
+            needs_sync = false;
+        }
+    }
+}
+
+void vim_mode_index_sync(uint8_t initiator2target_buffer_size, const void *initiator2target_buffer, uint8_t target2initiator_buffer_size, void *target2initiator_buffer) {
+    if (initiator2target_buffer_size == sizeof(transport_vim_mode_index)) {
+        memcpy(&transport_vim_mode_index, initiator2target_buffer, sizeof(transport_vim_mode_index));
+    }
+}
+
+void vim_mode_index_update(void) {
+    if (is_keyboard_master()) {
+        transport_vim_mode_index = vim_mode_index;
+    } else {
+        vim_mode_index = transport_vim_mode_index;
+    }
+}
+void vim_mode_index_transport_sync(void) {
+    if (is_keyboard_master()) {
+        // Keep track of the last state, so that we can tell if we need to propagate to slave
+        // TODO stop storing data  "last index" instead of "index"
+        static uint16_t last_vim_mode_index = 0;
+
+        static uint32_t last_sync[3];
+        bool            needs_sync = false;
+
+        // Check if the state values are different
+        if (timer_elapsed32(last_sync[SYNC_VIM_MODE]) > FORCED_SYNC_THROTTLE_MS && memcmp(&transport_vim_mode_index, &last_vim_mode_index, sizeof(transport_vim_mode_index))) {
+            needs_sync = true;
+            memcpy(&last_vim_mode_index, &transport_vim_mode_index, sizeof(transport_vim_mode_index));
+        }
+        // Send to target every FORCED_SYNC_THROTTLE_MS regardless of state change
+        if (timer_elapsed32(last_sync[SYNC_FORCE]) > FORCED_SYNC_THROTTLE_MS) {
+            needs_sync = true;
+        }
+
+        // Perform the sync if requested
+        if (needs_sync) {
+            if (transaction_rpc_send(RPC_ID_VIM_MODE_SYNC, sizeof(vim_mode_index), &vim_mode_index)) {
+                last_sync[SYNC_VIM_MODE] = timer_read32();
+            }
+            needs_sync = false;
+        }
+    }
+}
+
+void keyboard_post_init_user(void) {
+    enable_vim_mode();
+    enable_vim_emulation();
+    current_mode = RGB_MATRIX_DEFAULT_MODE;
+    transaction_register_rpc(RPC_ID_COLOR_SCHEME_SYNC, color_scheme_index_sync);
+    transaction_register_rpc(RPC_ID_VIM_MODE_SYNC, vim_mode_index_sync);
+}
+
+void housekeeping_task_user(void) {
+    // Update kb_state so we can send to slave
+    color_scheme_index_update();
+    vim_mode_index_update();
+
+    // Data sync from instigator to target
+    color_scheme_index_transport_sync();
+    vim_mode_index_transport_sync();
+}

@@ -8,18 +8,18 @@ bool pointer_mode_enable(keyrecord_t *record) {
     _pointer_mode_active = true;
     layer_on(_POINTER);
 #ifdef RGB_MATRIX_ENABLE
-    rgb_matrix_mode_noeeprom(RGB_MATRIX_BREATHING);
-    rgb_matrix_sethsv_noeeprom(HSV_RED);
+    // rgb_matrix_mode_noeeprom(RGB_MATRIX_BREATHING);
+    // rgb_matrix_sethsv_noeeprom(HSV_RED);
 #endif // RGB_MATRIX_ENABLE
     return false;
 }
 
-// Turn number mode off.
+// Turn pointer mode off.
 void pointer_mode_disable(void) {
     _pointer_mode_active = false;
     layer_off(_POINTER);
 #ifdef RGB_MATRIX_ENABLE
-    rgb_matrix_mode_noeeprom(RGB_MATRIX_DEFAULT_MODE);
+    // rgb_matrix_mode_noeeprom(RGB_MATRIX_DEFAULT_MODE);
 #endif // RGB_MATRIX_ENABLE
 }
 
@@ -39,6 +39,8 @@ void pointer_mode_process(uint16_t keycode, keyrecord_t *record) {
         case SNP_TOG:
         case DRG_TOG:
         case PNTROPT:
+        case KC_ESC:
+
             // process the code and stay in the mode *dabs*
             break;
         default:

@@ -5,6 +5,7 @@
 #include "arcane_keys.h"
 #include "akeyhd_keycodes.h"
 #include "features/eristocrates/modal_keys.h"
+#include "features/eristocrates/utilities.h"
 #include "features/andrewjrae/qmk-vim/vim.h"
 // https://github.com/empressabyss/nordrassil?tab=readme-ov-file#implementation
 
@@ -154,7 +155,7 @@ void process_top_right_arcane(uint16_t keycode, uint8_t mods) {
             // right thumb
 
         default:
-            tap_code16(KC_AT);
+            call_keycode(KC_QUOP);
     }
 }
 
@@ -187,6 +188,13 @@ void process_middle_left_arcane(uint16_t keycode, uint8_t mods) {
             break;
 
             // left thumb
+        case KC_R:
+            ARCANE_STRING("r", KC_R);
+            break;
+        // case KC_LSPC:
+        case KC_SPC:
+            ARCANE_STRING("r", KC_R);
+            break;
 
             /*  anti sfb magic */
         // right outer column
@@ -255,11 +263,16 @@ void process_middle_right_arcane(uint16_t keycode, uint8_t mods) {
 
             // left thumb
 
-            /* repeats */
             // right outer column
             // TODO maybe something better to do on double qu?
 
             // right pinky column
+
+            /* repeats */
+            // repeat exception because pinky + ring scissor feels too gross
+        case KC_B:
+            ARCANE_STRING("i", KC_I);
+            break;
         case KC_H:
             ARCANE_STRING("h", KC_H);
             break;
@@ -280,6 +293,13 @@ void process_middle_right_arcane(uint16_t keycode, uint8_t mods) {
             break;
 
             // right thumb
+        case KC_T:
+            ARCANE_STRING("t", KC_T);
+            break;
+        // case KC_RSPC:
+        case KC_SPC:
+            ARCANE_STRING("t", KC_T);
+            break;
 
         default:
             tap_code(KC_NUHS);
@@ -311,14 +331,7 @@ void process_bottom_left_arcane(uint16_t keycode, uint8_t mods) {
             ARCANE_STRING("c", KC_C);
             break;
 
-        // left thumb
-        case KC_R:
-            ARCANE_STRING("r", KC_R);
-            break;
-        // case KC_LSPC:
-        case KC_SPC:
-            ARCANE_STRING("r", KC_R);
-            break;
+            // left thumb
 
             /* anti sfb magic */
         // right outer column
@@ -346,6 +359,7 @@ void process_bottom_right_arcane(uint16_t keycode, uint8_t mods) {
             /* anti sfb magic */
             // left outer column
 
+        case KC_X:
         // left pinky column
         case KC_V:
         case KC_K:
@@ -370,26 +384,19 @@ void process_bottom_right_arcane(uint16_t keycode, uint8_t mods) {
             ARCANE_STRING("c", KC_C);
             break;
 
-        // left thumb
+            // left thumb
 
-        // right outer column
+            // right outer column
 
-        // right pinky column
+            // right pinky column
 
-        // right ring column
+            // right ring column
 
-        // right middle column
+            // right middle column
 
-        // right index column
+            // right index column
 
-        // right thumb
-        case KC_T:
-            ARCANE_STRING("t", KC_T);
-            break;
-        // case KC_RSPC:
-        case KC_SPC:
-            ARCANE_STRING("t", KC_T);
-            break;
+            // right thumb
 
         default:
             toggle_vim_emulation();

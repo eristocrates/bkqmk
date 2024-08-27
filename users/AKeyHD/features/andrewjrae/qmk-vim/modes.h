@@ -19,3 +19,4 @@ void visual_line_mode(void);
 
 // Get the mode that vim is currently in
 vim_mode_t get_vim_mode(void);
+void set_vim_mode(vim_mode_t mode);

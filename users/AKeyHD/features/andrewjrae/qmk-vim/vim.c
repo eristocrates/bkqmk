@@ -44,6 +44,12 @@ void toggle_vim_for_mac(void) {
     vim_for_mac = !vim_for_mac;
 }
 #endif
+bool vim_insert_mode_enabled(void) {
+    return get_vim_mode() == INSERT_MODE;
+}
+bool vim_normal_mode_enabled(void) {
+    return get_vim_mode() == NORMAL_MODE;
+}
 
 // Check to see if vim mode is enabled
 bool vim_mode_enabled(void) {

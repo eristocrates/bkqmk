@@ -15,3 +15,11 @@ void send_string_with_caps_word(const char *str) {
         SEND_STRING(str);
     }
 }
+
+void call_keycode(uint16_t keycode) {
+    keyrecord_t record;
+    record.event.pressed = true;
+    process_record_user(keycode, &record);
+    record.event.pressed = false;
+    process_record_user(keycode, &record);
+}

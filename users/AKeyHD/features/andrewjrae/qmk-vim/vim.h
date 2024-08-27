@@ -17,7 +17,8 @@
 #pragma once
 
 #include QMK_KEYBOARD_H
-
+bool vim_insert_mode_enabled(void);
+bool vim_normal_mode_enabled(void);
 // Check to see if vim mode is enabled
 bool vim_mode_enabled(void);
 // Enable vim mode

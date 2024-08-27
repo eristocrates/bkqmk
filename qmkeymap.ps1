@@ -49,12 +49,12 @@ if (Select-String -Path $logFilePath -Pattern $searchString) {
     Invoke-Expression $keymapDrawCmd1
     Invoke-Expression $keymapDrawCmd2
     Write-Output "Ding! Firmware done."
-New-BurntToastNotification -Text "QMK Compilation", "Ding! Firmware done."
+    New-BurntToastNotification -Text "QMK Compilation", "Ding! Firmware done."
     $mediaPlayer.open($filesDone)
 }
 else {
-New-BurntToastNotification -Text "QMK Compilation", "You  done goofed baka"
-    Write-Output "You  done goofed baka"
+    New-BurntToastNotification -Text "QMK Compilation", "You done goofed baka"
+    Write-Output "You done goofed baka $(Resolve-Path $logFilePath)"
     $mediaPlayer.open($baka)
 }
 

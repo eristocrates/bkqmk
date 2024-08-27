@@ -3,7 +3,7 @@
 
 // TODO keep in sync with keymapPostParse.ps1
 enum layers {
-    _akeyhd,
+    _AKEYHD,
     _COMBOREF,
     _VIMMOTION,
     _CTRLPR,
@@ -123,6 +123,7 @@ enum keycodes {
     RBM_ARC,
     COM_ARC,
     DOT_ARC,
+    // other magic
     // secrets
     SECRET1,
     SECRET2,
@@ -134,8 +135,13 @@ enum keycodes {
     KC_SQRT,
     // randumb
     KC_RAND,
+    FANCY_KEY,
+    UCHAPPY,
+    KC_QUOP,
 
     KC_DBCL, // mouse double click
+    RGB_MDE,
+    KC_CLRS,
 
     /* physical layout comboref keys
     legend = hand_row_column/thumb button
@@ -146,15 +152,15 @@ enum keycodes {
     M = Middle row
     B = Bottom row
 
-    Out = Outer column
-    Pin = Pinky column
-    Rin = Ring column
-    Ind = Index column
-    Inn = Inner column
+    OUTR = Outer column
+    PNKY = Pinky column
+    RING = Ring column
+    INDX = Index column
+    INNR = Inner column
 
-    LThmb = Left Thumb button
-    MThmb = Middle Thumb  button
-    RThmb = Right Thumb button
+    LTHMB = Left Thumb button
+    MTHMB = Middle Thumb  button
+    RTHMB = Right Thumb button
     */
     LT_OUTR,
     LT_PNKY,
@@ -198,6 +204,20 @@ enum keycodes {
     R_LTHMB,
     R_MTHMB,
 
+    // adapted frm callum
+    // Custom oneshot mod implementation with no timers.
+    OS_SHFT,
+    OS_CTRL,
+    OS__ALT,
+    OS__GUI,
+
+    SW_WIN, // Switch to next window         (cmd-tab)
+    LR_LOCK,
+
+    // https://getreuer.info/posts/keyboards/macros/index.html
+    UP__DIR,
+    SRCHSEL,
+
     // adapted from possumvibes
     // OS-specific utilities
     IS_WIN, // TODO find of the non window OS possum was using was mac or linux
@@ -216,7 +236,7 @@ enum keycodes {
     NAVMODE,
     SYMMODE,
     MCRMODE,
-    CLEAR,
+    K_CLEAR,
     PANIC,
 
     // "Paired" macros: Undo/Redo, Comment/Uncomment, QMK Compile/Flash
@@ -251,7 +271,7 @@ enum keycodes {
     // TODO collect as many vim motions as possible!
 
     // Swapper keys: Windows, tabs, and generic Reverse
-    SW_WIN,
+    // SW_WIN,
     SW_TAB,
     SW_REV,
 
@@ -273,6 +293,8 @@ enum keycodes {
     // NEW_SAFE_RANGE // Use for keymap-specific codes
 };
 /* ---------- Aliases ---------- */
+// unicode
+#define UC__SPC UC(0x2800)
 // macros
 
 #define OSMLGUI OSM(MOD_LGUI)
@@ -286,14 +308,14 @@ enum keycodes {
 #define OSMMEH OSM(MOD_MEH)
 #define OSMHYPR OSM(MOD_HYPR)
 
-#define TH(k) LT(_akeyhd, k)
+#define TH(k) LT(_AKEYHD, k)
 #define SG(k) LT(_SHIFTPR, k)
 #define CG(k) LT(_CTRLPR, k)
 #define AG(k) LT(_ALTPR, k)
 #define GG(k) LT(_GUIPR, k)
 
 // base layers
-#define BASE TO(_akeyhd)
+#define BASE TO(_AKEYHD)
 #define QWERTY TO(_QWERTY)
 #define GAME TO(_GAME)
 #define THINQU TO(_THINQU)
@@ -318,7 +340,7 @@ enum keycodes {
 #define MEDIA OSL(_MEDIA)
 #define PNTROPT OSL(_POINTEROPT)
 #define PNTRNAV OSL(_POINTERNAV)
-#define OSLBASE OSL(_akeyhd)
+#define OSLBASE OSL(_AKEYHD)
 
 #define KEYBRD TG(_KEYBOARD)
 #define MATH TG(_MATH)

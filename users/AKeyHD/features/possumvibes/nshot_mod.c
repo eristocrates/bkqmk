@@ -20,7 +20,7 @@ uint8_t NUM_NSHOT_STATES = sizeof(nshot_states) / sizeof(nshot_state_t);
 bool is_nshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
         case PANIC:
-        case CLEAR:
+        case K_CLEAR:
             return true;
         default:
             return false;
@@ -55,7 +55,7 @@ void process_nshot_state(uint16_t keycode, keyrecord_t *record) {
 
     for (int i = 0; i < NUM_NSHOT_STATES; ++i) {
         curr_state        = &nshot_states[i];
-        uint8_t max_count = curr_state->max_count * 3;
+        uint8_t max_count = i == 0 ? curr_state->max_count * 2 : curr_state->max_count * 3;
 
         if (keycode == curr_state->trigger) {
             if (record->event.pressed) {

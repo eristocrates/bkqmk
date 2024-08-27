@@ -78,7 +78,7 @@ bool process_motions(uint16_t keycode, const keyrecord_t *record, uint16_t qk_mo
 #ifdef QMK_VIM_W_BEGINNING_OF_WORD
             set_visual_direction(V_FORWARD);
             register_motion(qk_mods | QMK_VIM_W, record);
-            if (!record->event.pressed) {
+            if (vim_emulation && !record->event.pressed) {
                 /* unregister_code16(qk_mods | QMK_VIM_W); */
                 tap_code16(qk_mods | QMK_VIM_W);
                 tap_code16(qk_mods | QMK_VIM_B);

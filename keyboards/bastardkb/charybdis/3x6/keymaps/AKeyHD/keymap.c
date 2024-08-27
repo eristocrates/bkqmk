@@ -37,7 +37,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_akeyhd] = LAYOUT(
+  [_AKEYHD] = LAYOUT(
   /* ╭───────────────────────────────────────────────────╮ ╭───────────────────────────────────────────────────╮ */
      KC____X, KC____V, KC____G, KC____M, KC____P, LTP_ARC, RTP_ARC, KC____U, KC____O, KC____Y, KC____B, KC____Z,
   /* ├───────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────┤ */
@@ -116,7 +116,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, KC_LCBR, KC_SLSH, KC_EXLM, KC_RCBR, XXXXXXX,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
-                                  XXXXXXX, XXXXXXX, XXXXXXX,    _______, XXXXXXX
+                                  XXXXXXX, XXXXXXX, _______,    XXXXXXX, XXXXXXX
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
   ),
 
@@ -126,9 +126,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, KC_LBRC, KC_COLN, KC_QUES, KC_RBRC, XXXXXXX,
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    UCHAPPY, KC_LBRC, KC_COLN, KC_QUES, KC_RBRC, XXXXXXX,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
-                                  XXXXXXX, XXXXXXX, _______,    XXXXXXX, XXXXXXX
+                                  XXXXXXX, XXXXXXX, XXXXXXX,    _______, XXXXXXX
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
   ),
   [_POINTER] = LAYOUT(
@@ -174,7 +174,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
        KC_COMM, KC_PSLS, KC_PAST, KC_PMNS, KC_PPLS,  KC_DOT,   KC_LPRN, KC_4,    KC_5,    KC_6, KC_RPRN, _______,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       _______, KC_SQRT, KC_EXLM, _______, _______, _______,     KC_LT, KC_1,    KC_2,    KC_3,   KC_GT,    BASE,
+       _______, KC_SQRT, KC_EXLM, _______, _______, LR_LOCK,     KC_LT, KC_1,    KC_2,    KC_3,   KC_GT,    BASE,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
                                   _______,  KC_EQL, KC_PENT,    KC_SPC, KC_0
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
@@ -270,7 +270,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
        _______, _______, _______, _______, _______, _______,   RGB_RMOD, RGB_HUD, RGB_SAD, RGB_VAD, RGB_SPD, RGB_MOD,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       _______, _______, _______, _______, _______, _______,    QK_BOOT, _______, _______, _______, _______,  BASE,
+       _______, _______, _______, _______, _______, _______,    RGB_MDE, _______, _______, _______, _______,  BASE,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
                                   _______, _______, _______,    _______, _______
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
@@ -349,8 +349,10 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
             layer_on(_POINTER);
 
 #        ifdef RGB_MATRIX_ENABLE
+            /*
             rgb_matrix_mode_noeeprom(RGB_MATRIX_BREATHING);
             rgb_matrix_sethsv_noeeprom(HSV_RED);
+            */
 #        endif // RGB_MATRIX_ENABLE
         }
         auto_pointer_layer_timer = timer_read();
