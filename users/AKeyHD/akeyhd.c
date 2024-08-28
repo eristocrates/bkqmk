@@ -101,6 +101,11 @@ const uint16_t bitwise_num_keys[] = {
 
 };
 uint8_t NUM_BITWISE_NUM_KEYS = sizeof(bitwise_num_keys) / sizeof(uint16_t);
+// taken from https://github.com/moutis/HandsDown/blob/9e4bf52d013d5a7981d61ff1f5f36d9a3144aa73/moutis.c#L17
+uint16_t preprior_keycode = KC_NO;
+uint16_t prior_keycode    = KC_NO;
+uint16_t prior_keydown    = 0; // timer of keydown for adaptive threshhold.
+
 /*
 bool is_oneshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
@@ -137,9 +142,6 @@ oneshot_state os_gui_state  = os_up_unqueued;
 */
 // swapper
 bool sw_win_active = false;
-
-// Timers
-static uint16_t last_keycode_timer = 0;
 
 // piercing holds
 uint16_t tap_keycode;
@@ -199,6 +201,8 @@ static bool process_quopostrokey(uint16_t keycode, keyrecord_t *record) {
     // Determine whether the key is a letter.
     switch (keycode) {
         case KC_A ... KC_Z:
+        case CTRL__R:
+        case ALT___T:
             within_word = true;
             break;
 
@@ -206,9 +210,13 @@ static bool process_quopostrokey(uint16_t keycode, keyrecord_t *record) {
             within_word = false;
     }
 
+    // disgusting hack to account for no option to ignore arcane key
+    // TODO incorporate ignore functionality
     // Determine whether the key is a letter.
     switch (get_last_keycode()) {
         case KC_A ... KC_Z:
+        case CTRL__R:
+        case ALT___T:
             within_word = true;
             break;
 
@@ -480,11 +488,13 @@ bool pre_process_record_user(uint16_t keycode, keyrecord_t *record) {
     // static uint16_t prev_keycode;
     if (record->event.pressed) {
         // store previous keycode for instant tap decisions
-        prev_keycode = next_keycode;
+        preprior_keycode = prev_keycode;
+        prev_keycode     = next_keycode;
 
         // Cache the next input for mod-tap decisions
         next_keycode = keycode;
         next_record  = *record;
+        // prior_keydown = timer_read();
     }
     return true;
 }
@@ -1739,56 +1749,53 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return true;
         /*------------------------------arcane------------------------------*/
-        case LTP_ARC: {
+        case LTP_ARC:
             if (record->event.pressed) {
-                process_top_left_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
+                process_top_left_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods(), prior_keydown, KC_ASTR);
             }
-        }
             return false;
-        case RTP_ARC: {
+        case RTP_ARC:
             if (record->event.pressed) {
-                process_top_right_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
+                process_top_right_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods(), prior_keydown, KC_QUOP);
             }
-        }
             return false;
-        case LMD_ARC: {
+        case LMD_ARC:
             if (record->event.pressed) {
-                process_middle_left_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
+                process_middle_left_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods(), prior_keydown, KC_AT);
             }
-        }
+
             return false;
-        case RMD_ARC: {
+        case RMD_ARC:
             if (record->event.pressed) {
-                process_middle_right_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
+                process_middle_right_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods(), prior_keydown, KC_HASH);
             }
-        }
+
             return false;
-        case LBM_ARC: {
+        case LBM_ARC:
             if (record->event.pressed) {
-                process_bottom_left_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
+                process_bottom_left_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods(), prior_keydown, KC_BSLS); // KC_WAVE (inuyasha ppl will get it)
             }
-        }
+
             return false;
-        case RBM_ARC: {
+        case RBM_ARC:
             if (record->event.pressed) {
-                process_bottom_right_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
+                process_bottom_right_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods(), prior_keydown, KC_SLSH);
             }
-        }
+
             return false;
-            /*
+            // TODO replicate logic i was doing with autoshift via fancy key tap/hold overrides
         case COM_ARC:
             if (record->event.pressed) {
-                process_comma_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
+                process_comma_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods(), prior_keydown);
             }
 
             return false;
         case DOT_ARC:
             if (record->event.pressed) {
-                process_dot_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods());
+                process_dot_arcane(extract_basic_keycode(get_last_keycode(), record, false), get_last_mods(), prior_keydown);
             }
 
             return false;
-            */
 
         /*------------------------------secrets------------------------------*/
         case SECRET1: {
@@ -1954,7 +1961,7 @@ bool remember_last_key_user(uint16_t keycode, keyrecord_t *record, uint8_t *reme
         case OSLBASE:
             return false; // Arcane keys will ignore the above keycodes.
     }
-    last_keycode_timer = timer_read();
+    prior_keydown = timer_read();
     return true; // Other keys can be repeated.
 }
 
