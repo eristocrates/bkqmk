@@ -85,7 +85,7 @@ void process_top_left_arcane(uint16_t keycode, uint8_t mods) {
             // right thumb
 
         default:
-            tap_code(KC_EQL);
+            tap_code16(KC_ASTR);
     }
 }
 
@@ -225,7 +225,7 @@ void process_middle_left_arcane(uint16_t keycode, uint8_t mods) {
             // right thumb
 
         default:
-            tap_code(KC_NUHS);
+            tap_code16(KC_AT);
     }
 }
 
@@ -302,7 +302,7 @@ void process_middle_right_arcane(uint16_t keycode, uint8_t mods) {
             break;
 
         default:
-            tap_code(KC_NUHS);
+            tap_code16(KC_HASH);
     }
 }
 
@@ -350,7 +350,7 @@ void process_bottom_left_arcane(uint16_t keycode, uint8_t mods) {
             // right thumb
 
         default:
-            tap_code(KC_NUHS);
+            tap_code16(KC_BSLS);
     }
 }
 
@@ -399,7 +399,7 @@ void process_bottom_right_arcane(uint16_t keycode, uint8_t mods) {
             // right thumb
 
         default:
-            toggle_vim_emulation();
+            tap_code16(KC_SLSH);
     }
 }
 // inspired from https://www.reddit.com/r/KeyboardLayouts/comments/1cc2yri/oneshot_shift_via_adaptive_keys/?share_id=J_a-r4rEr1p26tZg4lRpc&utm_content=1&utm_medium=android_app&utm_name=androidcss&utm_source=share&utm_term=1

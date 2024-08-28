@@ -37,10 +37,9 @@ bool is_nshot_ignored_key(uint16_t keycode) {
         case TS_LCTL:
         case OSR_SFT:
         case MATH_TB:
-        case CTRL__R:
         case SML_SPC:
         case SMR_SPC:
-        case ALT___T:
+            // TODO figure out how to handle T R mod taps
 
             return true;
         default:

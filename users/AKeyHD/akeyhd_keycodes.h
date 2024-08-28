@@ -1,7 +1,7 @@
 #pragma once
 #include "charybdis.h"
 
-// TODO keep in sync with keymapPostParse.ps1
+// TODO keep in sync with keymapPostParse.ps1 && bitwise_num
 enum layers {
     _AKEYHD,
     _COMBOREF,
@@ -14,7 +14,7 @@ enum layers {
     _POINTER,
     _POINTEROPT,
     _POINTERNAV,
-    _MATH,
+    _MATH, // TODO ALWAYS KEEP IN SYNC WITH BITWISE_NUM
     _FUNCTION,
     _MEDIA,
     _ONESHOT,
@@ -141,7 +141,13 @@ enum keycodes {
 
     KC_DBCL, // mouse double click
     RGB_MDE,
-    KC_CLRS,
+    CS__STP,
+    CS_RSTP,
+    BIN__1,
+    BIN__2,
+    BIN__4,
+    BIN__8,
+    BIN_16,
 
     /* physical layout comboref keys
     legend = hand_row_column/thumb button
@@ -295,6 +301,13 @@ enum keycodes {
 /* ---------- Aliases ---------- */
 // unicode
 #define UC__SPC UC(0x2800)
+// binary tap holds
+// TODO ALWAYS KEEP IN SYNC WITH LAYERS
+#define BN1_DC1 LT(11, KC_0)
+#define BN2_DC4 LT(11, KC_4)
+#define BN4_DC5 LT(11, KC_5)
+#define BN8_DC6 LT(11, KC_6)
+#define BN16_RP LT(11, KC_RBRC) // really KC_RPRN but sending this to avoid collision
 // macros
 
 #define OSMLGUI OSM(MOD_LGUI)

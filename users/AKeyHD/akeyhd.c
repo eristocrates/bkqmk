@@ -3,6 +3,7 @@
 #include "action.h"
 #include "action_util.h"
 #include "config.h"
+#include "features/eristocrates/modal_keys.h"
 #include "keycodes.h"
 #include "quantum.h"
 #include "secret.h"
@@ -22,6 +23,7 @@
 //----------------------------------------------------------
 // RGB Matrix naming
 #include <rgb_matrix.h>
+#include <stdint.h>
 
 #if defined(RGB_MATRIX_EFFECT)
 #    undef RGB_MATRIX_EFFECT
@@ -59,12 +61,46 @@ const char *rgb_matrix_names(uint8_t effect) { // disgusting hack to avoid colli
             return "UNKNOWN";
     }
 }
+/*
+// TODO finish this
+typedef union {
+    uint32_t raw;
+    struct {
+        uint8_t    color_scheme_index : 4;
+        vim_mode_t vim_mode_index : 3;
+        bool       semicolon_mode : 1;
+        bool       smart_space_mode : 1;
+        bool       last_smart_space : 1;
+        bool       autopair_mode : 1;
+        bool       ampersand_mode : 1;
+        bool       delete_word_mode : 1;
+        bool       kana_input_mode : 1;
+        bool       work_mode : 1;
+        bool       roll_reversal_mode : 1;
+        uint8_t bracket_state : 2;
+        uint32_t   reserved : 17;
+    }
+} keeb_state_config_t;
+keeb_state_config = {
+    .color_scheme_index = 0,
+    .vim_mode_index     = INSERT_MODE,
+};
+*/
+
+static uint8_t  color_scheme_max;
 static uint8_t  current_mode;
 static uint16_t color_scheme_index           = 0;
 vim_mode_t      vim_mode_index               = INSERT_MODE;
 uint16_t        transport_color_scheme_index = 0;
 vim_mode_t      transport_vim_mode_index     = INSERT_MODE;
+// https://leanrada.com/notes/my-personalised-keyboard/
+// https://github.com/Kalabasa/qmk_firmware/blob/2d1608287bb8b52669255266472975875f7c2423/keyboards/lily58/keymaps/Kalabasa/main.c#L56
+static uint8_t bracket_state      = 0;
+const uint16_t bitwise_num_keys[] = {
+    BN1_DC1, BN2_DC4, BN4_DC5, BN8_DC6, BN16_RP,
 
+};
+uint8_t NUM_BITWISE_NUM_KEYS = sizeof(bitwise_num_keys) / sizeof(uint16_t);
 /*
 bool is_oneshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
@@ -125,6 +161,7 @@ static uint8_t simple_rand(void) {
     random *= UINT16_C(36563);
     return (uint8_t)(random >> 8);
 }
+
 static bool process_quopostrokey(uint16_t keycode, keyrecord_t *record) {
     static bool within_word = false;
 
@@ -516,6 +553,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     */
     // TODO find where this gets used
     // bool is_shifted = (get_mods() & MOD_MASK_SHIFT) || (get_oneshot_mods() & MOD_MASK_SHIFT);
+    if (binary_mode && !process_bitwise_num(keycode, record)) return false;
     if (!process_quopostrokey(keycode, record)) {
         return false;
     }
@@ -552,6 +590,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         // clang-format on
     }
     switch (keycode) {
+        /*------------------------------binary------------------------------*/
+        return false; // Skip default handling.
             /*------------------------------Pointer codes ------------------------------*/
 
         case KC_DBCL:
@@ -1593,48 +1633,111 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             return false;
-        case MD_RNPO:
+            /*
+                    https://github.com/Kalabasa/qmk_firmware/blob/2d1608287bb8b52669255266472975875f7c2423/keyboards/lily58/keymaps/Kalabasa/main.c#L160-L167
+            Put cursor inside after typing empty pair of brackets
+            bracket_state machine:
+              (0) -- '[' down --> (1) -- ']' down --> (2) -- ']' up --> ((KC_LEFT))
+               ^                   |                   |
+               |                   | '[' up            | '[' or ']' up
+               '---------------------------------------'
+            */
+        case KC_LPRN:
             if (record->event.pressed) {
                 if (autopair_mode) {
                     send_autopair(KC_LPRN, KC_RPRN, record);
+                } else if (roll_reversal_mode) {
+                    bracket_state = 1;
                 } else {
                     tap_code16(KC_LPRN);
                 }
+            } else {
+                if (roll_reversal_mode) {
+                    bracket_state = 0;
+                }
             }
-            return false;
-        case MD_SQPO:
+            return true;
+        case KC_LBRC:
             if (record->event.pressed) {
                 if (autopair_mode) {
                     send_autopair(KC_LBRC, KC_RBRC, record);
+                } else if (roll_reversal_mode) {
+                    bracket_state = 1;
                 } else {
                     tap_code16(KC_LBRC);
                 }
+            } else {
+                if (roll_reversal_mode) {
+                    bracket_state = 0;
+                }
             }
-            return false;
-        case MD_CRPO:
+            return true;
+        case KC_LCBR:
             if (record->event.pressed) {
                 if (autopair_mode) {
                     send_autopair(KC_LCBR, KC_RCBR, record);
+                } else if (roll_reversal_mode) {
+                    bracket_state = 1;
                 } else {
                     tap_code16(KC_LCBR);
                 }
+            } else {
+                if (roll_reversal_mode) {
+                    bracket_state = 0;
+                }
             }
-            return false;
-        case MD_RNPC:
+            return true;
+        case KC_RPRN:
             if (record->event.pressed) {
-                tap_code16(KC_RPRN);
+                if (roll_reversal_mode) {
+                    if (bracket_state == 1) bracket_state++;
+                } else {
+                    tap_code16(KC_RPRN);
+                }
+            } else {
+                if (roll_reversal_mode) {
+                    if (bracket_state == 2) {
+                        bracket_state = 0;
+                        tap_code(KC_LEFT);
+                        return false;
+                    }
+                }
             }
-            return false;
-        case MD_SQPC:
+            return true;
+        case KC_RBRC:
             if (record->event.pressed) {
-                tap_code16(KC_RBRC);
+                if (roll_reversal_mode) {
+                    if (bracket_state == 1) bracket_state++;
+                } else {
+                    tap_code16(KC_RBRC);
+                }
+            } else {
+                if (roll_reversal_mode) {
+                    if (bracket_state == 2) {
+                        bracket_state = 0;
+                        tap_code(KC_LEFT);
+                        return false;
+                    }
+                }
             }
-            return false;
-        case MD_CRPC:
+            return true;
+        case KC_RCBR:
             if (record->event.pressed) {
-                tap_code16(KC_RCBR);
+                if (roll_reversal_mode) {
+                    if (bracket_state == 1) bracket_state++;
+                } else {
+                    tap_code16(KC_RCBR);
+                }
+            } else {
+                if (roll_reversal_mode) {
+                    if (bracket_state == 2) {
+                        bracket_state = 0;
+                        tap_code(KC_LEFT);
+                        return false;
+                    }
+                }
             }
-            return false;
+            return true;
         /*------------------------------arcane------------------------------*/
         case LTP_ARC: {
             if (record->event.pressed) {
@@ -1790,12 +1893,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
 #endif
 
-        case KC_CLRS:
+        case CS__STP:
             if (record->event.pressed) {
-                // TODO stop using a hardcoded size
                 uint8_t index      = color_scheme_index + 1 > 7 ? 0 : color_scheme_index + 1;
                 color_scheme_index = index;
-                // uint8_t COLOR_SCHEME_MAX = sizeof(color) / sizeof(nshot_state_t);
+                // uint8_t color_scheme_max = sizeof(color) / sizeof(nshot_state_t);
+            }
+            return false;
+        case CS_RSTP:
+            if (record->event.pressed) {
+                uint8_t index      = color_scheme_index - 1 < 0 ? 6 : color_scheme_index - 1;
+                color_scheme_index = index;
+                // uint8_t color_scheme_max = sizeof(color) / sizeof(nshot_state_t);
             }
             return false;
         default:
@@ -2001,6 +2110,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     // TODO might as well find an excuse to put layer taps on my spaces and add a tri layer here
     return state;
 }
+/*
 // TODO think of cool things arcane could do on hold
 bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -2059,6 +2169,8 @@ void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
             register_code16((IS_RETRO(keycode)) ? keycode & 0xFF : keycode);
     }
 }
+
+*/
 void insert_mode_user(void) {
     layer_off(_VIMMOTION);
     vim_mode_index = INSERT_MODE;
@@ -2117,7 +2229,6 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     uint8_t current_layer         = get_highest_layer(layer_state);
     uint8_t current_default_layer = get_highest_layer(default_layer_state);
 
-    // TODO stop using a hardcoded size
     rgb_color_scheme_t color_schemes[] = {
         // clang-format off
         defaults_rcs,
@@ -2130,6 +2241,8 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         afternoon_rcs,
         // clang-format on
     };
+
+    color_scheme_max = sizeof(color_schemes) / sizeof(rgb_color_scheme_t);
     switch (current_layer) {
         case _POINTER:
             uint8_t speed = rgb_matrix_config.speed * 2 < 254 ? rgb_matrix_config.speed * 2 : 254;
@@ -2239,6 +2352,7 @@ void keyboard_post_init_user(void) {
     enable_vim_mode();
     enable_vim_emulation();
     current_mode = RGB_MATRIX_DEFAULT_MODE;
+    // transaction_register_rpc(RPC_ID_COLOR_SCHEME_SYNC, color_scheme_sync);
     transaction_register_rpc(RPC_ID_COLOR_SCHEME_SYNC, color_scheme_index_sync);
     transaction_register_rpc(RPC_ID_VIM_MODE_SYNC, vim_mode_index_sync);
 }

@@ -43,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* ├───────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────┤ */
      KC____J, KC____K, KC____S, KC____N, KC____D, LMD_ARC, RMD_ARC, KC____A, KC____E, KC____I, KC____H, TH___QU,
   /* ├───────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────┤ */
-     QK_LEAD, KC____W, KC____F, KC____L, KC____C, LBM_ARC, RBM_ARC, MD_RNPO, COM_ARC, DOT_ARC, MD_RNPC, VIM_TOG,
+     QK_LEAD, KC____W, KC____F, KC____L, KC____C, LBM_ARC, RBM_ARC, KC_LPRN, COM_ARC, DOT_ARC, KC_RPRN, VIM_TOG,
   /* ╰───────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────╯ */
                                 MATH_TB, CTRL__R, SML_SPC, SMR_SPC, ALT___T
   /*                            ╰────────────────────────╯ ╰──────────────╯                                      */
@@ -79,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
        CLHOUTR, CLHPNKY, CLHRING, CLHMDLE, CLHINDX, CLHINNR,    CRHINNR, CRHINDX, CRHMDLE, CRHRING, CRHPNKY, CRHOUTR,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       CLBOUTR, CLBPNKY, CLBRING, CLBMDLE, CLBINDX, CLBINNR,    CRBINNR, OS_LSFT, OS_LCTL, OS_LALT, OS_LGUI, CRBOUTR,
+       CLBOUTR, CLBPNKY, CLBRING, CLBMDLE, CLBINDX, CLBINNR,    CRBINNR, KC_LCBR, KC_SLSH, KC_EXLM, KC_RCBR, CRBOUTR,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
                                   XXXXXXX, _______, XXXXXXX,    KC_UNDS, ALT___T
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
@@ -90,9 +90,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
        ALHOUTR, ALHPNKY, ALHRING, ALHMDLE, ALHINDX, ALHINNR,    ARHINNR, ARHINDX, ARHMDLE, ARHRING, ARHPNKY, ARHOUTR,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       ALBOUTR, ALBPNKY, ALBRING, ALBMDLE, ALBINDX, ALBINNR,    ARBINNR, OS_LSFT, TS_LCTL, OS_LALT, OS_LGUI, ARBOUTR,
+       ALBOUTR, ALBPNKY, ALBRING, ALBMDLE, ALBINDX, ALBINNR,    ARBINNR, KC_LBRC, KC_COLN, KC_QUES, KC_RBRC, ARBOUTR,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
-                                  XXXXXXX, _______, KC_UNDS,    XXXXXXX, _______
+                                  XXXXXXX, XXXXXXX, KC_UNDS,    XXXXXXX, _______
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
   ),
 
@@ -114,7 +114,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, KC_LCBR, KC_SLSH, KC_EXLM, KC_RCBR, XXXXXXX,
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, OS_LSFT, OS_LCTL, OS_LALT, OS_LGUI, XXXXXXX,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
                                   XXXXXXX, XXXXXXX, _______,    XXXXXXX, XXXXXXX
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
@@ -126,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    UCHAPPY, KC_LBRC, KC_COLN, KC_QUES, KC_RBRC, XXXXXXX,
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    UCHAPPY, OS_LSFT, OS_LCTL, OS_LALT, OS_LGUI, XXXXXXX,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
                                   XXXXXXX, XXXXXXX, XXXXXXX,    _______, XXXXXXX
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
@@ -172,11 +172,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮ */
        _______, KC_PERC, KC_CIRC, _______, _______,  KC_DLR,   KC_LBRC, KC_7,    KC_8,    KC_9, KC_RBRC, _______,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       KC_COMM, KC_PSLS, KC_PAST, KC_PMNS, KC_PPLS,  KC_DOT,   KC_LPRN, KC_4,    KC_5,    KC_6, KC_RPRN, _______,
+       KC_COMM, KC_PSLS, KC_PAST, KC_PMNS, KC_PPLS,  KC_DOT,   KC_LPRN, BN2_DC4,    BN4_DC5,    BN8_DC6, BN16_RP, _______,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
        _______, KC_SQRT, KC_EXLM, _______, _______, LR_LOCK,     KC_LT, KC_1,    KC_2,    KC_3,   KC_GT,    BASE,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
-                                  _______,  KC_EQL, KC_PENT,    KC_SPC, KC_0
+                                  _______,  KC_EQL, KC_PENT,    KC_SPC, BN1_DC1
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
   ),
 

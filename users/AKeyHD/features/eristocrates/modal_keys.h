@@ -10,3 +10,5 @@ extern bool ampersand_mode;
 extern bool delete_word_mode;
 extern bool kana_input_mode;
 extern bool work_mode;
+extern bool roll_reversal_mode;
+extern bool binary_mode;

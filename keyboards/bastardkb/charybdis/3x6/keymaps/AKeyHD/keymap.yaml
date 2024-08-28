@@ -3,7 +3,7 @@ layers:
   AKeyHD:
   - ['   X', '   V', '   G', '   M', '   P', LTP ARC, RTP ARC, '   U', '   O', '   Y', '   B', '   Z']
   - ['   J', '   K', '   S', '   N', '   D', LMD ARC, RMD ARC, '   A', '   E', '   I', '   H', TH   QU]
-  - [QK LEAD, '   W', '   F', '   L', '   C', LBM ARC, RBM ARC, MD RNPO, COM ARC, DOT ARC, MD RNPC, VIM TOG]
+  - [QK LEAD, '   W', '   F', '   L', '   C', LBM ARC, RBM ARC, (, COM ARC, DOT ARC, ), VIM TOG]
   - [MATH TB, CTRL  R, SML SPC, SMR SPC, ALT   T]
   Combo Reference:
   - [LT OUTR, LT PNKY, LT RING, LT MDLE, LT INDX, LT INNR, RT INNR, RT INDX, RT MDLE, RT RING, RT PNKY, RT OUTR]
@@ -55,7 +55,7 @@ layers:
   Piercing Alt:
   - [CLTOUTR, CLTPNKY, CLTRING, CLTMDLE, CLTINDX, CLTINNR, CRTINNR, CRTINDX, CRTMDLE, CRTRING, CRTPNKY, CRTOUTR]
   - [CLHOUTR, CLHPNKY, CLHRING, CLHMDLE, CLHINDX, CLHINNR, CRHINNR, CRHINDX, CRHMDLE, CRHRING, CRHPNKY, CRHOUTR]
-  - [CLBOUTR, CLBPNKY, CLBRING, CLBMDLE, CLBINDX, CLBINNR, CRBINNR, OS LSFT, OS LCTL, OS LALT, OS LGUI, CRBOUTR]
+  - [CLBOUTR, CLBPNKY, CLBRING, CLBMDLE, CLBINDX, CLBINNR, CRBINNR, '{', /, '!', '}', CRBOUTR]
   - - ''
     - {t: '', type: trans}
     - ''
@@ -64,9 +64,9 @@ layers:
   Piercing Gui:
   - [ALTOUTR, ALTPNKY, ALTRING, ALTMDLE, ALTINDX, ALTINNR, ARTINNR, ARTINDX, ARTMDLE, ARTRING, ARTPNKY, ARTOUTR]
   - [ALHOUTR, ALHPNKY, ALHRING, ALHMDLE, ALHINDX, ALHINNR, ARHINNR, ARHINDX, ARHMDLE, ARHRING, ARHPNKY, ARHOUTR]
-  - [ALBOUTR, ALBPNKY, ALBRING, ALBMDLE, ALBINDX, ALBINNR, ARBINNR, OS LSFT, TS LCTL, OS LALT, OS LGUI, ARBOUTR]
+  - [ALBOUTR, ALBPNKY, ALBRING, ALBMDLE, ALBINDX, ALBINNR, ARBINNR, '[', ':', '?', ']', ARBOUTR]
   - - ''
-    - {t: '', type: trans}
+    - ''
     - _
     - ''
     - {t: '', type: trans}
@@ -82,7 +82,7 @@ layers:
   Pointer Options:
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '', '', '', '{', /, '!', '}', '']
+  - ['', '', '', '', '', '', '', OS LSFT, OS LCTL, OS LALT, OS LGUI, '']
   - - ''
     - ''
     - {t: '', type: trans}
@@ -91,7 +91,7 @@ layers:
   Pointer Navigation:
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '', '', UCHAPPY, '[', ':', '?', ']', '']
+  - ['', '', '', '', '', '', UCHAPPY, OS LSFT, OS LCTL, OS LALT, OS LGUI, '']
   - - ''
     - ''
     - ''
@@ -243,10 +243,10 @@ layers:
     - PPLS
     - .
     - (
-    - '4'
-    - '5'
-    - '6'
-    - )
+    - BN2 DC4
+    - BN4 DC5
+    - BN8 DC6
+    - BN16 RP
     - {t: '', type: trans}
   - - {t: '', type: trans}
     - SQRT
@@ -264,7 +264,7 @@ layers:
     - '='
     - PENT
     - SPC
-    - '0'
+    - BN1 DC1
   N-Shot Mods:
   - - {t: '', type: trans}
     - {t: '', type: trans}

@@ -1,26 +1,5 @@
 #include "akeyhd_colors.h"
 
-// converts from quantum
-HSV hsv_azure       = {132, 102, 255};
-HSV hsv_black       = {0, 0, 0};
-HSV hsv_blue        = {170, 255, 255};
-HSV hsv_chartreuse  = {64, 255, 255};
-HSV hsv_coral       = {11, 176, 255};
-HSV hsv_cyan        = {128, 255, 255};
-HSV hsv_gold        = {36, 255, 255};
-HSV hsv_goldenrod   = {30, 218, 218};
-HSV hsv_green       = {85, 255, 255};
-HSV hsv_magenta     = {213, 255, 255};
-HSV hsv_orange      = {21, 255, 255};
-HSV hsv_pink        = {234, 128, 255};
-HSV hsv_purple      = {191, 255, 255};
-HSV hsv_red         = {0, 255, 255};
-HSV hsv_springgreen = {106, 255, 255};
-HSV hsv_teal        = {128, 255, 128};
-HSV hsv_turquoise   = {123, 90, 112};
-HSV hsv_white       = {0, 0, 255};
-HSV hsv_yellow      = {43, 255, 255};
-
 rgb_color_scheme_t defaults_rcs = {
     .main_hsv       = {HSV_RED},
     .accent1_hsv    = {HSV_PINK},
@@ -28,6 +7,25 @@ rgb_color_scheme_t defaults_rcs = {
     .highlight1_hsv = {HSV_CHARTREUSE},
     .highlight2_hsv = {HSV_CORAL},
 };
+
+// https://coolors.co/
+
+// https://coolors.co/ed1c24-f1d302-235789-fdfffc-020100
+#define HSV_RED_CMYK 254, 225, 237
+#define HSV_SCHOOL_BUS_YELLOW 37, 253, 241
+#define HSV_LAPIS_LAZULI 148, 190, 137
+#define HSV_BABY_POWDER 71, 3, 255
+#define HSV_NEW_BLACK 21, 255, 2
+// clang-format off
+rgb_color_scheme_t ed1c24_f1d302_235789_fdfffc_020100_rcs = {
+	.main_hsv = {HSV_RED_CMYK},
+	.accent1_hsv = {HSV_SCHOOL_BUS_YELLOW},
+	.accent2_hsv = {HSV_LAPIS_LAZULI},
+	.highlight1_hsv = {HSV_BABY_POWDER},
+	.highlight2_hsv = {HSV_NEW_BLACK},
+};
+// clang-format on
+
 // lifted from The color scheme bible : inspirational palettes for designing home interiors : Starmer, Anna
 // https://archive.org/details/colorschemebible0000star
 rgb_color_scheme_t classic_rcs = {

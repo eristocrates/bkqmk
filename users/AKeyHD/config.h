@@ -167,10 +167,12 @@
 #define TAPPING_TOGGLE 2
 
 // Auto shift
+/*
 #define AUTO_SHIFT_TIMEOUT 170
 #define NO_AUTO_SHIFT_SPECIAL
 #define RETRO_SHIFT 500
 #define AUTO_SHIFT_MODIFIERS
+*/
 
 // recent key
 #define TIMEOUT_MS 5000 // Timeout in milliseconds.
