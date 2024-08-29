@@ -49,29 +49,8 @@ bool process_motions(uint16_t keycode, const keyrecord_t *record, uint16_t qk_mo
             break;
     });
     DO_NUMBERED_ACTION(switch (keycode) {
-        /*
-        case VIM_LFT: {
-            static uint8_t registered_key = KC_H;
-            if (record->event.pressed) {
-                switch ((back_is_held ? BACK_HELD : 0) | (down_is_held ? DOWN_HELD : 0) | (forward_is_held ? FORWARD_HELD : 0) | (jump_is_held ? UP_HELD : 0)) {
-                    case BACK_HELD:
-                    case DOWN_HELD:
-                    case FORWARD_HELD:
-                    case UP_HELD:
-                    default:
-                        if (vim_emulation) {
-                            register_code(registered_key);
-                        } else {
-                            set_visual_direction(V_BACKWARD);
-                            register_motion(qk_mods | QMK_VIM_H, record);
-                        }
-                }
-            } else {
-                if (vim_emulation) unregister_code(registered_key);
-            }
-        } break;
-        */
         case KC_H:
+        case VIM_LFT:
         case QMK_VIM_H:
             set_visual_direction(V_BACKWARD);
             register_motion(qk_mods | QMK_VIM_H, record);

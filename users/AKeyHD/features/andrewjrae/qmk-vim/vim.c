@@ -18,6 +18,7 @@
 #include "modes.h"
 #include "actions.h"
 #include "process_func.h"
+#include "../../../akeyhd_keycodes.h"
 
 // the current process func, from in process_func.c
 extern process_func_t process_func;
@@ -130,7 +131,8 @@ bool process_vim_mode(uint16_t keycode, const keyrecord_t *record) {
         }
 
         // let through anything above normal keyboard keycode or a mod
-        if ((keycode < KC_A || keycode > KC_CAPS_LOCK) && (keycode < QK_MODS || keycode > QK_MODS_MAX)) {
+        // TODO carve out exceptions for my keycodes. also ironically test left is the only broken one
+        if ((keycode != VIM_LFT && keycode != VIM_DWN && keycode != VIM__UP && keycode != VIM_RGT) && (keycode < KC_A || keycode > KC_CAPS_LOCK) && (keycode < QK_MODS || keycode > QK_MODS_MAX)) {
             return true;
         }
 
