@@ -132,7 +132,7 @@ bool process_vim_mode(uint16_t keycode, const keyrecord_t *record) {
 
         // let through anything above normal keyboard keycode or a mod
         // TODO carve out exceptions for my keycodes. also ironically test left is the only broken one
-        if ((keycode != VIM_LFT && keycode != VIM_DWN && keycode != VIM__UP && keycode != VIM_RGT) && (keycode < KC_A || keycode > KC_CAPS_LOCK) && (keycode < QK_MODS || keycode > QK_MODS_MAX)) {
+        if ((keycode != VIM_LFT && keycode != VIM_DWN && keycode != VIM__UP && keycode != VIM_RGT && keycode != MI_BACK && keycode != MI_DOWN && keycode != MI_UP && keycode != MI_FRWD) && (keycode < KC_A || keycode > KC_CAPS_LOCK) && (keycode < QK_MODS || keycode > QK_MODS_MAX)) {
             return true;
         }
 

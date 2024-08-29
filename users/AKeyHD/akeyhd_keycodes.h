@@ -130,8 +130,9 @@ enum keycodes {
     MD_WELL, // well
     MD_WEPL, // we'll
     MD_WEPV, // we've
-    MD_PVE,
-    MD_PS,
+    MD_WHAT, // what
+    MD_PVE,  // 've
+    MD_PS,   // 's
 
     MD_BSPC, // backspace/backspace word
     MD_DEL,  // delete/delete word

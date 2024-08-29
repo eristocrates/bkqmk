@@ -111,8 +111,6 @@ uint16_t preprior_keycode = KC_NO;
 uint16_t prior_keycode    = KC_NO;
 uint16_t prior_keydown    = 0; // timer of keydown for adaptive threshhold.
 
-// https://getreuer.info/posts/keyboards/triggers/index.html#when-another-key-is-held
-
 /*
 bool is_oneshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
@@ -557,9 +555,12 @@ static bool process_tap_or_long_mod_press_key(keyrecord_t *record, uint16_t long
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static bool     tapped    = false;
     static uint16_t tap_timer = 0;
-#ifdef CONSOLE_ENABLE
-    if (record->event.pressed) uprintf("process_record_user: g_led_config_matrix_co[row][col]: %d, kc: 0x%04X, col: %u, row: %u, pressed: %b, time: %u, interrupt: %b, count: %u\n", g_led_config.matrix_co[record->event.key.row][record->event.key.col], keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
-#endif
+
+    /*
+    #ifdef CONSOLE_ENABLE
+        if (record->event.pressed) uprintf("process_record_user: g_led_config_matrix_co[row][col]: %d, kc: 0x%04X, col: %u, row: %u, pressed: %b, time: %u, interrupt: %b, count: %u\n", g_led_config.matrix_co[record->event.key.row][record->event.key.col], keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
+    #endif
+    */
 
     // TODO see if i can ifdef this
     /*
@@ -1744,6 +1745,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 send_string_with_caps_word("we've");
             }
             return true;
+        case MD_WHAT:
+            if (record->event.pressed) {
+                send_string_with_caps_word("what");
+            }
+            return true;
         case MD_PVE:
             if (record->event.pressed) {
                 if (last_smart_space) {
@@ -2499,6 +2505,7 @@ bool process_combo_key_release(uint16_t combo_index, combo_t *combo, uint8_t key
         case CB_WELL:
         case CB_WEPLL:
         case CB_WEVE:
+        case CB_WHAT:
         case CB_PVE:
         case CB_PS:
             if (smart_space_mode) {
@@ -2595,10 +2602,7 @@ void visual_line_mode_user(void) {
     }
 }
 bool process_normal_mode_user(uint16_t keycode, const keyrecord_t *record) {
-    static bool back_is_held    = false;
-    static bool down_is_held    = false;
-    static bool jump_is_held    = false;
-    static bool forward_is_held = false;
+    // https://getreuer.info/posts/keyboards/triggers/index.html#when-another-key-is-held
     if (vim_emulation_enabled() && record->event.pressed) {
         switch (keycode) {
             case KC_ENT:
@@ -2615,38 +2619,56 @@ bool process_normal_mode_user(uint16_t keycode, const keyrecord_t *record) {
             default:
                 return true;
         }
-    } else if (!vim_emulation_enabled() && record->event.pressed) {
+    } else if (!vim_emulation_enabled()) {
+        static bool is_back_held    = false;
+        static bool is_down_held    = false;
+        static bool is_jump_held    = false;
+        static bool is_forward_held = false;
         switch (keycode) {
                 /*------------------------------Motion inputs------------------------------*/
             case MI_BACK:
-                back_is_held = record->event.pressed;
-                break;
+                is_back_held = record->event.pressed;
+                return true;
             case MI_DOWN:
-                down_is_held = record->event.pressed;
-                break;
+                is_down_held = record->event.pressed;
+                return true;
             case MI_UP:
-                jump_is_held = record->event.pressed;
-                break;
+                is_jump_held = record->event.pressed;
+                return true;
             case MI_FRWD:
-                forward_is_held = record->event.pressed;
-                break;
+                is_forward_held = record->event.pressed;
+                return true;
 
             case VIM_LFT:
                 if (record->event.pressed) {
-                    if (back_is_held) {
-                        tap_code(KC_B);
-                    } else if (forward_is_held) {
-                        tap_code(KC_G);
-                        tap_code(KC_E);
-                    } else {
-                        tap_code(KC_H);
+#ifdef CONSOLE_ENABLE
+                    if (record->event.pressed) uprintf("process_normal_mode_user: is_back_held: %d, is_down_held: %d, is_jump_held: %d, is_forward_held: %d,kc: 0x%04X, col: %u, row: %u, pressed: %b, time: %u, interrupt: %b, count: %u\n", is_back_held, is_down_held, is_jump_held, is_forward_held, keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
+#endif
+                    switch ((is_back_held ? BACK_HELD : 0) | (is_down_held ? DOWN_HELD : 0) | (is_forward_held ? FORWARD_HELD : 0) | (is_jump_held ? UP_HELD : 0)) {
+                        case BACK_HELD:
+                            tap_code(KC_B);
+                            break;
+                        case DOWN_HELD:
+                            return false;
+                        case FORWARD_HELD:
+                            tap_code(KC_G);
+                            tap_code(KC_E);
+                            break;
+                        case UP_HELD:
+                            return false;
+                        default:
+                            tap_code(KC_H);
                     }
+                } else {
+#ifdef CONSOLE_ENABLE
+                    if (!record->event.pressed) uprintf("process_normal_mode_user: is_back_held: %d, is_down_held: %d, is_jump_held: %d, is_forward_held: %d,kc: 0x%04X, col: %u, row: %u, pressed: %b, time: %u, interrupt: %b, count: %u\n", is_back_held, is_down_held, is_jump_held, is_forward_held, keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
+#endif
                 }
 
                 return true;
             case VIM_DWN:
                 if (record->event.pressed) {
-                    switch ((back_is_held ? BACK_HELD : 0) | (down_is_held ? DOWN_HELD : 0) | (forward_is_held ? FORWARD_HELD : 0) | (jump_is_held ? UP_HELD : 0)) {
+                    switch ((is_back_held ? BACK_HELD : 0) | (is_down_held ? DOWN_HELD : 0) | (is_forward_held ? FORWARD_HELD : 0) | (is_jump_held ? UP_HELD : 0)) {
                         case BACK_HELD:
                         case DOWN_HELD:
                         case FORWARD_HELD:
@@ -2659,7 +2681,7 @@ bool process_normal_mode_user(uint16_t keycode, const keyrecord_t *record) {
 
             case VIM__UP:
                 if (record->event.pressed) {
-                    switch ((back_is_held ? BACK_HELD : 0) | (down_is_held ? DOWN_HELD : 0) | (forward_is_held ? FORWARD_HELD : 0) | (jump_is_held ? UP_HELD : 0)) {
+                    switch ((is_back_held ? BACK_HELD : 0) | (is_down_held ? DOWN_HELD : 0) | (is_forward_held ? FORWARD_HELD : 0) | (is_jump_held ? UP_HELD : 0)) {
                         case BACK_HELD:
                         case DOWN_HELD:
                         case FORWARD_HELD:
@@ -2673,7 +2695,7 @@ bool process_normal_mode_user(uint16_t keycode, const keyrecord_t *record) {
 
             case VIM_RGT:
                 if (record->event.pressed) {
-                    switch ((back_is_held ? BACK_HELD : 0) | (down_is_held ? DOWN_HELD : 0) | (forward_is_held ? FORWARD_HELD : 0) | (jump_is_held ? UP_HELD : 0)) {
+                    switch ((is_back_held ? BACK_HELD : 0) | (is_down_held ? DOWN_HELD : 0) | (is_forward_held ? FORWARD_HELD : 0) | (is_jump_held ? UP_HELD : 0)) {
                         case BACK_HELD:
                         case DOWN_HELD:
                         case FORWARD_HELD:
