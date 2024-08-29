@@ -17,26 +17,90 @@ COMB(CB_POINTER, POINTERMODE, RB_INDX, R_MTHMB)
 COMB(CB_PANIC, PANIC, L_MTHMB, R_MTHMB)
 COMB(CB_CLEAR, K_CLEAR, L_RTHMB, R_LTHMB)
 
-/*---- 2Grams ----*/
+/*---- most 2Grams ----*/
 COMB(CB_GH, MD_GH, LT_PNKY, LT_RING)
 COMB(CB_PH, KC_PH, LT_MDLE, LT_INDX)
 COMB(CB_SH, KC_SH, LH_PNKY, LH_RING)
-COMB(CB_TH, KC_TH, LH_MDLE, LH_INDX)
-COMB(CB_WH, KC_WH, LB_PNKY, LB_RING)
 COMB(CB_CH, KC_CH, LB_MDLE, LB_INDX)
 COMB(CB_LY, MD_LY, RT_MDLE, RT_RING)
 COMB(CB_IN, KC_IN, RH_RING, RH_PNKY)
 
-// TODO make md keys for these
-/*---- 3Grams ----*/
-COMB(CB_THE, MD_THE, LH_RING, LH_INDX)
-COMB(CB_AND, MD_AND, RH_INDX, RH_RING)
+/*---- Common Grammar ----*/
+COMB(CB_ANDL, MD_AND, LH_INDX, LH_RING)
+COMB(CB_ANDR, MD_AND, RH_INDX, RH_RING)
 COMB(CB_FOR, MD_FOR, LB_RING, L_MTHMB)
-COMB(CB_YOU, MD_YOU, RT_RING, RT_INDX)
+COMB(CB_TO, MD_TO, R_MTHMB, RT_MDLE)
+COMB(CB_FROM, MD_FROM, L_MTHMB, LT_MDLE)
+COMB(CB_BUT, MD_BUT, R_MTHMB, RT_PNKY)
+COMB(CB_PVE, MD_PVE, LT_PNKY, RB_MDLE)
+COMB(CB_PS, MD_PS, LH_RING, RB_MDLE)
 
-/*---- 4Grams ----*/
+
+/*---- 4+Gram suffixes ----*/
 COMB(CB_INGL, MD_ING, LH_PNKY, LH_MDLE)
 COMB(CB_INGR, MD_ING, RH_MDLE, RH_PNKY)
-COMB(CB_SION, MD_SION, LH_RING, RH_RING)
-COMB(CB_TION, MD_TION, R_MTHMB, RH_RING)
+COMB(CB_SION, MD_SION, LH_RING, LH_MDLE)
+COMB(CB_TION, MD_TION, R_MTHMB, LH_MDLE)
 COMB(CB_OULD, MD_OULD, RT_INDX, RT_MDLE)
+// ascii generated from https://patorjk.com/software/taag/#p=display&f=Big%20Money-ne&t=FUCKING%20PRONOUNS%20
+ /*
+ ________  __    __   ______   __    __  ______  __    __   ______
+|        \|  \  |  \ /      \ |  \  /  \/      |/  \  /  | /      \
+| $$$$$$$$| $$  | $$|  $$$$$$\| $$ /  $$$$$$$$/ $$  \ $$ |/$$$$$$  |
+| $$__    | $$  | $$| $$   \$$| $$/  $$   $$ |  $$$  \$$ |$$ | _$$/
+| $$  \   | $$  | $$| $$      | $$  $$    $$ |  $$$$  $$ |$$ |/    |
+| $$$$$   | $$  | $$| $$   __ | $$$$$\    $$ |  $$ $$ $$ |$$ |$$$$ |
+| $$      | $$__/ $$| $$__/  \| $$ \$$\  _$$ |_ $$ |$$$$ |$$ \__$$ |
+| $$       \$$    $$ \$$    $$| $$  \$$\/ $$   |$$ | $$$ |$$    $$/
+ \$$        \$$$$$$   \$$$$$$  \$$   \$$$$$$$$/ $$/   $$/  $$$$$$/
+
+ /$$$$$$$  /$$$$$$$   /$$$$$$   $$\   $$\  $$$$$$\  $$\   $$\ $$\   $$\  $$$$$$\
+| $$__  $$| $$__  $$ /$$__  $$  $$$\  $$ |$$  __$$\ $$ |  $$ |$$$\  $$ |$$  __$$\
+| $$  \ $$| $$  \ $$| $$  \ $$ |$$$$\ $$ |$$ /  $$ |$$ |  $$ |$$$$\ $$ |$$ /  \__|
+| $$$$$$$/| $$$$$$$/| $$  | $$ |$$ $$\$$ |$$ |  $$ |$$ |  $$ |$$ $$\$$ |\$$$$$$\
+| $$____/ | $$__  $$| $$  | $$ |$$ \$$$$ |$$ |  $$ |$$ |  $$ |$$ \$$$$ | \____$$\
+| $$      | $$  \ $$| $$  | $$ |$$ |\$$$ |$$ |  $$ |$$ |  $$ |$$ |\$$$ |$$\   $$ |
+| $$      | $$  | $$|  $$$$$$/ |$$ | \$$ | $$$$$$  |\$$$$$$  |$$ | \$$ |\$$$$$$  |
+|__/      |__/  |__/ \______/   \__|  \__| \______/  \______/ \__|  \__| \______/
+and some other stuff
+https://www.youtube.com/shorts/wf414bcFfU0
+*/
+
+// I
+COMB(CB_I, MD_I, R_LTHMB, RH_RING)
+COMB(CB_IPD, MD_IPD, LH_INDX, RH_RING)
+COMB(CB_IPLL, MD_IPLL, LB_MDLE, RH_RING)
+COMB(CB_IPM, MD_IPM, LT_MDLE, RH_RING)
+COMB(CB_IPVE, MD_IPVE, LT_PNKY, RH_RING)
+// You
+COMB(CB_YOU, MD_YOU, RT_INDX, RT_RING)
+COMB(CB_YOUPD, MD_YOUD, LH_INDX, RT_RING)
+COMB(CB_YOUPLL, MD_YOUL, LB_MDLE, RT_RING)
+COMB(CB_YOUPRE, MD_YORE, L_MTHMB, RT_RING)
+COMB(CB_YOUPVE, MD_YOVE, LT_PNKY, RT_RING)
+COMB(CB_YOUR, MD_YOUR, L_MTHMB, RT_INDX)
+// Th
+// COMB(CB_TH, KC_TH, LH_MDLE, LH_INDX) // testing going from this to a more literal position of t and h
+COMB(CB_TH, KC_TH, R_MTHMB, RH_PNKY)
+COMB(CB_THE, MD_THE, R_MTHMB, RH_MDLE)
+COMB(CB_THEIR, MD_THEI, R_MTHMB, RH_RING)
+COMB(CB_THEYRE, MD_THYR, R_MTHMB, RT_RING, L_MTHMB)
+COMB(CB_THEY, MD_THEY, R_MTHMB, RT_RING)
+COMB(CB_THERE, MD_THRE, R_MTHMB, RH_MDLE, L_MTHMB)
+COMB(CB_THEYD, MD_THYD, R_MTHMB, LH_INDX)
+COMB(CB_THEYLL, MD_THYL, R_MTHMB, LB_MDLE)
+// We
+COMB(CB_WH, KC_WH, LB_PNKY, LB_RING)
+COMB(CB_HERE, MD_HERE, RH_PNKY, L_MTHMB)
+COMB(CB_WHERE, MD_WHRE, LB_PNKY, LB_RING, L_MTHMB)
+COMB(CB_WEPRE, MD_WEPR, LB_PNKY, RB_MDLE)
+COMB(CB_WERE, MD_WERE, LB_PNKY, L_MTHMB)
+COMB(CB_WED, MD_WEPD, LB_PNKY, LH_INDX)
+COMB(CB_WELL, MD_WELL, LB_PNKY, LB_MDLE)
+COMB(CB_WEPLL, MD_WEPL, LB_PNKY, LB_MDLE, RB_MDLE)
+COMB(CB_WEVE, MD_WEPV, LB_PNKY, RB_MDLE)
+
+
+
+
+

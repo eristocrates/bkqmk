@@ -13,8 +13,8 @@
 void arcane_send_string_P(const char* str, uint16_t repeat_keycode);
 void process_top_left_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_keydown, uint16_t default_keycode);
 void process_top_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_keydown, uint16_t default_keycode);
-void process_middle_left_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_keydown, uint16_t default_keycode);
-void process_middle_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_keydown, uint16_t default_keycode);
+void process_home_left_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_keydown, uint16_t default_keycode);
+void process_home_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_keydown, uint16_t default_keycode);
 void process_bottom_left_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_keydown, uint16_t default_keycode);
 void process_bottom_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_keydown, uint16_t default_keycode);
 void process_comma_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_keydown);

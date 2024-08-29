@@ -60,7 +60,7 @@
 // term settings
 #define TAPPING_TERM 175
 #define REPEAT_TERM (TAPPING_TERM / 3)
-#define MAGIC_TERM (TAPPING_TERM * 1.5)
+#define MAGIC_TERM (TAPPING_TERM * 2)
 
 // Auto shift
 /*
@@ -71,8 +71,9 @@
 */
 
 // recent key
-#define TIMEOUT_MS 5000 // Timeout in milliseconds.
-#define RECENT_SIZE 8   // Number of keys in `recent` buffer.
+#define BUFFER_TIMEOUT_MS 5000 // Timeout in milliseconds.
+#define ARCANE_TIMEOUT_MS 1000 // Timeout in milliseconds.
+#define BUFFER_SIZE 16         // Number of keys in `recent` buffer.
 
 // unicode
 #define UNICODE_SELECTED_MODES UNICODE_MODE_WINCOMPOSE

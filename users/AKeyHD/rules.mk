@@ -34,6 +34,7 @@ SRC += features/eristocrates/akeyhd_colors.c
 SRC += features/eristocrates/utilities.c
 SRC += features/getreuer/layer_lock.c
 SRC += features/kalabasa/bitwise_num.c
+SRC += features/kalabasa/bitwise_f.c
 SRC += features/possumvibes/mod_lock.c
 SRC += features/possumvibes/nshot_mod.c
 SRC += features/possumvibes/override_keys.c

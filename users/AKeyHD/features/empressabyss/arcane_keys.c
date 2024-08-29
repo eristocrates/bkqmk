@@ -134,11 +134,15 @@ void process_top_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_key
                 // right thumb
 
             default:
-                call_keycode(default_keycode);
+                tap_code16(default_keycode);
         }
     } else if (timer_elapsed(prior_keydown) < MAGIC_TERM) {
         switch (keycode) {
                 /* anti sfb magic */
+            // right pinky column
+            case KC_I:
+                ARCANE_STRING("z", KC_Z);
+                break;
                 // left outer column
             case KC_J:
                 ARCANE_STRING("x", KC_X);
@@ -170,14 +174,14 @@ void process_top_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_key
 
                 // left thumb
             default:
-                call_keycode(default_keycode);
+                tap_code16(default_keycode);
         }
     } else {
-        call_keycode(default_keycode);
+        tap_code16(default_keycode);
     }
 }
 
-void process_middle_left_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_keydown, uint16_t default_keycode) {
+void process_home_left_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_keydown, uint16_t default_keycode) {
     if (timer_elapsed(prior_keydown) < REPEAT_TERM) {
         switch (keycode) {
                 /* repeats */
@@ -221,6 +225,10 @@ void process_middle_left_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_k
                 ARCANE_STRING("r", KC_R);
                 break;
 
+            // left index column
+            case KC_P:
+                ARCANE_STRING("l", KC_L);
+                break;
                 /*  anti sfb magic */
             // right outer column
             case KC_Z:
@@ -257,7 +265,7 @@ void process_middle_left_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_k
     }
 }
 
-void process_middle_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_keydown, uint16_t default_keycode) {
+void process_home_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_keydown, uint16_t default_keycode) {
     if (timer_elapsed(prior_keydown) < REPEAT_TERM) {
         switch (keycode) {
                 /* repeats */
@@ -311,6 +319,9 @@ void process_middle_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_
             case KC_G:
             case KC_F:
                 ARCANE_STRING("s", KC_S);
+                break;
+            case KC_S:
+                ARCANE_STRING("sion", KC_N);
                 break;
 
             // left middle column
@@ -382,12 +393,18 @@ void process_bottom_left_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_k
                 ARCANE_STRING("qu", TH___QU);
                 break;
 
-                // right pinky column
+            // right pinky column
 
-                // right ring column
+            // right ring column
+            case KC_I:
+                call_keycode(DOT_ARC);
+                break;
 
                 // right middle column
 
+            case KC_E:
+                call_keycode(COM_ARC);
+                break;
                 // right index column
 
                 // right thumb
@@ -449,32 +466,38 @@ void process_bottom_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_
                 tap_code16(default_keycode);
                 // TODO think of something to do with what would otherwise be repeats on the sliver
         }
+    } else {
+        tap_code16(default_keycode);
     }
 }
+
 // inspired from https://www.reddit.com/r/KeyboardLayouts/comments/1cc2yri/oneshot_shift_via_adaptive_keys/?share_id=J_a-r4rEr1p26tZg4lRpc&utm_content=1&utm_medium=android_app&utm_name=androidcss&utm_source=share&utm_term=1
 // inspired from https://www.reddit.com/r/KeyboardLayouts/comments/1cc2yri/comment/l12n0qr/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 void process_comma_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_keydown) {
-    if (timer_elapsed(prior_keydown) < TIMEOUT_MS) {
-        ARCANE_STRING("", KC_COMM);
-        add_oneshot_mods(MOD_LSFT);
-    } else {
+    if (timer_elapsed(prior_keydown) < ARCANE_TIMEOUT_MS) {
         ARCANE_STRING(",", KC_COMM);
         if (smart_space_mode) {
             tap_code(KC_SPC);
+        }
+    } else {
+        if (keycode == KC_COMM) {
+            del_oneshot_mods(MOD_MASK_SHIFT);
+            del_mods(MOD_MASK_SHIFT);
+            ARCANE_STRING(",", KC_COMM);
+        } else {
+            ARCANE_STRING("", KC_COMM);
+            call_keycode(OS_LSFT);
         }
     }
 }
 
 void process_dot_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_keydown) {
-    if (timer_elapsed(prior_keydown) < TIMEOUT_MS) {
+    if (timer_elapsed(prior_keydown) < ARCANE_TIMEOUT_MS) {
         if (is_caps_word_on()) {
             ARCANE_STRING(".", KC_DOT);
             caps_word_off();
-        } else {
-            ARCANE_STRING("", KC_DOT);
-            caps_word_on();
+            return;
         }
-    } else {
         // last keycode is a smart combos that would need that prior space smartly removed
         if (smart_space_mode && last_smart_space) {
             tap_code(KC_BSPC);
@@ -488,8 +511,16 @@ void process_dot_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_keydown) 
             ARCANE_STRING(".", KC_DOT);
             if (smart_space_mode) {
                 tap_code(KC_SPC);
-                add_oneshot_mods(MOD_LSFT);
+                call_keycode(OS_LSFT);
             }
+        }
+    } else {
+        if (is_caps_word_on()) {
+            caps_word_off();
+            ARCANE_STRING(".", KC_DOT);
+        } else {
+            ARCANE_STRING("", KC_DOT);
+            caps_word_on();
         }
     }
 }

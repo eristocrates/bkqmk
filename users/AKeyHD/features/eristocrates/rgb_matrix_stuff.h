@@ -22,6 +22,7 @@ void rgb_matrix_layer_helper(rgb_color_scheme_t color_scheme, vim_mode_t vim_mod
 // TODO strangely, despite being listed as 40 and working when i == 40, 40 always fails keymap_key_to_keycode. gotta figure that out
 // TODO mod indicators, or at least caps
 // TODO other vim modes
+// TODO fix 23 vim indicator on pointer breathing. maybe pass mode
 #define SET_RGB_MATRIX_COLOR_SCHEME(vim_mode_index, layer, col, row, i, main_rgb, accent1_rgb, accent2_rgb, highlight1_rgb, highlight2_rgb) \
     do {                                                                                                                                    \
         if (vim_emulation_enabled() && i == 23) {                                                                                           \

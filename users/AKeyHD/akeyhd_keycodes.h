@@ -5,6 +5,7 @@
 enum layers {
     _AKEYHD,
     _COMBOREF,
+    _VIMNAV,
     _VIMMOTION,
     _CTRLPR,
     _ALTPR,
@@ -13,7 +14,6 @@ enum layers {
     _SYMR,
     _POINTER,
     _POINTEROPT,
-    _POINTERNAV,
     _MATH, // TODO ALWAYS KEEP IN SYNC WITH BITWISE_NUM
     _FUNCTION,
     _MEDIA,
@@ -92,7 +92,7 @@ enum keycodes {
     SM_PASTE,
     SM_SAVE,
     SM_SNAP,
-    // modal keys
+    // modal combo/keys. most of these are subject to smart space
     MD_AND,  // and/&, "and "/" & "
     MD_THE,  // the/"the "
     MD_FOR,  // for/"for "
@@ -103,6 +103,36 @@ enum keycodes {
     MD_SION, // sion/"sion "
     MD_TION, // tion/"tion "
     MD_OULD, // ould/"ould "
+    MD_TO,   // to
+    MD_FROM, // from
+    MD_BUT,  // but
+    MD_I,    // i
+    MD_IPD,  // i'd
+    MD_IPLL, // i'll
+    MD_IPM,  // i'm
+    MD_IPVE, // i've
+    MD_YOUD, // you'd
+    MD_YOUL, // you'll
+    MD_YORE, // you're
+    MD_YOVE, // you've
+    MD_YOUR, // your
+    MD_THEI, // their
+    MD_THYR, // they're
+    MD_THRE, // there
+    MD_THEY, // they
+    MD_THYD, // they'd
+    MD_THYL, // they'll
+    MD_HERE, // here
+    MD_WHRE, // where
+    MD_WEPR, // we're
+    MD_WERE, // were
+    MD_WEPD, // we'd
+    MD_WELL, // well
+    MD_WEPL, // we'll
+    MD_WEPV, // we've
+    MD_PVE,
+    MD_PS,
+
     MD_BSPC, // backspace/backspace word
     MD_DEL,  // delete/delete word
     MD_IME,  // romaji/kana
@@ -114,11 +144,12 @@ enum keycodes {
     MD_SQPC, // square bracket pair close
     MD_CRPO, // curly braces open
     MD_CRPC, // curly braces close
+
     // arcane keys
     LTP_ARC,
     RTP_ARC,
-    LMD_ARC,
-    RMD_ARC,
+    LHM_ARC,
+    RHM_ARC,
     LBM_ARC,
     RBM_ARC,
     COM_ARC,
@@ -143,11 +174,32 @@ enum keycodes {
     RGB_MDE,
     CS__STP,
     CS_RSTP,
+    // biwise entry
     BIN__1,
     BIN__2,
     BIN__4,
     BIN__8,
     BIN_16,
+
+    // vim motions
+    VIM_LFT,
+    VIM_DWN,
+    VIM__UP,
+    VIM_RGT,
+    // motion inputs
+    MI_DOWN, // down
+    MI_BACK, // back
+    MI_FRWD, // forward
+    MI_UP,   // up
+
+    // fancy punctuation
+    KC_ESLH,
+    KC_DSLH,
+    KC_DBSL,
+    KC_DPIP,
+    KC_DAMP,
+    KC_DEQL,
+    KC_TEQL,
 
     /* physical layout comboref keys
     legend = hand_row_column/thumb button
@@ -299,15 +351,20 @@ enum keycodes {
     // NEW_SAFE_RANGE // Use for keymap-specific codes
 };
 /* ---------- Aliases ---------- */
+// motion input conditions
+#define BACK_HELD (1 << 0)
+#define DOWN_HELD (1 << 1)
+#define FORWARD_HELD (1 << 2)
+#define UP_HELD (1 << 3)
 // unicode
 #define UC__SPC UC(0x2800)
 // binary tap holds
 // TODO ALWAYS KEEP IN SYNC WITH LAYERS
-#define BN1_DC1 LT(11, KC_0)
-#define BN2_DC4 LT(11, KC_4)
-#define BN4_DC5 LT(11, KC_5)
-#define BN8_DC6 LT(11, KC_6)
-#define BN16_RP LT(11, KC_RBRC) // really KC_RPRN but sending this to avoid collision
+#define BN1_DOT LT(11, KC_PDOT)
+#define BN2_DC1 LT(11, KC_P1)
+#define BN4_DC2 LT(11, KC_P2)
+#define BN8_DC3 LT(11, KC_P3)
+#define BN16_ET LT(11, KC_PENT) // really KC_RPRN but sending this to avoid collision
 // macros
 
 #define OSMLGUI OSM(MOD_LGUI)
@@ -346,7 +403,8 @@ enum keycodes {
 // momentary layer holds
 #define THINQUL MO(_THINQUL)
 #define THINQUR MO(_THINQUR)
-#define VIMNAV MO(_VIMMOTION)
+#define VIMNAV MO(_VIMNAV)
+#define FNCTION MO(_FUNCTION)
 
 // one shot layers
 #define SHRTCUT OSL(_FUNCTION)
@@ -355,23 +413,19 @@ enum keycodes {
 #define PNTRNAV OSL(_POINTERNAV)
 #define OSLBASE OSL(_AKEYHD)
 
+// toggle layers
+#define VIMMTIN TG(_VIMMOTION)
 #define KEYBRD TG(_KEYBOARD)
 #define MATH TG(_MATH)
 #define RANDOM TG(_RANDOM)
 
-// vim motions
-#define VIM_LFT KC_H
-#define VIM_DWN KC_J
-#define VIM__UP KC_K
-#define VIM_RGT KC_L
-
 // TODO clean up these rejects from akeyhd_layout.h
 #define PT_K LT(_POINTER, KC_K)
 #define PT_H LT(_POINTER, KC_H)
-#define VIMNV_S LT(_VIMMOTION, KC_SPC)
+#define VIMNV_S LT(_VIMNAV, KC_SPC)
 #define PNT_T(k0) LT(_POINTER, k0)
 #define _T(k0) LT(_ONESHOT, k0)
-#define VIMNAV_T(k0) LT(_VIMMOTION, k0)
+#define VIMNAV_T(k0) LT(_VIMNAV, k0)
 
 // TODO go through these and apply them
 // oneshot layers

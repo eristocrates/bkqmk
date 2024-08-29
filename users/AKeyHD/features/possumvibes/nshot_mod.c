@@ -7,13 +7,13 @@
 // [Mod down, mod up, previous n-shot keys if extant], A down, B down, A up, B up: Mod-A b
 // For key progression A down, Mod down, A up, Mod up:
 nshot_state_t nshot_states[] = {
-    {OS_LSFT, MOD_BIT(KC_LSFT), 1, true, os_up_unqueued, 0, 0, false},                    // S-a
-    {OS_LCTL, MOD_BIT(KC_LCTL), 1, true, os_up_unqueued, 0, 0, false},                    // C-a
-    {OS_LALT, MOD_BIT(KC_LALT), 1, true, os_up_unqueued, 0, 0, false},                    // A-a
-    {OS_LGUI, MOD_BIT(KC_LGUI), 1, true, os_up_unqueued, 0, 0, false},                    // G-a
-    {OS_LGLC, MOD_BIT(KC_LCTL) | MOD_BIT(KC_LGUI), 1, true, os_up_unqueued, 0, 0, false}, // G-C-a
-    {TS_LCTL, MOD_BIT(KC_LCTL), 2, true, os_up_unqueued, 0, 0, false},                    // C-a
-    {OSR_SFT, MOD_BIT(KC_LSFT), 1, false, os_up_unqueued, 0, 0, false}                    // a
+    {OS_LSFT, MOD_BIT(KC_LSFT), 1, false, os_up_unqueued, 0, 0, false},                    // S-a
+    {OS_LCTL, MOD_BIT(KC_LCTL), 1, false, os_up_unqueued, 0, 0, false},                    // C-a
+    {OS_LALT, MOD_BIT(KC_LALT), 1, false, os_up_unqueued, 0, 0, false},                    // A-a
+    {OS_LGUI, MOD_BIT(KC_LGUI), 1, false, os_up_unqueued, 0, 0, false},                    // G-a
+    {OS_LGLC, MOD_BIT(KC_LCTL) | MOD_BIT(KC_LGUI), 1, false, os_up_unqueued, 0, 0, false}, // G-C-a
+    {TS_LCTL, MOD_BIT(KC_LCTL), 2, false, os_up_unqueued, 0, 0, false},                    // C-a
+    {OSR_SFT, MOD_BIT(KC_LSFT), 1, false, os_up_unqueued, 0, 0, false}                     // a
 };
 uint8_t NUM_NSHOT_STATES = sizeof(nshot_states) / sizeof(nshot_state_t);
 
@@ -21,6 +21,15 @@ bool is_nshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
         case PANIC:
         case K_CLEAR:
+        case BIN__1:
+        case BIN__2:
+        case BIN__4:
+        case BIN__8:
+        case BIN_16:
+        case KC_COMM:
+        case KC_DOT:
+        case KC_ENT:
+        case KC_ESC:
             return true;
         default:
             return false;
@@ -54,7 +63,7 @@ void process_nshot_state(uint16_t keycode, keyrecord_t *record) {
 
     for (int i = 0; i < NUM_NSHOT_STATES; ++i) {
         curr_state        = &nshot_states[i];
-        uint8_t max_count = i == 0 ? curr_state->max_count * 2 : curr_state->max_count * 3;
+        uint8_t max_count = curr_state->max_count; // i == 0 ? curr_state->max_count * 2 : curr_state->max_count * 3;
 
         if (keycode == curr_state->trigger) {
             if (record->event.pressed) {
@@ -100,8 +109,10 @@ void process_nshot_state(uint16_t keycode, keyrecord_t *record) {
                 // Check for oneshot completion on sequential keys while rolling.
                 // curr_state->state will only be os_up_queued after the n-shot has been triggered.
                 if (curr_state->state == os_up_queued && !is_nshot_ignored_key(keycode)) {
-                    // Increment on sequential key press.
-                    curr_state->count       = curr_state->count + 1;
+                    if (curr_state->active_on_rolls) {
+                        // Increment on sequential key press.
+                        curr_state->count = curr_state->count + 1;
+                    }
                     curr_state->had_keydown = true;
 
                     // If count > max_count, the previous key hit maxed out the n-shot.

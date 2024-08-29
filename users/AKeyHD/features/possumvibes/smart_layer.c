@@ -39,6 +39,7 @@ void pointer_mode_process(uint16_t keycode, keyrecord_t *record) {
         case SNP_TOG:
         case DRG_TOG:
         case PNTROPT:
+        case SMR_SPC:
         case KC_ESC:
 
             // process the code and stay in the mode *dabs*

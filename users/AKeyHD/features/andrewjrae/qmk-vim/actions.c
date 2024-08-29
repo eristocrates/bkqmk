@@ -86,14 +86,14 @@ static bool process_in_object(uint16_t keycode, const keyrecord_t *record) {
                 if (vim_emulation) {
                     tap_code16(QMK_VIM_W);
                     tap_code16(LSFT(QMK_VIM_B));
-                    action_func();
                 }
+                action_func();
                 return false;
             case KC_G:
                 if (vim_emulation) {
                     tap_code16(VCMD(KC_A));
-                    action_func();
                 }
+                action_func();
                 return false;
             default:
                 normal_mode();
@@ -114,14 +114,14 @@ static bool process_around_object(uint16_t keycode, const keyrecord_t *record) {
                     tap_code16(QMK_VIM_W);
                     tap_code16(QMK_VIM_B);
                     tap_code16(LSFT(QMK_VIM_B));
-                    action_func();
                 }
+                action_func();
                 return false;
             case KC_G:
                 if (vim_emulation) {
                     tap_code16(VCMD(KC_A));
-                    action_func();
                 }
+                action_func();
                 return false;
             default:
                 normal_mode();

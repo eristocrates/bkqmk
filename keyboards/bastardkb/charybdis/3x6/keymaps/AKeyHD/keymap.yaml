@@ -2,7 +2,7 @@ layout: {qmk_keyboard: bastardkb/charybdis/3x6, qmk_layout: LAYOUT}
 layers:
   AKeyHD:
   - ['   X', '   V', '   G', '   M', '   P', LTP ARC, RTP ARC, '   U', '   O', '   Y', '   B', '   Z']
-  - ['   J', '   K', '   S', '   N', '   D', LMD ARC, RMD ARC, '   A', '   E', '   I', '   H', TH   QU]
+  - ['   J', '   K', '   S', '   N', '   D', LHM ARC, RHM ARC, '   A', '   E', '   I', '   H', TH   QU]
   - [QK LEAD, '   W', '   F', '   L', '   C', LBM ARC, RBM ARC, (, COM ARC, DOT ARC, ), VIM TOG]
   - [MATH TB, CTRL  R, SML SPC, SMR SPC, ALT   T]
   Combo Reference:
@@ -50,54 +50,96 @@ layers:
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-    - {t: '', type: trans}
+    - VIMMTIN
     - {t: '', type: trans}
   Piercing Alt:
-  - [CLTOUTR, CLTPNKY, CLTRING, CLTMDLE, CLTINDX, CLTINNR, CRTINNR, CRTINDX, CRTMDLE, CRTRING, CRTPNKY, CRTOUTR]
-  - [CLHOUTR, CLHPNKY, CLHRING, CLHMDLE, CLHINDX, CLHINNR, CRHINNR, CRHINDX, CRHMDLE, CRHRING, CRHPNKY, CRHOUTR]
-  - [CLBOUTR, CLBPNKY, CLBRING, CLBMDLE, CLBINDX, CLBINNR, CRBINNR, '{', /, '!', '}', CRBOUTR]
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - MI BACK
+    - MI DOWN
+    - MI FRWD
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - VIM LFT
+    - VIM DWN
+    - VIM  UP
+    - VIM RGT
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - MI UP
+    - {t: '', type: trans}
+    - VIMMTIN
+    - {t: '', type: trans}
+  Piercing Gui:
+  - [CLTOUTR, CLTPNKY, CLTRING, CLTMDLE, CLTINDX, CLTINNR, '~', CRTINDX, CRTMDLE, CRTRING, CRTPNKY, CRTOUTR]
+  - [CAPS, CLHPNKY, CLHRING, CLHMDLE, CLHINDX, DEQL, '#', CRHINDX, CRHMDLE, CRHRING, CRHPNKY, CRHOUTR]
+  - [CLBOUTR, CLBPNKY, CLBRING, CLBMDLE, CLBINDX, '&', UP  DIR, '{', '"', '?', '}', CRBOUTR]
   - - ''
     - {t: '', type: trans}
     - ''
     - _
     - ALT   T
-  Piercing Gui:
-  - [ALTOUTR, ALTPNKY, ALTRING, ALTMDLE, ALTINDX, ALTINNR, ARTINNR, ARTINDX, ARTMDLE, ARTRING, ARTPNKY, ARTOUTR]
-  - [ALHOUTR, ALHPNKY, ALHRING, ALHMDLE, ALHINDX, ALHINNR, ARHINNR, ARHINDX, ARHMDLE, ARHRING, ARHPNKY, ARHOUTR]
-  - [ALBOUTR, ALBPNKY, ALBRING, ALBMDLE, ALBINDX, ALBINNR, ARBINNR, '[', ':', '?', ']', ARBOUTR]
+  Pointer:
+  - [ALTOUTR, ALTPNKY, ALTRING, ALTMDLE, ALTINDX, '@', $, ARTINDX, ARTMDLE, ARTRING, ARTPNKY, ARTOUTR]
+  - [ALHOUTR, ALHPNKY, ALHRING, ALHMDLE, ALHINDX, '-', '|', ARHINDX, ARHMDLE, ARHRING, ARHPNKY, ARHOUTR]
+  - [ALBOUTR, ALBPNKY, ALBRING, ALBMDLE, ALBINDX, DBSL, DSLH, '[', '''', '!', ']', ARBOUTR]
   - - ''
-    - ''
+    - CTRL  R
     - _
     - ''
     - {t: '', type: trans}
-  Pointer:
+  Pointer Options:
   - [GLTOUTR, GLTPNKY, GLTRING, GLTMDLE, GLTINDX, GLTINNR, GRTINNR, GRTINDX, GRTMDLE, GRTRING, GRTPNKY, GRTOUTR]
-  - [GLHOUTR, GLHPNKY, GLHRING, GLHMDLE, GLHINDX, GLHINNR, GRHINNR, GRHINDX, GRHMDLE, GRHRING, GRHPNKY, GRHOUTR]
-  - [GLBOUTR, GLBPNKY, GLBRING, GLBMDLE, GLBINDX, GLBINNR, GRBINNR, OS LSFT, OS LCTL, OS LALT, OS LGUI, GRBOUTR]
+  - [GLHOUTR, GLHPNKY, GLHRING, GLHMDLE, GLHINDX, DAMP, DPIP, GRHINDX, GRHMDLE, GRHRING, GRHPNKY, GRHOUTR]
+  - [GLBOUTR, GLBPNKY, GLBRING, GLBMDLE, GLBINDX, ESLH, ESLH, <, '`', ;, '>', GRBOUTR]
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - ''
     - {t: '', type: trans}
     - {t: '', type: trans}
-  Pointer Options:
-  - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '', '', '', OS LSFT, OS LCTL, OS LALT, OS LGUI, '']
-  - - ''
-    - ''
-    - {t: '', type: trans}
-    - ''
-    - ''
   Pointer Navigation:
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '', '', UCHAPPY, OS LSFT, OS LCTL, OS LALT, OS LGUI, '']
+  - ['', '', '', '', '', '', APP, OS LSFT, OS LCTL, OS LALT, OS LGUI, '']
+  - - ''
+    - ''
+    - {t: '', type: trans}
+    - ''
+    - ''
+  Math:
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', PSCR, OS LSFT, TS LCTL, OS LALT, OS LGUI, '']
   - - ''
     - ''
     - ''
     - {t: '', type: trans}
     - ''
-  Math:
+  Vim Motion:
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -137,9 +179,9 @@ layers:
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
+    - SMR SPC
     - PNTROPT
-    - ALT   T
-  Vim Motion:
+  Function:
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -181,90 +223,37 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-  Function:
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - LEFT
-    - DOWN
-    - '  UP'
-    - RGHT
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
   Media:
   - - {t: '', type: trans}
-    - '%'
-    - ^
+    - {t: '', type: trans}
+    - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
     - $
-    - '['
-    - '7'
-    - '8'
-    - '9'
-    - ']'
+    - ''
+    - P7
+    - P8
+    - P9
+    - ''
     - {t: '', type: trans}
-  - - ','
-    - PSLS
-    - PAST
-    - PMNS
-    - PPLS
-    - .
-    - (
-    - BN2 DC4
-    - BN4 DC5
-    - BN8 DC6
-    - BN16 RP
-    - {t: '', type: trans}
+  - [FNCTION, PSLS, PAST, PMNS, PPLS, ., '', P4, P5, P6, '', '']
   - - {t: '', type: trans}
-    - SQRT
-    - '!'
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - LR LOCK
-    - <
-    - '1'
-    - '2'
-    - '3'
-    - '>'
-    - BASE
-  - - {t: '', type: trans}
+    - '%'
+    - ^
     - '='
-    - PENT
     - SPC
-    - BN1 DC1
+    - LR LOCK
+    - ','
+    - BN2 DC1
+    - BN4 DC2
+    - BN8 DC3
+    - BN16 ET
+    - {t: '', type: trans}
+  - - {t: '', type: trans}
+    - {t: '', type: trans}
+    - {t: '', type: trans}
+    - P0
+    - BN1 DOT
   N-Shot Mods:
   - - {t: '', type: trans}
     - {t: '', type: trans}
@@ -297,15 +286,15 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
+    - F2
+    - F3
+    - F4
+    - F5
     - {t: '', type: trans}
   - - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-    - {t: '', type: trans}
+    - F1
     - {t: '', type: trans}
   Game:
   - - {t: '', type: trans}

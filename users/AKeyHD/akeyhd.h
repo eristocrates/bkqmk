@@ -19,6 +19,7 @@
 #include "features/eristocrates/akeyhd_colors.h"
 #include "features/getreuer/layer_lock.h"
 #include "features/kalabasa/bitwise_num.h"
+#include "features/kalabasa/bitwise_f.h"
 #include "features/possumvibes/mod_lock.h"
 #include "features/possumvibes/nshot_mod.h"
 #include "features/possumvibes/override_keys.h"
