@@ -54,28 +54,17 @@ bool process_motions(uint16_t keycode, const keyrecord_t *record, uint16_t qk_mo
             set_visual_direction(V_BACKWARD);
             register_motion(qk_mods | QMK_VIM_H, record);
             break;
-        case VIM_LFT:
-            if (vim_emulation) {
-                set_visual_direction(V_BACKWARD);
-                register_motion(qk_mods | QMK_VIM_H, record);
-                break;
-            }
         case KC_J:
-        case VIM_DWN:
         case QMK_VIM_J:
             set_visual_direction(V_FORWARD);
             register_motion(qk_mods | QMK_VIM_J, record);
             break;
         case KC_K:
-
-        case VIM__UP:
         case QMK_VIM_K:
             set_visual_direction(V_BACKWARD);
             register_motion(qk_mods | QMK_VIM_K, record);
             break;
         case KC_L:
-
-        case VIM_RGT:
         case QMK_VIM_L:
             set_visual_direction(V_FORWARD);
             register_motion(qk_mods | QMK_VIM_L, record);

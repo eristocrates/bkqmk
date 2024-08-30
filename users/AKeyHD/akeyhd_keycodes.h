@@ -1,7 +1,7 @@
 #pragma once
 #include "charybdis.h"
 
-// TODO keep in sync with keymapPostParse.ps1 && bitwise_num
+// TODO keep in sync with keymapPostParse.ps1, bitwise_num, and rgb_matrix_stuff.h
 enum layers {
     _AKEYHD,
     _COMBOREF,
@@ -12,7 +12,7 @@ enum layers {
     _GUIPR,
     _SYML,
     _SYMR,
-    _POINTER,
+    _POINTER, // TODO ALWAYS KEEP IN SYNC WITH RGB_MATRIX_STUFF
     _POINTEROPT,
     _MATH, // TODO ALWAYS KEEP IN SYNC WITH BITWISE_NUM
     _FUNCTION,
@@ -131,6 +131,7 @@ enum keycodes {
     MD_WEPL, // we'll
     MD_WEPV, // we've
     MD_WHAT, // what
+    MD_WITH, // with
     MD_PVE,  // 've
     MD_PS,   // 's
 
@@ -183,10 +184,16 @@ enum keycodes {
     BIN_16,
 
     // vim motions
-    VIM_LFT,
-    VIM_DWN,
-    VIM__UP,
-    VIM_RGT,
+    VM_LEFT,
+    VM_DOWN,
+    VM___UP,
+    VM_RGHT,
+    // vim operators
+    VM_CHAN,
+    VM_DELE,
+    VM_YANK,
+    VM_VISU,
+
     // motion inputs
     MI_DOWN, // down
     MI_BACK, // back

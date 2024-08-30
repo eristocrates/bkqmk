@@ -1,3 +1,4 @@
+#include "quantum.h"
 #include "modes.h"
 #include "numbered_actions.h"
 #include "motions.h"
@@ -81,15 +82,15 @@ static bool process_colon_cmd(uint16_t keycode, const keyrecord_t *record) {
 
 // Allow the user to add their own bindings to both normal modes
 // Note, this should be optimized away unless there is a user definition
-__attribute__((weak)) bool process_normal_mode_user(uint16_t keycode, const keyrecord_t *record) {
+__attribute__((weak)) uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, bool recursive) {
     return true;
 }
 
 // The function that handles normal mode keycode inputs
 bool process_normal_mode(uint16_t keycode, const keyrecord_t *record) {
-    if (!process_normal_mode_user(keycode, record)) {
-        return false;
-    }
+    keycode = process_normal_mode_user(keycode, record, false);
+    if (keycode == KC_STOP) return false;
+
 #ifdef QMK_VIM_DOT_REPEAT
     bool should_record_action = true;
 #    define NO_RECORD_ACTION() should_record_action = false;
@@ -273,7 +274,8 @@ bool process_normal_mode(uint16_t keycode, const keyrecord_t *record) {
 #endif
             default:
                 NO_RECORD_ACTION();
-                if (vim_emulation && keycode >= QK_MODS && (keycode & 0xFF00) != QK_LSFT) {
+                // if (vim_emulation && keycode >= QK_MODS && (keycode & 0xFF00) != QK_LSFT) { // TODO double check if this was a good change
+                if (keycode >= QK_MODS && (keycode & 0xFF00) != QK_LSFT) {
                     tap_code16(keycode);
                 }
                 break;

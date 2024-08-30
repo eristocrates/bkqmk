@@ -23,20 +23,34 @@ void rgb_matrix_layer_helper(rgb_color_scheme_t color_scheme, vim_mode_t vim_mod
 // TODO mod indicators, or at least caps
 // TODO other vim modes
 // TODO fix 23 vim indicator on pointer breathing. maybe pass mode
+// TODO KEEP IN SYNC WITH LAYERS
 #define SET_RGB_MATRIX_COLOR_SCHEME(vim_mode_index, layer, col, row, i, main_rgb, accent1_rgb, accent2_rgb, highlight1_rgb, highlight2_rgb) \
     do {                                                                                                                                    \
-        if (vim_emulation_enabled() && i == 23) {                                                                                           \
-            RGB_MATRIX_INDICATOR_SET_COLOR(i, highlight2_rgb.r, highlight2_rgb.g, highlight2_rgb.b);                                        \
-        } else if (vim_mode_index == INSERT_MODE && (i == 8 || i == 9)) {                                                                   \
-            RGB_MATRIX_INDICATOR_SET_COLOR(i, highlight1_rgb.r, highlight1_rgb.g, highlight1_rgb.b);                                        \
-        } else if (vim_mode_index == NORMAL_MODE && (i == 35 || i == 30 || i == 29 || i == 24)) {                                           \
-            RGB_MATRIX_INDICATOR_SET_COLOR(i, highlight1_rgb.r, highlight1_rgb.g, highlight1_rgb.b);                                        \
-        } else if (i == 15 || i == 16 || i == 17 || i == 36 || i == 37 || i == 38) {                                                        \
-            RGB_MATRIX_INDICATOR_SET_COLOR(i, accent1_rgb.r, accent1_rgb.g, accent1_rgb.b);                                                 \
-        } else if (i == 40 || keymap_key_to_keycode(layer, (keypos_t){col, row}) > KC_TRNS) {                                               \
+        if (i == 40 || keymap_key_to_keycode(layer, (keypos_t){col, row}) > KC_TRNS) {                                                      \
             RGB_MATRIX_INDICATOR_SET_COLOR(i, main_rgb.r, main_rgb.g, main_rgb.b);                                                          \
         } else {                                                                                                                            \
             RGB_MATRIX_INDICATOR_SET_COLOR(i, accent2_rgb.r, accent2_rgb.g, accent2_rgb.b);                                                 \
         }                                                                                                                                   \
+                                                                                                                                            \
+        if (i == 15 || i == 16 || i == 17 || i == 36 || i == 37 || i == 38) {                                                               \
+            RGB_MATRIX_INDICATOR_SET_COLOR(i, accent1_rgb.r, accent1_rgb.g, accent1_rgb.b);                                                 \
+        }                                                                                                                                   \
+                                                                                                                                            \
+        if (i == 23) {                                                                                                                      \
+            /*targeting pointer layer*/                                                                                                     \
+            if (IS_LAYER_ON(9)) {                                                                                                           \
+                RGB_MATRIX_INDICATOR_SET_COLOR(i, accent2_rgb.r, accent2_rgb.g, accent2_rgb.b);                                             \
+            } else if (vim_emulation) {                                                                                                     \
+                RGB_MATRIX_INDICATOR_SET_COLOR(i, highlight2_rgb.r, highlight2_rgb.g, highlight2_rgb.b);                                    \
+            }                                                                                                                               \
+        }                                                                                                                                   \
+                                                                                                                                            \
+        if (vim_mode_index == INSERT_MODE && (i == 8 || i == 9)) {                                                                          \
+            RGB_MATRIX_INDICATOR_SET_COLOR(i, highlight1_rgb.r, highlight1_rgb.g, highlight1_rgb.b);                                        \
+        } else if (vim_mode_index == NORMAL_MODE) {                                                                                         \
+            /*targeting vimmotion layer*/                                                                                                   \
+            if ((i == 35 || i == 30 || i == 29 || i == 24) || (IS_LAYER_ON(3) && (i == 7 || i == 10 || i == 13 || i == 19))) {              \
+                RGB_MATRIX_INDICATOR_SET_COLOR(i, highlight1_rgb.r, highlight1_rgb.g, highlight1_rgb.b);                                    \
+            }                                                                                                                               \
+        }                                                                                                                                   \
     } while (0)
-// TODO figure out why i == 39 keeps failing keymap to keycode

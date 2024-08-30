@@ -42,10 +42,10 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-    - VIM LFT
-    - VIM DWN
-    - VIM  UP
-    - VIM RGT
+    - VM LEFT
+    - VM DOWN
+    - VM   UP
+    - VM RGHT
     - {t: '', type: trans}
   - - {t: '', type: trans}
     - {t: '', type: trans}
@@ -84,10 +84,10 @@ layers:
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
-    - VIM LFT
-    - VIM DWN
-    - VIM  UP
-    - VIM RGT
+    - VM LEFT
+    - VM DOWN
+    - VM   UP
+    - VM RGHT
     - {t: '', type: trans}
   - - {t: '', type: trans}
     - MI UP
