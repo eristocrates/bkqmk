@@ -70,10 +70,12 @@
 #define AUTO_SHIFT_MODIFIERS
 */
 
-// recent key
-#define BUFFER_TIMEOUT_MS 5000 // Timeout in milliseconds.
-#define ARCANE_TIMEOUT_MS 1000 // Timeout in milliseconds.
-#define BUFFER_SIZE 16         // Number of keys in `recent` buffer.
+// recency
+#define INPUT_BUFFER_TIMEOUT_MS 5000 // Timeout in milliseconds.
+#define INPUT_BUFFER_SIZE 16         // Number of keys in general purpose buffer.
+#define MOTION_BUFFER_TIMEOUT_MS 500 // Timeout in milliseconds.
+#define MOTION_BUFFER_SIZE 5         // Number of keys in motion input buffer.
+#define ARCANE_TIMEOUT_MS 1000       // Timeout in milliseconds.
 
 // unicode
 #define UNICODE_SELECTED_MODES UNICODE_MODE_WINCOMPOSE

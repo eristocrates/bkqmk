@@ -486,8 +486,7 @@ void process_comma_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_keydown
             ARCANE_STRING(",", KC_COMM);
         } else {
             ARCANE_STRING("", KC_COMM);
-            // call_keycode(OS_LSFT);
-            add_weak_mods(MOD_BIT(KC_LSFT));
+            call_keycode(OS_LSFT);
         }
     }
 }

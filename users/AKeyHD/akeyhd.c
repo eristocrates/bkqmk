@@ -110,7 +110,50 @@ uint8_t NUM_BITWISE_NUM_KEYS = sizeof(bitwise_num_keys) / sizeof(uint16_t);
 uint16_t preprior_keycode = KC_NO;
 uint16_t prior_keycode    = KC_NO;
 uint16_t prior_keydown    = 0; // timer of keydown for adaptive threshhold.
-#define DIRECTIONS (is_back_held ? BACK_HELD : 0) | (is_down_held ? DOWN_HELD : 0) | (is_forward_held ? FORWARD_HELD : 0) | (is_jump_held ? UP_HELD : 0)
+
+// https://getreuer.info/posts/keyboards/triggers/index.html#when-another-key-is-held
+static bool is_back_held   = false;
+static bool is_down_held   = false;
+static bool is_jump_held   = false;
+static bool is_front_held  = false;
+static bool is_bb_motion   = false;
+static bool is_dd_motion   = false;
+static bool is_ff_motion   = false;
+static bool is_jj_motion   = false;
+static bool is_bf_motion   = false;
+static bool is_fb_motion   = false;
+static bool is_dj_motion   = false;
+static bool is_jd_motion   = false;
+static bool is_qcf_motion  = false;
+static bool is_qcb_motion  = false;
+static bool is_dpf_motion  = false;
+static bool is_dpb_motion  = false;
+static bool is_dqcf_motion = false;
+static bool is_dqcb_motion = false;
+static bool is_hcf_motion  = false;
+static bool is_hcb_motion  = false;
+static bool is_hcbf_motion = false;
+static bool is_hcfb_motion = false;
+static void clear_motions(void) {
+    is_bb_motion   = false;
+    is_dd_motion   = false;
+    is_ff_motion   = false;
+    is_jj_motion   = false;
+    is_bf_motion   = false;
+    is_fb_motion   = false;
+    is_dj_motion   = false;
+    is_jd_motion   = false;
+    is_qcf_motion  = false;
+    is_qcb_motion  = false;
+    is_dpf_motion  = false;
+    is_dpb_motion  = false;
+    is_dqcf_motion = false;
+    is_dqcb_motion = false;
+    is_hcf_motion  = false;
+    is_hcb_motion  = false;
+    is_hcbf_motion = false;
+    is_hcfb_motion = false;
+}
 /*
 bool is_oneshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
@@ -156,12 +199,15 @@ uint16_t hold_mod;
 // for SCN
 bool is_scan_toggled = false;
 
-static uint16_t input_buffer[BUFFER_SIZE]   = {KC_NO};
-static uint16_t keydown_buffer[BUFFER_SIZE] = {KC_NO}; // holds time of all keydowns of the input buffer
-static uint16_t deadline                    = 0;
+static uint16_t input_buffer[INPUT_BUFFER_SIZE]   = {KC_NO};
+static uint16_t motion_buffer[MOTION_BUFFER_SIZE] = {KC_NO}; // holds time of all keydowns of the input buffer
+static uint16_t input_buffer_deadline             = 0;
+static uint16_t motion_buffer_deadline            = 0;
 static void     clear_input_buffer(void) {
-    memset(input_buffer, 0, sizeof(input_buffer));     // Set all zeros (KC_NO).
-    memset(keydown_buffer, 0, sizeof(keydown_buffer)); // Set all zeros (KC_NO).
+    memset(input_buffer, 0, sizeof(input_buffer)); // Set all zeros (KC_NO).
+}
+static void clear_motion_buffer(void) {
+    memset(motion_buffer, 0, sizeof(motion_buffer)); // Set all zeros (KC_NO).
 }
 
 // Generates a pseudorandom value in 0-255.
@@ -446,6 +492,52 @@ static uint16_t    prev_keycode;
 
 // TODO move this into my own feature
 
+static bool update_motion_buffer(uint16_t keycode, const keyrecord_t *record) {
+    if (!record->event.pressed) {
+        return false;
+    }
+
+    if (((get_mods() | get_oneshot_mods()) & ~MOD_MASK_SHIFT) != 0) {
+        clear_motion_buffer(); // Avoid interfering with hotkeys.
+        return false;
+    }
+
+    // Handle tap-hold keys.
+    switch (keycode) {
+        case QK_MOD_TAP ... QK_MOD_TAP_MAX:
+        case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+            if (record->tap.count == 0) {
+                return false;
+            }
+            keycode &= 0xff; // Get tapping keycode.
+    }
+
+    switch (keycode) {
+        // motion inputs for vim
+        case MI_DOWN:
+        case MI_BACK:
+        case MI_FRNT:
+        case MI_JUMP:
+            break;
+
+        case KC_LSFT: // These keys don't type anything on their own.
+        case KC_RSFT:
+        case QK_ONE_SHOT_MOD ... QK_ONE_SHOT_MOD_MAX:
+            return false;
+
+        default: // Avoid acting otherwise, particularly on navigation keys.
+            clear_motion_buffer();
+            return false;
+    }
+
+    // Slide the buffer left by one element.
+    memmove(motion_buffer, motion_buffer + 1, (MOTION_BUFFER_SIZE - 1) * sizeof(*motion_buffer));
+
+    motion_buffer[MOTION_BUFFER_SIZE - 1] = keycode;
+    motion_buffer_deadline                = record->event.time + MOTION_BUFFER_TIMEOUT_MS;
+    return true;
+}
+
 // Handles one event. Returns true if the key was appended to `recent`.
 static bool update_input_buffer(uint16_t keycode, keyrecord_t *record) {
     if (!record->event.pressed) {
@@ -469,6 +561,12 @@ static bool update_input_buffer(uint16_t keycode, keyrecord_t *record) {
 
     switch (keycode) {
         case KC_A ... KC_SLASH: // These keys type letters, digits, symbols.
+
+        // motion inputs for vim
+        case MI_DOWN:
+        case MI_BACK:
+        case MI_FRNT:
+        case MI_JUMP:
             break;
 
         case KC_LSFT: // These keys don't type anything on their own.
@@ -482,10 +580,10 @@ static bool update_input_buffer(uint16_t keycode, keyrecord_t *record) {
     }
 
     // Slide the buffer left by one element.
-    memmove(input_buffer, input_buffer + 1, (BUFFER_SIZE - 1) * sizeof(*input_buffer));
+    memmove(input_buffer, input_buffer + 1, (INPUT_BUFFER_SIZE - 1) * sizeof(*input_buffer));
 
-    input_buffer[BUFFER_SIZE - 1] = keycode;
-    deadline                      = record->event.time + BUFFER_TIMEOUT_MS;
+    input_buffer[INPUT_BUFFER_SIZE - 1] = keycode;
+    input_buffer_deadline               = record->event.time + INPUT_BUFFER_TIMEOUT_MS;
     return true;
 }
 
@@ -599,13 +697,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     /*------------------------------input buffer------------------------------*/
     if (update_input_buffer(keycode, record)) {
         // Expand "qumk" to qmk
-        if (input_buffer[BUFFER_SIZE - 3] == KC_Q && input_buffer[BUFFER_SIZE - 2] == KC_M && input_buffer[BUFFER_SIZE - 1] == KC_K) {
+        if (input_buffer[INPUT_BUFFER_SIZE - 3] == KC_Q && input_buffer[INPUT_BUFFER_SIZE - 2] == KC_M && input_buffer[INPUT_BUFFER_SIZE - 1] == KC_K) {
             SEND_STRING(SS_TAP(X_BSPC) SS_TAP(X_BSPC) SS_TAP(X_BSPC) "qmk");
             return false;
         }
 
         // konami code
-        if (input_buffer[BUFFER_SIZE - 10] == KC_R && input_buffer[BUFFER_SIZE - 9] == KC_R && input_buffer[BUFFER_SIZE - 8] == KC_N && input_buffer[BUFFER_SIZE - 7] == KC_N && input_buffer[BUFFER_SIZE - 6] == KC_S && input_buffer[BUFFER_SIZE - 5] == KC_D && input_buffer[BUFFER_SIZE - 4] == KC_S && input_buffer[BUFFER_SIZE - 3] == KC_D && input_buffer[BUFFER_SIZE - 2] == KC_B && input_buffer[BUFFER_SIZE - 1] == KC_A) {
+        if (input_buffer[INPUT_BUFFER_SIZE - 10] == KC_R && input_buffer[INPUT_BUFFER_SIZE - 9] == KC_R && input_buffer[INPUT_BUFFER_SIZE - 8] == KC_N && input_buffer[INPUT_BUFFER_SIZE - 7] == KC_N && input_buffer[INPUT_BUFFER_SIZE - 6] == KC_S && input_buffer[INPUT_BUFFER_SIZE - 5] == KC_D && input_buffer[INPUT_BUFFER_SIZE - 4] == KC_S && input_buffer[INPUT_BUFFER_SIZE - 3] == KC_D && input_buffer[INPUT_BUFFER_SIZE - 2] == KC_B && input_buffer[INPUT_BUFFER_SIZE - 1] == KC_A) {
             register_code(KC_LSFT);
             tap_code(KC_HOME);
             unregister_code(KC_LSFT);
@@ -613,6 +711,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             // SEND_STRING("30 lives");
             layer_on(_SECRET);
             return false;
+        }
+        // z erasure
+        // amason -> amazon
+        if (input_buffer[INPUT_BUFFER_SIZE - 6] == KC_A && input_buffer[INPUT_BUFFER_SIZE - 5] == KC_M && input_buffer[INPUT_BUFFER_SIZE - 4] == KC_A && input_buffer[INPUT_BUFFER_SIZE - 3] == KC_S && input_buffer[INPUT_BUFFER_SIZE - 2] == KC_O && input_buffer[INPUT_BUFFER_SIZE - 1] == KC_N) {
+            SEND_STRING(SS_TAP(X_BSPC) SS_TAP(X_BSPC) "zon");
         }
     }
     switch (keycode) {
@@ -2346,8 +2449,12 @@ bool remember_last_key_user(uint16_t keycode, keyrecord_t *record, uint8_t *reme
 }
 
 void matrix_scan_user(void) {
-    if (input_buffer[BUFFER_SIZE - 1] && timer_expired(timer_read(), deadline)) {
+    if (input_buffer[INPUT_BUFFER_SIZE - 1] && timer_expired(timer_read(), input_buffer_deadline)) {
         clear_input_buffer(); // Timed out; clear the buffer.
+    }
+
+    if (motion_buffer[MOTION_BUFFER_SIZE - 1] && timer_expired(timer_read(), motion_buffer_deadline)) {
+        clear_motion_buffer(); // Timed out; clear the buffer.
     }
     /*
     if (timer_elapsed(last_keycode_timer) == LAST_KEYCODE_TIMEOUT_MS) {
@@ -2613,12 +2720,26 @@ void visual_line_mode_user(void) {
 }
 uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, bool recursive) {
     if (recursive) return keycode;
-    // https://getreuer.info/posts/keyboards/triggers/index.html#when-another-key-is-held
-    static bool is_back_held    = false;
-    static bool is_down_held    = false;
-    static bool is_jump_held    = false;
-    static bool is_forward_held = false;
 
+    /*
+    parsing priority:
+    motion input
+    diagonal command normal
+    cardinal command normal
+    neutral
+    */
+
+    /*------------------------------motion inputs------------------------------*/
+    if (update_motion_buffer(keycode, record)) {
+        if (motion_buffer[MOTION_BUFFER_SIZE - 4] == MI_FRNT && motion_buffer[MOTION_BUFFER_SIZE - 3] == MI_DOWN && motion_buffer[MOTION_BUFFER_SIZE - 2] == MI_BACK && motion_buffer[MOTION_BUFFER_SIZE - 1] == MI_FRNT) {
+            is_hcbf_motion = true;
+            return KC_STOP;
+        }
+        if (motion_buffer[MOTION_BUFFER_SIZE - 3] == MI_FRNT && motion_buffer[MOTION_BUFFER_SIZE - 2] == MI_DOWN && motion_buffer[MOTION_BUFFER_SIZE - 1] == MI_BACK) {
+            is_hcb_motion = true;
+            return KC_STOP;
+        }
+    }
     switch (keycode) {
         case KC_ENT:
             if (vim_emulation_enabled() && record->event.pressed) tap_code16(KC_ENT);
@@ -2636,41 +2757,44 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
         case MI_DOWN:
             is_down_held = record->event.pressed;
             return KC_STOP;
-        case MI_UP:
+        case MI_JUMP:
             is_jump_held = record->event.pressed;
             return KC_STOP;
-        case MI_FRWD:
-            is_forward_held = record->event.pressed;
+        case MI_FRNT:
+            is_front_held = record->event.pressed;
             return KC_STOP;
 
         case VM_LEFT: {
-            static uint8_t key_1 = KC_STOP;
-            static uint8_t key_2 = KC_STOP;
+            static uint16_t key_1 = KC_STOP;
+            static uint16_t key_2 = KC_STOP;
             if (record->event.pressed) {
                 switch (DIRECTIONS) {
+                    case HCBF_MOTION:
+                        key_1 = KC_UNDS;
+                        break;
+                    case HCB_MOTION:
+                        key_1 = KC_0;
+                        break;
                     case BACK_HELD:
                         key_1 = KC_B;
                         break;
-                    case DOWN_HELD:
-                        break;
-                    case FORWARD_HELD:
+                    case FRNT_HELD:
                         key_1 = KC_G;
                         key_2 = KC_E;
-                        break;
-                    case UP_HELD:
                         break;
                     default:
                         key_1 = KC_H;
                 }
 
                 if (!vim_emulation_enabled()) {
-                    tap_code(key_1);
-                    if (key_2 != KC_STOP) tap_code(key_2);
+                    tap_code16(key_1);
+                    if (key_2 != KC_STOP) tap_code16(key_2);
                     return KC_STOP;
                 }
             } else {
                 if (!vim_emulation_enabled()) {
                     key_1 = key_2 = KC_STOP;
+                    clear_motions();
                 }
             }
 
@@ -2681,6 +2805,107 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
                     process_normal_mode_user(key_1, record, true);
                     process_normal_mode_user(key_2, record, true);
                     // TODO add emulated ge with ctrl+left left
+                    clear_motions();
+                    if (!record->event.pressed) return key_1 = key_2 = KC_STOP;
+                }
+            }
+        }
+
+        case VM_DOWN: {
+            static uint16_t key_1 = KC_STOP;
+            static uint16_t key_2 = KC_STOP;
+            if (record->event.pressed) {
+                switch (DIRECTIONS) {
+                    default:
+                        key_1 = KC_J;
+                }
+
+                if (!vim_emulation_enabled()) {
+                    tap_code16(key_1);
+                    if (key_2 != KC_STOP) tap_code16(key_2);
+                    return KC_STOP;
+                }
+            } else {
+                if (!vim_emulation_enabled()) {
+                    key_1 = key_2 = KC_STOP;
+                    clear_motions();
+                }
+            }
+
+            if (vim_emulation_enabled()) {
+                if (key_2 == KC_STOP) {
+                    return key_1;
+                } else {
+                    process_normal_mode_user(key_1, record, true);
+                    process_normal_mode_user(key_2, record, true);
+                    // TODO add emulated ge with ctrl+left left
+                    clear_motions();
+                    if (!record->event.pressed) return key_1 = key_2 = KC_STOP;
+                }
+            }
+        }
+        case VM___UP: {
+            static uint16_t key_1 = KC_STOP;
+            static uint16_t key_2 = KC_STOP;
+            if (record->event.pressed) {
+                switch (DIRECTIONS) {
+                    default:
+                        key_1 = KC_K;
+                }
+
+                if (!vim_emulation_enabled()) {
+                    tap_code16(key_1);
+                    if (key_2 != KC_STOP) tap_code16(key_2);
+                    return KC_STOP;
+                }
+            } else {
+                if (!vim_emulation_enabled()) {
+                    key_1 = key_2 = KC_STOP;
+                    clear_motions();
+                }
+            }
+
+            if (vim_emulation_enabled()) {
+                if (key_2 == KC_STOP) {
+                    return key_1;
+                } else {
+                    process_normal_mode_user(key_1, record, true);
+                    process_normal_mode_user(key_2, record, true);
+                    // TODO add emulated ge with ctrl+left left
+                    clear_motions();
+                    if (!record->event.pressed) return key_1 = key_2 = KC_STOP;
+                }
+            }
+        }
+        case VM_RGHT: {
+            static uint16_t key_1 = KC_STOP;
+            static uint16_t key_2 = KC_STOP;
+            if (record->event.pressed) {
+                switch (DIRECTIONS) {
+                    default:
+                        key_1 = KC_L;
+                }
+
+                if (!vim_emulation_enabled()) {
+                    tap_code16(key_1);
+                    if (key_2 != KC_STOP) tap_code16(key_2);
+                    return KC_STOP;
+                }
+            } else {
+                if (!vim_emulation_enabled()) {
+                    key_1 = key_2 = KC_STOP;
+                    clear_motions();
+                }
+            }
+
+            if (vim_emulation_enabled()) {
+                if (key_2 == KC_STOP) {
+                    return key_1;
+                } else {
+                    process_normal_mode_user(key_1, record, true);
+                    process_normal_mode_user(key_2, record, true);
+                    // TODO add emulated ge with ctrl+left left
+                    clear_motions();
                     if (!record->event.pressed) return key_1 = key_2 = KC_STOP;
                 }
             }
@@ -2775,6 +3000,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     color_scheme_max = sizeof(color_schemes) / sizeof(rgb_color_scheme_t);
     switch (current_layer) {
         case _POINTER:
+        case _POINTEROPT:
             uint8_t speed = rgb_matrix_config.speed * 2 < 254 ? rgb_matrix_config.speed * 2 : 254;
             rgb_matrix_layer_helper(color_schemes[color_scheme_index], vim_mode_index, current_layer, RGB_MATRIX_EFFECT_BREATHING, speed, LED_FLAG_KEYLIGHT, led_min, led_max);
             break;

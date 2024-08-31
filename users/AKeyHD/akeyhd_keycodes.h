@@ -188,6 +188,7 @@ enum keycodes {
     VM_DOWN,
     VM___UP,
     VM_RGHT,
+    VM_NTRL,
     // vim operators
     VM_CHAN,
     VM_DELE,
@@ -196,9 +197,9 @@ enum keycodes {
 
     // motion inputs
     MI_DOWN, // down
-    MI_BACK, // back
-    MI_FRWD, // forward
-    MI_UP,   // up
+    MI_BACK, // left
+    MI_FRNT, // right
+    MI_JUMP, // up
 
     // fancy punctuation
     KC_ESLH,
@@ -359,11 +360,6 @@ enum keycodes {
     // NEW_SAFE_RANGE // Use for keymap-specific codes
 };
 /* ---------- Aliases ---------- */
-// motion input conditions
-#define BACK_HELD (1 << 0)
-#define DOWN_HELD (1 << 1)
-#define FORWARD_HELD (1 << 2)
-#define UP_HELD (1 << 3)
 // unicode
 #define UC__SPC UC(0x2800)
 // binary tap holds

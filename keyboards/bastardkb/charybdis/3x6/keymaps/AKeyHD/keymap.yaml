@@ -69,7 +69,7 @@ layers:
     - {t: '', type: trans}
     - MI BACK
     - MI DOWN
-    - MI FRWD
+    - MI FRNT
     - {t: '', type: trans}
     - {t: '', type: trans}
     - {t: '', type: trans}
@@ -90,10 +90,10 @@ layers:
     - VM RGHT
     - {t: '', type: trans}
   - - {t: '', type: trans}
-    - MI UP
+    - MI JUMP
     - {t: '', type: trans}
     - VIMMTIN
-    - {t: '', type: trans}
+    - VM NTRL
   Piercing Gui:
   - [CLTOUTR, CLTPNKY, CLTRING, CLTMDLE, CLTINDX, CLTINNR, '~', CRTINDX, CRTMDLE, CRTRING, CRTPNKY, CRTOUTR]
   - [CAPS, CLHPNKY, CLHRING, CLHMDLE, CLHINDX, DEQL, '#', CRHINDX, CRHMDLE, CRHRING, CRHPNKY, CRHOUTR]

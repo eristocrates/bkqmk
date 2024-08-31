@@ -1,5 +1,137 @@
 #pragma once
-#include QMK_KEYBOARD_H
+// #include QMK_KEYBOARD_H
+#include "quantum.h"
 
 void send_string_with_caps_word(const char *str);
 void call_keycode(uint16_t keycode);
+
+// Define the default value for the second variable
+#define DEFAULT_VALUE KC_STOP
+
+// directional conditions
+
+// command normal directions
+#define BACK_HELD (1 << 0)
+#define DOWN_HELD (1 << 1)
+#define FRNT_HELD (1 << 2)
+#define JUMP_HELD (1 << 3)
+// double directional inputs
+#define BB_MOTION (1 << 4)
+#define DD_MOTION (1 << 5)
+#define FF_MOTION (1 << 6)
+#define JJ_MOTION (1 << 7)
+// opposite directional inputs
+#define BF_MOTION (1 << 8)
+#define FB_MOTION (1 << 9)
+#define DJ_MOTION (1 << 10)
+#define JD_MOTION (1 << 11)
+// motion inputs
+#define QCF_MOTION (1 << 12)
+#define QCB_MOTION (1 << 13)
+#define DPF_MOTION (1 << 14)
+#define DPB_MOTION (1 << 15)
+#define DQCF_MOTION (1 << 16)
+#define DQCB_MOTION (1 << 17)
+#define HCF_MOTION (1 << 18)
+#define HCB_MOTION (1 << 19)
+#define HCBF_MOTION (1 << 20)
+#define HCFB_MOTION (1 << 21)
+// TODO dare i attempt charge inputs?
+
+// clang-format off
+#define DIRECTIONS ((is_back_held ? BACK_HELD : 0) | \
+                    (is_down_held ? DOWN_HELD : 0) | \
+                    (is_front_held ? FRNT_HELD : 0) | \
+                    (is_jump_held ? JUMP_HELD : 0) | \
+                    (is_bb_motion ? BB_MOTION : 0) | \
+                    (is_dd_motion ? DD_MOTION : 0) | \
+                    (is_ff_motion ? FF_MOTION : 0) | \
+                    (is_jj_motion ? JJ_MOTION : 0) | \
+                    (is_bf_motion ? BF_MOTION : 0) | \
+                    (is_fb_motion ? FB_MOTION : 0) | \
+                    (is_dj_motion ? DJ_MOTION : 0) | \
+                    (is_jd_motion ? JD_MOTION : 0) | \
+                    (is_qcf_motion ? QCF_MOTION : 0) | \
+                    (is_qcb_motion ? QCB_MOTION : 0) | \
+                    (is_dpf_motion ? DPF_MOTION : 0) | \
+                    (is_dpb_motion ? DPB_MOTION : 0) | \
+                    (is_dqcf_motion ? DQCF_MOTION : 0) | \
+                    (is_dqcb_motion ? DQCB_MOTION : 0) | \
+                    (is_hcf_motion ? HCF_MOTION : 0) | \
+                    (is_hcb_motion ? HCB_MOTION : 0) | \
+                    (is_hcbf_motion ? HCBF_MOTION : 0) |\
+                    (is_hcfb_motion ? HCFB_MOTION : 0))
+// clang-format on
+
+/*
+// Helper macros to handle default values
+#define GET_SECOND_ARG(arg1, arg2, ...) arg2
+#define HAS_TWO_ARGS(...) GET_SECOND_ARG(__VA_ARGS__, 1, 0)
+
+#define DIRECTION_MACRO(name, value1, ...) value1, (HAS_TWO_ARGS(__VA_ARGS__) ? GET_SECOND_ARG(__VA_ARGS__, 0) : DEFAULT_VALUE)
+
+#define DOWN_BACK(value1, ...) DIRECTION_MACRO(DOWN_BACK, value1, __VA_ARGS__)
+#define DOWN_FRNT(value1, ...) DIRECTION_MACRO(DOWN_FRNT, value1, __VA_ARGS__)
+#define JUMP_BACK(value1, ...) DIRECTION_MACRO(JUMP_BACK, value1, __VA_ARGS__)
+#define JUMP_FRNT(value1, ...) DIRECTION_MACRO(JUMP_FRNT, value1, __VA_ARGS__)
+#define BACK(value1, ...) DIRECTION_MACRO(BACK, value1, __VA_ARGS__)
+#define DOWN(value1, ...) DIRECTION_MACRO(DOWN, value1, __VA_ARGS__)
+#define FRNT(value1, ...) DIRECTION_MACRO(FRNT, value1, __VA_ARGS__)
+#define JUMP(value1, ...) DIRECTION_MACRO(JUMP, value1, __VA_ARGS__)
+#define NEUTRAL(value1, ...) DIRECTION_MACRO(NEUTRAL, value1, __VA_ARGS__)
+
+// Define the main macro
+#define COMMAND_NORMALS(...) COMMAND_NORMALS_IMPL(__VA_ARGS__)
+
+#define EXPAND_ARGS(...) EXPAND_ARGS_IMPL(__VA_ARGS__)
+#define EXPAND_ARGS_IMPL(...) FOR_EACH(EXPAND_ARG, __VA_ARGS__)
+
+#define FOR_EACH(macro, ...) FOR_EACH_HELPER(macro, __VA_ARGS__, FOR_EACH_END)
+
+#define FOR_EACH_HELPER(macro, arg, ...) macro(arg) FOR_EACH_AGAIN(macro, __VA_ARGS__)
+
+#define FOR_EACH_AGAIN(macro, arg, ...) FOR_EACH_HELPER(macro, arg, __VA_ARGS__)
+
+#define FOR_EACH_END
+
+#define EXPAND_ARG(arg) EXPAND_ARG_IMPL arg
+
+#define EXPAND_ARG_IMPL(direction, value1, value2) \
+    if (DIRECTIONS == direction##_HELD) {          \
+        key_1 = value1;                            \
+        key_2 = value2;                            \
+    } else
+
+// Define the helper macros
+#define COMMAND_NORMALS_IMPL(default_val, ...)                              \
+    do {                                                                    \
+        static uint16_t key_1 = DEFAULT_VALUE;                               \
+        static uint16_t key_2 = DEFAULT_VALUE;                               \
+        if (record->event.pressed) {                                        \
+            EXPAND_ARGS(__VA_ARGS__) {                                      \
+                key_1 = default_val;                                        \
+                key_2 = DEFAULT_VALUE;                                      \
+            }                                                               \
+            if (!vim_emulation_enabled()) {                                 \
+                tap_code16(key_1);                                            \
+                if (key_2 != KC_STOP) tap_code16(key_2);                      \
+                return KC_STOP;                                             \
+            }                                                               \
+        } else {                                                            \
+            if (!vim_emulation_enabled()) {                                 \
+                key_1 = key_2 = KC_STOP;                                    \
+            }                                                               \
+        }                                                                   \
+                                                                            \
+        if (vim_emulation_enabled()) {                                      \
+            if (key_2 == KC_STOP) {                                         \
+                return key_1;                                               \
+            } else {                                                        \
+                process_normal_mode_user(key_1, record, true);              \
+                process_normal_mode_user(key_2, record, true);              \
+                if (!record->event.pressed) return key_1 = key_2 = KC_STOP; \
+            }                                                               \
+        }                                                                   \
+    } while (0)
+
+*/

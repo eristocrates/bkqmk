@@ -47,7 +47,7 @@ bool process_bitwise_num(uint16_t keycode, keyrecord_t *record) {
                 // TODO see if i can reduce duplication
                 case BN1_DOT:
                     if (record->event.pressed) {
-                        tap_code(KC_0);
+                        tap_code(KC_DOT);
                     }
                     return false;
                 case BN2_DC1:
@@ -78,7 +78,7 @@ bool process_bitwise_num(uint16_t keycode, keyrecord_t *record) {
                 // TODO check if tap_code is preferable on hold
                 case BN1_DOT:
                     if (record->event.pressed) {
-                        tap_code(KC_0);
+                        tap_code(KC_DOT);
                     }
                     return false;
                 case BN2_DC1:
