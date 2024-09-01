@@ -183,12 +183,15 @@ enum keycodes {
     BIN__8,
     BIN_16,
 
-    // vim motions
+    // TODO KEEP IN SYNC WITH ACTIONS MACRO
+    // vim actions
     VM_LEFT,
     VM_DOWN,
     VM___UP,
     VM_RGHT,
     VM_NTRL,
+    VM_HORI,
+    VM_VERT,
     // vim operators
     VM_CHAN,
     VM_DELE,

@@ -1,199 +1,39 @@
-Lorem ipsum odor amet, consectetuer adipiscing elit. Curae vivamus finibus facilisi sagittis netus aptent. Turpis netus blandit porta ex purus velit luctus. Odio ac pulvinar a integer bibendum ad iaculis quam. Platea vitae senectus at venenatis inceptos lobortis nibh nascetur. Egestas lacinia rhoncus torquent mauris aliquet fusce. Placerat nec suscipit ridiculus lacinia habitasse porttitor lectus. Maximus platea viverra sit dapibus, aenean pulvinar. Consequat nec porta fames rutrum malesuada volutpat maecenas massa. Neque molestie auctor tincidunt eget hendrerit venenatis.
+Lorem ipsum odor amet, consectetuer adipiscing elit. Tristique mattis dignissim est finibus conubia vestibulum. Nulla mattis imperdiet proin nibh at ex mollis. Lectus euismod et ridiculus nam proin molestie. Adipiscing enim convallis sed turpis nulla. Nibh hac quam sagittis quis faucibus enim ridiculus augue. Montes porttitor aliquam efficitur consectetur, ultrices massa lacinia. Porta massa lectus commodo per imperdiet risus. Ornare odio leo rhoncus ac phasellus vitae sagittis neque lorem.
 
-Massa bibendum venenatis pretium ultrices elementum molestie. Tempor tempus viverra sem nisi sed adipiscing penatibus ex. Sodales condimentum netus enim taciti bibendum efficitur. Suscipit accumsan convallis faucibus aenean vehicula aenean pellentesque cubilia ultrices. Iaculis gravida quam curae quam morbi luctus in nascetur tempor. Ultrices hac eu eu montes ornare. Cursus dictumst mi commodo maecenas vel quis metus. Arcu curabitur sagittis aptent himenaeos sagittis odio phasellus; class euismod. Magna per aptent placerat lobortis urna mi himenaeos eleifend.
+Elit euismod pulvinar potenti tristique curabitur iaculis. At litora amet metus litora finibus ornare volutpat. Maecenas facilisis aenean ipsum, lacinia dictumst netus primis. Lacus primis taciti nulla venenatis posuere senectus sit. Himenaeos praesent dolor habitant pulvinar scelerisque purus. Molestie porta libero tincidunt imperdiet habitant ad.
 
-Potenti aptent malesuada senectus massa augue praesent mi. Maecenas orci sed himenaeos feugiat varius finibus litora adipiscing. Consequat ligula mi congue dui nunc tellus. Consequat ornare egestas tempus dignissim facilisi conubia parturient. Blandit nullam nascetur sodales iaculis condimentum posuere sagittis pulvinar. Lorem nam sit nullam nibh vestibulum; magnis dictumst. Ullamcorper malesuada donec lectus urna varius at volutpat ornare pellentesque. Nam cursus venenatis lacus posuere lacus mi penatibus. Maecenas mi cras volutpat donec natoque. Lacus non semper hendrerit fusce scelerisque sollicitudin parturient.
+Mattis sagittis commodo non tempor libero hac nunc. Himenaeos metus torquent semper mattis odio magnis per. Natoque mattis condimentum fermentum nascetur consequat gravida at per. Malesuada dapibus dolor nisi risus arcu mollis. Maximus laoreet nibh cubilia hendrerit enim enim gravida tristique porta. Per dignissim cursus quam magna laoreet vulputate accumsan. Curae eu faucibus iaculis, rutrum molestie cras amet mauris. Fermentum ornare lobortis proin eget natoque lobortis ullamcorper ut. Euismod lacus dignissim senectus finibus, est vel.
 
-Pretium tellus malesuada, dis ac aenean sociosqu placerat nam. Neque suscipit magna mi, porta sodales maecenas. Elit volutpat ante semper habitant mattis? Varius fringilla ridiculus ultrices nullam faucibus magna donec. Litora lectus quis integer mauris amet. Neque tincidunt montes diam platea sagittis dui augue. Leo mi vel, interdum porttitor dictumst elementum. Pellentesque pellentesque ligula inceptos nostra donec.
+Nulla sagittis magnis ultrices magna, fringilla aliquet. Curae hac sodales fusce ipsum congue nullam. Ultrices mattis cras platea non congue tortor condimentum? Euismod enim egestas vivamus; sit ac vehicula vestibulum. Suscipit pretium dis, curae eros sociosqu torquent malesuada. Eros vivamus curae mus conubia elit. Ullamcorper elit pretium vivamus laoreet fermentum lacinia quam potenti.
 
-Auctor diam fusce sociosqu neque pretium volutpat nec libero. Metus ullamcorper dui fusce rhoncus praesent ultrices ut. Aliquam nullam inceptos nostra arcu quam habitasse donec ultricies hendrerit. Eget taciti enim porta viverra interdum consequat ipsum. Condimentum platea egestas suscipit dictumst taciti pharetra elit bibendum rutrum. Himenaeos varius elementum ante etiam varius, taciti eleifend. Commodo leo suscipit libero erat, sapien lobortis dui.
+Pharetra maecenas inceptos nascetur rhoncus quis tristique mollis dignissim. Placerat libero sollicitudin sed vitae malesuada leo ad imperdiet nulla. Aenean gravida mauris cursus; sapien consequat parturient in. Suspendisse primis fames condimentum varius mauris mi varius ut. Laoreet nam sollicitudin eros sed fringilla sagittis per dignissim fringilla. Eget etiam tortor et elit leo. Est egestas sagittis donec consequat leo magna lacinia curabitur.
 
-            tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
-            hold_keycode = tap_keycode;
-            if (IS_LAYER_ON(_GUIPR)) {
-                hold_mod = KC_LGUI;
-            } else if (IS_LAYER_ON(_CTRLPR)) {
-                hold_mod = KC_LCTL;
-            } else if (IS_LAYER_ON(_ALTPR)) {
-                hold_mod = KC_LALT;
-            } else {
-                hold_mod = KC_LSFT;
-            }
-            if (process_tap_or_long_mod_press_key(record, hold_keycode, hold_mod)) {
-                if (record->event.pressed) {
-                    tap_code16(tap_keycode);
-                }
-            }
-            return false;
+Diam habitasse odio facilisi tincidunt parturient. Vitae venenatis mattis praesent habitasse porttitor dui. In fames est magnis mus elementum. Litora semper turpis integer suscipit quam. Ligula nascetur phasellus dignissim pretium sed luctus tempor morbi. Placerat curae erat facilisis, porttitor non arcu. Sapien convallis varius; duis fringilla quisque aptent. Gravida penatibus tortor duis; lobortis lacus mattis. Habitasse tempus senectus nisi nostra mattis tempor viverra nullam dignissim. Bibendum posuere mi posuere etiam molestie eu.
 
+Fames mauris ex maecenas habitant vulputate montes pretium blandit gravida. Tempor efficitur nisl tempus diam tristique iaculis. Aliquam sed pellentesque sapien facilisi neque nascetur torquent primis? Blandit scelerisque arcu proin malesuada sodales. Porttitor ultrices justo conubia elementum ipsum fusce scelerisque enim. Consequat pulvinar malesuada sapien neque sodales vitae auctor. Morbi parturient class facilisi volutpat tempor molestie malesuada nam. Orci risus facilisi massa; feugiat nisi blandit volutpat rutrum. Ut lacinia dolor a vel turpis fringilla amet. Fringilla pretium nisl est nec adipiscing facilisis.
 
+Rutrum libero facilisis conubia lacus sodales morbi. At duis mi; platea pulvinar in ut. Cursus himenaeos condimentum lacus ac pellentesque adipiscing. Placerat dictum consectetur cras ridiculus suscipit et euismod. Lectus eros consequat dui; erat natoque platea. Litora nullam class praesent a pulvinar.
 
-case GRTPNKY:
-case CRTPNKY:
-case ARTPNKY:
-case TH____U:
+Nascetur congue dui congue consectetur fusce. Dolor iaculis ac diam consequat commodo. Dis himenaeos sem litora velit felis vitae. In lacus blandit eros penatibus massa vivamus aliquet. Eget eros et inceptos vehicula est et porta metus consectetur. Ad amet sagittis nascetur efficitur cursus adipiscing torquent. Hac nostra cras volutpat dapibus natoque phasellus varius ullamcorper. Volutpat aliquam tincidunt aptent enim dapibus; nascetur euismod pulvinar orci. Eros purus nam habitant luctus, mi dapibus consequat. Sit urna eget imperdiet phasellus platea nisi cursus aenean nostra.
 
-case GRTRING:
-case CRTRING:
-case ARTRING:
-case TH____O:
+Augue risus scelerisque eros montes quam leo nisi. Feugiat neque platea quisque litora habitasse augue netus. Facilisi suspendisse vulputate mus tortor consequat elit. Feugiat sodales senectus pellentesque egestas conubia tincidunt? In velit neque pulvinar, ad congue nullam. Id sit potenti ullamcorper mi rhoncus dis duis. Eros elit nunc facilisi ante, magna ut commodo. Integer morbi hendrerit interdum sem porttitor feugiat fermentum.
 
-case GRTMDLE:
-case CRTMDLE:
-case ARTMDLE:
-case TH____Y:
+Pretium sit quam platea placerat ultrices viverra nibh. Vivamus faucibus et aptent diam habitasse rhoncus nostra. Laoreet finibus magnis viverra turpis conubia commodo ornare. Vehicula iaculis sollicitudin velit aenean habitasse. Maecenas feugiat venenatis; nulla tortor ac tristique sociosqu fringilla. Taciti morbi sit gravida velit amet penatibus. Semper nullam laoreet molestie sed at platea libero finibus. Hac ornare tortor integer augue bibendum varius vulputate ante. Ex fusce ultrices netus convallis nisi natoque.
 
-case GRTINDX:
-case CRTINDX:
-case ARTINDX:
-case TH____B:
+Felis congue aliquam dis dapibus velit curae nec curae erat. Dictumst nullam nascetur quam posuere consequat magna arcu. Suspendisse sagittis faucibus vel arcu sem? Taciti rutrum ac tempus facilisis hendrerit vestibulum vehicula senectus arcu. Ultricies integer neque felis interdum neque nullam pellentesque. Integer est at diam, feugiat habitasse fringilla ridiculus vehicula. Magna augue lacinia; tempus etiam semper donec penatibus.
 
-case GRTINNR:
-case CRTINNR:
-case ARTINNR:
-case TH____Z:
+Condimentum duis consequat venenatis egestas pharetra tempor bibendum. Lobortis volutpat sociosqu risus curae egestas turpis. Amet maecenas condimentum suspendisse nostra risus vitae orci cursus. Sit sit fringilla finibus orci condimentum leo felis accumsan felis. Sagittis egestas vitae ante nostra placerat cras. Ad fringilla aptent cursus molestie ex hac sodales. Agravida augue pulvinar aliquam inceptos interdum varius tempor.
 
-case GLHOUTR:
-case CLHOUTR:
-case ALHOUTR:
-case TH____J:
+Vestibulum dapibus cras iaculis tortor consectetur. Pharetra pharetra mattis consequat penatibus pharetra quisque auctor scelerisque. Per class potenti nunc nostra convallis? Sollicitudin enim vehicula lorem ultrices, enim nullam fames. Habitasse fames tempus turpis; felis aliquam id. Fames imperdiet habitant duis nostra taciti dolor torquent? Nascetur eget class tempor aenean accumsan mi tempus vulputate. Ante justo purus imperdiet vulputate turpis posuere phasellus. Adipiscing dolor tellus maecenas curabitur ipsum platea; vel at? Dapibus tortor ipsum posuere in torquent urna.
 
-case GLHPNKY:
-case CLHPNKY:
-case ALHPNKY:
-case TH____K:
+Faucibus inceptos litora curabitur quis ligula ultricies odio. Nostra aenean et fermentum mollis; faucibus condimentum class. Natoque facilisi sagittis fusce est velit laoreet. Viverra maecenas sapien ridiculus ornare odio eu curae diam. Adipiscing ex ad vel mollis eleifend felis ridiculus. Habitant pulvinar maximus consequat malesuada penatibus erat. Gravida volutpat ornare ad neque dolor. Class aliquet mi hac facilisi inceptos, sem dictum. Dictum ornare maecenas vitae dui auctor. Maecenas erat malesuada tortor sed senectus proin pretium maximus ultrices.
 
-case GLHRING:
-case CLHRING:
-case ALHRING:
-case TH____S:
+Enim lorem malesuada diam vehicula ad; molestie parturient sem. Orci aptent per vulputate id mollis facilisi augue. Penatibus nascetur sem dictum ligula parturient augue tristique. Amet sodales ipsum ad; aenean inceptos etiam. Praesent facilisis aliquet cubilia, congue pretium scelerisque. Ipsum luctus nam magna finibus luctus luctus massa dapibus. Fames elit adipiscing donec semper ornare mattis primis. Ac neque lacus tempus placerat ullamcorper fames augue consectetur.
 
-case GLHMDLE:
-case CLHMDLE:
-case ALHMDLE:
-case TH____N:
+Praesent in suspendisse finibus leo, sit vel tristique malesuada. Ante lobortis eget justo inceptos sodales curabitur. Congue proin scelerisque tempor netus sociosqu nisl sociosqu. Ut eleifend finibus mattis hac; sociosqu mus. Quam curae morbi conubia conubia inceptos nisl. Ad sagittis malesuada quisque curae himenaeos mattis class justo. Sit leo ante feugiat mattis non tristique feugiat vivamus. Pellentesque phasellus aliquet vivamus ad per faucibus suspendisse. Torquent tincidunt ridiculus ut vel adipiscing maximus vulputate sit.
 
-case GLHINDX:
-case CLHINDX:
-case ALHINDX:
-case TH____D:
+Nisi eget mi dictumst venenatis; viverra quam tempus. Vehicula rhoncus rhoncus consequat, ultricies pulvinar dignissim. Vulputate ipsum vitae congue, lectus accumsan torquent. Integer inceptos sapien non, torquent nisl phasellus volutpat nunc torquent. Eu pretium bibendum vel gravida montes viverra fermentum. Penatibus vestibulum nullam ante eget magnis. Facilisi himenaeos tincidunt potenti, lectus facilisis donec. Sociosqu curabitur quam praesent, efficitur non convallis neque class. Per libero ut netus turpis magna fames habitasse.
 
-case GLHINNR:
-case CLHINNR:
-case ALHINNR:
-// backspace
+Scelerisque congue blandit euismod torquent leo nisi fermentum. Phasellus risus elementum ad, donec luctus vulputate. Sem mauris maximus vehicula habitant et commodo finibus congue. Platea morbi donec hendrerit ac phasellus, praesent vel neque iaculis. Suspendisse habitasse lectus dolor, montes ligula curae malesuada amet. Id accumsan porta inceptos nisi congue ex massa faucibus sodales. Ad arcu porta suspendisse nisl suscipit aliquet.
 
-case GRHOUTR:
-case CRHOUTR:
-case ARHOUTR:
-// delete
-
-case GRHPNKY:
-case CRHPNKY:
-case ARHPNKY:
-case TH____A:
-
-case GRHRING:
-case CRHRING:
-case ARHRING:
-case TH____E:
-
-case GRHMDLE:
-case CRHMDLE:
-case ARHMDLE:
-case TH____I:
-
-case GRHINDX:
-case CRHINDX:
-case ARHINDX:
-case TH____H:
-
-case GRHINNR:
-case CRHINNR:
-case ARHINNR:
-case TH___QU:
-
-case GLBOUTR:
-case CLBOUTR:
-case ALBOUTR:
-// core leader key
-
-case GLBPNKY:
-case CLBPNKY:
-case ALBPNKY:
-case TH____W:
-
-case GLBRING:
-case CLBRING:
-case ALBRING:
-case TH____F:
-
-case GLBMDLE:
-case CLBMDLE:
-case ALBMDLE:
-case TH____L:
-
-case GLBINDX:
-case CLBINDX:
-case ALBINDX:
-case TH____C:
-
-case GLBINNR:
-case CLBINNR:
-case ALBINNR:
-// arcane
-
-case GRBOUTR:
-case CRBOUTR:
-case ARBOUTR:
-// arcane
-
-case GRBPNKY:
-case CRBPNKY:
-case ARBPNKY:
-// parenthesis opening
-
-case GRBRING:
-case CRBRING:
-case ARBRING:
-// comma
-
-case GRBMDLE:
-case CRBMDLE:
-case ARBMDLE:
-// period
-
-case GRBINDX:
-case CRBINDX:
-case ARBINDX:
-// parenthesis closing
-
-case GRBINNR:
-case CRBINNR:
-case ARBINNR:
-// test
-
-case GLLTHMB:
-case CLLTHMB:
-case ALLTHMB:
-// math/tab
-
-case GLMTHMB:
-case CLMTHMB:
-case ALMTHMB:
-case TH____R:
-
-case GLRTHMB:
-case CLRTHMB:
-case ALRTHMB:
-// left space
-
-case GRLTHMB:
-case CRLTHMB:
-case ARLTHMB:
-// right space
-
-case GRMTHMB:
-case CRMTHMB:
-case ARMTHMB:
-case TH____T:
+Auctor montes potenti egestas morbi fusce vel, cras taciti. Facilisis malesuada adipiscing habitant fusce donec cras egestas cubilia. Ac sit leo consequat leo faucibus etiam commodo eget netus. Primis condimentum faucibus maximus habitasse cubilia. Gravida posuere augue duis habitant; commodo dis commodo gravida. Libero phasellus consectetur tellus lectus sapien posuere. Pellentesque laoreet facilisi consectetur; luctus sit libero.

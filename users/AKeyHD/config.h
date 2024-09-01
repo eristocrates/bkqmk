@@ -73,8 +73,8 @@
 // recency
 #define INPUT_BUFFER_TIMEOUT_MS 5000 // Timeout in milliseconds.
 #define INPUT_BUFFER_SIZE 16         // Number of keys in general purpose buffer.
-#define MOTION_BUFFER_TIMEOUT_MS 500 // Timeout in milliseconds.
-#define MOTION_BUFFER_SIZE 5         // Number of keys in motion input buffer.
+#define MOTION_BUFFER_TIMEOUT_MS 250 // Timeout in milliseconds.
+#define MOTION_BUFFER_SIZE 6         // Number of keys in motion input buffer.
 #define ARCANE_TIMEOUT_MS 1000       // Timeout in milliseconds.
 
 // unicode

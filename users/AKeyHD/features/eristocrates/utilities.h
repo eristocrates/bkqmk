@@ -1,6 +1,7 @@
 #pragma once
 // #include QMK_KEYBOARD_H
 #include "quantum.h"
+#include "../../akeyhd_keycodes.h"
 
 void send_string_with_caps_word(const char *str);
 void call_keycode(uint16_t keycode);
@@ -11,31 +12,31 @@ void call_keycode(uint16_t keycode);
 // directional conditions
 
 // command normal directions
-#define BACK_HELD (1 << 0)
-#define DOWN_HELD (1 << 1)
-#define FRNT_HELD (1 << 2)
-#define JUMP_HELD (1 << 3)
+#define BACK_HELD 0x01
+#define DOWN_HELD 0x02
+#define FRNT_HELD 0x03
+#define JUMP_HELD 0x04
 // double directional inputs
-#define BB_MOTION (1 << 4)
-#define DD_MOTION (1 << 5)
-#define FF_MOTION (1 << 6)
-#define JJ_MOTION (1 << 7)
+#define BB_MOTION 0x05
+#define DD_MOTION 0x06
+#define FF_MOTION 0x07
+#define JJ_MOTION 0x08
 // opposite directional inputs
-#define BF_MOTION (1 << 8)
-#define FB_MOTION (1 << 9)
-#define DJ_MOTION (1 << 10)
-#define JD_MOTION (1 << 11)
+#define BF_MOTION 0x09
+#define FB_MOTION 0x0A
+#define DJ_MOTION 0x0B
+#define JD_MOTION 0x0C
 // motion inputs
-#define QCF_MOTION (1 << 12)
-#define QCB_MOTION (1 << 13)
-#define DPF_MOTION (1 << 14)
-#define DPB_MOTION (1 << 15)
-#define DQCF_MOTION (1 << 16)
-#define DQCB_MOTION (1 << 17)
-#define HCF_MOTION (1 << 18)
-#define HCB_MOTION (1 << 19)
-#define HCBF_MOTION (1 << 20)
-#define HCFB_MOTION (1 << 21)
+#define QCF_MOTION 0x0D
+#define QCB_MOTION 0x0E
+#define DPF_MOTION 0x0F
+#define DPB_MOTION 0x11
+#define DQCF_MOTION 0x12
+#define DQCB_MOTION 0x13
+#define HCF_MOTION 0x14
+#define HCB_MOTION 0x15
+#define HCBF_MOTION 0x16
+#define HCFB_MOTION 0x17
 // TODO dare i attempt charge inputs?
 
 // clang-format off
@@ -62,7 +63,9 @@ void call_keycode(uint16_t keycode);
                     (is_hcbf_motion ? HCBF_MOTION : 0) |\
                     (is_hcfb_motion ? HCFB_MOTION : 0))
 // clang-format on
+#define ACTIONS (motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_LEFT || motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_DOWN || motion_buffer[MOTION_BUFFER_SIZE - 1] == VM___UP || motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_RGHT || motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_NTRL || motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_HORI || motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_VERT)
 
+#define KC_BAR KC_PIPE // Ceci n'est pas une macro
 /*
 // Helper macros to handle default values
 #define GET_SECOND_ARG(arg1, arg2, ...) arg2

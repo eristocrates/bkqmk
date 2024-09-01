@@ -87,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_CTRLPR] = LAYOUT(
   /* ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮ */
-       CLTOUTR, CLTPNKY, CLTRING, CLTMDLE, CLTINDX, CLTINNR,    KC_TILD, CRTINDX, CRTMDLE, CRTRING, CRTPNKY, CRTOUTR,
+       CLTOUTR, CLTPNKY, CLTRING, CLTMDLE, CLTINDX, KC_CIRC,    KC_TILD, CRTINDX, CRTMDLE, CRTRING, CRTPNKY, CRTOUTR,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
        KC_CAPS, CLHPNKY, CLHRING, CLHMDLE, CLHINDX, KC_DEQL,    KC_HASH, CRHINDX, CRHMDLE, CRHRING, CRHPNKY, CRHOUTR,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
