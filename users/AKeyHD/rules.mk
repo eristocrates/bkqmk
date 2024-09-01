@@ -9,10 +9,11 @@ CONSOLE_ENABLE = yes
 UNICODE_COMMON = yes
 UNICODE_ENABLE = yes
 # RGB_MATRIX_CUSTOM_USER = yes
-
+# XAP_ENABLE = yes  # one day
 # Disable unused features
 VIA_ENABLE = no
 #AUTOCORRECT_ENABLE = yes
+TOP_SYMBOLS = yes
 
 INTROSPECTION_KEYMAP_C = akeyhd.c
 

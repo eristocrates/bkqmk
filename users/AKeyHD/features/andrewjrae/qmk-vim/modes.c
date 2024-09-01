@@ -348,7 +348,7 @@ bool process_visual_mode(uint16_t keycode, const keyrecord_t *record) {
                 }
 #endif
                 normal_mode();
-                return false;
+                return true;
             default:
                 if (vim_emulation && keycode >= QK_MODS && (keycode & 0xFF00) != QK_LSFT) {
                     tap_code16(keycode);
@@ -435,7 +435,7 @@ bool process_visual_line_mode(uint16_t keycode, const keyrecord_t *record) {
                 }
 #endif
                 normal_mode();
-                return false;
+                return true;
             default:
                 if (vim_emulation && keycode >= QK_MODS && (keycode & 0xFF00) != QK_LSFT) {
                     tap_code16(keycode);
@@ -462,7 +462,7 @@ bool process_insert_mode(uint16_t keycode, const keyrecord_t *record) {
         switch (keycode) {
             case KC_ESC:
                 normal_mode();
-                return false;
+                return true;
             default:
                 break;
         }

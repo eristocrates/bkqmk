@@ -86,14 +86,14 @@ layers:
     - {t: '', type: trans}
     - VM LEFT
     - VM DOWN
-    - VM   UP
     - VM RGHT
+    - VM NTRL
     - {t: '', type: trans}
   - - {t: '', type: trans}
     - MI JUMP
     - {t: '', type: trans}
     - VIMMTIN
-    - VM NTRL
+    - VM   UP
   Piercing Gui:
   - [CLTOUTR, CLTPNKY, CLTRING, CLTMDLE, CLTINDX, ^, '~', CRTINDX, CRTMDLE, CRTRING, CRTPNKY, CRTOUTR]
   - [CAPS, CLHPNKY, CLHRING, CLHMDLE, CLHINDX, DEQL, '#', CRHINDX, CRHMDLE, CRHRING, CRHPNKY, CRHOUTR]

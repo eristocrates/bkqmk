@@ -193,10 +193,10 @@ enum keycodes {
     VM_HORI,
     VM_VERT,
     // vim operators
-    VM_CHAN,
-    VM_DELE,
-    VM_YANK,
-    VM_VISU,
+    VM_CHAN, // change
+    VM_DELE, // delete
+    VM_YANK, // yank
+    VM_VISU, // visual
 
     // motion inputs
     MI_DOWN, // down

@@ -9,38 +9,48 @@ void call_keycode(uint16_t keycode);
 // Define the default value for the second variable
 #define DEFAULT_VALUE KC_STOP
 
-// directional conditions
-
-// command normal directions
+// normal directions
 #define BACK_HELD 0x01
 #define DOWN_HELD 0x02
 #define FRNT_HELD 0x03
 #define JUMP_HELD 0x04
+// diagonal directions
+#define DOWN_BACK_HELD 0x05
+#define DOWN_FRNT_HELD 0x06
+#define JUMP_FRNT_HELD 0x07
+#define JUMP_BACK_HELD 0x08
 // double directional inputs
-#define BB_MOTION 0x05
-#define DD_MOTION 0x06
-#define FF_MOTION 0x07
-#define JJ_MOTION 0x08
+#define BB_MOTION 0x09
+#define DD_MOTION 0x0A
+#define FF_MOTION 0x0B
+#define JJ_MOTION 0x0C
 // opposite directional inputs
-#define BF_MOTION 0x09
-#define FB_MOTION 0x0A
-#define DJ_MOTION 0x0B
-#define JD_MOTION 0x0C
+#define BF_MOTION 0x0D
+#define FB_MOTION 0x0E
+#define DJ_MOTION 0x0F
+#define JD_MOTION 0x11
 // motion inputs
-#define QCF_MOTION 0x0D
-#define QCB_MOTION 0x0E
-#define DPF_MOTION 0x0F
-#define DPB_MOTION 0x11
-#define DQCF_MOTION 0x12
-#define DQCB_MOTION 0x13
-#define HCF_MOTION 0x14
-#define HCB_MOTION 0x15
-#define HCBF_MOTION 0x16
+#define QCF_MOTION 0x12
+#define QCB_MOTION 0x13
+#define DPF_MOTION 0x14
+#define DPB_MOTION 0x15
+#define DQCF_MOTION 0x16
+#define DQCB_MOTION 0x17
+#define HCF_MOTION 0x18
+#define HCB_MOTION 0x19
+#define HCBF_MOTION 0x1A
+
 #define HCFB_MOTION 0x17
 // TODO dare i attempt charge inputs?
 
 // clang-format off
-#define DIRECTIONS ((is_back_held ? BACK_HELD : 0) | \
+
+// directional conditions
+#define DIRECTIONS ((is_down_held && is_back_held ? DOWN_BACK_HELD : 0) | \
+                    (is_down_held && is_front_held ? DOWN_FRNT_HELD : 0) | \
+                    (is_jump_held && is_front_held ? JUMP_FRNT_HELD : 0) | \
+                    (is_jump_held && is_back_held ? JUMP_BACK_HELD : 0) | \
+                    (is_back_held ? BACK_HELD : 0) | \
                     (is_down_held ? DOWN_HELD : 0) | \
                     (is_front_held ? FRNT_HELD : 0) | \
                     (is_jump_held ? JUMP_HELD : 0) | \
@@ -62,10 +72,27 @@ void call_keycode(uint16_t keycode);
                     (is_hcb_motion ? HCB_MOTION : 0) | \
                     (is_hcbf_motion ? HCBF_MOTION : 0) |\
                     (is_hcfb_motion ? HCFB_MOTION : 0))
+
+#define ACTIONS (\
+   motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_LEFT               \
+|| motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_DOWN               \
+|| motion_buffer[MOTION_BUFFER_SIZE - 1] == VM___UP               \
+|| motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_RGHT               \
+|| motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_NTRL               \
+|| motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_HORI               \
+|| motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_VERT               \
+|| motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_CHAN               \
+|| motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_DELE               \
+|| motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_YANK               \
+|| motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_VISU               \
+)
+
 // clang-format on
-#define ACTIONS (motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_LEFT || motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_DOWN || motion_buffer[MOTION_BUFFER_SIZE - 1] == VM___UP || motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_RGHT || motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_NTRL || motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_HORI || motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_VERT)
 
 #define KC_BAR KC_PIPE // Ceci n'est pas une macro
+
+const char *key_name(uint16_t keycode, bool shifted);
+
 /*
 // Helper macros to handle default values
 #define GET_SECOND_ARG(arg1, arg2, ...) arg2

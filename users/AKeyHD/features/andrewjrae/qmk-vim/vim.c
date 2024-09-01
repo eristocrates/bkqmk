@@ -133,9 +133,29 @@ bool process_vim_mode(uint16_t keycode, const keyrecord_t *record) {
 
         // let through anything above normal keyboard keycode or a mod
         // TODO carve out exceptions for my keycodes. also ironically test left is the only broken one
-        if ((keycode != VM_LEFT && keycode != VM_DOWN && keycode != VM___UP && keycode != VM_RGHT && keycode != MI_BACK && keycode != MI_DOWN && keycode != MI_JUMP && keycode != MI_FRNT) && (keycode < KC_A || keycode > KC_CAPS_LOCK) && (keycode < QK_MODS || keycode > QK_MODS_MAX)) {
+        // clang-format off
+        if ((
+            keycode != VM_LEFT
+         && keycode != VM_DOWN
+         && keycode != VM___UP
+         && keycode != VM_RGHT
+         && keycode != VM_NTRL
+         && keycode != VM_HORI
+         && keycode != VM_VERT
+         && keycode != VM_CHAN
+         && keycode != VM_DELE
+         && keycode != VM_YANK
+         && keycode != VM_VISU
+         && keycode != MI_BACK
+         && keycode != MI_DOWN
+         && keycode != MI_JUMP
+         && keycode != MI_FRNT)
+         && (keycode < KC_A || keycode > KC_CAPS_LOCK)
+         && (keycode < QK_MODS || keycode > QK_MODS_MAX))
+         {
             return true;
         }
+        // clang-format on
 
         const uint8_t mods         = get_mods();
         const uint8_t oneshot_mods = get_oneshot_mods();

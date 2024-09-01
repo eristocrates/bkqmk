@@ -11,3 +11,28 @@ Linking: .build/bastardkb_charybdis_3x6_akeyhd.elf                              
 Creating UF2 file for deployment: .build/bastardkb_charybdis_3x6_akeyhd.uf2                         [32;01m[OK][0m
 Copying bastardkb_charybdis_3x6_akeyhd.uf2 to qmk_firmware folder                                   [32;01m[OK][0m
 Copying bastardkb_charybdis_3x6_akeyhd.uf2 to userspace folder                                      [32;01m[OK][0m
+###########################################
+# Highest flash usage:
+  259456 r keycode_display_map
+    9336 T process_record_user
+    7996 T process_normal_mode_user
+    4094 R pmw33xx_firmware_data
+    2400 R keymaps
+    1604 T rgb_matrix_layer_helper
+    1428 t rgb_task_render
+     952 T process_action
+     924 t vsnprintf_impl.constprop.0
+     792 T key_combos
+###########################################
+# Highest RAM usage:
+    4104 b wear_leveling
+    1200 b waSlaveThread
+     312 B __sf
+     256 b rbuf
+     256 b BOOT2_ROM_RAM
+     256 b boot2_copyout
+     228 B USBD1
+     192 b ch_c0_idle_thread_wa
+     168 b WS2812_BUFFER
+     128 b repeat_buf
+###########################################

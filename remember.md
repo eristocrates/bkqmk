@@ -16,6 +16,8 @@ keymap -c I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\confi
 
 keymap -c I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\config.yaml draw I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\keymapDesign.yaml > I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\keymapDesign.svg
 
+keymap -c i:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\config.yaml draw i:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\keymap.yaml -s random > i:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\blanks.svg
+
 qmk compile -c -j 0 -kb bastardkb/charybdis/3x6 -km akeyhd
 
 qmk compile -c -kb bastardkb/charybdis/3x6 -km akeyhd
@@ -23,7 +25,7 @@ qmk compile -c -kb bastardkb/charybdis/3x6 -km akeyhd
 qmk compile -c -j 0 -kb bastardkb/charybdis/3x6 -km akeyhd > qmk-output.log 2>&1
 
 qmk generate-compilation-database -kb bastardkb/charybdis/3x6 -km akeyhd ;
-
+qmk info -kb bastardkb/charybdis/3x6 -m
 REG ADD HKCU\Software\Classes\ms-officeapp\Shell\Open\Command /t REG_SZ /d rundll32
 
 LED_FLAG_NONE       = 0x00  // Binary: 00000000
@@ -32,6 +34,8 @@ LED_FLAG_MODIFIER   = 0x01  // Binary: 00000001
 LED_FLAG_UNDERGLOW  = 0x02  // Binary: 00000010
 LED_FLAG_KEYLIGHT   = 0x04  // Binary: 00000100
 LED_FLAG_INDICATOR  = 0x08  // Binary: 00001000
+
+264KB SRAM on the rp2040
 
   [XXXXXXXX] = LAYOUT(
   /* ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮ */
