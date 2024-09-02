@@ -274,8 +274,8 @@ bool process_normal_mode(uint16_t keycode, const keyrecord_t *record) {
 #endif
             default:
                 NO_RECORD_ACTION();
-                // if (vim_emulation && keycode >= QK_MODS && (keycode & 0xFF00) != QK_LSFT) { // TODO double check if this was a good change
-                if (keycode >= QK_MODS && (keycode & 0xFF00) != QK_LSFT) {
+                if (vim_emulation && keycode >= QK_MODS && (keycode & 0xFF00) != QK_LSFT) { // TODO double check if this was a good change
+                                                                                            // if (keycode >= QK_MODS && (keycode & 0xFF00) != QK_LSFT) {
                     tap_code16(keycode);
                 }
                 break;

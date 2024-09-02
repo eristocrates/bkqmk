@@ -197,6 +197,8 @@ enum keycodes {
     VM_DELE, // delete
     VM_YANK, // yank
     VM_VISU, // visual
+    VM_MRKQ, // ' mark jumps
+    VM_MRKG, // ` mark jumps
 
     // motion inputs
     MI_DOWN, // down

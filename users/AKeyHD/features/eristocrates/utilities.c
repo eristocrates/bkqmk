@@ -118,6 +118,8 @@ static const char *const keycode_display_map[][2] = {
     [VM_DELE] = {"\tDelete Action", ""},
     [VM_YANK] = {"\tYank Action", ""},
     [VM_VISU] = {"\tVisual Action", ""},
+    [VM_MRKQ] = {"\t'Mark Action", ""},
+    [VM_MRKG] = {"\t`Mark Action", ""},
     [MI_DOWN] = {"Down Input", ""},
     [MI_BACK] = {"Back Input", ""},
     [MI_FRNT] = {"Front Input", ""},
@@ -131,10 +133,12 @@ static const char *key_name_hid(uint16_t keycode, bool shifted) {
     return keycode_display_map[keycode][shifted ? 1 : 0];
 }
 const char *key_name(uint16_t keycode, bool shifted) {
+    /*
     char buf1[16];
     char buf2[16];
     (void)buf1;
     (void)buf2;
+    */
     switch (keycode) {
         case KC_A ... KC_NUM_LOCK:
         case VM_LEFT:
@@ -148,6 +152,8 @@ const char *key_name(uint16_t keycode, bool shifted) {
         case VM_DELE:
         case VM_YANK:
         case VM_VISU:
+        case VM_MRKQ:
+        case VM_MRKG:
         case MI_DOWN:
         case MI_BACK:
         case MI_FRNT:

@@ -85,8 +85,27 @@ void call_keycode(uint16_t keycode);
 || motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_DELE               \
 || motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_YANK               \
 || motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_VISU               \
+|| motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_MRKQ               \
+|| motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_MRKG               \
 )
 
+#define VIM_EXCLUSIONS (keycode != VM_LEFT\
+         && keycode != VM_DOWN\
+         && keycode != VM___UP\
+         && keycode != VM_RGHT\
+         && keycode != VM_NTRL\
+         && keycode != VM_HORI\
+         && keycode != VM_VERT\
+         && keycode != VM_CHAN\
+         && keycode != VM_DELE\
+         && keycode != VM_YANK\
+         && keycode != VM_VISU\
+         && keycode != VM_MRKQ\
+         && keycode != VM_MRKG\
+         && keycode != MI_BACK\
+         && keycode != MI_DOWN\
+         && keycode != MI_JUMP\
+         && keycode != MI_FRNT)
 // clang-format on
 
 #define KC_BAR KC_PIPE // Ceci n'est pas une macro

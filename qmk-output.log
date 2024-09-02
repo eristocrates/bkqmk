@@ -13,16 +13,16 @@ Copying bastardkb_charybdis_3x6_akeyhd.uf2 to qmk_firmware folder               
 Copying bastardkb_charybdis_3x6_akeyhd.uf2 to userspace folder                                      [32;01m[OK][0m
 ###########################################
 # Highest flash usage:
-  259456 r keycode_display_map
-    9336 T process_record_user
-    7996 T process_normal_mode_user
+  259472 r keycode_display_map
+   10044 T process_normal_mode_user
+    9340 T process_record_user
     4094 R pmw33xx_firmware_data
     2400 R keymaps
     1604 T rgb_matrix_layer_helper
     1428 t rgb_task_render
      952 T process_action
      924 t vsnprintf_impl.constprop.0
-     792 T key_combos
+     816 T key_combos
 ###########################################
 # Highest RAM usage:
     4104 b wear_leveling
