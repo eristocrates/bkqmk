@@ -118,8 +118,11 @@ static const char *const keycode_display_map[][2] = {
     [VM_DELE] = {"\tDelete Action", ""},
     [VM_YANK] = {"\tYank Action", ""},
     [VM_VISU] = {"\tVisual Action", ""},
-    [VM_MRKQ] = {"\t'Mark Action", ""},
-    [VM_MRKG] = {"\t`Mark Action", ""},
+    [VM_MRKQ] = {"\tQuote Mark Action", ""},
+    [VM_MRKG] = {"\tGrave Mark Action", ""},
+    [VM_FRMT] = {"\tFormat Action", ""},
+    [VM_FOLD] = {"\tFold Action", ""},
+    [VM_SRCH] = {"\tFold Action", ""},
     [MI_DOWN] = {"Down Input", ""},
     [MI_BACK] = {"Back Input", ""},
     [MI_FRNT] = {"Front Input", ""},
@@ -154,6 +157,9 @@ const char *key_name(uint16_t keycode, bool shifted) {
         case VM_VISU:
         case VM_MRKQ:
         case VM_MRKG:
+        case VM_FRMT:
+        case VM_FOLD:
+        case VM_SRCH:
         case MI_DOWN:
         case MI_BACK:
         case MI_FRNT:

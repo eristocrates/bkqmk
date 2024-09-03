@@ -39,8 +39,7 @@ void call_keycode(uint16_t keycode);
 #define HCF_MOTION 0x18
 #define HCB_MOTION 0x19
 #define HCBF_MOTION 0x1A
-
-#define HCFB_MOTION 0x17
+#define HCFB_MOTION 0x1B
 // TODO dare i attempt charge inputs?
 
 // clang-format off
@@ -87,9 +86,13 @@ void call_keycode(uint16_t keycode);
 || motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_VISU               \
 || motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_MRKQ               \
 || motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_MRKG               \
+|| motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_FRMT               \
+|| motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_FOLD               \
+|| motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_SRCH               \
 )
 
-#define VIM_EXCLUSIONS (keycode != VM_LEFT\
+#define VIM_EXCLUSIONS (\
+            keycode != VM_LEFT\
          && keycode != VM_DOWN\
          && keycode != VM___UP\
          && keycode != VM_RGHT\
@@ -102,15 +105,31 @@ void call_keycode(uint16_t keycode);
          && keycode != VM_VISU\
          && keycode != VM_MRKQ\
          && keycode != VM_MRKG\
+         && keycode != VM_FRMT\
+         && keycode != VM_FOLD\
+         && keycode != VM_SRCH\
          && keycode != MI_BACK\
          && keycode != MI_DOWN\
          && keycode != MI_JUMP\
-         && keycode != MI_FRNT)
+         && keycode != MI_FRNT\
+)
 // clang-format on
 
 #define KC_BAR KC_PIPE // Ceci n'est pas une macro
 
 const char *key_name(uint16_t keycode, bool shifted);
+
+// TODO mostly a test to see if i liked these macros. I'll consider more descriptive macros when i have the time
+// https://neovim.io/doc/user/motion.html#%5E
+// ^
+#define TO_FIRST_NON_BLANK_CHARACTER_IN_THE_LINE \
+    key_1 = KC_CIRC;                             \
+    break;
+// https://neovim.io/doc/user/motion.html#0
+// 0
+#define TO_FIRST_CHARACTER_IN_THE_LINE \
+    key_1 = KC_0;                      \
+    break;
 
 /*
 // Helper macros to handle default values

@@ -6,6 +6,16 @@ Copyright (C) 2023 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+Compiling: I:/coding/bkqmk/users/akeyhd/features/andrewjrae/qmk-vim/motions.c                       [32;01m[OK][0m
+Compiling: I:/coding/bkqmk/users/akeyhd/features/andrewjrae/qmk-vim/vim.c                           [32;01m[OK][0m
+Compiling: I:/coding/bkqmk/users/akeyhd/features/empressabyss/arcane_keys.c                         [32;01m[OK][0m
+Compiling: I:/coding/bkqmk/users/akeyhd/features/kalabasa/bitwise_num.c                             [32;01m[OK][0m
+Compiling: I:/coding/bkqmk/users/akeyhd/features/eristocrates/rgb_matrix_stuff.c                    [32;01m[OK][0m
+Compiling: I:/coding/bkqmk/users/akeyhd/features/eristocrates/utilities.c                           [32;01m[OK][0m
+Compiling: I:/coding/bkqmk/users/akeyhd/features/possumvibes/mod_lock.c                             [32;01m[OK][0m
+Compiling: I:/coding/bkqmk/users/akeyhd/features/possumvibes/override_keys.c                        [32;01m[OK][0m
+Compiling: I:/coding/bkqmk/users/akeyhd/features/possumvibes/nshot_mod.c                            [32;01m[OK][0m
+Compiling: I:/coding/bkqmk/users/akeyhd/features/possumvibes/smart_layer.c                          [32;01m[OK][0m
 Compiling: quantum/keymap_introspection.c                                                           [32;01m[OK][0m
 Linking: .build/bastardkb_charybdis_3x6_akeyhd.elf                                                  [32;01m[OK][0m
 Creating UF2 file for deployment: .build/bastardkb_charybdis_3x6_akeyhd.uf2                         [32;01m[OK][0m
@@ -13,16 +23,16 @@ Copying bastardkb_charybdis_3x6_akeyhd.uf2 to qmk_firmware folder               
 Copying bastardkb_charybdis_3x6_akeyhd.uf2 to userspace folder                                      [32;01m[OK][0m
 ###########################################
 # Highest flash usage:
-  259472 r keycode_display_map
-   10044 T process_normal_mode_user
-    9340 T process_record_user
+  259616 r keycode_display_map
+   12704 T process_normal_mode_user
+    9716 T process_record_user
     4094 R pmw33xx_firmware_data
     2400 R keymaps
     1604 T rgb_matrix_layer_helper
     1428 t rgb_task_render
+    1032 T key_combos
      952 T process_action
      924 t vsnprintf_impl.constprop.0
-     816 T key_combos
 ###########################################
 # Highest RAM usage:
     4104 b wear_leveling

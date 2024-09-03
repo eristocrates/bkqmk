@@ -46,20 +46,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* ├───────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────┤ */
      QK_LEAD, KC____W, KC____F, KC____L, KC____C, LBM_ARC, RBM_ARC, KC_LPRN, COM_ARC, DOT_ARC, KC_RPRN, VIM_TOG,
   /* ╰───────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────╯ */
-                                MATH_TB, CTRL__R, SML_SPC, SMR_SPC, ALT___T
+                                NUM_PAD, CTRL__R, SML_SPC, SMR_SPC, ALT___T
   /*                            ╰────────────────────────╯ ╰──────────────╯                                      */
   ),
 
   [_COMBOREF] = LAYOUT(
-  /* ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮ */
-       LT_OUTR, LT_PNKY, LT_RING, LT_MDLE, LT_INDX, LT_INNR,    RT_INNR, RT_INDX, RT_MDLE, RT_RING, RT_PNKY, RT_OUTR,
-  /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       LH_OUTR, LH_PNKY, LH_RING, LH_MDLE, LH_INDX, LH_INNR,    RH_INNR, RH_INDX, RH_MDLE, RH_RING, RH_PNKY, RH_OUTR,
-  /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       LB_OUTR, LB_PNKY, LB_RING, LB_MDLE, LB_INDX, LB_INNR,    RB_INNR, RB_INDX, RB_MDLE, RB_RING, RB_PNKY, RB_OUTR,
-  /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
-                                  L_LTHMB, L_MTHMB, L_RTHMB,    R_LTHMB, R_MTHMB
-  /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
+  /* ╭───────────────────────────────────────────────────╮ ╭───────────────────────────────────────────────────╮ */
+     LT_OUTR, LT_PNKY, LT_RING, LT_MDLE, LT_INDX, LT_INNR, RT_INNR, RT_INDX, RT_MDLE, RT_RING, RT_PNKY, RT_OUTR,
+  /* ├───────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────┤ */
+     LH_OUTR, LH_PNKY, LH_RING, LH_MDLE, LH_INDX, LH_INNR, RH_INNR, RH_INDX, RH_MDLE, RH_RING, RH_PNKY, RH_OUTR,
+  /* ├───────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────┤ */
+     LB_OUTR, LB_PNKY, LB_RING, LB_MDLE, LB_INDX, LB_INNR, RB_INNR, RB_INDX, RB_MDLE, RB_RING, RB_PNKY, RB_OUTR,
+  /* ╰───────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────╯ */
+                                L_LTHMB, L_MTHMB, L_RTHMB, R_LTHMB, R_MTHMB
+  /*                            ╰────────────────────────╯ ╰──────────────╯                                      */
   ),
 
   [_VIMNAV] = LAYOUT(
@@ -169,13 +169,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
   // TODO consider other lesser used math like log, sin, cos, tan, etc.
-  [_MATH] = LAYOUT(
+  [_NUMPAD] = LAYOUT(
   /* ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮ */
-       _______, _______, _______, _______, _______,  KC_DLR,   XXXXXXX, KC_P7,    KC_P8,    KC_P9, XXXXXXX, _______,
+       XXXXXXX, KC_CIRC, KC_PSCR, KC_SCRL, KC_PAUS,  KC_DLR,   KC_PSLS, KC_P7,    KC_P8,    KC_P9, KC_PAST, XXXXXXX,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       FNCTION, KC_PSLS, KC_PAST, KC_PMNS, KC_PPLS,  KC_DOT,   XXXXXXX, KC_P4,    KC_P5,    KC_P6, XXXXXXX, XXXXXXX,
+       XXXXXXX, FNCTION, KC_INS, KC_HOME, KC_PGUP,  KC_EQL,   KC_PMNS, KC_P4,    KC_P5,    KC_P6, KC_PPLS, XXXXXXX,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       _______, KC_PERC, KC_CIRC, KC_EQL, KC_SPC, LR_LOCK,     KC_COMM, BN2_DC1,  BN4_DC2,  BN8_DC3, BN16_ET, _______,
+       XXXXXXX, KC_PERC, KC_DEL, KC_END, KC_PGDN, LR_LOCK,     KC_COMM, BN2_DC1,  BN4_DC2,  BN8_DC3, BN16_ET, XXXXXXX,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
                                   _______, _______, _______,    KC_P0, BN1_DOT
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */

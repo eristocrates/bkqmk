@@ -36,67 +36,62 @@ void process_top_left_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_keyd
             // left outer column
             case KC_X:
                 ARCANE_STRING("x", KC_X);
-                break;
+                return;
 
             // left pinky column
             case KC_V:
                 ARCANE_STRING("v", KC_V);
-                break;
+                return;
 
             // left ring column
             case KC_G:
                 ARCANE_STRING("g", KC_G);
-                break;
+                return;
 
             // left middle column
             case KC_M:
                 ARCANE_STRING("m", KC_M);
-                break;
+                return;
 
             // left index column
             case KC_P:
                 ARCANE_STRING("p", KC_P);
-                break;
+                return;
 
                 // left thumb
-            default:
-                tap_code16(default_keycode);
         }
-    } else if (timer_elapsed(prior_keydown) < MAGIC_TERM) {
+    }
+    if (timer_elapsed(prior_keydown) < MAGIC_TERM) {
         switch (keycode) {
                 /* anti sfb magic */
                 // right outer column
             case TH___QU:
                 ARCANE_STRING("z", KC_Z);
-                break;
+                return;
                 // right pinky column
 
             case KC_H:
                 ARCANE_STRING("b", KC_B);
-                break;
+                return;
                 // right ring column
 
             case KC_I:
                 ARCANE_STRING("y", KC_Y);
-                break;
+                return;
                 // right middle column
             case KC_E:
                 ARCANE_STRING("o", KC_O);
-                break;
+                return;
 
                 // right index column
             case KC_A:
                 ARCANE_STRING("u", KC_U);
-                break;
+                return;
 
                 // right thumb
-
-            default:
-                tap_code16(default_keycode);
         }
-    } else {
-        tap_code16(default_keycode);
     }
+    tap_code16(default_keycode);
 }
 
 void process_top_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_keydown, uint16_t default_keycode) {
@@ -109,76 +104,71 @@ void process_top_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_key
             // right outer column
             case KC_Z:
                 ARCANE_STRING("z", KC_Z);
-                break;
+                return;
 
             // right pinky column
             case KC_B:
                 ARCANE_STRING("b", KC_B);
-                break;
+                return;
 
             // right ring column
             case KC_Y:
                 ARCANE_STRING("y", KC_Y);
-                break;
+                return;
 
             // right middle column
             case KC_O:
                 ARCANE_STRING("o", KC_O);
-                break;
+                return;
 
             // right index column
             case KC_U:
                 ARCANE_STRING("u", KC_U);
-                break;
+                return;
 
                 // right thumb
-
-            default:
-                tap_code16(default_keycode);
         }
-    } else if (timer_elapsed(prior_keydown) < MAGIC_TERM) {
+    }
+    if (timer_elapsed(prior_keydown) < MAGIC_TERM) {
         switch (keycode) {
                 /* anti sfb magic */
             // right pinky column
             case KC_I:
                 ARCANE_STRING("z", KC_Z);
-                break;
+                return;
                 // left outer column
             case KC_J:
                 ARCANE_STRING("x", KC_X);
-                break;
+                return;
 
                 // left pinky column
             case KC_K:
             case KC_W:
                 ARCANE_STRING("v", KC_V);
-                break;
+                return;
 
             // left ring column
             case KC_S:
             case KC_F:
                 ARCANE_STRING("g", KC_G);
-                break;
+                return;
 
             // left middle column
             case KC_N:
             case KC_L:
                 ARCANE_STRING("m", KC_M);
-                break;
+                return;
 
             // left index column
             case KC_D:
             case KC_C:
                 ARCANE_STRING("p", KC_P);
-                break;
+                return;
 
                 // left thumb
-            default:
-                tap_code16(default_keycode);
         }
-    } else {
-        tap_code16(default_keycode);
     }
+    tap_code16(default_keycode);
 }
 
 void process_home_left_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_keydown, uint16_t default_keycode) {
@@ -188,81 +178,75 @@ void process_home_left_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_key
                 // left outer column
             case KC_J:
                 ARCANE_STRING("j", KC_J);
-                break;
+                return;
 
             // left pinky column
             case KC_K:
                 ARCANE_STRING("k", KC_K);
-                break;
+                return;
 
             // left ring column
             case KC_S:
                 ARCANE_STRING("s", KC_S);
-                break;
+                return;
 
             // left middle column
             case KC_N:
                 ARCANE_STRING("n", KC_N);
-                break;
+                return;
 
             // left index column
             case KC_D:
                 ARCANE_STRING("d", KC_D);
-                break;
+                return;
 
                 // left thumb
             case KC_R:
                 ARCANE_STRING("r", KC_R);
-                break;
-
-            default:
-                tap_code16(default_keycode);
+                return;
         }
-    } else if (timer_elapsed(prior_keydown) < MAGIC_TERM) {
+    }
+    if (timer_elapsed(prior_keydown) < MAGIC_TERM) {
         switch (keycode) {
             // case KC_LSPC:
             case KC_SPC:
                 ARCANE_STRING("r", KC_R);
-                break;
+                return;
 
             // left index column
             case KC_P:
                 ARCANE_STRING("l", KC_L);
-                break;
+                return;
                 /*  anti sfb magic */
             // right outer column
             case KC_Z:
                 ARCANE_STRING("qu", TH___QU);
-                break;
+                return;
 
                 // right pinky column
             case KC_B:
                 ARCANE_STRING("h", KC_H);
-                break;
+                return;
 
             // right ring column
             case KC_Y:
                 ARCANE_STRING("i", KC_I);
-                break;
+                return;
 
             // right middle column
             case KC_O:
                 ARCANE_STRING("e", KC_E);
-                break;
+                return;
 
                 // right index column
             case KC_U:
                 ARCANE_STRING("a", KC_A);
-                break;
+                return;
 
                 // right thumb
-
-            default:
-                tap_code16(default_keycode);
         }
-    } else {
-        tap_code16(default_keycode);
     }
+    tap_code16(default_keycode);
 }
 
 void process_home_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_keydown, uint16_t default_keycode) {
@@ -271,70 +255,68 @@ void process_home_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_ke
                 /* repeats */
             case KC_H:
                 ARCANE_STRING("h", KC_H);
-                break;
+                return;
 
             // right ring column
             case KC_I:
                 ARCANE_STRING("i", KC_I);
-                break;
+                return;
 
             // right middle column
             case KC_E:
                 ARCANE_STRING("e", KC_E);
-                break;
+                return;
 
                 // right index column
             case KC_A:
                 ARCANE_STRING("a", KC_A);
-                break;
+                return;
 
                 // right thumb
             case KC_T:
                 ARCANE_STRING("t", KC_T);
-                break;
-
-            default:
-                tap_code16(default_keycode);
+                return;
         }
-    } else if (timer_elapsed(prior_keydown) < MAGIC_TERM) {
+    }
+    if (timer_elapsed(prior_keydown) < MAGIC_TERM) {
         switch (keycode) {
             // case KC_RSPC:
             case KC_SPC:
                 ARCANE_STRING("t", KC_T);
-                break;
+                return;
 
                 /* anti sfb magic */
                 // left outer column
             case KC_X:
                 ARCANE_STRING("j", KC_J);
-                break;
+                return;
 
             // left pinky column
             case KC_V:
             case KC_W:
                 ARCANE_STRING("k", KC_K);
-                break;
+                return;
 
             // left ring column
             case KC_G:
             case KC_F:
                 ARCANE_STRING("s", KC_S);
-                break;
+                return;
             case KC_S:
                 ARCANE_STRING("sion", KC_N);
-                break;
+                return;
 
             // left middle column
             case KC_M:
             case KC_L:
                 ARCANE_STRING("n", KC_N);
-                break;
+                return;
 
             // left index column
             case KC_P:
             case KC_C:
                 ARCANE_STRING("d", KC_D);
-                break;
+                return;
 
                 // left thumb
 
@@ -344,14 +326,10 @@ void process_home_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_ke
                 // atypical, but that pinky + ring scissor is too gross to not eradicate
             case KC_B:
                 ARCANE_STRING("i", KC_I);
-                break;
-
-            default:
-                tap_code16(default_keycode);
+                return;
         }
-    } else {
-        tap_code16(default_keycode);
     }
+    tap_code16(default_keycode);
 }
 
 void process_bottom_left_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_keydown, uint16_t default_keycode) {
@@ -363,59 +341,56 @@ void process_bottom_left_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_k
             // left pinky column
             case KC_W:
                 ARCANE_STRING("w", KC_W);
-                break;
+                return;
 
             // left ring column
             case KC_F:
                 ARCANE_STRING("f", KC_F);
-                break;
+                return;
 
             // left middle column
             case KC_L:
                 ARCANE_STRING("l", KC_L);
-                break;
+                return;
 
             // left index column
             case KC_C:
                 ARCANE_STRING("c", KC_C);
-                break;
+                return;
 
                 // left thumb
-
-            default:
-                tap_code16(default_keycode);
         }
-    } else if (timer_elapsed(prior_keydown) < MAGIC_TERM) {
+    }
+    if (timer_elapsed(prior_keydown) < MAGIC_TERM) {
         switch (keycode) {
+                // left ring column
+            case KC_G:
+                ARCANE_STRING("l", KC_L);
+                return;
                 /* anti sfb magic */
             // right outer column
             case KC_Z:
                 ARCANE_STRING("qu", TH___QU);
-                break;
+                return;
 
             // right pinky column
 
             // right ring column
             case KC_I:
                 call_keycode(DOT_ARC);
-                break;
+                return;
 
                 // right middle column
 
             case KC_E:
                 call_keycode(COM_ARC);
-                break;
+                return;
                 // right index column
 
                 // right thumb
-
-            default:
-                tap_code16(default_keycode);
         }
-
-    } else {
-        tap_code16(default_keycode);
     }
+    tap_code16(default_keycode);
 }
 
 void process_bottom_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_keydown, uint16_t default_keycode) {
@@ -428,25 +403,25 @@ void process_bottom_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_
             case KC_V:
             case KC_K:
                 ARCANE_STRING("w", KC_W);
-                break;
+                return;
 
             // left ring column
             case KC_G:
             case KC_S:
                 ARCANE_STRING("f", KC_F);
-                break;
+                return;
 
             // left middle column
             case KC_M:
             case KC_N:
                 ARCANE_STRING("l", KC_L);
-                break;
+                return;
 
             // left index column
             case KC_P:
             case KC_D:
                 ARCANE_STRING("c", KC_C);
-                break;
+                return;
 
                 // left thumb
 
@@ -462,13 +437,10 @@ void process_bottom_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_
 
                 // right thumb
 
-            default:
-                tap_code16(default_keycode);
                 // TODO think of something to do with what would otherwise be repeats on the sliver
         }
-    } else {
-        tap_code16(default_keycode);
     }
+    tap_code16(default_keycode);
 }
 
 // inspired from https://www.reddit.com/r/KeyboardLayouts/comments/1cc2yri/oneshot_shift_via_adaptive_keys/?share_id=J_a-r4rEr1p26tZg4lRpc&utm_content=1&utm_medium=android_app&utm_name=androidcss&utm_source=share&utm_term=1

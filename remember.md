@@ -37,6 +37,8 @@ LED_FLAG_INDICATOR  = 0x08  // Binary: 00001000
 
 264KB SRAM on the rp2040
 
+.,+6s/,\s+([A-Z])/,\1/g
+
   [XXXXXXXX] = LAYOUT(
   /* ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮ */
        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,

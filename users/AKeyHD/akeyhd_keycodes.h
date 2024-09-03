@@ -14,7 +14,7 @@ enum layers {
     _SYMR,
     _POINTER, // TODO ALWAYS KEEP IN SYNC WITH RGB_MATRIX_STUFF
     _POINTEROPT,
-    _MATH, // TODO ALWAYS KEEP IN SYNC WITH BITWISE_NUM
+    _NUMPAD, // TODO ALWAYS KEEP IN SYNC WITH BITWISE_NUM
     _FUNCTION,
     _MEDIA,
     _ONESHOT,
@@ -134,6 +134,21 @@ enum keycodes {
     MD_WITH, // with
     MD_PVE,  // 've
     MD_PS,   // 's
+    MD_WHEN, // when
+    MD_BE,   // be
+    MD_OF,   // of
+    MD_INW,  // in word
+    MD_THAT, // that
+    MD_HAVE, // have
+    MD_IT,   // it
+    MD_NOT,  // not
+    MD_ON,   // on
+    MD_HE,   // he
+    MD_AS,   // as
+    MD_DO,   // do
+    MD_AT,   // at
+    MD_BCUZ, // because
+    MD_A,    // a
 
     MD_BSPC, // backspace/backspace word
     MD_DEL,  // delete/delete word
@@ -199,6 +214,9 @@ enum keycodes {
     VM_VISU, // visual
     VM_MRKQ, // ' mark jumps
     VM_MRKG, // ` mark jumps
+    VM_FRMT, // formatting
+    VM_FOLD, // folds
+    VM_SRCH, // search
 
     // motion inputs
     MI_DOWN, // down
@@ -404,7 +422,7 @@ enum keycodes {
 #define ALT___T LT(_ALTPR, KC_T)
 #define SML_SPC LT(_SYML, KC_SPC)
 #define SMR_SPC LT(_SYMR, KC_SPC)
-#define MATH_TB LT(_MATH, KC_TAB)
+#define NUM_PAD LT(_NUMPAD, KC_TAB)
 // default LTs
 #define PT_Z LT(_POINTER, KC_Z)
 #define PT_SLSH LT(_POINTER, KC_SLSH)
@@ -425,7 +443,7 @@ enum keycodes {
 // toggle layers
 #define VIMMTIN TG(_VIMMOTION)
 #define KEYBRD TG(_KEYBOARD)
-#define MATH TG(_MATH)
+#define MATH TG(_NUMPAD)
 #define RANDOM TG(_RANDOM)
 
 // TODO clean up these rejects from akeyhd_layout.h
@@ -438,7 +456,7 @@ enum keycodes {
 
 // TODO go through these and apply them
 // oneshot layers
-#define MAT_OSL OSL(_MATH)
+#define MAT_OSL OSL(_NUMPAD)
 #define SHC_OSL OSL(_FUNCTION)
 
 // mouse button aliases for ease of use

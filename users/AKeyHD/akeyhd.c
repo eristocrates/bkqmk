@@ -1846,6 +1846,82 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 send_string_with_caps_word("with");
             }
             return true;
+        case MD_WHEN:
+            if (record->event.pressed) {
+                send_string_with_caps_word("when");
+            }
+            return true;
+        case MD_BE:
+            if (record->event.pressed) {
+                send_string_with_caps_word("be");
+            }
+            return true;
+        case MD_OF:
+            if (record->event.pressed) {
+                send_string_with_caps_word("of");
+            }
+            return true;
+        case MD_INW:
+            if (record->event.pressed) {
+                send_string_with_caps_word("in");
+            }
+            return true;
+        case MD_THAT:
+            if (record->event.pressed) {
+                send_string_with_caps_word("that");
+            }
+            return true;
+        case MD_HAVE:
+            if (record->event.pressed) {
+                send_string_with_caps_word("have");
+            }
+            return true;
+        case MD_IT:
+            if (record->event.pressed) {
+                send_string_with_caps_word("it");
+            }
+            return true;
+        case MD_NOT:
+            if (record->event.pressed) {
+                send_string_with_caps_word("not");
+            }
+            return true;
+        case MD_ON:
+            if (record->event.pressed) {
+                send_string_with_caps_word("on");
+            }
+            return true;
+        case MD_HE:
+            if (record->event.pressed) {
+                send_string_with_caps_word("he");
+            }
+            return true;
+        case MD_AS:
+            if (record->event.pressed) {
+                send_string_with_caps_word("as");
+            }
+            return true;
+        case MD_DO:
+            if (record->event.pressed) {
+                send_string_with_caps_word("do");
+            }
+            return true;
+        case MD_AT:
+            if (record->event.pressed) {
+                send_string_with_caps_word("at");
+            }
+            return true;
+        case MD_BCUZ:
+            if (record->event.pressed) {
+                send_string_with_caps_word("because");
+            }
+            return true;
+        case MD_A:
+            if (record->event.pressed) {
+                send_string_with_caps_word("a");
+            }
+            return true;
+
         case MD_PVE:
             if (record->event.pressed) {
                 if (last_smart_space) {
@@ -2476,6 +2552,9 @@ void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
             case VM_VISU:
             case VM_MRKQ:
             case VM_MRKG:
+            case VM_FRMT:
+            case VM_FOLD:
+            case VM_SRCH:
                 clear_motion_buffer();
             default:
                 break;
@@ -2677,6 +2756,20 @@ bool process_combo_key_release(uint16_t combo_index, combo_t *combo, uint8_t key
         case CB_WITH:
         case CB_PVE:
         case CB_PS:
+        case CB_OF:
+        case CB_BE:
+        case CB_INW:
+        case CB_THAT:
+        case CB_HAVE:
+        case CB_IT:
+        case CB_NOT:
+        case CB_ON:
+        case CB_HE:
+        case CB_AS:
+        case CB_DO:
+        case CB_AT:
+        case CB_BECAUSE:
+        case CB_A:
             if (smart_space_mode) {
                 tap_code(KC_SPC);
                 last_smart_space = true;
@@ -2788,6 +2881,10 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
     cardinal command normal
     neutral
     */
+
+    // TODO  revisit offloading vert to up & down
+    // TODO consider jumps like method and comment https://neovim.io/doc/user/motion.html#%5Dm
+    // TODO consider substitution logic. prob needs a dedicated mohttps://neovim.io/doc/user/change.html#%3As
     // TODO maybe fix diagonals by lifting roll reversal state for each 2 pair hold. 4 hold directions x 3 tap directions = 12 diagonal states
     // TODO figure out why MI_ keycodes are sending as media keys??? prob something to do with qmk-vim
     /*
@@ -2911,12 +3008,10 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
             static uint16_t key_2 = KC_STOP;
             if (record->event.pressed) {
                 switch (DIRECTIONS) {
-                    case HCBF_MOTION: // https://neovim.io/doc/user/motion.html#%5E
-                        key_1 = KC_CIRC;
-                        break;
-                    case HCB_MOTION: // https://neovim.io/doc/user/motion.html#0
-                        key_1 = KC_0;
-                        break;
+                    case HCBF_MOTION:
+                        TO_FIRST_NON_BLANK_CHARACTER_IN_THE_LINE
+                    case HCB_MOTION:
+                        TO_FIRST_CHARACTER_IN_THE_LINE
                     case DPB_MOTION:                                      // https://neovim.io/doc/user/motion.html#)
                         key_1          = is_text_object ? KC_S : KC_RPRN; // sentence object https://neovim.io/doc/user/motion.html#as
                         is_text_object = false;
@@ -2971,8 +3066,6 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
             }
             // clear_motions();
         }
-            // TODO  revisit offloading vert to up & down
-            // TODO consider jumps like method and comment https://neovim.io/doc/user/motion.html#%5Dm
         case VM_DOWN: {
             static uint16_t key_1 = KC_STOP;
             static uint16_t key_2 = KC_STOP;
@@ -2981,6 +3074,23 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
                     case HCFB_MOTION: // https://neovim.io/doc/user/motion.html#g_
                         key_1 = KC_G;
                         key_2 = KC_UNDS;
+                        break;
+                    case HCB_MOTION: // https://neovim.io/doc/user/motion.html#H
+                        key_1 = KC_H;
+                        break;
+                    case QCF_MOTION: // https://neovim.io/doc/user/fold.html#zj
+                        key_1 = KC_Z;
+                        key_2 = KC_J;
+                        break;
+                    case DD_MOTION: // https://neovim.io/doc/user/change.html#CTRL-X
+                        key_1 = C(KC_X);
+                        break;
+                    case DJ_MOTION: // https://neovim.io/doc/user/motion.html#M
+                        key_1 = S(KC_M);
+                        break;
+                    case JD_MOTION: // https://neovim.io/doc/user/change.html#v_g_CTRL-X
+                        key_1 = KC_G;
+                        key_2 = C(KC_X);
                         break;
                     case BACK_HELD: // https://neovim.io/doc/user/motion.html#%2B
                         key_1 = KC_PLUS;
@@ -3025,10 +3135,26 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
             static uint16_t key_2 = KC_STOP;
             if (record->event.pressed) {
                 switch (DIRECTIONS) {
+                    case HCF_MOTION: // https://neovim.io/doc/user/motion.html#L
+                        key_1 = KC_L;
+                        break;
+                    case QCB_MOTION: // neovim.io/doc/user/fold.html#zk
+                        key_1 = KC_Z;
+                        key_2 = KC_K;
+                        break;
+                    case DJ_MOTION: // https://neovim.io/doc/user/change.html#v_g_CTRL-A
+                        key_1 = KC_G;
+                        key_2 = C(KC_A);
+                        break;
+                    case JD_MOTION: // https://neovim.io/doc/user/motion.html#M
+                        key_1 = S(KC_M);
+                        break;
+                    case JJ_MOTION: // https://neovim.io/doc/user/change.html#CTRL-A
+                        key_1 = C(KC_A);
+                        break;
                     case BACK_HELD: // https://neovim.io/doc/user/motion.html#-
                         key_1 = KC_MINUS;
                         break;
-
                     case JUMP_HELD:                                       // https://neovim.io/doc/user/motion.html#%7B
                         key_1          = is_text_object ? KC_P : KC_LCBR; // paragraph object https://neovim.io/doc/user/motion.html#ap
                         is_text_object = false;
@@ -3095,6 +3221,9 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
                     case BF_MOTION: // https://neovim.io/doc/user/motion.html#t
                         key_1           = KC_T;
                         is_char_pending = true;
+                        break;
+                    case DJ_MOTION: // https://neovim.io/doc/user/change.html#~
+                        key_1 = KC_TILDE;
                         break;
                     case FRNT_HELD: // https://neovim.io/doc/user/motion.html#w
                         key_1 = KC_W;
@@ -3174,8 +3303,9 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
                         key_1 = KC_LBRC;
                         key_2 = KC_LPRN;
                         break;
-                    default: // https://neovim.io/doc/user/motion.html#%25
-                        key_1 = KC_PERC;
+                    default: // neovim.io/doc/user/scroll.html#z.
+                        key_1 = KC_Z;
+                        key_2 = KC_DOT;
                 }
 
                 if (!vim_emulation_enabled()) {
@@ -3205,28 +3335,20 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
         case VM_HORI: {
             static uint16_t key_1 = KC_STOP;
             static uint16_t key_2 = KC_STOP;
+            static uint16_t key_3 = KC_STOP;
+            // TODO decide if rot13 is worth adding
             if (record->event.pressed) {
                 switch (DIRECTIONS) {
                     case HCF_MOTION: // https://neovim.io/doc/user/motion.html#bar
                         key_1 = KC_BAR;
                         break;
-                    case QCF_MOTION: // https://neovim.io/doc/user/motion.html#'
-                        key_1           = KC_QUOT;
-                        is_char_pending = true;
+                    case QCB_MOTION: // https://neovim.io/doc/user/fold.html#%5Bz
+                        key_1 = KC_LBRC;
+                        key_2 = KC_Z;
                         break;
-                    case QCB_MOTION: // https://neovim.io/doc/user/motion.html#%60
-                        key_1           = KC_GRV;
-                        is_char_pending = true;
-                        break;
-                    case DJ_MOTION: // https://neovim.io/doc/user/motion.html#g'
-                        key_1           = KC_G;
-                        key_2           = KC_QUOT;
-                        is_char_pending = true;
-                        break;
-                    case JD_MOTION: // https: // neovim.io/doc/user/motion.html#g%60
-                        key_1           = KC_G;
-                        key_2           = KC_GRV;
-                        is_char_pending = true;
+                    case QCF_MOTION: // neovim.io/doc/user/fold.html#%5Dz
+                        key_1 = KC_RBRC;
+                        key_2 = KC_Z;
                         break;
                     case BB_MOTION: // https://neovim.io/doc/user/motion.html#m%3C
                         key_1 = KC_M;
@@ -3236,6 +3358,26 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
                         key_1 = KC_M;
                         key_2 = KC_RABK;
                         break;
+                    case BF_MOTION: // https://neovim.io/doc/user/change.html#gqq
+                        key_1 = KC_G;
+                        key_2 = KC_Q;
+                        key_3 = KC_Q;
+                        break;
+                    case DJ_MOTION: // https://neovim.io/doc/user/change.html#g~~
+                        key_1 = KC_G;
+                        key_2 = KC_TILDE;
+                        key_3 = KC_TILDE;
+                        break;
+                    case DD_MOTION: // https://neovim.io/doc/user/change.html#guu
+                        key_1 = KC_G;
+                        key_2 = KC_U;
+                        key_3 = KC_U;
+                        break;
+                    case JJ_MOTION: // https://neovim.io/doc/user/change.html#gUU
+                        key_1 = KC_G;
+                        key_2 = S(KC_U);
+                        key_3 = S(KC_U);
+                        break;
                     case JUMP_HELD: // https://neovim.io/doc/user/motion.html#m%5B
                         key_1 = KC_M;
                         key_2 = KC_LBRC;
@@ -3244,39 +3386,41 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
                         key_1 = KC_M;
                         key_2 = KC_RBRC;
                         break;
-                    case FRNT_HELD: // https://neovim.io/doc/user/motion.html#m'
-                        key_1 = KC_M;
-                        key_2 = KC_QUOT;
-                        break;
-                    case BACK_HELD: // https://neovim.io/doc/user/motion.html#m%60
-                        key_1 = KC_M;
-                        key_2 = KC_GRV;
-                        break;
-                    default: // https://neovim.io/doc/user/motion.html#m
-                        key_1           = KC_M;
-                        is_char_pending = true;
+                    default: // https://neovim.io/doc/user/motion.html#M
+                        key_1 = S(KC_M);
                 }
 
                 if (!vim_emulation_enabled()) {
                     tap_code16(key_1);
                     if (key_2 != KC_STOP) tap_code16(key_2);
+                    if (key_3 != KC_STOP) tap_code16(key_3);
                     return KC_STOP;
                 }
             } else {
                 if (!vim_emulation_enabled()) {
-                    key_1 = key_2 = KC_STOP;
+                    key_1 = key_2 = key_3 = KC_STOP;
                 }
             }
 
             if (vim_emulation_enabled()) {
-                if (key_2 == KC_STOP) {
+                // TODO double check this covers key 3 case
+                if (key_1 == KC_STOP) {
                     return key_1;
                 } else {
                     process_normal_mode_user(key_1, record, true);
-                    process_normal_mode_user(key_2, record, true);
-                    // TODO add emulated ge with ctrl+left left
-                    if (!record->event.pressed) return key_1 = key_2 = KC_STOP;
                 }
+                if (key_2 == KC_STOP) {
+                    return key_2;
+                } else {
+                    process_normal_mode_user(key_2, record, true);
+                }
+                if (key_3 != KC_STOP) {
+                    return key_3;
+                } else {
+                    process_normal_mode_user(key_3, record, true);
+                }
+                // TODO add emulated ge with ctrl+left left
+                if (!record->event.pressed) return key_1 = key_2 = key_3 = KC_STOP;
             }
 
             // clear_motions();
@@ -3290,6 +3434,10 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
                     case QCF_MOTION: // https://neovim.io/doc/user/motion.html#g%3B
                         key_1 = KC_G;
                         key_2 = KC_SCLN;
+                        break;
+                    case DJ_MOTION: // neovim.io/doc/user/change.html#quote
+                        key_1           = KC_QUOT;
+                        is_char_pending = true;
                         break;
                     case QCB_MOTION: // https://neovim.io/doc/user/motion.html#g%2C
                         key_1 = KC_G;
@@ -3331,7 +3479,7 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
                         is_text_object = false;
                         break;
                     case FRNT_HELD: // https://neovim.io/doc/user/motion.html#a%5B
-                        key_1          = KC_LBRC;
+                        key_1          = is_text_object ? KC_LBRC : KC_N;
                         is_text_object = false;
                         break;
                     case JUMP_HELD: // https://neovim.io/doc/user/motion.html#a%3C
@@ -3374,6 +3522,22 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
                     case HCF_MOTION: // https://neovim.io/doc/user/change.html#C
                         key_1 = S(KC_C);
                         break;
+                    // TODO double check replace mode is working properly
+                    case JJ_MOTION: // https://neovim.io/doc/user/change.html#R
+                        key_1 = S(KC_R);
+                        break;
+                    case JD_MOTION: // https://neovim.io/doc/user/change.html#gR
+                        key_1 = KC_G;
+                        key_2 = S(KC_R);
+                        break;
+                    case DJ_MOTION: // https://neovim.io/doc/user/change.html#gr
+                        key_1           = KC_G;
+                        key_2           = KC_R;
+                        is_char_pending = true;
+                        break;
+                    case DD_MOTION: // https://neovim.io/doc/user/change.html#S
+                        key_1 = S(KC_S);
+                        break;
                     case BACK_HELD: // around text object https://neovim.io/doc/user/motion.html#_5.-text-object-motions
                         key_1          = KC_C;
                         key_2          = KC_A;
@@ -3383,6 +3547,13 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
                         key_1          = KC_C;
                         key_2          = KC_I;
                         is_text_object = true;
+                        break;
+                    case DOWN_HELD: // https://neovim.io/doc/user/change.html#s
+                        key_1 = KC_S;
+                        break;
+                    case JUMP_HELD: // https://neovim.io/doc/user/change.html#v_r
+                        key_1           = KC_R;
+                        is_char_pending = true;
                         break;
                     default: // https://neovim.io/doc/user/change.html#c
                         key_1 = KC_C;
@@ -3422,6 +3593,10 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
                     case QCB_MOTION: // https://neovim.io/doc/user/change.html#X
                         key_1 = S(KC_X);
                         break;
+                    case DJ_MOTION: // https://neovim.io/doc/user/change.html#gJ
+                        key_1 = KC_G;
+                        key_2 = S(KC_J);
+                        break;
                     case DD_MOTION: // https://neovim.io/doc/user/change.html#dd
                         key_1 = KC_D;
                         key_2 = KC_D;
@@ -3439,6 +3614,9 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
                         break;
                     case DOWN_HELD: // https://neovim.io/doc/user/change.html#x
                         key_1 = KC_X;
+                        break;
+                    case JUMP_HELD: // https://neovim.io/doc/user/change.html#J
+                        key_1 = S(KC_J);
                         break;
                     default: // https://neovim.io/doc/user/change.html#d
                         key_1 = KC_D;
@@ -3467,6 +3645,9 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
 
             // clear_motions();
         }
+        // TODO Separate is_char_pending and is_register_pending for automatic easier access to punctuation registers on base layer
+        // TODO maybe dedicated register one shot layer?
+        // neovim.io/doc/user/change.html#registers
         case VM_YANK: {
             static uint16_t key_1 = KC_STOP;
             static uint16_t key_2 = KC_STOP;
@@ -3474,6 +3655,35 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
                 switch (DIRECTIONS) {
                     case HCF_MOTION: // https://neovim.io/doc/user/change.html#Y
                         key_1 = S(KC_Y);
+                        break;
+                    case QCF_MOTION: // neovim.io/doc/user/change.html#gp
+                        key_1 = KC_G;
+                        key_2 = KC_P;
+                        break;
+                    case QCB_MOTION: // https://neovim.io/doc/user/change.html#gP
+                        key_1 = KC_G;
+                        key_2 = S(KC_P);
+                        break;
+                    case DPF_MOTION: // https://neovim.io/doc/user/change.html#zp
+                        key_1 = KC_Z;
+                        key_2 = KC_P;
+                        break;
+                    case DPB_MOTION: // neovim.io/doc/user/change.html#zP
+                        key_1 = KC_Z;
+                        key_2 = S(KC_P);
+                        break;
+                    case JJ_MOTION: // https://neovim.io/doc/user/change.html#yy
+                        key_1           = KC_Y;
+                        key_2           = KC_Y;
+                        is_char_pending = true;
+                        break;
+                    case DD_MOTION: // https://neovim.io/doc/user/change.html#%5DP
+                        key_1 = KC_RBRC;
+                        key_2 = S(KC_P);
+                        break;
+                    case DJ_MOTION: // https://neovim.io/doc/user/change.html#zy
+                        key_1 = KC_Z;
+                        key_2 = KC_Y;
                         break;
                     case BACK_HELD: // around text object https://neovim.io/doc/user/motion.html#_5.-text-object-motions
                         key_1          = KC_Y;
@@ -3484,6 +3694,10 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
                         key_1          = KC_Y;
                         key_2          = KC_I;
                         is_text_object = true;
+                        break;
+                    case DOWN_HELD: // https://neovim.io/doc/user/change.html#%5Dp
+                        key_1 = KC_RBRC;
+                        key_2 = KC_P;
                         break;
                     default: // https://neovim.io/doc/user/change.html#y
                         key_1 = KC_Y;
@@ -3517,10 +3731,10 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
             static uint16_t key_2 = KC_STOP;
             if (record->event.pressed) {
                 switch (DIRECTIONS) {
-                    case HCF_MOTION: // https://neovim.io/doc/user/visual.html#V
+                    case JUMP_HELD: // https://neovim.io/doc/user/visual.html#V
                         key_1 = S(KC_V);
                         break;
-                    case DJ_MOTION: // https://neovim.io/doc/user/visual.html#CTRL-V
+                    case DOWN_HELD: // https://neovim.io/doc/user/visual.html#CTRL-V
                         key_1 = C(KC_V);
                         break;
                     case BACK_HELD: // around text object https://neovim.io/doc/user/motion.html#_5.-text-object-motions
@@ -3589,6 +3803,10 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
                         key_1 = KC_QUOT;
                         key_2 = KC_RPRN;
                         break;
+                    case QCF_MOTION: // https://neovim.io/doc/user/motion.html#'
+                        key_1           = KC_QUOT;
+                        is_char_pending = true;
+                        break;
                     case JD_MOTION: // https://neovim.io/doc/user/motion.html#'%5E
                         key_1 = KC_QUOT;
                         key_2 = KC_CIRC;
@@ -3596,6 +3814,19 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
                     case BB_MOTION: // https://neovim.io/doc/user/motion.html#''
                         key_1 = KC_QUOT;
                         key_2 = KC_QUOT;
+                        break;
+                    case FB_MOTION: // https://neovim.io/doc/user/motion.html#m'
+                        key_1 = KC_M;
+                        key_2 = KC_QUOT;
+                        break;
+                    case BF_MOTION: // https://neovim.io/doc/user/motion.html#'.
+                        key_1 = KC_QUOT;
+                        key_2 = KC_DOT;
+                        break;
+                    case DJ_MOTION: // https://neovim.io/doc/user/motion.html#g'
+                        key_1           = KC_G;
+                        key_2           = KC_QUOT;
+                        is_char_pending = true;
                         break;
                     case BACK_HELD: // https://neovim.io/doc/user/motion.html#'%5B
                         key_1 = KC_QUOT;
@@ -3612,9 +3843,9 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
                         key_1 = KC_QUOT;
                         key_2 = KC_RCBR;
                         break;
-                    default: // https://neovim.io/doc/user/motion.html#'.
-                        key_1 = KC_QUOT;
-                        key_2 = KC_DOT;
+                    default: // https://neovim.io/doc/user/motion.html#m
+                        key_1           = KC_M;
+                        is_char_pending = true;
                 }
 
                 if (!vim_emulation_enabled()) {
@@ -3669,13 +3900,30 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
                         key_1 = KC_GRV;
                         key_2 = KC_RPRN;
                         break;
+                    case QCF_MOTION: // https://neovim.io/doc/user/motion.html#%60
+                        key_1           = KC_GRV;
+                        is_char_pending = true;
+                        break;
                     case JD_MOTION: // https://neovim.io/doc/user/motion.html#%60%5E
                         key_1 = KC_GRV;
                         key_2 = KC_CIRC;
                         break;
+                    case DJ_MOTION: // https: // neovim.io/doc/user/motion.html#g%60
+                        key_1           = KC_G;
+                        key_2           = KC_GRV;
+                        is_char_pending = true;
+                        break;
                     case BB_MOTION: // https://neovim.io/doc/user/motion.html#%60%60
                         key_1 = KC_GRV;
                         key_2 = KC_GRV;
+                        break;
+                    case FB_MOTION: // https://neovim.io/doc/user/motion.html#m%60
+                        key_1 = KC_M;
+                        key_2 = KC_GRV;
+                        break;
+                    case BF_MOTION: // https://neovim.io/doc/user/motion.html#%60.
+                        key_1 = KC_GRV;
+                        key_2 = KC_DOT;
                         break;
                     case BACK_HELD: // https://neovim.io/doc/user/motion.html#%60%5B
                         key_1 = KC_GRV;
@@ -3692,9 +3940,278 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
                         key_1 = KC_GRV;
                         key_2 = KC_RCBR;
                         break;
-                    default: // https://neovim.io/doc/user/motion.html#%60.
-                        key_1 = KC_GRV;
-                        key_2 = KC_DOT;
+                    default: // https://neovim.io/doc/user/motion.html#m
+                        key_1           = KC_M;
+                        is_char_pending = true;
+                }
+
+                if (!vim_emulation_enabled()) {
+                    tap_code16(key_1);
+                    if (key_2 != KC_STOP) tap_code16(key_2);
+                    return KC_STOP;
+                }
+            } else {
+                if (!vim_emulation_enabled()) {
+                    key_1 = key_2 = KC_STOP;
+                }
+            }
+
+            if (vim_emulation_enabled()) {
+                if (key_2 == KC_STOP) {
+                    return key_1;
+                } else {
+                    process_normal_mode_user(key_1, record, true);
+                    process_normal_mode_user(key_2, record, true);
+                    if (!record->event.pressed) return key_1 = key_2 = KC_STOP;
+                }
+            }
+
+            // clear_motions();
+        }
+        case VM_FRMT: {
+            static uint16_t key_1 = KC_STOP;
+            static uint16_t key_2 = KC_STOP;
+            static uint16_t key_3 = KC_STOP;
+            if (record->event.pressed) {
+                switch (DIRECTIONS) {
+                    case HCBF_MOTION: // around text object https://neovim.io/doc/user/change.html#gqap
+                        key_1          = KC_G;
+                        key_2          = KC_W;
+                        key_3          = KC_A;
+                        is_text_object = true;
+                        break;
+                    case HCFB_MOTION: // in text object https://neovim.io/doc/user/change.html#gqap
+                        key_1          = KC_G;
+                        key_2          = KC_W;
+                        key_3          = KC_I;
+                        is_text_object = true;
+                        break;
+                    case HCF_MOTION: // https://neovim.io/doc/user/change.html#%3E%3E
+                        key_1 = KC_RABK;
+                        key_2 = KC_RABK;
+                        break;
+                    case HCB_MOTION: // https://neovim.io/doc/user/change.html#%3C%3C
+                        key_1 = KC_LABK;
+                        key_2 = KC_LABK;
+                        break;
+                    case QCB_MOTION: // neovim.io/doc/user/change.html#gw
+                        key_1 = KC_G;
+                        key_2 = KC_W;
+                        break;
+                    case DJ_MOTION: // https://neovim.io/doc/user/change.html#g~
+                        key_1 = KC_G;
+                        key_2 = KC_TILD;
+                        break;
+                    case BB_MOTION: // https://neovim.io/doc/user/change.html#%3C
+                        key_1 = KC_LABK;
+                        break;
+                    case FF_MOTION: // https://neovim.io/doc/user/change.html#%3E
+                        key_1 = KC_RABK;
+                        break;
+                    case JUMP_HELD: // https://neovim.io/doc/user/change.html#gU
+                        key_1 = KC_G;
+                        key_2 = S(KC_U);
+                        break;
+                    case DOWN_HELD: // https://neovim.io/doc/user/change.html#gu
+                        key_1 = KC_G;
+                        key_2 = KC_U;
+                        break;
+                    case BACK_HELD: // around text object https://neovim.io/doc/user/motion.html#_5.-text-object-motions
+                        key_1          = KC_G;
+                        key_2          = KC_Q;
+                        key_3          = KC_A;
+                        is_text_object = true;
+                        break;
+                    case FRNT_HELD: // in text object https://neovim.io/doc/user/motion.html#_5.-text-object-motions
+                        key_1          = KC_G;
+                        key_2          = KC_Q;
+                        key_3          = KC_I;
+                        is_text_object = true;
+                        break;
+                    default: // neovim.io/doc/user/change.html#gq
+                        key_1 = KC_G;
+                        key_2 = KC_Q;
+                }
+
+                if (!vim_emulation_enabled()) {
+                    tap_code16(key_1);
+                    if (key_2 != KC_STOP) tap_code16(key_2);
+                    if (key_3 != KC_STOP) tap_code16(key_3);
+                    return KC_STOP;
+                }
+            } else {
+                if (!vim_emulation_enabled()) {
+                    key_1 = key_2 = key_3 = KC_STOP;
+                }
+            }
+
+            if (vim_emulation_enabled()) {
+                // TODO double check this covers key 3 case
+                if (key_1 == KC_STOP) {
+                    return key_1;
+                } else {
+                    process_normal_mode_user(key_1, record, true);
+                }
+                if (key_2 == KC_STOP) {
+                    return key_2;
+                } else {
+                    process_normal_mode_user(key_2, record, true);
+                }
+                if (key_3 != KC_STOP) {
+                    return key_3;
+                } else {
+                    process_normal_mode_user(key_3, record, true);
+                }
+                if (!record->event.pressed) return key_1 = key_2 = key_3 = KC_STOP;
+            }
+
+            // clear_motions();
+        }
+
+        case VM_FOLD: {
+            static uint16_t key_1 = KC_STOP;
+            static uint16_t key_2 = KC_STOP;
+            if (record->event.pressed) {
+                switch (DIRECTIONS) {
+                    case DQCB_MOTION: // neovim.io/doc/user/fold.html#zE
+                        key_1 = KC_Z;
+                        key_2 = S(KC_E);
+                        break;
+                    case HCBF_MOTION: // neovim.io/doc/user/fold.html#zf
+                        key_1 = KC_Z;
+                        key_2 = KC_F;
+                        break;
+                    case HCFB_MOTION: // https://neovim.io/doc/user/fold.html#zF
+                        key_1 = KC_Z;
+                        key_2 = S(KC_F);
+                        break;
+                    case HCF_MOTION: // https://neovim.io/doc/user/fold.html#zd
+                        key_1 = KC_Z;
+                        key_2 = KC_D;
+                        break;
+                    case HCB_MOTION: // https://neovim.io/doc/user/fold.html#zD
+                        key_1 = KC_Z;
+                        key_2 = S(KC_D);
+                        break;
+                    case QCF_MOTION: // https://neovim.io/doc/user/fold.html#zr
+                        key_1 = KC_Z;
+                        key_2 = KC_R;
+                        break;
+                    case DPF_MOTION: // https://neovim.io/doc/user/fold.html#zR
+                        key_1 = KC_Z;
+                        key_2 = S(KC_R);
+                        break;
+                    case QCB_MOTION: // neovim.io/doc/user/fold.html#zm
+                        key_1 = KC_Z;
+                        key_2 = KC_M;
+                        break;
+                    case DPB_MOTION: // neovim.io/doc/user/fold.html#zM
+                        key_1 = KC_Z;
+                        key_2 = S(KC_M);
+                        break;
+                    case DD_MOTION: // neovim.io/doc/user/fold.html#zO
+                        key_1 = KC_Z;
+                        key_2 = S(KC_O);
+                        break;
+                    case JJ_MOTION: // neovim.io/doc/user/fold.html#zC
+                        key_1 = KC_Z;
+                        key_2 = S(KC_C);
+                        break;
+                    case DJ_MOTION: // https://neovim.io/doc/user/fold.html#za
+                        key_1 = KC_Z;
+                        key_2 = KC_A;
+                        break;
+                    case JD_MOTION: // neovim.io/doc/user/fold.html#zA
+                        key_1 = KC_Z;
+                        key_2 = S(KC_A);
+                        break;
+                    case BB_MOTION: // neovim.io/doc/user/fold.html#zx
+                        key_1 = KC_Z;
+                        key_2 = KC_X;
+                        break;
+                    case BF_MOTION: // neovim.io/doc/user/fold.html#zX
+                        key_1 = KC_Z;
+                        key_2 = S(KC_X);
+                        break;
+                    case FF_MOTION: // neovim.io/doc/user/fold.html#zN
+                        key_1 = KC_Z;
+                        key_2 = S(KC_N);
+                        break;
+                    case FB_MOTION: // neovim.io/doc/user/fold.html#zn
+                        key_1 = KC_Z;
+                        key_2 = KC_N;
+                        break;
+                    case DOWN_HELD: // neovim.io/doc/user/fold.html#zo
+                        key_1 = KC_Z;
+                        key_2 = KC_O;
+                        break;
+                    case JUMP_HELD: // neovim.io/doc/user/fold.html#zc
+                        key_1 = KC_Z;
+                        key_2 = KC_C;
+                        break;
+
+                    default: // neovim.io/doc/user/fold.html#zi
+                        key_1 = KC_Z;
+                        key_2 = KC_I;
+                }
+
+                if (!vim_emulation_enabled()) {
+                    tap_code16(key_1);
+                    if (key_2 != KC_STOP) tap_code16(key_2);
+                    return KC_STOP;
+                }
+            } else {
+                if (!vim_emulation_enabled()) {
+                    key_1 = key_2 = KC_STOP;
+                }
+            }
+
+            if (vim_emulation_enabled()) {
+                if (key_2 == KC_STOP) {
+                    return key_1;
+                } else {
+                    process_normal_mode_user(key_1, record, true);
+                    process_normal_mode_user(key_2, record, true);
+                    if (!record->event.pressed) return key_1 = key_2 = KC_STOP;
+                }
+            }
+
+            // clear_motions();
+        }
+
+        case VM_SRCH: {
+            static uint16_t key_1 = KC_STOP;
+            static uint16_t key_2 = KC_STOP;
+            if (record->event.pressed) {
+                switch (DIRECTIONS) {
+                    case QCF_MOTION: // neovim.io/doc/user/pattern.html#n
+                        key_1 = KC_N;
+                        break;
+                    case QCB_MOTION: // neovim.io/doc/user/pattern.html#n
+                        key_1 = S(KC_N);
+                        break;
+                    case JJ_MOTION: // neovim.io/doc/user/tagsrch.html#%5B_CTRL-I
+                        key_1 = KC_LBRC;
+                        key_2 = C(KC_I);
+                        break;
+                    case DJ_MOTION: // neovim.io/doc/user/tagsrch.html#CTRL-T
+                        key_1 = C(KC_T);
+                        break;
+                    case BACK_HELD: // https://neovim.io/doc/user/pattern.html#%23
+                        key_1 = KC_HASH;
+                        break;
+                    case FRNT_HELD: // https://neovim.io/doc/user/pattern.html#star
+                        key_1 = KC_ASTR;
+                        break;
+                    case JUMP_HELD: // neovim.io/doc/user/tagsrch.html#%5BI
+                        key_1 = KC_LBRC;
+                        key_2 = S(KC_I);
+                        break;
+                    case DOWN_HELD: // neovim.io/doc/user/tagsrch.html#CTRL-%5D
+                        key_1 = C(KC_RBRC);
+                        break;
+                    default: // https://neovim.io/doc/user/motion.html#%25
+                        key_1 = KC_PERC;
                 }
 
                 if (!vim_emulation_enabled()) {

@@ -58,14 +58,14 @@ static bool _math_mode_active = false;
 // Turn number mode on. To be called from a custom keycode
 bool math_mode_enable(keyrecord_t *record) {
     _math_mode_active = true;
-    layer_on(_MATH);
+    layer_on(_NUMPAD);
     return false;
 }
 
 // Turn number mode off.
 void math_mode_disable(void) {
     _math_mode_active = false;
-    layer_off(_MATH);
+    layer_off(_NUMPAD);
 }
 
 void math_mode_process(uint16_t keycode, keyrecord_t *record) {
