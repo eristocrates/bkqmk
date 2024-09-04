@@ -37,6 +37,8 @@ LED_FLAG_INDICATOR  = 0x08  // Binary: 00001000
 
 264KB SRAM on the rp2040
 
+// COMB(CB_TH, KC_TH, LH_MDLE, LH_INDX) // testing going from this to a more literal position of t and h
+keymap formatting
 .,+6s/,\s+([A-Z])/,\1/g
 
   [XXXXXXXX] = LAYOUT(

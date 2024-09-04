@@ -1,548 +1,642 @@
 layout: {qmk_keyboard: bastardkb/charybdis/3x6, qmk_layout: LAYOUT}
 layers:
-  AKeyHD:
-  - ['   X', '   V', '   G', '   M', '   P', LTP ARC, RTP ARC, '   U', '   O', '   Y', '   B', '   Z']
-  - ['   J', '   K', '   S', '   N', '   D', LHM ARC, RHM ARC, '   A', '   E', '   I', '   H', TH   QU]
-  - [QK LEAD, '   W', '   F', '   L', '   C', LBM ARC, RBM ARC, (, COM ARC, DOT ARC, ), VIM TOG]
-  - [MATH TB, CTRL  R, SML SPC, SMR SPC, ALT   T]
-  Combo Reference:
+  AKEYHD:
+  - ['X', 'V', 'G', 'M', 'P', {t: '*', s: Arcane}, {t: '%', s: Arcane}, 'U', 'O', 'Y', 'B', 'Z']
+  - ['J', 'K', 'S', 'N', 'D', {t: '=', s: Arcane}, {t: ':', s: Arcane}, 'A', 'E', 'I', 'H', {t: QU, s: Q}]
+  - [{t: Leader, s: Core}, 'W', 'F', 'L', 'C', {t: '\', s: Arcane}, {t: '/', s: Arcane}, (, {t: ',', s: Adaptive, h: OSM Shift}, {t: '.', s: Adaptive, h: Capsword}, ), {t: Vim, s: Genuine, h: Emulation}]
+  - [{t: Num Pad, h: MO Layer}, {t: R, h: CTRLR}, {t: Space, h: SML}, {t: Space, h: SMR}, {t: T, h: ALTT}]
+  COMBOREF:
   - [LT OUTR, LT PNKY, LT RING, LT MDLE, LT INDX, LT INNR, RT INNR, RT INDX, RT MDLE, RT RING, RT PNKY, RT OUTR]
   - [LH OUTR, LH PNKY, LH RING, LH MDLE, LH INDX, LH INNR, RH INNR, RH INDX, RH MDLE, RH RING, RH PNKY, RH OUTR]
   - [LB OUTR, LB PNKY, LB RING, LB MDLE, LB INDX, LB INNR, RB INNR, RB INDX, RB MDLE, RB RING, RB PNKY, RB OUTR]
   - [L LTHMB, L MTHMB, L RTHMB, R LTHMB, R MTHMB]
-  Piercing Ctrl:
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
+  VIMNAV:
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
     - VM LEFT
     - VM DOWN
     - VM   UP
     - VM RGHT
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - VIMMTIN
-    - {t: '', type: trans}
-  Piercing Alt:
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - VIMFGHT
+    - {t: ▽, type: trans}
+  VIMFIGHTER:
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
     - MI BACK
     - MI DOWN
     - MI FRNT
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - VM LEFT
-    - VM DOWN
-    - VM RGHT
-    - VM NTRL
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - VF LEFT
+    - VF DOWN
+    - VF RGHT
+    - VF NTRL
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
     - MI JUMP
-    - {t: '', type: trans}
-    - VIMMTIN
-    - VM   UP
-  Piercing Gui:
-  - [CLTOUTR, CLTPNKY, CLTRING, CLTMDLE, CLTINDX, ^, '~', CRTINDX, CRTMDLE, CRTRING, CRTPNKY, CRTOUTR]
-  - [CAPS, CLHPNKY, CLHRING, CLHMDLE, CLHINDX, DEQL, '#', CRHINDX, CRHMDLE, CRHRING, CRHPNKY, CRHOUTR]
-  - [CLBOUTR, CLBPNKY, CLBRING, CLBMDLE, CLBINDX, '&', UP  DIR, '{', '"', '?', '}', CRBOUTR]
+    - {t: ▽, type: trans}
+    - VIMFGHT
+    - VF   UP
+  CTRLPR:
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - ^
+    - '~'
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - CAPS
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - DEQL
+    - '#'
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - '&'
+    - UP  DIR
+    - '{'
+    - '"'
+    - '?'
+    - '}'
+    - {t: ▽, type: trans}
   - - ''
-    - {t: '', type: trans}
+    - {t: ▽, type: trans}
     - ''
     - _
-    - ALT   T
-  Pointer:
-  - [ALTOUTR, ALTPNKY, ALTRING, ALTMDLE, ALTINDX, '@', $, ARTINDX, ARTMDLE, ARTRING, ARTPNKY, ARTOUTR]
-  - [ALHOUTR, ALHPNKY, ALHRING, ALHMDLE, ALHINDX, '-', '|', ARHINDX, ARHMDLE, ARHRING, ARHPNKY, ARHOUTR]
-  - [ALBOUTR, ALBPNKY, ALBRING, ALBMDLE, ALBINDX, DBSL, DSLH, '[', '''', '!', ']', ARBOUTR]
+    - {t: T, h: ALTT}
+  ALTPR:
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - '@'
+    - $
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - '-'
+    - '|'
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - DBSL
+    - DSLH
+    - '['
+    - ''''
+    - '!'
+    - ']'
+    - {t: ▽, type: trans}
   - - ''
-    - CTRL  R
+    - {t: R, h: CTRLR}
     - _
     - ''
-    - {t: '', type: trans}
-  Pointer Options:
-  - [GLTOUTR, GLTPNKY, GLTRING, GLTMDLE, GLTINDX, GLTINNR, GRTINNR, GRTINDX, GRTMDLE, GRTRING, GRTPNKY, GRTOUTR]
-  - [GLHOUTR, GLHPNKY, GLHRING, GLHMDLE, GLHINDX, DAMP, DPIP, GRHINDX, GRHMDLE, GRHRING, GRHPNKY, GRHOUTR]
-  - [GLBOUTR, GLBPNKY, GLBRING, GLBMDLE, GLBINDX, ESLH, ESLH, <, '`', ;, '>', GRBOUTR]
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
+    - {t: ▽, type: trans}
+  GUIPR:
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - DAMP
+    - DPIP
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - ESLH
+    - ESLH
+    - <
+    - '`'
+    - ;
+    - '>'
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
     - ''
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  Pointer Navigation:
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  SYML:
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '', '', APP, OS LSFT, OS LCTL, OS LALT, OS LGUI, '']
+  - ['', '', '', '', '', ASST, APP, OS LSFT, OS LCTL, OS LALT, OS LGUI, '']
   - - ''
     - ''
-    - {t: '', type: trans}
+    - {t: ▽, type: trans}
     - ''
     - ''
-  Math:
+  SYMR:
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', '', '', '', '', '', PSCR, OS LSFT, TS LCTL, OS LALT, OS LGUI, '']
   - - ''
     - ''
     - ''
-    - {t: '', type: trans}
+    - {t: ▽, type: trans}
     - ''
-  Vim Motion:
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
+  POINTER:
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
     - DBCL
     - BTN1
     - BTN2
     - DRGSCRL
     - BTN3
     - SNIPING
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - SMR SPC
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: Space, h: SMR}
     - PNTROPT
-  Function:
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - SDT MOD
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
+  POINTEROPT:
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - SD  MOD
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
     - SD RMOD
     - DPI RMD
     - DPI MOD
     - DRG TOG
     - SCN TOG
     - SNP TOG
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  Media:
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - $
-    - ''
-    - P7
-    - P8
-    - P9
-    - ''
-    - {t: '', type: trans}
-  - [FNCTION, PSLS, PAST, PMNS, PPLS, ., '', P4, P5, P6, '', '']
-  - - {t: '', type: trans}
-    - '%'
-    - ^
-    - '='
-    - SPC
-    - LR LOCK
-    - ','
-    - BN2 DC1
-    - BN4 DC2
-    - BN8 DC3
-    - BN16 ET
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  NUMPAD:
+  - ['', ^, PSCR, SCRL, PAUS, $, PSLS, P7, P8, P9, PAST, '']
+  - ['', FNCTION, INS, HOME, PGUP, '=', PMNS, P4, P5, P6, PPLS, '']
+  - ['', '%', DEL, END, PGDN, LR LOCK, ',', BN2 DC1, BN4 DC2, BN8 DC3, BN16 ET, '']
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
     - P0
     - BN1 DOT
-  N-Shot Mods:
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
+  FUNCTION:
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
     - F2
     - F3
     - F4
     - F5
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
     - F1
-    - {t: '', type: trans}
-  Game:
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
+  MEDIA:
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
     - MSEL
     - MRWD
     - BRID
     - BRIU
     - MFFD
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
     - MPLY
     - MPRV
     - VOLD
     - VOLU
     - MNXT
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
     - MSTP
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
     - MUTE
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  Thinqu:
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  ONESHOT:
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', MEDIA, KEYBRD, MATH, SHRTCUT, '', '', '', '', '', '', '']
   - [RANDOM, '', '', '', '', '', '', '', '', '', '', '']
-  - - {t: '', type: trans}
+  - - {t: ▽, type: trans}
     - ''
     - ''
     - ''
     - ''
-  Thinqu Left:
+  GAME:
   - ['1', Q, I, W, R, T, Y, U, I, O, P, '']
   - [LCTL, A, A, S, D, G, H, J, K, L, ;, RCTL]
   - [LSFT, PT Z, M, C, V, B, N, M, ',', ., PT SLSH, BASE]
   - [ESC, SPC, '', '', ENT]
-  Thinqu Right:
+  THINQU:
   - [TAB, B, D, L, TH, V, Z, '''', U, H, K, '']
   - [BSPC, N, T, S, R, W, Y, A, E, O, I, ENT]
   - [LSFT, X, G, M, C, ;, J, F, P, ',', ., BASE]
   - ['', THINQUL, SPC, SPC, THINQUR]
-  Keyboard:
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  Secret:
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  Naginata:
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
+  THINQUL:
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  THINQUR:
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  KEYBOARD:
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
     - QWERTY
     - THINQU
     - GAME
-    - {t: '', type: trans}
+    - {t: ▽, type: trans}
     - RGB TOG
     - RGB HUI
     - RGB SAI
     - RGB VAI
     - RGB SPI
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
     - RGB RMOD
     - RGB HUD
     - RGB SAD
     - RGB VAD
     - RGB SPD
     - RGB MOD
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
     - RGB MDE
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
     - BASE
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  Shingeta:
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  - - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-    - {t: '', type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  SECRET:
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
     - BASE
-  - - {t: '', type: trans}
+  - - {t: ▽, type: trans}
     - SECRET1
     - SECRET2
-    - {t: '', type: trans}
-    - {t: '', type: trans}
-  Qwerty:
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  NAGINATA:
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', '', '', '', '']
-  Random:
+  SHINGETA:
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', '', '', '', '']
-  L23:
+  QWERTY:
   - [LGUI, Q, W, E, R, T, Y, U, I, O, P, RGUI]
   - [LCTL, A, S, D, F, G, H, J, K, L, ;, RCTL]
   - [LSFT, PT Z, X, C, V, B, N, M, ',', ., PT SLSH, BASE]
   - ['', SPC, BSPC, DEL, ENT]
-  L24:
+  RANDOM:
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND]
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND]
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, BASE]
   - [RAND, RAND, RAND, RAND, RAND]
+  TEST:
+  - ['X', 'V', 'G', 'M', 'P', {t: '*', s: Arcane}, {t: '%', s: Arcane}, 'U', 'O', 'Y', 'B', 'Z']
+  - ['J', 'K', 'S', 'N', 'D', {t: '=', s: Arcane}, {t: ':', s: Arcane}, 'A', 'E', 'I', 'H', {t: QU, s: Q}]
+  - [{t: Leader, s: Core}, 'W', 'F', 'L', 'C', {t: '\', s: Arcane}, {t: '/', s: Arcane}, (, {t: ',', s: Adaptive, h: OSM Shift}, {t: '.', s: Adaptive, h: Capsword}, ), {t: Vim, s: Genuine, h: Emulation}]
+  - [{t: Num Pad, h: MO Layer}, {t: R, h: CTRLR}, {t: Space, h: SML}, {t: Space, h: SMR}, {t: T, h: ALTT}]
+combos:
 
+  - {l: [VIMFIGHTER], p: [40, 32], k: VM_VERT}
+  - {l: [VIMFIGHTER], p: [31, 33], k: VM_HORI}
+  - {l: [VIMFIGHTER], p: [34, 40], k: VM_YANK}
+  - {l: [VIMFIGHTER], p: [34, 31], k: VM_CHAN}
+  - {l: [VIMFIGHTER], p: [34, 32], k: VM_DELE}
+  - {l: [VIMFIGHTER], p: [34, 33], k: VM_VISU}
+  - {l: [VIMFIGHTER], p: [40, 31], k: VM_MRKQ}
+  - {l: [VIMFIGHTER], p: [40, 33], k: VM_MRKG}
+  - {l: [VIMFIGHTER], p: [32, 31], k: VM_FOLD}
+  - {l: [VIMFIGHTER], p: [32, 33], k: VM_SRCH}
+  - {l: [VIMFIGHTER], p: [31, 32, 33], k: VM_FRMT}

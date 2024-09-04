@@ -1921,6 +1921,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 send_string_with_caps_word("a");
             }
             return true;
+        case MD_GHT:
+            if (record->event.pressed) {
+                send_string_with_caps_word("ght");
+            }
+            return true;
 
         case MD_PVE:
             if (record->event.pressed) {
@@ -2770,6 +2775,7 @@ bool process_combo_key_release(uint16_t combo_index, combo_t *combo, uint8_t key
         case CB_AT:
         case CB_BECAUSE:
         case CB_A:
+        case CB_GHT:
             if (smart_space_mode) {
                 tap_code(KC_SPC);
                 last_smart_space = true;
@@ -2845,10 +2851,11 @@ void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
 }
 
 */
+// TODO figure out why this isn't turning off the layer
 void insert_mode_user(void) {
-    if (IS_LAYER_ON(_VIMMOTION)) {
+    if (IS_LAYER_ON(_VIMFIGHTER)) {
         restore_motion_layer = true;
-        layer_off(_VIMMOTION);
+        layer_off(_VIMFIGHTER);
     }
     layer_off(_VIMNAV);
     vim_mode_index = INSERT_MODE;
@@ -2856,7 +2863,7 @@ void insert_mode_user(void) {
 void normal_mode_user(void) {
     layer_on(_VIMNAV);
     if (restore_motion_layer) {
-        layer_on(_VIMMOTION);
+        layer_on(_VIMFIGHTER);
         restore_motion_layer = false;
     }
     vim_mode_index = NORMAL_MODE;

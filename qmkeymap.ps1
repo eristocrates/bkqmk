@@ -22,11 +22,10 @@ $compile2jsonCmd = "qmk compile -j 0 -kb bastardkb/charybdis/3x6 -km akeyhd > qm
 #$compile2jsonCmd = "qmk generate-autocorrect-data $userspacePathMingw/autocorrect_dictionary.txt -kb bastardkb/charybdis/3x6 -km akeyhd ; qmk compile -j 0 -kb bastardkb/charybdis/3x6 -km akeyhd > qmk-output.log 2>&1 ; qmk c2json --no-cpp $keymapPathMingw/keymap.c > $keymapPathMingw/c2.json"
 
 
-#$keymapPreParseCmd = ".\keymapPreParse.ps1"
-$keymapParseCmd = "keymap parse -c 12 -q $keymapPath\c2.json > $keymapPath\keymap.yaml"
+$keymapParseCmd = "keymap parse -c 12 -q $keymapPath\c2.json -o $keymapPath\keymap.yaml"
 $keymapPostParseCmd = ".\keymapPostParse.ps1"
-$keymapDrawCmd1 = "keymap -c $keymapPath\config.yaml draw $keymapPath\keymap.yaml > $keymapPath\keymap.svg"
-$keymapDrawCmd2 = "keymap -c $keymapPath\config.yaml draw $keymapPath\keymapDesign.yaml > $keymapPath\keymapDesign.svg"
+$keymapDrawCmd1 = "keymap -c $keymapPath\config.yaml draw $keymapPath\keymap.yaml -o $keymapPath\keymap.svg"
+$keymapDrawCmd2 = "keymap -c $keymapPath\config.yaml draw $keymapPath\keymapDesign.yaml -o $keymapPath\keymapDesign.svg"
 
 # Function to run a command in MinGW
 function Invoke-InMinGW {
@@ -38,12 +37,9 @@ function Invoke-InMinGW {
     Start-Process -FilePath $mingwPath -ArgumentList "--login", "-i", "-c", "`"$command`"" -NoNewWindow -Wait
 }
 # Run the commands
-Invoke-InMinGW $compile2jsonCmd
-
-
+#Invoke-InMinGW $compile2jsonCmd
 if (Select-String -Path $logFilePath -Pattern $searchString) {
     # Run the remaining commands in PowerShell
-    #Invoke-Expression $keymapPreParseCmd
     Invoke-Expression $keymapParseCmd
     Invoke-Expression $keymapPostParseCmd
     Invoke-Expression $keymapDrawCmd1
@@ -59,4 +55,4 @@ else {
 }
 
 
-$mediaPlayer.Play()
+#$mediaPlayer.Play()

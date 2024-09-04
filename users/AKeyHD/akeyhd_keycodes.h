@@ -2,19 +2,21 @@
 #include "charybdis.h"
 
 // TODO keep in sync with keymapPostParse.ps1, bitwise_num, and rgb_matrix_stuff.h
+// TODO ALWAYS KEEP _POINTER IN SYNC WITH RGB_MATRIX_STUFF
+// TODO ALWAYS KEEP _NUMPAD IN SYNC WITH BITWISE_NUM
 enum layers {
     _AKEYHD,
     _COMBOREF,
     _VIMNAV,
-    _VIMMOTION,
+    _VIMFIGHTER,
     _CTRLPR,
     _ALTPR,
     _GUIPR,
     _SYML,
     _SYMR,
-    _POINTER, // TODO ALWAYS KEEP IN SYNC WITH RGB_MATRIX_STUFF
+    _POINTER,
     _POINTEROPT,
-    _NUMPAD, // TODO ALWAYS KEEP IN SYNC WITH BITWISE_NUM
+    _NUMPAD,
     _FUNCTION,
     _MEDIA,
     _ONESHOT,
@@ -23,7 +25,6 @@ enum layers {
     _THINQUL,
     _THINQUR,
     _KEYBOARD,
-    // 15 layer LT/LM threshold https://github.com/qmk/qmk_firmware/blob/master/docs/feature_layers.md#switching-and-toggling-layers-switching-and-toggling-layers
     _SECRET,
     _NAGINATA,
     _SHINGETA,
@@ -149,6 +150,7 @@ enum keycodes {
     MD_AT,   // at
     MD_BCUZ, // because
     MD_A,    // a
+    MD_GHT,  // ght
 
     MD_BSPC, // backspace/backspace word
     MD_DEL,  // delete/delete word
@@ -383,10 +385,17 @@ enum keycodes {
     // NEW_SAFE_RANGE // Use for keymap-specific codes
 };
 /* ---------- Aliases ---------- */
+// vim fighter
+#define VF___UP VM___UP
+#define VF_LEFT VM_LEFT
+#define VF_DOWN VM_DOWN
+#define VF_RGHT VM_RGHT
+#define VF_NTRL VM_NTRL
+
 // unicode
 #define UC__SPC UC(0x2800)
 // binary tap holds
-// TODO ALWAYS KEEP IN SYNC WITH LAYERS
+// TODO ALWAYS KEEP IN SYNC WITH _NUMPAD
 #define BN1_DOT LT(11, KC_PDOT)
 #define BN2_DC1 LT(11, KC_P1)
 #define BN4_DC2 LT(11, KC_P2)
@@ -441,7 +450,7 @@ enum keycodes {
 #define OSLBASE OSL(_AKEYHD)
 
 // toggle layers
-#define VIMMTIN TG(_VIMMOTION)
+#define VIMFGHT TG(_VIMFIGHTER)
 #define KEYBRD TG(_KEYBOARD)
 #define MATH TG(_NUMPAD)
 #define RANDOM TG(_RANDOM)
@@ -489,7 +498,7 @@ enum keycodes {
 
 // charybdis formated
 #define DPI_RMD DPI_RMOD
-#define SDT_MOD S_D_MOD
+#define SD__MOD S_D_MOD
 #define SD_RMOD S_D_RMOD
 
 /* Japanese specific */

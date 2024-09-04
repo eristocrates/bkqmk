@@ -60,7 +60,7 @@
 // term settings
 #define TAPPING_TERM 175
 #define REPEAT_TERM (TAPPING_TERM / 3)
-#define MAGIC_TERM (TAPPING_TERM * 2)
+#define MAGIC_TERM (TAPPING_TERM * 3)
 
 // Auto shift
 /*
