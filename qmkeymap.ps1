@@ -22,10 +22,12 @@ $compile2jsonCmd = "qmk compile -j 0 -kb bastardkb/charybdis/3x6 -km akeyhd > qm
 #$compile2jsonCmd = "qmk generate-autocorrect-data $userspacePathMingw/autocorrect_dictionary.txt -kb bastardkb/charybdis/3x6 -km akeyhd ; qmk compile -j 0 -kb bastardkb/charybdis/3x6 -km akeyhd > qmk-output.log 2>&1 ; qmk c2json --no-cpp $keymapPathMingw/keymap.c > $keymapPathMingw/c2.json"
 
 
-$keymapParseCmd = "keymap parse -c 12 -q $keymapPath\c2.json -o $keymapPath\keymap.yaml"
+$keymapParseCmd = "keymap -c $keymapPath\config.yaml parse -c 12 -q $keymapPath\c2.json -o $keymapPath\keymap.yaml"
 $keymapPostParseCmd = ".\keymapPostParse.ps1"
 $keymapDrawCmd1 = "keymap -c $keymapPath\config.yaml draw $keymapPath\keymap.yaml -o $keymapPath\keymap.svg"
 $keymapDrawCmd2 = "keymap -c $keymapPath\config.yaml draw $keymapPath\keymapDesign.yaml -o $keymapPath\keymapDesign.svg"
+$vimFighterTableCmd = "node .\keymapMotionInputPostParse.mjs"
+
 
 # Function to run a command in MinGW
 function Invoke-InMinGW {
@@ -40,8 +42,11 @@ function Invoke-InMinGW {
 #Invoke-InMinGW $compile2jsonCmd
 if (Select-String -Path $logFilePath -Pattern $searchString) {
     # Run the remaining commands in PowerShell
+    #Invoke-InMinGW $compile2jsonCmd
     Invoke-Expression $keymapParseCmd
     Invoke-Expression $keymapPostParseCmd
+    Invoke-Expression ".\keymapMotionInputParse.ps1"
+    Invoke-Expression $vimFighterTableCmd
     Invoke-Expression $keymapDrawCmd1
     Invoke-Expression $keymapDrawCmd2
     Write-Output "Ding! Firmware done."

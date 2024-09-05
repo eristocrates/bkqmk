@@ -12,6 +12,7 @@
 
 # Environment files
 .venv
+/node_modules
 
 # secure data
 users/akeyhd/secret.h

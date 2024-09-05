@@ -80,11 +80,6 @@ layers:
     - [j, k, s, n, d, coda, repeat, a, e, i, h, qu]
     - [x, w, f, l, c, null, null, jp, null, ',', '.', z]
     - [shiftish, r, altish, spc, t]
-  Naginata:
-    - [null, {t: $$ki$$, s: $$nu$$}, {t: $$vu$$, s: $$nu$$}, {t: $$te$$, s: $$ri$$}, {t: $$shi$$, s: $$ne$$}, $$mdi:arrow-left-thin$$, $$mdi:arrow-right-thin$$, {t: bspc, s: $$sa$$}, {t: $$ru$$, s: $$yo$$}, {t: $$su$$, s: $$e$$}, {t: $$he$$, s: $$yu$$}, null]
-    - [null, {t: $$ro$$, s: $$se$$}, {t: $$ke$$, s: $$nu$$}, {t: $$to$$, s: $$ni$$}, {t: $$ka$$, s: $$ma$$}, {t: $$tsu$$, s: $$chi$$}, {t: $$ku$$, s: $$ya$$}, {t: $$a$$, s: $$nno$$}, {t: $$i$$, s: $$mo$$}, {t: $$u$$, s: $$tsu$$}, {t: $$choonpu$$, s: $$fu$$}, null]
-    - [null, $$ho$$, $$hi$$, {t: $$ha$$, s: $$wo$$}, $$ko$$, {t: $$so$$, s: $$mi$$}, {t: $$ta$$, s: $$o$$}, $$na$$, {t: $$n$$, s: $$mu$$}, {t: $$ra$$, s: $$wa$$}, $$re$$, null]
-    - [shifuto, $$tenten$$, aruto, enter, $$ten$$]
   Qwerty:
     - [ESC, Q, W, E, R, T, Y, U, I, O, P, null]
     - [HOME, A, S, D, F, G, H, J, K, L, {t: ;, s: ":"}, {t: "'", s: '"'}]

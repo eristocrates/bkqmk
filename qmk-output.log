@@ -6,19 +6,6 @@ Copyright (C) 2023 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-Compiling: I:/coding/bkqmk/users/akeyhd/features/andrewjrae/qmk-vim/motions.c                       [32;01m[OK][0m
-Compiling: I:/coding/bkqmk/users/akeyhd/features/andrewjrae/qmk-vim/vim.c                           [32;01m[OK][0m
-Compiling: I:/coding/bkqmk/users/akeyhd/features/empressabyss/arcane_keys.c                         [32;01m[OK][0m
-Compiling: I:/coding/bkqmk/users/akeyhd/features/kalabasa/bitwise_num.c                             [32;01m[OK][0m
-Compiling: I:/coding/bkqmk/users/akeyhd/features/eristocrates/rgb_matrix_stuff.c                    [32;01m[OK][0m
-Compiling: I:/coding/bkqmk/users/akeyhd/features/eristocrates/utilities.c                           [32;01m[OK][0m
-Compiling: I:/coding/bkqmk/users/akeyhd/features/possumvibes/mod_lock.c                             [32;01m[OK][0m
-Compiling: I:/coding/bkqmk/users/akeyhd/features/possumvibes/override_keys.c                        [32;01m[OK][0m
-Compiling: I:/coding/bkqmk/users/akeyhd/features/possumvibes/nshot_mod.c                            [32;01m[OK][0m
-Compiling: I:/coding/bkqmk/users/akeyhd/features/possumvibes/smart_layer.c                          [32;01m[OK][0m
-Compiling: quantum/keymap_introspection.c                                                           [32;01m[OK][0m
-Linking: .build/bastardkb_charybdis_3x6_akeyhd.elf                                                  [32;01m[OK][0m
-Creating UF2 file for deployment: .build/bastardkb_charybdis_3x6_akeyhd.uf2                         [32;01m[OK][0m
 Copying bastardkb_charybdis_3x6_akeyhd.uf2 to qmk_firmware folder                                   [32;01m[OK][0m
 Copying bastardkb_charybdis_3x6_akeyhd.uf2 to userspace folder                                      [32;01m[OK][0m
 ###########################################

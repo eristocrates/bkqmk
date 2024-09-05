@@ -1,15 +1,15 @@
 layout: {qmk_keyboard: bastardkb/charybdis/3x6, qmk_layout: LAYOUT}
 layers:
   AKEYHD:
-  - ['X', 'V', 'G', 'M', 'P', {t: '*', s: Arcane}, {t: '%', s: Arcane}, 'U', 'O', 'Y', 'B', 'Z']
-  - ['J', 'K', 'S', 'N', 'D', {t: '=', s: Arcane}, {t: ':', s: Arcane}, 'A', 'E', 'I', 'H', {t: QU, s: Q}]
-  - [{t: Leader, s: Core}, 'W', 'F', 'L', 'C', {t: '\', s: Arcane}, {t: '/', s: Arcane}, (, {t: ',', s: Adaptive, h: OSM Shift}, {t: '.', s: Adaptive, h: Capsword}, ), {t: Vim, s: Genuine, h: Emulation}]
+  - [X, V, G, M, P, {t: '*', s: Arcane}, {t: '%', s: Arcane}, U, O, Y, B, Z]
+  - [J, K, S, N, D, {t: '=', s: Arcane}, {t: ':', s: Arcane}, A, E, I, H, {t: QU, s: Q}]
+  - [{t: Leader, s: Core}, W, F, L, C, {t: '\', s: Arcane}, {t: '/', s: Arcane}, (, {t: ',', s: Adaptive, h: OSM Shift}, {t: '.', s: Adaptive, h: Capsword}, ), {t: Vim, s: Genuine, h: Emulation}]
   - [{t: Num Pad, h: MO Layer}, {t: R, h: CTRLR}, {t: Space, h: SML}, {t: Space, h: SMR}, {t: T, h: ALTT}]
   COMBOREF:
-  - [LT OUTR, LT PNKY, LT RING, LT MDLE, LT INDX, LT INNR, RT INNR, RT INDX, RT MDLE, RT RING, RT PNKY, RT OUTR]
-  - [LH OUTR, LH PNKY, LH RING, LH MDLE, LH INDX, LH INNR, RH INNR, RH INDX, RH MDLE, RH RING, RH PNKY, RH OUTR]
-  - [LB OUTR, LB PNKY, LB RING, LB MDLE, LB INDX, LB INNR, RB INNR, RB INDX, RB MDLE, RB RING, RB PNKY, RB OUTR]
-  - [L LTHMB, L MTHMB, L RTHMB, R LTHMB, R MTHMB]
+  - [{t: LT OUTR, h: 0}, {t: LT PNKY, h: 1}, {t: LT RING, h: 2}, {t: LT MDLE, h: 3}, {t: LT INDX, h: 4}, {t: LT INNR, h: 5}, {t: RT INNR, h: 6}, {t: RT INDX, h: 7}, {t: RT MDLE, h: 8}, {t: RT RING, h: 9}, {t: RT PNKY, h: 10}, {t: RT OUTR, h: 11}]
+  - [{t: LH OUTR, h: 12}, {t: LH PNKY, h: 13}, {t: LH RING, h: 14}, {t: LH MDLE, h: 15}, {t: LH INDX, h: 16}, {t: LH INNR, h: 17}, {t: RH INNR, h: 18}, {t: RH INDX, h: 19}, {t: RH MDLE, h: 20}, {t: RH RING, h: 21}, {t: RH PNKY, h: 22}, {t: RH OUTR, h: 23}]
+  - [{t: LB OUTR, h: 24}, {t: LB PNKY, h: 25}, {t: LB RING, h: 26}, {t: LB MDLE, h: 27}, {t: LB INDX, h: 28}, {t: LB INNR, h: 29}, {t: RB INNR, h: 30}, {t: RB INDX, h: 31}, {t: RB MDLE, h: 32}, {t: RB RING, h: 33}, {t: RB PNKY, h: 34}, {t: RB OUTR, h: 35}]
+  - [{t: L LTHMB, h: 36}, {t: L MTHMB, h: 37}, {t: L RTHMB, h: 38}, {t: R LTHMB, h: 39}, {t: R MTHMB, h: 40}]
   VIMNAV:
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -42,15 +42,15 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - VM LEFT
-    - VM DOWN
-    - VM   UP
-    - VM RGHT
+    - {t: Left, s: h, h: '<'}
+    - {t: Down, s: j, h: 'v'}
+    - {t: Up, s: k, h: '^'}
+    - {t: Right, s: l, h: '>'}
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - VIMFGHT
+    - {t: Vim Fighter, h: TO Layer}
     - {t: ▽, type: trans}
   VIMFIGHTER:
   - - {t: ▽, type: trans}
@@ -67,9 +67,9 @@ layers:
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - MI BACK
-    - MI DOWN
-    - MI FRNT
+    - Back
+    - Crouch
+    - Forward
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -84,16 +84,16 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - VF LEFT
-    - VF DOWN
-    - VF RGHT
-    - VF NTRL
+    - {t: Left, h: Attack}
+    - {t: Down, h: Attack}
+    - {t: Right, h: Attack}
+    - {t: Neutral, h: Attack}
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
-    - MI JUMP
+    - Jump
     - {t: ▽, type: trans}
-    - VIMFGHT
-    - VF   UP
+    - {t: Vim Fighter, h: TO Layer}
+    - {t: Up, h: Attack}
   CTRLPR:
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -107,12 +107,12 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-  - - CAPS
+  - - Caps Lock
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - DEQL
+    - ==
     - '#'
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -125,7 +125,7 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - '&'
-    - UP  DIR
+    - ../
     - '{'
     - '"'
     - '?'
@@ -166,8 +166,8 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - DBSL
-    - DSLH
+    - \
+    - //
     - '['
     - ''''
     - '!'
@@ -196,8 +196,8 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - DAMP
-    - DPIP
+    - '**'
+    - '||'
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -208,8 +208,8 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - ESLH
-    - ESLH
+    - /
+    - /
     - <
     - '`'
     - ;
@@ -223,7 +223,7 @@ layers:
   SYML:
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '', ASST, APP, OS LSFT, OS LCTL, OS LALT, OS LGUI, '']
+  - ['', '', '', '', '', {t: Aware, s: Conntext, h: Assistant}, {t: Context, s: Windows, h: Menu}, OS LSFT, OS LCTL, OS LALT, OS LGUI, '']
   - - ''
     - ''
     - {t: ▽, type: trans}
@@ -232,7 +232,7 @@ layers:
   SYMR:
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '', '', PSCR, OS LSFT, TS LCTL, OS LALT, OS LGUI, '']
+  - ['', '', '', '', '', '', Print Screen, OS LSFT, TS LCTL, OS LALT, OS LGUI, '']
   - - ''
     - ''
     - ''
@@ -269,17 +269,17 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - DBCL
-    - BTN1
-    - BTN2
-    - DRGSCRL
-    - BTN3
-    - SNIPING
+    - Double Click
+    - Left Click
+    - Right Click
+    - {t: Drag scroll, h: MO}
+    - Scroll Wheel Click
+    - {t: Sniping, h: MO}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: Space, h: SMR}
-    - PNTROPT
+    - {t: Pointer Options, h: OS Layer}
   POINTEROPT:
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -299,7 +299,7 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - SD  MOD
+    - Snipe DPI Up
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -311,26 +311,26 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - SD RMOD
-    - DPI RMD
-    - DPI MOD
-    - DRG TOG
-    - SCN TOG
-    - SNP TOG
+    - Snipe DPI Down
+    - DPI Down
+    - DPI Up
+    - {t: Drag scroll, h: TG}
+    - {t: Yomitan Scan, h: TG}
+    - {t: Sniping, h: TG}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
   NUMPAD:
-  - ['', ^, PSCR, SCRL, PAUS, $, PSLS, P7, P8, P9, PAST, '']
-  - ['', FNCTION, INS, HOME, PGUP, '=', PMNS, P4, P5, P6, PPLS, '']
-  - ['', '%', DEL, END, PGDN, LR LOCK, ',', BN2 DC1, BN4 DC2, BN8 DC3, BN16 ET, '']
+  - ['', ^, Print Screen, Scroll Lock, Pause, $, /, '7', '8', '9', '*', '']
+  - ['', {t: Function, h: MO Layer}, Insert, Home, Page Up, '=', '-', '4', '5', '6', +, '']
+  - ['', '%', Delete, End, Page Down, Layer Lock, ',', {t: 0b2, h: 1d}, {t: 0b4, h: 2d}, {t: 0b8, h: 3d}, {t: 0b16, h: Enter}, '']
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - P0
-    - BN1 DOT
+    - '0'
+    - {t: '0b1', h: '.'}
   FUNCTION:
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -363,16 +363,16 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - F2
-    - F3
-    - F4
-    - F5
+    - F0b2
+    - F0b4
+    - F0b8
+    - F0b16
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - F1
+    - F0b1
   MEDIA:
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -380,11 +380,11 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - MSEL
-    - MRWD
-    - BRID
-    - BRIU
-    - MFFD
+    - Launch Media Player
+    - Previous Track
+    - Brightness Down
+    - Brightness Up
+    - Next Track
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -392,11 +392,11 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - MPLY
-    - MPRV
-    - VOLD
-    - VOLU
-    - MNXT
+    - Play/ Pause Track
+    - Previous Track
+    - Volume Down
+    - Volume Up
+    - Next Track
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -404,12 +404,12 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - MSTP
+    - Stop Track
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - MUTE
+    - Mute
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -616,27 +616,27 @@ layers:
   - [LGUI, Q, W, E, R, T, Y, U, I, O, P, RGUI]
   - [LCTL, A, S, D, F, G, H, J, K, L, ;, RCTL]
   - [LSFT, PT Z, X, C, V, B, N, M, ',', ., PT SLSH, BASE]
-  - ['', SPC, BSPC, DEL, ENT]
+  - ['', SPC, BSPC, Delete, ENT]
   RANDOM:
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND]
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND]
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, BASE]
   - [RAND, RAND, RAND, RAND, RAND]
   TEST:
-  - ['X', 'V', 'G', 'M', 'P', {t: '*', s: Arcane}, {t: '%', s: Arcane}, 'U', 'O', 'Y', 'B', 'Z']
-  - ['J', 'K', 'S', 'N', 'D', {t: '=', s: Arcane}, {t: ':', s: Arcane}, 'A', 'E', 'I', 'H', {t: QU, s: Q}]
-  - [{t: Leader, s: Core}, 'W', 'F', 'L', 'C', {t: '\', s: Arcane}, {t: '/', s: Arcane}, (, {t: ',', s: Adaptive, h: OSM Shift}, {t: '.', s: Adaptive, h: Capsword}, ), {t: Vim, s: Genuine, h: Emulation}]
+  - [X, V, G, M, P, {t: '*', s: Arcane}, {t: '%', s: Arcane}, U, O, Y, B, Z]
+  - [J, K, S, N, D, {t: '=', s: Arcane}, {t: ':', s: Arcane}, A, E, I, H, {t: QU, s: Q}]
+  - [{t: Leader, s: Core}, W, F, L, C, {t: '\', s: Arcane}, {t: '/', s: Arcane}, (, {t: ',', s: Adaptive, h: OSM Shift}, {t: '.', s: Adaptive, h: Capsword}, ), {t: Vim, s: Genuine, h: Emulation}]
   - [{t: Num Pad, h: MO Layer}, {t: R, h: CTRLR}, {t: Space, h: SML}, {t: Space, h: SMR}, {t: T, h: ALTT}]
 combos:
 
-  - {l: [VIMFIGHTER], p: [40, 32], k: VM_VERT}
-  - {l: [VIMFIGHTER], p: [31, 33], k: VM_HORI}
-  - {l: [VIMFIGHTER], p: [34, 40], k: VM_YANK}
-  - {l: [VIMFIGHTER], p: [34, 31], k: VM_CHAN}
-  - {l: [VIMFIGHTER], p: [34, 32], k: VM_DELE}
-  - {l: [VIMFIGHTER], p: [34, 33], k: VM_VISU}
-  - {l: [VIMFIGHTER], p: [40, 31], k: VM_MRKQ}
-  - {l: [VIMFIGHTER], p: [40, 33], k: VM_MRKG}
-  - {l: [VIMFIGHTER], p: [32, 31], k: VM_FOLD}
-  - {l: [VIMFIGHTER], p: [32, 33], k: VM_SRCH}
-  - {l: [VIMFIGHTER], p: [31, 32, 33], k: VM_FRMT}
+  - {l: [VIMFIGHTER], p: [40, 32], k: Vert Attack, a: top, o: 0.102, s: -0.00010404}
+  - {l: [VIMFIGHTER], p: [31, 33], k: Hori Attack, a: bottom, o: 0.202, s: -0.00081608}
+  - {l: [VIMFIGHTER], p: [34, 40], k: Yank Attack, a: left, o: 0.302, s: -0.00273612}
+  - {l: [VIMFIGHTER], p: [34, 31], k: Change Attack, a: right, o: 0.402, s: -0.00646416}
+  - {l: [VIMFIGHTER], p: [34, 32], k: Delete Attack, a: top, o: 0.54515, s: 0.014859426125}
+  - {l: [VIMFIGHTER], p: [34, 33], k: Visual Attack, a: bottom, o: 0.64515, s: 0.02497311135}
+  - {l: [VIMFIGHTER], p: [40, 31], k: QuoMark Attack, a: left, o: 0.74515, s: 0.038867396575}
+  - {l: [VIMFIGHTER], p: [40, 33], k: GrvMark Attack, a: right, o: 0.84515, s: 0.0571422818}
+  - {l: [VIMFIGHTER], p: [32, 31], k: Fold Attack, a: top, o: 2.102, s: -0.39765636}
+  - {l: [VIMFIGHTER], p: [32, 33], k: Search Attack, a: bottom, o: 2.202, s: -0.4848804}
+  - {l: [VIMFIGHTER], p: [31, 32, 33], k: Format Attack, a: left, o: 2.302, s: -0.58291244}

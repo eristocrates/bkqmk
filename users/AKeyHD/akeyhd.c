@@ -3015,10 +3015,12 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
             static uint16_t key_2 = KC_STOP;
             if (record->event.pressed) {
                 switch (DIRECTIONS) {
-                    case HCBF_MOTION:
-                        TO_FIRST_NON_BLANK_CHARACTER_IN_THE_LINE
-                    case HCB_MOTION:
-                        TO_FIRST_CHARACTER_IN_THE_LINE
+                    case HCBF_MOTION: // https://neovim.io/doc/user/motion.html#%5E
+                        key_1 = KC_CIRC;
+                        break;
+                    case HCB_MOTION: // https://neovim.io/doc/user/motion.html#0
+                        key_1 = KC_0;
+                        break;
                     case DPB_MOTION:                                      // https://neovim.io/doc/user/motion.html#)
                         key_1          = is_text_object ? KC_S : KC_RPRN; // sentence object https://neovim.io/doc/user/motion.html#as
                         is_text_object = false;
@@ -3545,12 +3547,12 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
                     case DD_MOTION: // https://neovim.io/doc/user/change.html#S
                         key_1 = S(KC_S);
                         break;
-                    case BACK_HELD: // around text object https://neovim.io/doc/user/motion.html#_5.-text-object-motions
+                    case BACK_HELD: // https://neovim.io/doc/user/motion.html#_5.-text-object-motions
                         key_1          = KC_C;
                         key_2          = KC_A;
                         is_text_object = true;
                         break;
-                    case FRNT_HELD: // in text object https://neovim.io/doc/user/motion.html#_5.-text-object-motions
+                    case FRNT_HELD: // https://neovim.io/doc/user/motion.html#_5.-text-object-motions
                         key_1          = KC_C;
                         key_2          = KC_I;
                         is_text_object = true;
@@ -3609,12 +3611,12 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
                         key_2 = KC_D;
                         break;
                         // pefectly balanced, as all things should be
-                    case BACK_HELD: // around text object https://neovim.io/doc/user/motion.html#_5.-text-object-motions
+                    case BACK_HELD: // https://neovim.io/doc/user/motion.html#_5.-text-object-motions
                         key_1          = KC_D;
                         key_2          = KC_A;
                         is_text_object = true;
                         break;
-                    case FRNT_HELD: // in text object https://neovim.io/doc/user/motion.html#_5.-text-object-motions
+                    case FRNT_HELD: // https://neovim.io/doc/user/motion.html#_5.-text-object-motions
                         key_1          = KC_D;
                         key_2          = KC_I;
                         is_text_object = true;
@@ -3692,12 +3694,12 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
                         key_1 = KC_Z;
                         key_2 = KC_Y;
                         break;
-                    case BACK_HELD: // around text object https://neovim.io/doc/user/motion.html#_5.-text-object-motions
+                    case BACK_HELD: // https://neovim.io/doc/user/motion.html#_5.-text-object-motions
                         key_1          = KC_Y;
                         key_2          = KC_A;
                         is_text_object = true;
                         break;
-                    case FRNT_HELD: // in text object https://neovim.io/doc/user/motion.html#_5.-text-object-motions
+                    case FRNT_HELD: // https://neovim.io/doc/user/motion.html#_5.-text-object-motions
                         key_1          = KC_Y;
                         key_2          = KC_I;
                         is_text_object = true;
@@ -3744,12 +3746,12 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
                     case DOWN_HELD: // https://neovim.io/doc/user/visual.html#CTRL-V
                         key_1 = C(KC_V);
                         break;
-                    case BACK_HELD: // around text object https://neovim.io/doc/user/motion.html#_5.-text-object-motions
+                    case BACK_HELD: // https://neovim.io/doc/user/motion.html#_5.-text-object-motions
                         key_1          = KC_V;
                         key_2          = KC_A;
                         is_text_object = true;
                         break;
-                    case FRNT_HELD: // in text object https://neovim.io/doc/user/motion.html#_5.-text-object-motions
+                    case FRNT_HELD: // https://neovim.io/doc/user/motion.html#_5.-text-object-motions
                         key_1          = KC_V;
                         key_2          = KC_I;
                         is_text_object = true;
@@ -3981,13 +3983,13 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
             static uint16_t key_3 = KC_STOP;
             if (record->event.pressed) {
                 switch (DIRECTIONS) {
-                    case HCBF_MOTION: // around text object https://neovim.io/doc/user/change.html#gqap
+                    case HCBF_MOTION: // https://neovim.io/doc/user/change.html#gqap
                         key_1          = KC_G;
                         key_2          = KC_W;
                         key_3          = KC_A;
                         is_text_object = true;
                         break;
-                    case HCFB_MOTION: // in text object https://neovim.io/doc/user/change.html#gqap
+                    case HCFB_MOTION: // https://neovim.io/doc/user/change.html#gqap
                         key_1          = KC_G;
                         key_2          = KC_W;
                         key_3          = KC_I;
@@ -4023,13 +4025,13 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
                         key_1 = KC_G;
                         key_2 = KC_U;
                         break;
-                    case BACK_HELD: // around text object https://neovim.io/doc/user/motion.html#_5.-text-object-motions
+                    case BACK_HELD: // https://neovim.io/doc/user/motion.html#_5.-text-object-motions
                         key_1          = KC_G;
                         key_2          = KC_Q;
                         key_3          = KC_A;
                         is_text_object = true;
                         break;
-                    case FRNT_HELD: // in text object https://neovim.io/doc/user/motion.html#_5.-text-object-motions
+                    case FRNT_HELD: // https://neovim.io/doc/user/motion.html#_5.-text-object-motions
                         key_1          = KC_G;
                         key_2          = KC_Q;
                         key_3          = KC_I;
