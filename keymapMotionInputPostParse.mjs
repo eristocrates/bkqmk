@@ -11,8 +11,14 @@
 import tablemark from "tablemark"
 import { promises as fs } from 'fs';
 import path from 'path';
+import { escape } from "querystring";
 // Define the path to the output Markdown file
 const outputFilePath = path.join('I:', 'coding', 'bkqmk', 'vimFighter.md');
+// Define the path to the quick reference file
+const indexFilePath = path.join('I:', 'coding', 'bkqmk', 'index.txt');
+const quickrefFilePath = path.join('I:', 'coding', 'bkqmk', 'quickref.txt');
+const motionFilePath = path.join('I:', 'coding', 'bkqmk', 'motion.txt');
+const changeFilePath = path.join('I:', 'coding', 'bkqmk', 'change.txt');
 
 
 // Define the mapping
@@ -21,8 +27,8 @@ const mappings = [
     { keycode: "VM_DOWN", name: "Down Attack" },
     { keycode: "VM___UP", name: "Up Attack" },
     { keycode: "VM_RGHT", name: "Right Attack" },
-    { keycode: "VM_VERT", name: "Vert Attack" },
-    { keycode: "VM_HORI", name: "Hori Attack" },
+    { keycode: "VM_VERT", name: "Vertical Attack" },
+    { keycode: "VM_HORI", name: "Horizontal Attack" },
     { keycode: "VM_NTRL", name: "Neutral Attack" },
     { keycode: "VM_YANK", name: "Yank Attack" },
     { keycode: "VM_CHAN", name: "Change Attack" },
@@ -61,16 +67,16 @@ const mappings = [
     { keycode: "comma", name: "," },
     { keycode: "dlr", name: "$" },
     { keycode: "dot", name: "." },
-    { keycode: "dquo", name: "\"\"" },
+    { keycode: "dquo", name: "\"" },
     { keycode: "end", name: "End" },
     { keycode: "esc", name: "Escape" },
     { keycode: "grv", name: "`" },
     { keycode: "hash", name: "#" },
     { keycode: "is_text_object ? lbrc : kc_n", name: "[ for text objects, n otherwise" },
-    { keycode: "is_text_object ? p : kc_lcbr", name: "p for text objects, [ otherwise" },
-    { keycode: "is_text_object ? p : kc_rcbr", name: "p for text objects, ] otherwise" },
-    { keycode: "is_text_object ? s : kc_lprn", name: "s for text objects, ( otherwise" },
-    { keycode: "is_text_object ? s : kc_rprn", name: "s for text objects, ) otherwise" },
+    { keycode: "is_text_object ? p : kc_lcbr", name: "p for paragraph text objects, [ otherwise" },
+    { keycode: "is_text_object ? p : kc_rcbr", name: "p for paragraph text objects, ] otherwise" },
+    { keycode: "is_text_object ? s : kc_lprn", name: "s for sentence text objects, ( otherwise" },
+    { keycode: "is_text_object ? s : kc_rprn", name: "s for sentence text objects, ) otherwise" },
     { keycode: "labk", name: "<" },
     { keycode: "lbrc", name: "[" },
     { keycode: "lcbr", name: "{" },
@@ -125,13 +131,32 @@ function getKeycodeName(input) {
 }
 
 
-// Function to escape special Markdown characters
+// Function to escape special Markdown characters and remove strings between pipes
 function escapeMarkdownCharacters(str) {
+    // Remove any string between two pipes, including the pipes themselves
+    str = str.replace(/\|[^|]*\|/g, '');
+    // Escape special Markdown characters
     return str.replace(/([()[\]])/g, '\\$1');
 }
 
 
-
+// Function to search for a string in a file and return the entire line, excluding lines where the string starts with '*'
+async function searchStringInFile(filePath, searchString) {
+    try {
+        const data = await fs.readFile(filePath, 'utf8');
+        const lines = data.split('\n');
+        for (const line of lines) {
+            // Check if the line contains the search string and does not start with '*'
+            if (line.includes(searchString) && !line.trim().startsWith('*')) {
+                return line;
+            }
+        }
+        return null;
+    } catch (error) {
+        console.error('Error reading file:', error);
+        return null;
+    }
+}
 
 
 
@@ -154,23 +179,88 @@ async function loadJsonFile() {
         const jsonData = JSON.parse(data);
         // Reference the first object in the JSON data
         // Loop through the jsonData using the forEach method
-        jsonData.forEach(object => {
+        for (const object of jsonData) {
             var button = getKeycodeName(object.Keycode)
-            object.Directions.forEach(direction => {
+            for (const direction of object.Directions) {
                 var motion = getKeycodeName(direction.Direction)
                 var command = ""
-                direction.Keys.forEach(key => {
+                for (const key of direction.Keys) {
                     var keys = getKeycodeName(key.replace("KC_", "").toLowerCase())
                     if (keys == null) {
                         keys = key.replace("KC_", "").toLowerCase()
                     }
                     command += keys
-                })
-                const escapedCommand = escapeMarkdownCharacters(command);
-                var linkCommand = `[${escapedCommand}](${direction.Link})`
-                parsedData.push({ motion: motion, button: button, command: linkCommand });
-            })
-        });
+                }
+                // Assuming direction.Link is a URL string
+                const link = direction.Link;
+
+                // Extract the string after the #
+                const hashIndex = link.indexOf('#');
+                let hashString = '';
+                if (hashIndex !== -1) {
+                    hashString = link.substring(hashIndex + 1);
+                }
+
+                // Decode any percent-encoded characters
+                const decodedHashString = decodeURIComponent(hashString);
+                var reference = await searchStringInFile(quickrefFilePath, `|${command}|`);
+                if (reference === null) {
+                    reference = await searchStringInFile(indexFilePath, `|${decodedHashString}|`);
+                }
+                if (reference === null) {
+                    reference = await searchStringInFile(motionFilePath, `${command}`);
+                }
+                if (reference === null) {
+                    reference = await searchStringInFile(changeFilePath, `${command}`);
+                }
+                if (reference !== null) {
+                    reference = escapeMarkdownCharacters(reference);
+                    // Remove the first instance of a single digit followed by a space
+                    reference = reference.replace(/\d\s/, '');
+                    if (command !== "N") {
+                        reference = reference.replace(/N\s/g, '{count} ');
+                    }
+                }
+                // TODO actually deal with parsing these properly later
+                if (command === "gqq") {
+                    reference = "Format the current line.  With a count format that many lines."
+                }
+                if (command === "g~~") {
+                    reference = "Switch case of current line."
+                }
+                if (command === "guu") {
+                    reference = "Make current line lowercase."
+                }
+                if (command === "gUU") {
+                    reference = "Make current line uppercase."
+                }
+                if (command === '\'' && button == "Neutral Attack") {
+                    reference = "Text object: Selects the text from the previous single quote until the next quote."
+                }
+                if (command === "[ for text objects, n otherwise") {
+                    reference = "n repeat last search"
+                }
+                if (command === "Escape") {
+                    reference = "If for any reason you do not know which mode you are in, you can always get back to Normal mode by typing <Esc> twice."
+                }
+                if (command === "ca" || command === "da" || command === "ya" || command === "va" || command === "gwa" || command === "gqa") {
+                    reference = "Button command around text object"
+                }
+                if (command === "ci" || command === "di" || command === "yi" || command === "vi" || command === "gwi" || command === "gqi") {
+                    reference = "Button command in text object"
+                }
+                if (command === '\'' && button == "QuoMark Attack") {
+                    reference = "Jump to the mark {a-z} in the current buffer."
+                }
+                if (command === '\'.' && button == "QuoMark Attack") {
+                    reference = "To the position where the last change was made."
+                }
+                if (command === '%') {
+                    reference = "Find the next item in this line after or under the cursor and jump to its match."
+                }
+                parsedData.push({ motion: motion, button: button, command: command, reference: reference, link: link });
+            }
+        }
     } catch (error) {
         console.error('Error reading JSON file:', error);
     }
