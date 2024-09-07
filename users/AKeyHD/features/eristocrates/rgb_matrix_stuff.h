@@ -60,13 +60,16 @@ void rgb_matrix_layer_helper(bool vim_emulation, rgb_color_scheme_t color_scheme
 // TODO KEEP IN SYNC WITH LAYERS
 #define SET_RGB_MATRIX_COLOR_SCHEME(vim_emulation, vim_mode_index, layer, col, row, i, main_rgb, accent1_rgb, accent2_rgb, highlight1_rgb, highlight2_rgb) \
     do {                                                                                                                                                   \
+        /* establoish the maincolor as a "background" */                                                                                                   \
         MAIN_COLOR                                                                                                                                         \
+        /* only use these indicators on base alphas */                                                                                                     \
         if (get_highest_layer(default_layer_state) == layer) {                                                                                             \
             if (vim_mode_index == INSERT_MODE) {                                                                                                           \
                 if (CENTER_THUMBS || ARCANE_COLUMNS || ENTER_COMBO) {                                                                                      \
                     SET_VIM_COLORS                                                                                                                         \
                 }                                                                                                                                          \
             }                                                                                                                                              \
+            /* on all other layers, color keycoded keys with vim colors*/                                                                                  \
         } else if (i == 40 || keymap_key_to_keycode(layer, (keypos_t){col, row}) > KC_TRNS) {                                                              \
             SET_VIM_COLORS                                                                                                                                 \
         }                                                                                                                                                  \

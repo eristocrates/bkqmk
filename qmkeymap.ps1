@@ -46,6 +46,7 @@ if (Select-String -Path $logFilePath -Pattern $searchString) {
     Invoke-Expression $keymapParseCmd
     Invoke-Expression $keymapPostParseCmd
     Invoke-Expression ".\keymapMotionInputParse.ps1"
+    Invoke-Expression ".\comboEdit.ps1"
     Invoke-Expression $vimFighterTableCmd
     Invoke-Expression $keymapDrawCmd1
     Invoke-Expression $keymapDrawCmd2

@@ -13,13 +13,20 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { escape } from "querystring";
 // Define the path to the output Markdown file
-const outputFilePath = path.join('I:', 'coding', 'bkqmk', 'vimFighter.md');
+const vimFighterMarkdownPath = path.join('I:', 'coding', 'bkqmk', 'vimFighter.md');
+const comboMarkdownPath = path.join('I:', 'coding', 'bkqmk', 'comboKeys.md');
 // Define the path to the quick reference file
 const indexFilePath = path.join('I:', 'coding', 'bkqmk', 'index.txt');
 const quickrefFilePath = path.join('I:', 'coding', 'bkqmk', 'quickref.txt');
 const motionFilePath = path.join('I:', 'coding', 'bkqmk', 'motion.txt');
 const changeFilePath = path.join('I:', 'coding', 'bkqmk', 'change.txt');
 
+// Define the path to the JSON file
+const vimFighterJsonPath = path.join('I:', 'coding', 'bkqmk', 'keycodes_and_directions.json');
+const comboJsonPath = path.join('I:', 'coding', 'bkqmk', 'comboKeys.json');
+
+var vimFighterParsedData = []
+var comboParsedData = []
 
 // Define the mapping
 const mappings = [
@@ -168,14 +175,11 @@ async function searchStringInFile(filePath, searchString) {
 
 
 
-// Define the path to the JSON file
-const jsonFilePath = path.join('I:', 'coding', 'bkqmk', 'keycodes_and_directions.json');
-var parsedData = []
 
 // Read and parse the JSON file
-async function loadJsonFile() {
+async function loadVimFighterJsonFile() {
     try {
-        const data = await fs.readFile(jsonFilePath, 'utf8');
+        const data = await fs.readFile(vimFighterJsonPath, 'utf8');
         const jsonData = JSON.parse(data);
         // Reference the first object in the JSON data
         // Loop through the jsonData using the forEach method
@@ -258,19 +262,29 @@ async function loadJsonFile() {
                 if (command === '%') {
                     reference = "Find the next item in this line after or under the cursor and jump to its match."
                 }
-                parsedData.push({ motion: motion, button: button, command: command, reference: reference, link: link });
+                vimFighterParsedData.push({ motion: motion, button: button, command: command, reference: reference, link: link });
             }
         }
     } catch (error) {
         console.error('Error reading JSON file:', error);
     }
 }
-
-await loadJsonFile();
-
-var vimFighterMd = tablemark(parsedData)
+async function loadComboJsonFile() {
+    try {
+        const data = await fs.readFile(comboJsonPath, 'utf8');
+        comboParsedData = JSON.parse(data);
+    } catch (error) {
+        console.error('Error reading JSON file:', error);
+        return null;
+    }
+}
+await loadVimFighterJsonFile();
+var vimFighterMd = tablemark(vimFighterParsedData)
 // Write the Markdown content to the output file
-await fs.writeFile(outputFilePath, vimFighterMd, 'utf8');
-console.log(`Markdown file saved to ${outputFilePath}`);
-// Your additional code here
+await fs.writeFile(vimFighterMarkdownPath, vimFighterMd, 'utf8');
+
+await loadComboJsonFile();
+var comboMd = tablemark(comboParsedData)
+await fs.writeFile(comboMarkdownPath, comboMd, 'utf8');
+
 

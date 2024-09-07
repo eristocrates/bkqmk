@@ -151,8 +151,6 @@ if ($matches.Success) {
     )
 
 
-    # Define the file path
-    $comboFilePath = "I:\coding\bkqmk\users\AKeyHD\combos.def"
 
     # Read the content of the combos file
     $comboContent = Get-Content -Path $comboFilePath -Raw
@@ -177,8 +175,8 @@ if ($matches.Success) {
 
 
 
-    # Define the regex pattern to match combos starting with VCB_
-    $vcbComboPattern = 'COMB\((VCB_[^,]+),\s*([^,]+),\s*([^)]+)\)'
+    # Define the regex pattern to match combos starting with VIM_COMBO_
+    $vcbComboPattern = 'COMB\((VIM_COMBO_[^,]+),\s*([^,]+),\s*([^)]+)\)'
 
     # Find all matches
     $matches = [regex]::Matches($comboContent, $vcbComboPattern)

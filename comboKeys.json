@@ -1,0 +1,206 @@
+[
+  {
+    "Word": "the",
+    "ComboKeys": "E, T"
+  },
+  {
+    "Word": "a",
+    "ComboKeys": "<Space>, A"
+  },
+  {
+    "Word": "be",
+    "ComboKeys": "B, E"
+  },
+  {
+    "Word": "have",
+    "ComboKeys": "H, V"
+  },
+  {
+    "Word": "do",
+    "ComboKeys": "D, O"
+  },
+  {
+    "Word": "to",
+    "ComboKeys": "O, T"
+  },
+  {
+    "Word": "of",
+    "ComboKeys": "F, O"
+  },
+  {
+    "Word": "in (word)",
+    "ComboKeys": "I, N"
+  },
+  {
+    "Word": "for",
+    "ComboKeys": "F, R"
+  },
+  {
+    "Word": "on",
+    "ComboKeys": "N, O"
+  },
+  {
+    "Word": "with",
+    "ComboKeys": "H, W"
+  },
+  {
+    "Word": "as",
+    "ComboKeys": "A, S"
+  },
+  {
+    "Word": "at",
+    "ComboKeys": "A, T"
+  },
+  {
+    "Word": "because",
+    "ComboKeys": "B, C"
+  },
+  {
+    "Word": "when",
+    "ComboKeys": "N, W"
+  },
+  {
+    "Word": "not",
+    "ComboKeys": "N, O, T"
+  },
+  {
+    "Word": "and (left hand)",
+    "ComboKeys": "D, S"
+  },
+  {
+    "Word": "and (right hand)",
+    "ComboKeys": "A, I"
+  },
+  {
+    "Word": "that",
+    "ComboKeys": "A, H, T"
+  },
+  {
+    "Word": "from",
+    "ComboKeys": "M, R"
+  },
+  {
+    "Word": "but",
+    "ComboKeys": "B, T"
+  },
+  {
+    "Word": "'ve",
+    "ComboKeys": "<Comma>, V"
+  },
+  {
+    "Word": "'s",
+    "ComboKeys": "<Comma>, S"
+  },
+  {
+    "Word": "he",
+    "ComboKeys": "<Space>, H"
+  },
+  {
+    "Word": "i",
+    "ComboKeys": "<Space>, I"
+  },
+  {
+    "Word": "it",
+    "ComboKeys": "I, T"
+  },
+  {
+    "Word": "i'd",
+    "ComboKeys": "D, I"
+  },
+  {
+    "Word": "i'll",
+    "ComboKeys": "I, L"
+  },
+  {
+    "Word": "i'm",
+    "ComboKeys": "I, M"
+  },
+  {
+    "Word": "i've",
+    "ComboKeys": "I, V"
+  },
+  {
+    "Word": "you",
+    "ComboKeys": "U, Y"
+  },
+  {
+    "Word": "you'd",
+    "ComboKeys": "D, Y"
+  },
+  {
+    "Word": "you'll",
+    "ComboKeys": "L, Y"
+  },
+  {
+    "Word": "you're",
+    "ComboKeys": "R, Y"
+  },
+  {
+    "Word": "you've",
+    "ComboKeys": "V, Y"
+  },
+  {
+    "Word": "your",
+    "ComboKeys": "R, U"
+  },
+  {
+    "Word": "their",
+    "ComboKeys": "H, I, T"
+  },
+  {
+    "Word": "they're",
+    "ComboKeys": "R, T, Y"
+  },
+  {
+    "Word": "they",
+    "ComboKeys": "T, Y"
+  },
+  {
+    "Word": "there",
+    "ComboKeys": "E, R, T"
+  },
+  {
+    "Word": "they'd",
+    "ComboKeys": "D, T"
+  },
+  {
+    "Word": "they'll",
+    "ComboKeys": "L, T"
+  },
+  {
+    "Word": "here",
+    "ComboKeys": "H, R"
+  },
+  {
+    "Word": "where",
+    "ComboKeys": "F, R, W"
+  },
+  {
+    "Word": "we're",
+    "ComboKeys": "<Comma>, W"
+  },
+  {
+    "Word": "were",
+    "ComboKeys": "R, W"
+  },
+  {
+    "Word": "we'd",
+    "ComboKeys": "D, W"
+  },
+  {
+    "Word": "well",
+    "ComboKeys": "L, W"
+  },
+  {
+    "Word": "we'll",
+    "ComboKeys": "<Comma>, L, W"
+  },
+  {
+    "Word": "we've",
+    "ComboKeys": "<Comma>, W"
+  },
+  {
+    "Word": "what",
+    "ComboKeys": "T, W"
+  }
+]
