@@ -2,9 +2,9 @@
 
 rgb_color_scheme_t defaults_rcs = {
     .main_hsv       = {HSV_RED},
-    .accent1_hsv    = {HSV_PINK},
+    .accent1_hsv    = {HSV_CHARTREUSE},
     .accent2_hsv    = {HSV_PURPLE},
-    .highlight1_hsv = {HSV_CHARTREUSE},
+    .highlight1_hsv = {HSV_PINK},
     .highlight2_hsv = {HSV_CORAL},
 };
 

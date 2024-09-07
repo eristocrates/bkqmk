@@ -76,13 +76,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_VIMFIGHTER] = LAYOUT(
   /* ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮ */
-       _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______,
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    VM_MRKQ, VM_FOLD, VM_SRCH, VM_VERT, VM_FRMT, VM_MRKG,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       _______, _______, MI_BACK, MI_DOWN, MI_FRNT, _______,    _______, _______, _______, _______, _______, _______,
+       XXXXXXX, XXXXXXX, MI_BACK, MI_DOWN, MI_FRNT, XXXXXXX,    VM_HORI, VF_LEFT, VF_DOWN, VF___UP, VF_RGHT, XXXXXXX,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       _______, _______, _______, _______, _______, _______,    _______, VF_LEFT, VF_DOWN, VF_RGHT, VF_NTRL, _______,
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    VM_VISU, VM_YANK, VM_CHAN, VM_DELE, XXXXXXX, _______,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
-                                  _______, MI_JUMP, _______,    VIMFGHT, VF___UP
+                                  XXXXXXX, MI_JUMP, XXXXXXX,    VIMFGHT, VF_NTRL
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
   ),
   [_CTRLPR] = LAYOUT(

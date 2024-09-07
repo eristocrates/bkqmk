@@ -128,13 +128,13 @@ bool process_vim_mode(uint16_t keycode, const keyrecord_t *record) {
         if ((QK_MOD_TAP <= keycode && keycode <= QK_MOD_TAP_MAX) || (QK_LAYER_TAP <= keycode && keycode <= QK_LAYER_TAP_MAX)) {
             // Earlier return if this has not been considered tapped yet
             if (record->tap.count == 0) return true;
-            if (VIM_EXCLUSIONS) keycode = keycode & 0xFF;
+            if (VIM_BYPASS) keycode = keycode & 0xFF;
         }
 
         // let through anything above normal keyboard keycode or a mod
         // TODO carve out exceptions for my keycodes. also ironically test left is the only broken one
         // clang-format off
-        if (VIM_EXCLUSIONS
+        if (VIM_BYPASS
          && (keycode < KC_A || keycode > KC_CAPS_LOCK)
          && (keycode < QK_MODS || keycode > QK_MODS_MAX))
          {
@@ -148,7 +148,7 @@ bool process_vim_mode(uint16_t keycode, const keyrecord_t *record) {
         const uint8_t all_mods = mods | oneshot_mods;
         // this takes mod bits adds them to to the keycode, but always as the left mod (lower 4 mod bits)
         // for some reason with AVR gcc 8.3.0, the compile size is larger if you use a |= ???
-        if (VIM_EXCLUSIONS) keycode = all_mods & 0xF0 ? keycode | (all_mods << 4) : keycode | (all_mods << 8);
+        if (VIM_BYPASS) keycode = all_mods & 0xF0 ? keycode | (all_mods << 4) : keycode | (all_mods << 8);
 
         // clear the mods
         clear_mods();

@@ -91,7 +91,7 @@ void call_keycode(uint16_t keycode);
 || motion_buffer[MOTION_BUFFER_SIZE - 1] == VM_SRCH               \
 )
 
-#define VIM_EXCLUSIONS (\
+#define VIM_BYPASS (\
             keycode != VM_LEFT\
          && keycode != VM_DOWN\
          && keycode != VM___UP\

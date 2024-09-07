@@ -42,7 +42,7 @@ function Invoke-InMinGW {
 #Invoke-InMinGW $compile2jsonCmd
 if (Select-String -Path $logFilePath -Pattern $searchString) {
     # Run the remaining commands in PowerShell
-    #Invoke-InMinGW $compile2jsonCmd
+    Invoke-InMinGW $compile2jsonCmd
     Invoke-Expression $keymapParseCmd
     Invoke-Expression $keymapPostParseCmd
     Invoke-Expression ".\keymapMotionInputParse.ps1"
@@ -60,4 +60,4 @@ else {
 }
 
 
-#$mediaPlayer.Play()
+$mediaPlayer.Play()

@@ -64,39 +64,54 @@ const char *rgb_matrix_names(uint8_t effect) { // disgusting hack to avoid colli
             return "UNKNOWN";
     }
 }
-/*
-// TODO finish this
+// TODO collect any and all state into config
 typedef union {
-    uint32_t raw;
+    uint16_t raw;
     struct {
         uint8_t    color_scheme_index : 4;
         vim_mode_t vim_mode_index : 3;
+        bool       vim_emulation : 1;
         bool       semicolon_mode : 1;
         bool       smart_space_mode : 1;
-        bool       last_smart_space : 1;
         bool       autopair_mode : 1;
         bool       ampersand_mode : 1;
         bool       delete_word_mode : 1;
         bool       kana_input_mode : 1;
         bool       work_mode : 1;
         bool       roll_reversal_mode : 1;
-        uint8_t roll_reversal_state : 2;
-        uint32_t   reserved : 17;
-    }
+    };
 } keeb_state_config_t;
-keeb_state_config = {
-    .color_scheme_index = 0,
-    .vim_mode_index     = INSERT_MODE,
-};
-*/
 
-static uint8_t  color_scheme_max;
-static uint8_t  current_mode;
-static uint16_t color_scheme_index           = 0;
-vim_mode_t      vim_mode_index               = INSERT_MODE;
-uint16_t        transport_color_scheme_index = 0;
-vim_mode_t      transport_vim_mode_index     = INSERT_MODE;
-static uint8_t  roll_reversal_state          = 0;
+enum syncs {
+    SYNC_FORCE,
+    SYNC_KEEB_STATE,
+    SYNC_COLOR_SCHEME,
+    SYNC_VIM_MODE,
+};
+
+// _Static_assert(sizeof(keeb_state_config_t) == sizeof(uint32_t), "keeb_state EECONFIG out of spec.");
+
+// clang-format off
+keeb_state_config_t keeb_state = {
+    .color_scheme_index = 0,
+    .vim_mode_index = INSERT_MODE,
+    .vim_emulation = true,
+    .semicolon_mode = 0,
+    .smart_space_mode = 0,
+    .autopair_mode = 0,
+    .ampersand_mode = 0,
+    .delete_word_mode = 0,
+    .kana_input_mode = 0,
+    .work_mode = 0,
+    .roll_reversal_mode = 0
+};
+// clang-format on
+
+static uint8_t color_scheme_max;
+static uint8_t current_mode;
+uint16_t       transport_keeb_state         = 0;
+uint16_t       transport_color_scheme_index = 0;
+static uint8_t roll_reversal_state          = 0;
 // https://leanrada.com/notes/my-personalised-keyboard/
 // https://github.com/Kalabasa/qmk_firmware/blob/2d1608287bb8b52669255266472975875f7c2423/keyboards/lily58/keymaps/Kalabasa/main.c#L56
 const uint16_t bitwise_f_keys[]   = {KC_F1, KC_F2, KC_F3, KC_F4, KC_F5};
@@ -474,10 +489,10 @@ static uint16_t    prev_keycode;
 static bool update_motion_buffer(uint16_t keycode, const keyrecord_t *record) {
 #ifdef CONSOLE_ENABLE
     if (record->event.pressed) {
-        uprintf("update_motion_buffer keydown: \t%s\t col: %u, row: %u, pressed: %b, time: %u, interrupt: %b, count: %u\n", key_name(keycode, false), record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
-    } else {
-        uprintf("update_motion_buffer keyup: \t%s\t col: %u, row: %u, pressed: %b, time: %u, interrupt: %b, count: %u\n", key_name(keycode, false), record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
-    }
+        uprintf("update_motion_buffer pressed: \t%s\t col: %u, row: %u, pressed: %b, time: %u, interrupt: %b, count: %u\n", key_name(keycode, false), record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
+    } // else {
+    //    uprintf("update_motion_buffer keyup: \t%s\t col: %u, row: %u, pressed: %b, time: %u, interrupt: %b, count: %u\n", key_name(keycode, false), record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
+    //}
 #endif
     if (!record->event.pressed) {
         return false;
@@ -2314,6 +2329,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case VIM_TOG:
             if (record->event.pressed) {
                 toggle_vim_emulation();
+                keeb_state.vim_emulation = !keeb_state.vim_emulation;
             }
             return false;
         /*------------------------------math------------------------------*/
@@ -2440,15 +2456,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         case CS__STP:
             if (record->event.pressed) {
-                uint8_t index      = color_scheme_index + 1 > 7 ? 0 : color_scheme_index + 1;
-                color_scheme_index = index;
+                uint8_t index                 = keeb_state.color_scheme_index + 1 > 7 ? 0 : keeb_state.color_scheme_index + 1;
+                keeb_state.color_scheme_index = index;
                 // uint8_t color_scheme_max = sizeof(color) / sizeof(nshot_state_t);
             }
             return false;
         case CS_RSTP:
             if (record->event.pressed) {
-                uint8_t index      = color_scheme_index - 1 < 0 ? 6 : color_scheme_index - 1;
-                color_scheme_index = index;
+                uint8_t index                 = keeb_state.color_scheme_index - 1 < 0 ? 6 : keeb_state.color_scheme_index - 1;
+                keeb_state.color_scheme_index = index;
                 // uint8_t color_scheme_max = sizeof(color) / sizeof(nshot_state_t);
             }
             return false;
@@ -2858,7 +2874,7 @@ void insert_mode_user(void) {
         layer_off(_VIMFIGHTER);
     }
     layer_off(_VIMNAV);
-    vim_mode_index = INSERT_MODE;
+    keeb_state.vim_mode_index = INSERT_MODE;
 }
 void normal_mode_user(void) {
     layer_on(_VIMNAV);
@@ -2866,7 +2882,7 @@ void normal_mode_user(void) {
         layer_on(_VIMFIGHTER);
         restore_motion_layer = false;
     }
-    vim_mode_index = NORMAL_MODE;
+    keeb_state.vim_mode_index = NORMAL_MODE;
 }
 void visual_mode_user(void) {
     if (IS_LAYER_OFF(_VIMNAV)) {
@@ -2890,6 +2906,8 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
     */
 
     // TODO  revisit offloading vert to up & down
+    // TODO fix diagonals
+    // TODO figure out why only command normals work with combo keycodes
     // TODO consider jumps like method and comment https://neovim.io/doc/user/motion.html#%5Dm
     // TODO consider substitution logic. prob needs a dedicated mohttps://neovim.io/doc/user/change.html#%3As
     // TODO maybe fix diagonals by lifting roll reversal state for each 2 pair hold. 4 hold directions x 3 tap directions = 12 diagonal states
@@ -2966,6 +2984,10 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
             is_bb_motion = true;
         }
         if (motion_buffer[MOTION_BUFFER_SIZE - 3] == MI_DOWN && motion_buffer[MOTION_BUFFER_SIZE - 2] == MI_DOWN && ACTIONS) {
+            is_dd_motion = true;
+        }
+        // TODO test combo
+        if (motion_buffer[MOTION_BUFFER_SIZE - 4] == MI_DOWN && motion_buffer[MOTION_BUFFER_SIZE - 3] == MI_DOWN && ACTIONS) {
             is_dd_motion = true;
         }
         if (motion_buffer[MOTION_BUFFER_SIZE - 3] == MI_JUMP && motion_buffer[MOTION_BUFFER_SIZE - 2] == MI_JUMP && ACTIONS) {
@@ -4291,53 +4313,52 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 
     color_scheme_max = sizeof(color_schemes) / sizeof(rgb_color_scheme_t);
     switch (current_layer) {
+        case _CTRLPR:
+        case _ALTPR:
+        case _GUIPR:
+        case _SYML:
+        case _SYMR:
+        case _NUMPAD:
+        case _FUNCTION:
+        case _VIMNAV:
+        case _VIMFIGHTER:
+            rgb_matrix_layer_helper(keeb_state.vim_emulation, color_schemes[keeb_state.color_scheme_index], keeb_state.vim_mode_index, current_layer, rgb_matrix_get_mode(), rgb_matrix_config.speed, LED_FLAG_KEYLIGHT, led_min, led_max);
+            break;
         case _POINTER:
         case _POINTEROPT:
             uint8_t speed = rgb_matrix_config.speed * 2 < 254 ? rgb_matrix_config.speed * 2 : 254;
-            rgb_matrix_layer_helper(color_schemes[color_scheme_index], vim_mode_index, current_layer, RGB_MATRIX_EFFECT_BREATHING, speed, LED_FLAG_KEYLIGHT, led_min, led_max);
+            rgb_matrix_layer_helper(keeb_state.vim_emulation, color_schemes[keeb_state.color_scheme_index], keeb_state.vim_mode_index, current_layer, RGB_MATRIX_EFFECT_BREATHING, speed, LED_FLAG_KEYLIGHT, led_min, led_max);
             break;
         default:
-            switch (current_default_layer) {
-                case _AKEYHD:
-                    rgb_matrix_layer_helper(color_schemes[color_scheme_index], vim_mode_index, current_default_layer, rgb_matrix_get_mode(), rgb_matrix_config.speed, LED_FLAG_KEYLIGHT, led_min, led_max);
-                    break;
-            }
+            rgb_matrix_layer_helper(keeb_state.vim_emulation, color_schemes[keeb_state.color_scheme_index], keeb_state.vim_mode_index, current_default_layer, rgb_matrix_get_mode(), rgb_matrix_config.speed, LED_FLAG_KEYLIGHT, led_min, led_max);
             break;
     }
     return false;
 }
-
-void color_scheme_index_sync(uint8_t initiator2target_buffer_size, const void *initiator2target_buffer, uint8_t target2initiator_buffer_size, void *target2initiator_buffer) {
-    if (initiator2target_buffer_size == sizeof(transport_color_scheme_index)) {
-        memcpy(&transport_color_scheme_index, initiator2target_buffer, sizeof(transport_color_scheme_index));
+void keeb_state_sync(uint8_t initiator2target_buffer_size, const void *initiator2target_buffer, uint8_t target2initiator_buffer_size, void *target2initiator_buffer) {
+    if (initiator2target_buffer_size == sizeof(transport_keeb_state)) {
+        memcpy(&transport_keeb_state, initiator2target_buffer, sizeof(transport_keeb_state));
     }
 }
 
-void color_scheme_index_update(void) {
+void keeb_state_update(void) {
     if (is_keyboard_master()) {
-        transport_color_scheme_index = color_scheme_index;
+        transport_keeb_state = keeb_state.raw;
     } else {
-        color_scheme_index = transport_color_scheme_index;
+        keeb_state.raw = transport_keeb_state;
     }
 }
-enum syncs {
-    SYNC_FORCE,
-    SYNC_COLOR_SCHEME,
-    SYNC_VIM_MODE,
-};
-void color_scheme_index_transport_sync(void) {
+void keeb_state_transport_sync(void) {
     if (is_keyboard_master()) {
-        // Keep track of the last state, so that we can tell if we need to propagate to slave
-        // TODO stop storing data  "last index" instead of "index"
-        static uint16_t last_color_scheme_index = 0;
-
+        // Keep track of the last state, so that we can tell if we need to propagate to target
+        static uint16_t last_keeb_state = 0;
         static uint32_t last_sync[3];
         bool            needs_sync = false;
 
         // Check if the state values are different
-        if (timer_elapsed32(last_sync[SYNC_COLOR_SCHEME]) > FORCED_SYNC_THROTTLE_MS && memcmp(&transport_color_scheme_index, &last_color_scheme_index, sizeof(transport_color_scheme_index))) {
+        if (memcmp(&transport_keeb_state, &last_keeb_state, sizeof(transport_keeb_state))) {
             needs_sync = true;
-            memcpy(&last_color_scheme_index, &transport_color_scheme_index, sizeof(transport_color_scheme_index));
+            memcpy(&last_keeb_state, &transport_keeb_state, sizeof(transport_keeb_state));
         }
         // Send to target every FORCED_SYNC_THROTTLE_MS regardless of state change
         if (timer_elapsed32(last_sync[SYNC_FORCE]) > FORCED_SYNC_THROTTLE_MS) {
@@ -4346,50 +4367,8 @@ void color_scheme_index_transport_sync(void) {
 
         // Perform the sync if requested
         if (needs_sync) {
-            if (transaction_rpc_send(RPC_ID_COLOR_SCHEME_SYNC, sizeof(color_scheme_index), &color_scheme_index)) {
-                last_sync[SYNC_COLOR_SCHEME] = timer_read32();
-            }
-            needs_sync = false;
-        }
-    }
-}
-
-void vim_mode_index_sync(uint8_t initiator2target_buffer_size, const void *initiator2target_buffer, uint8_t target2initiator_buffer_size, void *target2initiator_buffer) {
-    if (initiator2target_buffer_size == sizeof(transport_vim_mode_index)) {
-        memcpy(&transport_vim_mode_index, initiator2target_buffer, sizeof(transport_vim_mode_index));
-    }
-}
-
-void vim_mode_index_update(void) {
-    if (is_keyboard_master()) {
-        transport_vim_mode_index = vim_mode_index;
-    } else {
-        vim_mode_index = transport_vim_mode_index;
-    }
-}
-void vim_mode_index_transport_sync(void) {
-    if (is_keyboard_master()) {
-        // Keep track of the last state, so that we can tell if we need to propagate to slave
-        // TODO stop storing data  "last index" instead of "index"
-        static uint16_t last_vim_mode_index = 0;
-
-        static uint32_t last_sync[3];
-        bool            needs_sync = false;
-
-        // Check if the state values are different
-        if (timer_elapsed32(last_sync[SYNC_VIM_MODE]) > FORCED_SYNC_THROTTLE_MS && memcmp(&transport_vim_mode_index, &last_vim_mode_index, sizeof(transport_vim_mode_index))) {
-            needs_sync = true;
-            memcpy(&last_vim_mode_index, &transport_vim_mode_index, sizeof(transport_vim_mode_index));
-        }
-        // Send to target every FORCED_SYNC_THROTTLE_MS regardless of state change
-        if (timer_elapsed32(last_sync[SYNC_FORCE]) > FORCED_SYNC_THROTTLE_MS) {
-            needs_sync = true;
-        }
-
-        // Perform the sync if requested
-        if (needs_sync) {
-            if (transaction_rpc_send(RPC_ID_VIM_MODE_SYNC, sizeof(vim_mode_index), &vim_mode_index)) {
-                last_sync[SYNC_VIM_MODE] = timer_read32();
+            if (transaction_rpc_send(RPC_ID_KEEB_STATE_SYNC, sizeof(transport_keeb_state), &transport_keeb_state)) {
+                last_sync[SYNC_KEEB_STATE] = timer_read32();
             }
             needs_sync = false;
         }
@@ -4400,17 +4379,13 @@ void keyboard_post_init_user(void) {
     enable_vim_mode();
     enable_vim_emulation();
     current_mode = RGB_MATRIX_DEFAULT_MODE;
-    // transaction_register_rpc(RPC_ID_COLOR_SCHEME_SYNC, color_scheme_sync);
-    transaction_register_rpc(RPC_ID_COLOR_SCHEME_SYNC, color_scheme_index_sync);
-    transaction_register_rpc(RPC_ID_VIM_MODE_SYNC, vim_mode_index_sync);
+    transaction_register_rpc(RPC_ID_KEEB_STATE_SYNC, keeb_state_sync);
 }
 
 void housekeeping_task_user(void) {
     // Update kb_state so we can send to slave
-    color_scheme_index_update();
-    vim_mode_index_update();
+    keeb_state_update();
 
     // Data sync from instigator to target
-    color_scheme_index_transport_sync();
-    vim_mode_index_transport_sync();
+    keeb_state_transport_sync();
 }

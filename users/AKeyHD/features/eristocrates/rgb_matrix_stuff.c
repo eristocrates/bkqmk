@@ -99,7 +99,7 @@ const int led_to_key_matrix[42][2] = {
     {7, 4}, // LED 40
     {7, 1}, // LED 41
 };
-void rgb_matrix_layer_helper(rgb_color_scheme_t color_scheme, vim_mode_t vim_mode_index, uint8_t layer, uint8_t mode, uint8_t speed, uint8_t led_type, uint8_t led_min, uint8_t led_max) {
+void rgb_matrix_layer_helper(bool vim_emulation, rgb_color_scheme_t color_scheme, vim_mode_t vim_mode_index, uint8_t layer, uint8_t mode, uint8_t speed, uint8_t led_type, uint8_t led_min, uint8_t led_max) {
     // static effect_params_t rgb_effect_params_user = {0, LED_FLAG_ALL, false};
     HSV main_hsv       = color_scheme.main_hsv;
     HSV accent1_hsv    = color_scheme.accent1_hsv;
@@ -154,7 +154,7 @@ void rgb_matrix_layer_helper(rgb_color_scheme_t color_scheme, vim_mode_t vim_mod
                 for (uint8_t i = 0; i < RGB_MATRIX_LED_COUNT; i++) {
                     uint8_t row = led_to_key_matrix[i][0];
                     uint8_t col = led_to_key_matrix[i][1];
-                    SET_RGB_MATRIX_COLOR_SCHEME(vim_mode_index, layer, col, row, i, main_rgb, accent1_rgb, accent2_rgb, highlight1_rgb, highlight2_rgb);
+                    SET_RGB_MATRIX_COLOR_SCHEME(vim_emulation, vim_mode_index, layer, col, row, i, main_rgb, accent1_rgb, accent2_rgb, highlight1_rgb, highlight2_rgb);
                 }
             }
             break;
@@ -172,7 +172,7 @@ void rgb_matrix_layer_helper(rgb_color_scheme_t color_scheme, vim_mode_t vim_mod
                     RGB     highlight1_rgb = rgb_matrix_hsv_to_rgb(BAND_PINWHEEL_VAL_math(highlight1_hsv, dx, dy, time));
                     RGB     highlight2_rgb = rgb_matrix_hsv_to_rgb(BAND_PINWHEEL_VAL_math(highlight2_hsv, dx, dy, time));
 
-                    SET_RGB_MATRIX_COLOR_SCHEME(vim_mode_index, layer, col, row, i, main_rgb, accent1_rgb, accent2_rgb, highlight1_rgb, highlight2_rgb);
+                    SET_RGB_MATRIX_COLOR_SCHEME(vim_emulation, vim_mode_index, layer, col, row, i, main_rgb, accent1_rgb, accent2_rgb, highlight1_rgb, highlight2_rgb);
                 }
             }
             /*

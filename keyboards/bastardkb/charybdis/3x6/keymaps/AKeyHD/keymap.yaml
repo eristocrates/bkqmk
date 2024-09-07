@@ -1,9 +1,9 @@
 layout: {qmk_keyboard: bastardkb/charybdis/3x6, qmk_layout: LAYOUT}
 layers:
   AKEYHD:
-  - [X, V, G, M, P, {t: '*', s: Arcane}, {t: '%', s: Arcane}, U, O, Y, B, Z]
-  - [J, K, S, N, D, {t: '=', s: Arcane}, {t: ':', s: Arcane}, A, E, I, H, {t: QU, s: Q}]
-  - [{t: Leader, s: Core}, W, F, L, C, {t: '\', s: Arcane}, {t: '/', s: Arcane}, (, {t: ',', s: Adaptive, h: OSM Shift}, {t: '.', s: Adaptive, h: Capsword}, ), {t: Vim, s: Genuine, h: Emulation}]
+  - ['   X', '   V', '   G', '   M', '   P', {t: '*', s: Arcane}, {t: '%', s: Arcane}, '   U', '   O', '   Y', '   B', '   Z']
+  - ['   J', '   K', '   S', '   N', '   D', {t: '=', s: Arcane}, {t: ':', s: Arcane}, '   A', '   E', '   I', '   H', {t: QU, s: Q}]
+  - [{t: Leader, s: Core}, '   W', '   F', '   L', '   C', {t: '\', s: Arcane}, {t: '/', s: Arcane}, (, {t: ',', s: Adaptive, h: OSM Shift}, {t: '.', s: Adaptive, h: Capsword}, ), {t: Vim, s: Genuine, h: Emulation}]
   - [{t: Num Pad, h: MO Layer}, {t: R, h: CTRLR}, {t: Space, h: SML}, {t: Space, h: SMR}, {t: T, h: ALTT}]
   COMBOREF:
   - [{t: LT OUTR, h: 0}, {t: LT PNKY, h: 1}, {t: LT RING, h: 2}, {t: LT MDLE, h: 3}, {t: LT INDX, h: 4}, {t: LT INNR, h: 5}, {t: RT INNR, h: 6}, {t: RT INDX, h: 7}, {t: RT MDLE, h: 8}, {t: RT RING, h: 9}, {t: RT PNKY, h: 10}, {t: RT OUTR, h: 11}]
@@ -53,47 +53,21 @@ layers:
     - {t: Vim Fighter, h: TO Layer}
     - {t: ▽, type: trans}
   VIMFIGHTER:
-  - - {t: ▽, type: trans}
+  - ['', '', '', '', '', '', {t: QuoMark, h: Attack}, {t: Fold, h: Attack}, {t: Search, h: Attack}, {t: Vertical, h: Attack}, {t: Format, h: Attack}, {t: GrvMark, h: Attack}]
+  - ['', '', Back, Crouch, Forward, '', {t: Horizontal, h: Attack}, {t: Left, h: Attack}, {t: Down, h: Attack}, {t: Up, h: Attack}, {t: Right, h: Attack}, '']
+  - - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - {t: Visual, h: Attack}
+    - {t: Yank, h: Attack}
+    - {t: Change, h: Attack}
+    - {t: Delete, h: Attack}
+    - ''
     - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - Back
-    - Crouch
-    - Forward
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: Left, h: Attack}
-    - {t: Down, h: Attack}
-    - {t: Right, h: Attack}
-    - {t: Neutral, h: Attack}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - Jump
-    - {t: ▽, type: trans}
-    - {t: Vim Fighter, h: TO Layer}
-    - {t: Up, h: Attack}
+  - ['', Jump, '', {t: Vim Fighter, h: TO Layer}, {t: Neutral, h: Attack}]
   CTRLPR:
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -623,9 +597,9 @@ layers:
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, BASE]
   - [RAND, RAND, RAND, RAND, RAND]
   TEST:
-  - [X, V, G, M, P, {t: '*', s: Arcane}, {t: '%', s: Arcane}, U, O, Y, B, Z]
-  - [J, K, S, N, D, {t: '=', s: Arcane}, {t: ':', s: Arcane}, A, E, I, H, {t: QU, s: Q}]
-  - [{t: Leader, s: Core}, W, F, L, C, {t: '\', s: Arcane}, {t: '/', s: Arcane}, (, {t: ',', s: Adaptive, h: OSM Shift}, {t: '.', s: Adaptive, h: Capsword}, ), {t: Vim, s: Genuine, h: Emulation}]
+  - ['   X', '   V', '   G', '   M', '   P', {t: '*', s: Arcane}, {t: '%', s: Arcane}, '   U', '   O', '   Y', '   B', '   Z']
+  - ['   J', '   K', '   S', '   N', '   D', {t: '=', s: Arcane}, {t: ':', s: Arcane}, '   A', '   E', '   I', '   H', {t: QU, s: Q}]
+  - [{t: Leader, s: Core}, '   W', '   F', '   L', '   C', {t: '\', s: Arcane}, {t: '/', s: Arcane}, (, {t: ',', s: Adaptive, h: OSM Shift}, {t: '.', s: Adaptive, h: Capsword}, ), {t: Vim, s: Genuine, h: Emulation}]
   - [{t: Num Pad, h: MO Layer}, {t: R, h: CTRLR}, {t: Space, h: SML}, {t: Space, h: SMR}, {t: T, h: ALTT}]
 combos:
 
