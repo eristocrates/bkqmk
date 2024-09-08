@@ -217,6 +217,10 @@ void process_home_left_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_key
             case KC_P:
                 ARCANE_STRING("l", KC_L);
                 return;
+
+            case KC_G:
+                ARCANE_STRING("gl", KC_E);
+                return;
                 /*  anti sfb magic */
             // right outer column
             case KC_Z:

@@ -376,7 +376,8 @@ void bspc_finished(tap_dance_state_t *state, void *user_data) {
         case TD_SINGLE_TAP:
             if (delete_word_mode) {
                 register_code(KC_LCTL);
-                register_code(KC_BSPC);
+                tap_code(KC_BSPC);
+                unregister_code(KC_LCTL);
             } else {
                 register_code(KC_BSPC);
             }
@@ -388,7 +389,8 @@ void bspc_finished(tap_dance_state_t *state, void *user_data) {
                 register_code(KC_BSPC);
             } else {
                 register_code(KC_LCTL);
-                register_code(KC_BSPC);
+                tap_code(KC_BSPC);
+                unregister_code(KC_LCTL);
             }
             delete_word_mode = !delete_word_mode;
             break;
@@ -403,6 +405,8 @@ void bspc_reset(tap_dance_state_t *state, void *user_data) {
             if (delete_word_mode) {
                 unregister_code(KC_LCTL);
                 unregister_code(KC_BSPC);
+                clear_oneshot_mods();
+                clear_mods();
             } else {
                 unregister_code(KC_BSPC);
             }
@@ -413,6 +417,8 @@ void bspc_reset(tap_dance_state_t *state, void *user_data) {
             } else {
                 unregister_code(KC_LCTL);
                 unregister_code(KC_BSPC);
+                clear_oneshot_mods();
+                clear_mods();
             }
             break;
         default:
@@ -426,7 +432,8 @@ void del_finished(tap_dance_state_t *state, void *user_data) {
         case TD_SINGLE_TAP:
             if (delete_word_mode) {
                 register_code(KC_LCTL);
-                register_code(KC_DEL);
+                tap_code(KC_DEL);
+                unregister_code(KC_LCTL);
             } else {
                 register_code(KC_DEL);
             }
@@ -435,10 +442,11 @@ void del_finished(tap_dance_state_t *state, void *user_data) {
         case TD_TRIPLE_TAP:
         case TD_SINGLE_HOLD:
             if (delete_word_mode) {
-                register_code(KC_DEL);
+                tap_code(KC_DEL);
             } else {
                 register_code(KC_LCTL);
-                register_code(KC_DEL);
+                tap_code(KC_DEL);
+                unregister_code(KC_LCTL);
             }
             delete_word_mode = !delete_word_mode;
             break;
@@ -453,6 +461,8 @@ void del_reset(tap_dance_state_t *state, void *user_data) {
             if (delete_word_mode) {
                 unregister_code(KC_LCTL);
                 unregister_code(KC_DEL);
+                clear_oneshot_mods();
+                clear_mods();
             } else {
                 unregister_code(KC_DEL);
             }
@@ -463,6 +473,8 @@ void del_reset(tap_dance_state_t *state, void *user_data) {
             } else {
                 unregister_code(KC_LCTL);
                 unregister_code(KC_DEL);
+                clear_oneshot_mods();
+                clear_mods();
             }
             break;
         default:

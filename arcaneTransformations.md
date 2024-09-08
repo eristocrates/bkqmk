@@ -1,162 +1,164 @@
 # Legend
 
-### arrows from [xah lee's page](http://xahlee.info/comp/unicode_arrows.html)
+Arrows from [emojipedia](https://emojipedia.org/right-arrow)
 
-🡔 top left arcane
+↖️ top left arcane
 
-🡕 top right arcane
+↗️ top right arcane
 
-🡐 home left arcane
+⬅️ home left arcane
 
-🡒 home right arcane
+➡️ home right arcane
 
-🡗 bottom left arcane
+↙️ bottom left arcane
 
-🡖 bottom right arcane
+↘️ bottom right arcane
 
 # Transformations
 
-x🡔 = xx
+x↖️ = xx
 
-v🡔 = vv
+v↖️ = vv
 
-g🡔 = gg
+g↖️ = gg
 
-m🡔 = mm
+m↖️ = mm
 
-p🡔 = pp
+p↖️ = pp
 
-a🡔 = au
+a↖️ = au
 
-e🡔 = eo
+e↖️ = eo
 
-i🡔 = iy
+i↖️ = iy
 
-h🡔 = hb
+h↖️ = hb
 
-qu🡔 = quz
+qu↖️ = quz
 
-p🡐 = pl
+p⬅️ = pl
 
-u🡐 = ua
+u⬅️ = ua
 
-o🡐 = oe
+o⬅️ = oe
 
-y🡐 = yi
+y⬅️ = yi
 
-b🡐 = bh
+b⬅️ = bh
 
-z🡐 = zqu
+z⬅️ = zqu
 
-j🡐 = jj
+j⬅️ = jj
 
-k🡐 = kk
+k⬅️ = kk
 
-s🡐 = ss
+s⬅️ = ss
 
-n🡐 = nn
+n⬅️ = nn
 
-d🡐 = dd
+d⬅️ = dd
 
-r🡐 = rr
+g⬅️ = ggl
 
-<space>🡐 = <space>r
+r⬅️ = rr
 
-g🡗 = gl
+<space>⬅️ = <space>r
 
-z🡗 = zqu
+g↙️ = gl
 
-e🡗 = e,
+z↙️ = zqu
 
-i🡗 = i.
+e↙️ = e,
 
-w🡗 = ww
+i↙️ = i.
 
-f🡗 = ff
+w↙️ = ww
 
-l🡗 = ll
+f↙️ = ff
 
-c🡗 = cc
+l↙️ = ll
 
-u🡕 = uu
+c↙️ = cc
 
-o🡕 = oo
+u↗️ = uu
 
-y🡕 = yy
+o↗️ = oo
 
-b🡕 = bb
+y↗️ = yy
 
-z🡕 = zz
+b↗️ = bb
 
-j🡕 = jx
+z↗️ = zz
 
-k🡕 = kv
+j↗️ = jx
 
-s🡕 = sg
+k↗️ = kv
 
-n🡕 = nm
+s↗️ = sg
 
-d🡕 = dp
+n↗️ = nm
 
-i🡕 = iz
+d↗️ = dp
 
-w🡕 = wv
+i↗️ = iz
 
-f🡕 = fg
+w↗️ = wv
 
-l🡕 = lm
+f↗️ = fg
 
-c🡕 = cp
+l↗️ = lm
 
-x🡒 = xj
+c↗️ = cp
 
-v🡒 = vk
+x➡️ = xj
 
-g🡒 = gs
+v➡️ = vk
 
-m🡒 = mn
+g➡️ = gs
 
-p🡒 = pd
+m➡️ = mn
 
-b🡒 = bi
+p➡️ = pd
 
-s🡒 = sion
+b➡️ = bi
 
-a🡒 = aa
+s➡️ = sion
 
-e🡒 = ee
+a➡️ = aa
 
-i🡒 = ii
+e➡️ = ee
 
-h🡒 = hh
+i➡️ = ii
 
-w🡒 = wk
+h➡️ = hh
 
-f🡒 = fs
+w➡️ = wk
 
-l🡒 = ln
+f➡️ = fs
 
-c🡒 = cd
+l➡️ = ln
 
-<space>🡒 = <space>t
+c➡️ = cd
 
-t🡒 = tt
+<space>➡️ = <space>t
 
-x🡖 = xw
+t➡️ = tt
 
-v🡖 = vw
+x↘️ = xw
 
-g🡖 = gf
+v↘️ = vw
 
-m🡖 = ml
+g↘️ = gf
 
-p🡖 = pc
+m↘️ = ml
 
-k🡖 = kw
+p↘️ = pc
 
-s🡖 = sf
+k↘️ = kw
 
-n🡖 = nl
+s↘️ = sf
 
-d🡖 = dc
+n↘️ = nl
+
+d↘️ = dc
 
