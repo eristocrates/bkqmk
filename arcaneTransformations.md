@@ -1,160 +1,162 @@
 # Legend
 
-↖ top left arcane
+### arrows from [xah lee's page](http://xahlee.info/comp/unicode_arrows.html)
 
-↗ top right arcane
+🡔 top left arcane
 
-← home left arcane
+🡕 top right arcane
 
-→ home right arcane
+🡐 home left arcane
 
-↙ bottom left arcane
+🡒 home right arcane
 
-↘ bottom right arcane
+🡗 bottom left arcane
+
+🡖 bottom right arcane
 
 # Transformations
 
-x↖ = xx
+x🡔 = xx
 
-v↖ = vv
+v🡔 = vv
 
-g↖ = gg
+g🡔 = gg
 
-m↖ = mm
+m🡔 = mm
 
-p↖ = pp
+p🡔 = pp
 
-a↖ = au
+a🡔 = au
 
-e↖ = eo
+e🡔 = eo
 
-i↖ = iy
+i🡔 = iy
 
-h↖ = hb
+h🡔 = hb
 
-qu↖ = quz
+qu🡔 = quz
 
-p← = pl
+p🡐 = pl
 
-u← = ua
+u🡐 = ua
 
-o← = oe
+o🡐 = oe
 
-y← = yi
+y🡐 = yi
 
-b← = bh
+b🡐 = bh
 
-z← = zqu
+z🡐 = zqu
 
-j← = jj
+j🡐 = jj
 
-k← = kk
+k🡐 = kk
 
-s← = ss
+s🡐 = ss
 
-n← = nn
+n🡐 = nn
 
-d← = dd
+d🡐 = dd
 
-r← = rr
+r🡐 = rr
 
-<space>← = <space>r
+<space>🡐 = <space>r
 
-g↙ = gl
+g🡗 = gl
 
-z↙ = zqu
+z🡗 = zqu
 
-e↙ = e,
+e🡗 = e,
 
-i↙ = i.
+i🡗 = i.
 
-w↙ = ww
+w🡗 = ww
 
-f↙ = ff
+f🡗 = ff
 
-l↙ = ll
+l🡗 = ll
 
-c↙ = cc
+c🡗 = cc
 
-u↗ = uu
+u🡕 = uu
 
-o↗ = oo
+o🡕 = oo
 
-y↗ = yy
+y🡕 = yy
 
-b↗ = bb
+b🡕 = bb
 
-z↗ = zz
+z🡕 = zz
 
-j↗ = jx
+j🡕 = jx
 
-k↗ = kv
+k🡕 = kv
 
-s↗ = sg
+s🡕 = sg
 
-n↗ = nm
+n🡕 = nm
 
-d↗ = dp
+d🡕 = dp
 
-i↗ = iz
+i🡕 = iz
 
-w↗ = wv
+w🡕 = wv
 
-f↗ = fg
+f🡕 = fg
 
-l↗ = lm
+l🡕 = lm
 
-c↗ = cp
+c🡕 = cp
 
-x→ = xj
+x🡒 = xj
 
-v→ = vk
+v🡒 = vk
 
-g→ = gs
+g🡒 = gs
 
-m→ = mn
+m🡒 = mn
 
-p→ = pd
+p🡒 = pd
 
-b→ = bi
+b🡒 = bi
 
-s→ = sion
+s🡒 = sion
 
-a→ = aa
+a🡒 = aa
 
-e→ = ee
+e🡒 = ee
 
-i→ = ii
+i🡒 = ii
 
-h→ = hh
+h🡒 = hh
 
-w→ = wk
+w🡒 = wk
 
-f→ = fs
+f🡒 = fs
 
-l→ = ln
+l🡒 = ln
 
-c→ = cd
+c🡒 = cd
 
-<space>→ = <space>t
+<space>🡒 = <space>t
 
-t→ = tt
+t🡒 = tt
 
-x↘ = xw
+x🡖 = xw
 
-v↘ = vw
+v🡖 = vw
 
-g↘ = gf
+g🡖 = gf
 
-m↘ = ml
+m🡖 = ml
 
-p↘ = pc
+p🡖 = pc
 
-k↘ = kw
+k🡖 = kw
 
-s↘ = sf
+s🡖 = sf
 
-n↘ = nl
+n🡖 = nl
 
-d↘ = dc
+d🡖 = dc
 
