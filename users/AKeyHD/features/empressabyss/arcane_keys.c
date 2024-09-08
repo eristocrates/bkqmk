@@ -303,7 +303,7 @@ void process_home_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_ke
                 ARCANE_STRING("s", KC_S);
                 return;
             case KC_S:
-                ARCANE_STRING("sion", KC_N);
+                ARCANE_STRING("ion", KC_N);
                 return;
 
             // left middle column

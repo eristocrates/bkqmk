@@ -151,8 +151,8 @@ parse_config:
     type: trans
   mark_alternate_layer_activators: false
   qmk_remove_keycode_prefix:
-  - KC_
   - KC____
+  - KC_
   qmk_keycode_map:
     MI_BACK: "Back"
     MI_DOWN: "Crouch"
