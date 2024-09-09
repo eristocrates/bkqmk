@@ -1,3 +1,6 @@
+![image](https://github.com/user-attachments/assets/4bf81ca8-0423-4afc-a5c1-a5264d6ea529)
+
+
 | Motion                              | Button            | Command                                   | Reference                                                                                                              | Link                                                           |
 | :---------------------------------- | :---------------- | :---------------------------------------- | :--------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------- |
 | (632146) Half Circle Back Forward   | Left Attack       | ^                                         | 	   ^		to first non-blank character in the line                                                                        | https://neovim.io/doc/user/motion.html#%5E                     |
