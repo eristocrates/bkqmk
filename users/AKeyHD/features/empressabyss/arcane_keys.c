@@ -9,7 +9,7 @@
 #include "features/eristocrates/modal_keys.h"
 #include "features/eristocrates/utilities.h"
 #include "features/andrewjrae/qmk-vim/vim.h"
-#include "smtd_keycodes.h"
+// #include "smtd_keycodes.h"
 // #include "features/stasmarkin/sm_td.h"
 // https://github.com/empressabyss/nordrassil?tab=readme-ov-file#implementation
 
@@ -306,11 +306,9 @@ void process_home_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_ke
                 return;
 
                 // right index column
-            /*
             case KC_A:
                 ARCANE_STRING("a", KC_A);
                 return;
-            */
             case RSHFT_A:
                 ARCANE_STRING("a", RSHFT_A);
                 return;

@@ -1,4 +1,5 @@
 #pragma once
+/*
 enum smtd {
     SMTD_KEYCODES_BEGIN = NEW_SAFE_RANGE,
     LSHFT_D,
@@ -11,4 +12,5 @@ enum smtd {
     RWKEY_H,
     SMTD_KEYCODES_END,
 };
+*/
 // #include "features/stasmarkin/sm_td.h"

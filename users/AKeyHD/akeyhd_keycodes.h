@@ -387,6 +387,17 @@ enum keycodes {
     NEW_SAFE_RANGE, // Use for keymap-specific codes
 };
 /* ---------- Aliases ---------- */
+// home row mods
+
+#define LSHFT_D LSFT_T(KC_D)
+#define LCTRL_N LCTL_T(KC_N)
+#define LTALT_S LALT_T(KC_S)
+#define LWKEY_K LGUI_T(KC_K)
+#define RSHFT_A RSFT_T(KC_A)
+#define RCTRL_E RCTL_T(KC_E)
+#define RTALT_I RALT_T(KC_I)
+#define RWKEY_H RGUI_T(KC_H)
+
 // vim fighter
 #define VF___UP VM___UP
 #define VF_LEFT VM_LEFT

@@ -113,6 +113,9 @@ void call_keycode(uint16_t keycode);
          && keycode != MI_DOWN\
          && keycode != MI_JUMP\
          && keycode != MI_FRNT\
+)
+/*
+
          && keycode != LSHFT_D\
          && keycode != LCTRL_N\
          && keycode != LTALT_S\
@@ -121,7 +124,7 @@ void call_keycode(uint16_t keycode);
          && keycode != RCTRL_E\
          && keycode != RTALT_I\
          && keycode != RWKEY_H\
-)
+*/
 // clang-format on
 
 #define KC_BAR KC_PIPE // Ceci n'est pas une macro

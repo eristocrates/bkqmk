@@ -20,7 +20,7 @@
 #include "akeyhd_keycodes.h"
 #include "akeyhd_layout.h"
 #include "features/possumvibes/smart_layer.h"
-#include "smtd_keycodes.h"
+// #include "smtd_keycodes.h"
 // #include "features/stasmarkin/sm_td.h"
 
 /** \brief Automatically enable sniping-mode on the pointer layer. */
@@ -40,6 +40,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 
 // clang-format off
 
+     //KC____J, KC____K, KC____S, KC____N, KC____D, LHM_ARC, RHM_ARC, KC____A, KC____E, KC____I, KC____H, TH___QU,
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_AKEYHD] = LAYOUT(
   /* ╭───────────────────────────────────────────────────╮ ╭───────────────────────────────────────────────────╮ */

@@ -19,7 +19,7 @@
 #include "features/callum/oneshot.h"
 #include "features/callum/swapper.h"
 #include "akeyhd_keycodes.h"
-#include "smtd_keycodes.h"
+// #include "smtd_keycodes.h"
 #include "rgb_matrix.h"
 #include "lib/lib8tion/lib8tion.h"
 #include "send_string_keycodes.h"
@@ -95,7 +95,7 @@ enum syncs {
 keeb_state_config_t keeb_state = {
     .color_scheme_index = 0,
     .vim_mode_index = INSERT_MODE,
-    .vim_emulation = false,
+    .vim_emulation = true,
     .semicolon_mode = 0,
     .smart_space_mode = 0,
     .autopair_mode = 0,
@@ -669,6 +669,7 @@ static bool process_tap_or_long_mod_press_key(keyrecord_t *record, uint16_t long
     }
     return true; // Continue default handling.
 }
+/*
 void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
     switch (keycode) {
         SMTD_MT(LWKEY_K, KC_K, KC_LEFT_GUI)
@@ -681,6 +682,7 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
         SMTD_MT(RSHFT_A, KC_A, KC_RSFT)
     }
 }
+*/
 // TODO blindly calling false on these keycodes has prevented things like caps_word_press_user from working. Make sure to actually evaluate what keycodes do not require further processingr
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     /*
@@ -703,12 +705,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // TODO find where this gets used
     // I think it was part of the string mappings?
     // bool is_shifted = (get_mods() & MOD_MASK_SHIFT) || (get_oneshot_mods() & MOD_MASK_SHIFT);
+    // TODO send github issue on how destructive this is to get_last_keycode()
     /*
     if (!process_smtd(keycode, record)) {
         return false;
     }
     */
-    process_smtd(keycode, record);
     if (!process_skip_bigrams(keycode, record)) {
         return false;
     }

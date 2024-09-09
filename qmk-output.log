@@ -12,7 +12,7 @@ Copying bastardkb_charybdis_3x6_akeyhd.uf2 to userspace folder                  
 # Highest flash usage:
   259640 r keycode_display_map
    12756 T process_normal_mode_user
-    9860 T process_record_user
+    9912 T process_record_user
     4094 R pmw33xx_firmware_data
     2400 R keymaps
     1428 t rgb_task_render

@@ -25,7 +25,7 @@
 #include "features/possumvibes/override_keys.h"
 #include "features/possumvibes/smart_layer.h"
 #include "features/anantoghosh/skip_bigrams.h"
-#include "features/stasmarkin/sm_td.h"
+// #include "features/stasmarkin/sm_td.h"
 #include "akeyhd_keycodes.h"
 // don't forget to add .c paths to rules.mk!
 

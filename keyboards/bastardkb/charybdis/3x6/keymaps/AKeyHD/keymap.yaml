@@ -1,9 +1,9 @@
 layout: {qmk_keyboard: bastardkb/charybdis/3x6, qmk_layout: LAYOUT}
 layers:
   AKEYHD:
-  - [X, V, G, M, P, {t: '*', s: Arcane}, {t: '%', s: Arcane}, U, O, Y, B, Z]
-  - [J, LWKEY K, LTALT S, LCTRL N, LSHFT D, {t: '=', s: Arcane}, {t: ':', s: Arcane}, RSHFT A, RCTRL E, RTALT I, RWKEY H, {t: QU, s: Q}]
-  - [{t: Leader, s: Core}, W, F, L, C, {t: '\', s: Arcane}, {t: '/', s: Arcane}, (, {t: ',', s: Adaptive, h: OSM Shift}, {t: '.', s: Adaptive, h: Capsword}, ), {t: Vim, s: Genuine, h: Emulation}]
+  - ['   X', '   V', '   G', '   M', '   P', {t: '*', s: Arcane}, {t: '%', s: Arcane}, '   U', '   O', '   Y', '   B', '   Z']
+  - ['   J', LWKEY K, LTALT S, LCTRL N, LSHFT D, {t: '=', s: Arcane}, {t: ':', s: Arcane}, RSHFT A, RCTRL E, RTALT I, RWKEY H, {t: QU, s: Q}]
+  - [{t: Leader, s: Core}, '   W', '   F', '   L', '   C', {t: '\', s: Arcane}, {t: '/', s: Arcane}, (, {t: ',', s: Adaptive, h: OSM Shift}, {t: '.', s: Adaptive, h: Capsword}, ), {t: Vim, s: Genuine, h: Emulation}]
   - [{t: Num Pad, h: MO Layer}, {t: R, h: CTRLR}, {t: Space, h: SML}, {t: Space, h: SMR}, {t: T, h: ALTT}]
   COMBOREF:
   - [{t: LT OUTR, h: 0}, {t: LT PNKY, h: 1}, {t: LT RING, h: 2}, {t: LT MDLE, h: 3}, {t: LT INDX, h: 4}, {t: LT INNR, h: 5}, {t: RT INNR, h: 6}, {t: RT INDX, h: 7}, {t: RT MDLE, h: 8}, {t: RT RING, h: 9}, {t: RT PNKY, h: 10}, {t: RT OUTR, h: 11}]
@@ -239,8 +239,8 @@ layers:
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - F
-    - L
+    - '   F'
+    - '   L'
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - Double Click
@@ -281,8 +281,8 @@ layers:
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - F
-    - L
+    - '   F'
+    - '   L'
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - Snipe DPI Down
@@ -597,9 +597,9 @@ layers:
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, BASE]
   - [RAND, RAND, RAND, RAND, RAND]
   TEST:
-  - [X, V, G, M, P, {t: '*', s: Arcane}, {t: '%', s: Arcane}, U, O, Y, B, Z]
-  - [J, LWKEY K, LTALT S, LCTRL N, LSHFT D, {t: '=', s: Arcane}, {t: ':', s: Arcane}, RSHFT A, RCTRL E, RTALT I, RWKEY H, {t: QU, s: Q}]
-  - [{t: Leader, s: Core}, W, F, L, C, {t: '\', s: Arcane}, {t: '/', s: Arcane}, (, {t: ',', s: Adaptive, h: OSM Shift}, {t: '.', s: Adaptive, h: Capsword}, ), {t: Vim, s: Genuine, h: Emulation}]
+  - ['   X', '   V', '   G', '   M', '   P', {t: '*', s: Arcane}, {t: '%', s: Arcane}, '   U', '   O', '   Y', '   B', '   Z']
+  - ['   J', LWKEY K, LTALT S, LCTRL N, LSHFT D, {t: '=', s: Arcane}, {t: ':', s: Arcane}, RSHFT A, RCTRL E, RTALT I, RWKEY H, {t: QU, s: Q}]
+  - [{t: Leader, s: Core}, '   W', '   F', '   L', '   C', {t: '\', s: Arcane}, {t: '/', s: Arcane}, (, {t: ',', s: Adaptive, h: OSM Shift}, {t: '.', s: Adaptive, h: Capsword}, ), {t: Vim, s: Genuine, h: Emulation}]
   - [{t: Num Pad, h: MO Layer}, {t: R, h: CTRLR}, {t: Space, h: SML}, {t: Space, h: SMR}, {t: T, h: ALTT}]
 combos:
 
