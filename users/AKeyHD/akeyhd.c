@@ -95,7 +95,7 @@ enum syncs {
 keeb_state_config_t keeb_state = {
     .color_scheme_index = 0,
     .vim_mode_index = INSERT_MODE,
-    .vim_emulation = true,
+    .vim_emulation = false,
     .semicolon_mode = 0,
     .smart_space_mode = 0,
     .autopair_mode = 0,
@@ -742,6 +742,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (update_input_buffer(keycode, record)) {
         // Expand "qumk" to qmk
         if (input_buffer[INPUT_BUFFER_SIZE - 3] == KC_Q && input_buffer[INPUT_BUFFER_SIZE - 2] == KC_M && input_buffer[INPUT_BUFFER_SIZE - 1] == KC_K) {
+            SEND_STRING(SS_TAP(X_BSPC) SS_TAP(X_BSPC) SS_TAP(X_BSPC) "qmk");
+            return false;
+        }
+        if (input_buffer[INPUT_BUFFER_SIZE - 3] == KC_Q && input_buffer[INPUT_BUFFER_SIZE - 2] == KC_M && input_buffer[INPUT_BUFFER_SIZE - 1] == LWKEY_K) {
             SEND_STRING(SS_TAP(X_BSPC) SS_TAP(X_BSPC) SS_TAP(X_BSPC) "qmk");
             return false;
         }

@@ -2,6 +2,7 @@
 // #include QMK_KEYBOARD_H
 #include "quantum.h"
 #include "../../akeyhd_keycodes.h"
+#include "../../smtd_keycodes.h"
 
 void send_string_with_caps_word(const char *str);
 void call_keycode(uint16_t keycode);
@@ -112,6 +113,14 @@ void call_keycode(uint16_t keycode);
          && keycode != MI_DOWN\
          && keycode != MI_JUMP\
          && keycode != MI_FRNT\
+         && keycode != LSHFT_D\
+         && keycode != LCTRL_N\
+         && keycode != LTALT_S\
+         && keycode != LWKEY_K\
+         && keycode != RSHFT_A\
+         && keycode != RCTRL_E\
+         && keycode != RTALT_I\
+         && keycode != RWKEY_H\
 )
 // clang-format on
 
