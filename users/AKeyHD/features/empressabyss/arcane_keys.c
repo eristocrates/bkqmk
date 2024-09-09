@@ -9,6 +9,8 @@
 #include "features/eristocrates/modal_keys.h"
 #include "features/eristocrates/utilities.h"
 #include "features/andrewjrae/qmk-vim/vim.h"
+#include "smtd_keycodes.h"
+// #include "features/stasmarkin/sm_td.h"
 // https://github.com/empressabyss/nordrassil?tab=readme-ov-file#implementation
 
 void arcane_send_string_P(const char* str, uint16_t repeat_keycode) {
@@ -71,20 +73,26 @@ void process_top_left_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_keyd
                 // right pinky column
 
             case KC_H:
+            case RWKEY_H:
                 ARCANE_STRING("b", KC_B);
                 return;
                 // right ring column
 
             case KC_I:
+            case RTALT_I:
                 ARCANE_STRING("y", KC_Y);
                 return;
                 // right middle column
             case KC_E:
+            case RCTRL_E:
                 ARCANE_STRING("o", KC_O);
                 return;
 
                 // right index column
             case KC_A:
+                ARCANE_STRING("u", KC_U);
+                return;
+            case RSHFT_A:
                 ARCANE_STRING("u", KC_U);
                 return;
 
@@ -134,6 +142,7 @@ void process_top_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_key
                 /* anti sfb magic */
             // right pinky column
             case KC_I:
+            case RTALT_I:
                 ARCANE_STRING("z", KC_Z);
                 return;
                 // left outer column
@@ -143,24 +152,28 @@ void process_top_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_key
 
                 // left pinky column
             case KC_K:
+            case LWKEY_K:
             case KC_W:
                 ARCANE_STRING("v", KC_V);
                 return;
 
             // left ring column
             case KC_S:
+            case LTALT_S:
             case KC_F:
                 ARCANE_STRING("g", KC_G);
                 return;
 
             // left middle column
             case KC_N:
+            case LCTRL_N:
             case KC_L:
                 ARCANE_STRING("m", KC_M);
                 return;
 
             // left index column
             case KC_D:
+            case LSHFT_D:
             case KC_C:
                 ARCANE_STRING("p", KC_P);
                 return;
@@ -184,20 +197,32 @@ void process_home_left_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_key
             case KC_K:
                 ARCANE_STRING("k", KC_K);
                 return;
+            case LWKEY_K:
+                ARCANE_STRING("k", LWKEY_K);
+                return;
 
             // left ring column
             case KC_S:
                 ARCANE_STRING("s", KC_S);
+                return;
+            case LTALT_S:
+                ARCANE_STRING("s", LTALT_S);
                 return;
 
             // left middle column
             case KC_N:
                 ARCANE_STRING("n", KC_N);
                 return;
+            case LCTRL_N:
+                ARCANE_STRING("n", LCTRL_N);
+                return;
 
             // left index column
             case KC_D:
                 ARCANE_STRING("d", KC_D);
+                return;
+            case LSHFT_D:
+                ARCANE_STRING("d", LSHFT_D);
                 return;
 
                 // left thumb
@@ -260,20 +285,34 @@ void process_home_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_ke
             case KC_H:
                 ARCANE_STRING("h", KC_H);
                 return;
+            case RWKEY_H:
+                ARCANE_STRING("h", RWKEY_H);
+                return;
 
             // right ring column
             case KC_I:
                 ARCANE_STRING("i", KC_I);
+                return;
+            case RTALT_I:
+                ARCANE_STRING("i", RTALT_I);
                 return;
 
             // right middle column
             case KC_E:
                 ARCANE_STRING("e", KC_E);
                 return;
+            case RCTRL_E:
+                ARCANE_STRING("e", RCTRL_E);
+                return;
 
                 // right index column
+            /*
             case KC_A:
                 ARCANE_STRING("a", KC_A);
+                return;
+            */
+            case RSHFT_A:
+                ARCANE_STRING("a", RSHFT_A);
                 return;
 
                 // right thumb
@@ -307,6 +346,7 @@ void process_home_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_ke
                 ARCANE_STRING("s", KC_S);
                 return;
             case KC_S:
+            case LTALT_S:
                 ARCANE_STRING("ion", KC_N);
                 return;
 
@@ -381,12 +421,14 @@ void process_bottom_left_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_k
 
             // right ring column
             case KC_I:
+            case RTALT_I:
                 call_keycode(DOT_ARC);
                 return;
 
                 // right middle column
 
             case KC_E:
+            case RCTRL_E:
                 call_keycode(COM_ARC);
                 return;
                 // right index column
@@ -406,27 +448,30 @@ void process_bottom_right_arcane(uint16_t keycode, uint8_t mods, uint16_t prior_
             // left pinky column
             case KC_V:
             case KC_K:
+            case LWKEY_K:
                 ARCANE_STRING("w", KC_W);
                 return;
 
             // left ring column
             case KC_G:
             case KC_S:
+            case LTALT_S:
                 ARCANE_STRING("f", KC_F);
                 return;
 
             // left middle column
             case KC_M:
             case KC_N:
+            case LCTRL_N:
                 ARCANE_STRING("l", KC_L);
                 return;
 
             // left index column
             case KC_P:
             case KC_D:
+            case LSHFT_D:
                 ARCANE_STRING("c", KC_C);
                 return;
-
                 // left thumb
 
                 // right outer column

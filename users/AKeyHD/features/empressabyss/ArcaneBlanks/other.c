@@ -16,8 +16,8 @@ case KC_MENU: {
 case KC_SELECT: {
     ARCANE_STRING("Select", KC_SELECT);
 } break;
-case KC_STOP: {
-    ARCANE_STRING("Stop", KC_STOP);
+case KC_CANCEL: {
+    ARCANE_STRING("Stop", KC_CANCEL);
 } break;
 case KC_AGAIN: {
     ARCANE_STRING("Again", KC_AGAIN);

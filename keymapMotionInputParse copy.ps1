@@ -116,7 +116,7 @@ foreach ($line in $fileContent) {
                 }
                 elseif ($line -match "key_\d\s*=\s*(.+);") {
                     $keyValue = $matches[1]
-                    if ($keyValue -notmatch "KC_STOP" -and $keyValue -notmatch "key_\d\s*=\s*KC_STOP") {
+                    if ($keyValue -notmatch "KC_CANCEL" -and $keyValue -notmatch "key_\d\s*=\s*KC_CANCEL") {
                         $currentDirectionBody += $keyValue
                     }
                 }

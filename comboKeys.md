@@ -6,7 +6,7 @@
 | have             | H, V          |
 | do               | D, O          |
 | to               | O, T          |
-| of               | F, O          |
+| of               | <Space>, F    |
 | in (word)        | I, N          |
 | for              | F, R          |
 | on               | N, O          |
@@ -23,6 +23,7 @@
 | but              | B, T          |
 | 've              | <Comma>, V    |
 | 's               | <Comma>, S    |
+| pt               | <Comma>, T    |
 | he               | <Space>, H    |
 | i                | <Space>, I    |
 | it               | I, T          |

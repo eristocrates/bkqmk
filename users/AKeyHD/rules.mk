@@ -14,6 +14,7 @@ UNICODE_ENABLE = yes
 VIA_ENABLE = no
 #AUTOCORRECT_ENABLE = yes
 TOP_SYMBOLS = yes
+DEFERRED_EXEC_ENABLE = yes
 
 INTROSPECTION_KEYMAP_C = akeyhd.c
 
@@ -40,6 +41,7 @@ SRC += features/possumvibes/mod_lock.c
 SRC += features/possumvibes/nshot_mod.c
 SRC += features/possumvibes/override_keys.c
 SRC += features/possumvibes/smart_layer.c
+SRC += features/anantoghosh/skip_bigrams.c
 # don't forget to add .h paths to akeyhd.h!
 
 

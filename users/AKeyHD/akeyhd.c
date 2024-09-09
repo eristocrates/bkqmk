@@ -14,15 +14,16 @@
 #include "features/possumvibes/smart_layer.h"
 #include "features/eristocrates/utilities.h"
 #include "features/eristocrates/rgb_matrix_stuff.h"
+#include "features/anantoghosh/skip_bigrams.h"
 #include "features/getreuer/layer_lock.h"
 #include "features/callum/oneshot.h"
 #include "features/callum/swapper.h"
 #include "akeyhd_keycodes.h"
+#include "smtd_keycodes.h"
 #include "rgb_matrix.h"
 #include "lib/lib8tion/lib8tion.h"
 #include "send_string_keycodes.h"
 #include "transactions.h"
-
 //----------------------------------------------------------
 // RGB Matrix naming
 #include <rgb_matrix.h>
@@ -88,7 +89,6 @@ enum syncs {
     SYNC_COLOR_SCHEME,
     SYNC_VIM_MODE,
 };
-
 // _Static_assert(sizeof(keeb_state_config_t) == sizeof(uint32_t), "keeb_state EECONFIG out of spec.");
 
 // clang-format off
@@ -264,6 +264,14 @@ static bool process_quopostrokey(uint16_t keycode, keyrecord_t *record) {
         case KC_A ... KC_Z:
         case CTRL__R:
         case ALT___T:
+        case LSHFT_D:
+        case LCTRL_N:
+        case LTALT_S:
+        case LWKEY_K:
+        case RSHFT_A:
+        case RCTRL_E:
+        case RTALT_I:
+        case RWKEY_H:
             within_word = true;
             break;
 
@@ -661,11 +669,24 @@ static bool process_tap_or_long_mod_press_key(keyrecord_t *record, uint16_t long
     }
     return true; // Continue default handling.
 }
-
+void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
+    switch (keycode) {
+        SMTD_MT(LWKEY_K, KC_K, KC_LEFT_GUI)
+        SMTD_MT(LTALT_S, KC_S, KC_LEFT_ALT)
+        SMTD_MT(LCTRL_N, KC_N, KC_LEFT_CTRL)
+        SMTD_MT(LSHFT_D, KC_D, KC_LSFT)
+        SMTD_MT(RWKEY_H, KC_H, KC_RIGHT_GUI)
+        SMTD_MT(RTALT_I, KC_I, KC_RIGHT_ALT)
+        SMTD_MT(RCTRL_E, KC_E, KC_RIGHT_CTRL)
+        SMTD_MT(RSHFT_A, KC_A, KC_RSFT)
+    }
+}
 // TODO blindly calling false on these keycodes has prevented things like caps_word_press_user from working. Make sure to actually evaluate what keycodes do not require further processingr
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    /*
     static bool     tapped    = false;
     static uint16_t tap_timer = 0;
+    */
 
     /*
     #ifdef CONSOLE_ENABLE
@@ -680,19 +701,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     */
     // TODO find where this gets used
+    // I think it was part of the string mappings?
     // bool is_shifted = (get_mods() & MOD_MASK_SHIFT) || (get_oneshot_mods() & MOD_MASK_SHIFT);
+    /*
+    if (!process_smtd(keycode, record)) {
+        return false;
+    }
+    */
+    process_smtd(keycode, record);
+    if (!process_skip_bigrams(keycode, record)) {
+        return false;
+    }
     if (binary_mode && !process_bitwise_num(keycode, record)) return false;
     if (!process_bitwise_f(keycode, record)) return false;
     if (!process_quopostrokey(keycode, record)) {
         return false;
     }
 
+    process_nshot_state(keycode, record);
     if (!process_vim_mode(keycode, record)) {
         return !vim_emulation_enabled();
     }
 
     process_mod_lock(keycode, record);
-    process_nshot_state(keycode, record);
     if (!process_layer_lock(keycode, record, LR_LOCK)) {
         return false;
     }
@@ -1693,33 +1724,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case MD_LY:
             if (record->event.pressed) {
                 send_string_with_caps_word("ly");
-                if (smart_space_mode) {
-                    tap_code(KC_SPC);
-                }
             }
             return true;
         case MD_ING:
             if (record->event.pressed) {
                 send_string_with_caps_word("ing");
-                if (smart_space_mode) {
-                    tap_code(KC_SPC);
-                }
             }
             return true;
         case MD_SION:
             if (record->event.pressed) {
                 send_string_with_caps_word("sion");
-                if (smart_space_mode) {
-                    tap_code(KC_SPC);
-                }
             }
             return true;
         case MD_TION:
             if (record->event.pressed) {
                 send_string_with_caps_word("tion");
-                if (smart_space_mode) {
-                    tap_code(KC_SPC);
-                }
             }
             return true;
         case MD_OULD:
@@ -1970,6 +1989,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 send_string_with_caps_word("'s");
             }
             return true;
+        case MD_PT:
+            if (record->event.pressed) {
+                if (last_smart_space) {
+                    tap_code(KC_BSPC);
+                }
+                send_string_with_caps_word("'t");
+            }
+            return true;
 
         case MD_BSPC:
             if (record->event.pressed) {
@@ -2147,10 +2174,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                         tap_code(KC_LEFT);
                     } else {
                         tap_code16(KC_QUES);
-                        if (smart_space_mode) {
-                            tap_code(KC_SPC);
-                        }
-                        last_smart_space = true;
                     }
                 }
             }
@@ -2170,10 +2193,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                         tap_code(KC_LEFT);
                     } else {
                         tap_code16(KC_EXLM);
-                        if (smart_space_mode) {
-                            tap_code(KC_SPC);
-                        }
-                        last_smart_space = true;
                     }
                 }
             }
@@ -2194,9 +2213,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                         return false;
                     } else {
                         tap_code16(KC_SCLN);
-                        if (smart_space_mode) {
-                            tap_code(KC_ENT);
-                        }
                         last_smart_space = true;
                     }
                 }
@@ -2480,9 +2496,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 // uint8_t color_scheme_max = sizeof(color) / sizeof(nshot_state_t);
             }
             return false;
+        case KC_ESC:
+            if (IS_LAYER_ON(_POINTER)) {
+                pointer_mode_disable();
+            }
+            tap_code(KC_ESC);
+            return false;
+        case KC_DSFB:
+            return false;
         default:
             return true; // Process all other keycodes normally
     }
+    /*
     // https://getreuer.info/posts/keyboards/triggers/index.html
     // TODO figure out how to make this work via main switch cases
     if (keycode == KC_TEST) {
@@ -2497,6 +2522,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         // On an event with any other key, reset the double tap state.
         tapped = false;
     }
+    */
 
     return true;
 }
@@ -2623,7 +2649,7 @@ void matrix_scan_user(void) {
     }
     /*
     if (timer_elapsed(last_keycode_timer) == LAST_KEYCODE_TIMEOUT_MS) {
-        set_last_keycode(KC_STOP);
+        set_last_keycode(KC_CANCEL);
     }
     */
 
@@ -2788,6 +2814,7 @@ bool process_combo_key_release(uint16_t combo_index, combo_t *combo, uint8_t key
         case WORD_COMBO_WITH:
         case WORD_COMBO_PVE:
         case WORD_COMBO_PS:
+        case WORD_COMBO_PT:
         case WORD_COMBO_OF:
         case WORD_COMBO_BE:
         case WORD_COMBO_INW:
@@ -3016,11 +3043,11 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
     switch (keycode) {
         case KC_ENT:
             if (vim_emulation_enabled() && record->event.pressed) tap_code16(KC_ENT);
-            return KC_STOP;
+            return KC_CANCEL;
 
         case VIM_TOG:
             if (record->event.pressed) toggle_vim_emulation();
-            return KC_STOP;
+            return KC_CANCEL;
         // TODO add join lines section https://getreuer.info/posts/keyboards/macros/index.html
         // TODO ensure . repetition, and gn gN are accessible
         //  TODO add section mappings to vim https://neovim.io/doc/user/motion.html#section
@@ -3032,20 +3059,20 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
         // TODO lock motion inputs as "held" so long as the final direction is held. qcf action should repeat so long as the forward is still being held.
         case MI_BACK:
             is_back_held = record->event.pressed;
-            return KC_STOP;
+            return KC_CANCEL;
         case MI_DOWN:
             is_down_held = record->event.pressed;
-            return KC_STOP;
+            return KC_CANCEL;
         case MI_JUMP:
             is_jump_held = record->event.pressed;
-            return KC_STOP;
+            return KC_CANCEL;
         case MI_FRNT:
             is_front_held = record->event.pressed;
-            return KC_STOP;
+            return KC_CANCEL;
 
         case VM_LEFT: {
-            static uint16_t key_1 = KC_STOP;
-            static uint16_t key_2 = KC_STOP;
+            static uint16_t key_1 = KC_CANCEL;
+            static uint16_t key_2 = KC_CANCEL;
             if (record->event.pressed) {
                 switch (DIRECTIONS) {
                     case HCBF_MOTION: // https://neovim.io/doc/user/motion.html#%5E
@@ -3086,31 +3113,31 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
 
                 if (!vim_emulation_enabled()) {
                     tap_code16(key_1);
-                    if (key_2 != KC_STOP) tap_code16(key_2);
+                    if (key_2 != KC_CANCEL) tap_code16(key_2);
 
-                    return KC_STOP;
+                    return KC_CANCEL;
                 }
             } else {
                 if (!vim_emulation_enabled()) {
-                    key_1 = key_2 = KC_STOP;
+                    key_1 = key_2 = KC_CANCEL;
                 }
             }
 
             if (vim_emulation_enabled()) {
-                if (key_2 == KC_STOP) {
+                if (key_2 == KC_CANCEL) {
                     return key_1;
                 } else {
                     process_normal_mode_user(key_1, record, true);
                     process_normal_mode_user(key_2, record, true);
                     // TODO add emulated ge with ctrl+left left
-                    if (!record->event.pressed) return key_1 = key_2 = KC_STOP;
+                    if (!record->event.pressed) return key_1 = key_2 = KC_CANCEL;
                 }
             }
             // clear_motions();
         }
         case VM_DOWN: {
-            static uint16_t key_1 = KC_STOP;
-            static uint16_t key_2 = KC_STOP;
+            static uint16_t key_1 = KC_CANCEL;
+            static uint16_t key_2 = KC_CANCEL;
             if (record->event.pressed) {
                 switch (DIRECTIONS) {
                     case HCFB_MOTION: // https://neovim.io/doc/user/motion.html#g_
@@ -3151,30 +3178,30 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
 
                 if (!vim_emulation_enabled()) {
                     tap_code16(key_1);
-                    if (key_2 != KC_STOP) tap_code16(key_2);
-                    return KC_STOP;
+                    if (key_2 != KC_CANCEL) tap_code16(key_2);
+                    return KC_CANCEL;
                 }
             } else {
                 if (!vim_emulation_enabled()) {
-                    key_1 = key_2 = KC_STOP;
+                    key_1 = key_2 = KC_CANCEL;
                 }
             }
 
             if (vim_emulation_enabled()) {
-                if (key_2 == KC_STOP) {
+                if (key_2 == KC_CANCEL) {
                     return key_1;
                 } else {
                     process_normal_mode_user(key_1, record, true);
                     process_normal_mode_user(key_2, record, true);
                     // TODO add emulated ge with ctrl+left left
-                    if (!record->event.pressed) return key_1 = key_2 = KC_STOP;
+                    if (!record->event.pressed) return key_1 = key_2 = KC_CANCEL;
                 }
             }
             // clear_motions();
         }
         case VM___UP: {
-            static uint16_t key_1 = KC_STOP;
-            static uint16_t key_2 = KC_STOP;
+            static uint16_t key_1 = KC_CANCEL;
+            static uint16_t key_2 = KC_CANCEL;
             if (record->event.pressed) {
                 switch (DIRECTIONS) {
                     case HCF_MOTION: // https://neovim.io/doc/user/motion.html#L
@@ -3211,31 +3238,31 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
 
                 if (!vim_emulation_enabled()) {
                     tap_code16(key_1);
-                    if (key_2 != KC_STOP) tap_code16(key_2);
-                    return KC_STOP;
+                    if (key_2 != KC_CANCEL) tap_code16(key_2);
+                    return KC_CANCEL;
                 }
             } else {
                 if (!vim_emulation_enabled()) {
-                    key_1 = key_2 = KC_STOP;
+                    key_1 = key_2 = KC_CANCEL;
                 }
             }
 
             if (vim_emulation_enabled()) {
-                if (key_2 == KC_STOP) {
+                if (key_2 == KC_CANCEL) {
                     return key_1;
                 } else {
                     process_normal_mode_user(key_1, record, true);
                     process_normal_mode_user(key_2, record, true);
                     // TODO add emulated ge with ctrl+left left
-                    if (!record->event.pressed) return key_1 = key_2 = KC_STOP;
+                    if (!record->event.pressed) return key_1 = key_2 = KC_CANCEL;
                 }
             }
 
             // clear_motions();
         }
         case VM_RGHT: {
-            static uint16_t key_1 = KC_STOP;
-            static uint16_t key_2 = KC_STOP;
+            static uint16_t key_1 = KC_CANCEL;
+            static uint16_t key_2 = KC_CANCEL;
             if (record->event.pressed) {
                 switch (DIRECTIONS) {
                     case HCFB_MOTION:            // https://neovim.io/doc/user/motion.html#g%24
@@ -3279,31 +3306,31 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
 
                 if (!vim_emulation_enabled()) {
                     tap_code16(key_1);
-                    if (key_2 != KC_STOP) tap_code16(key_2);
-                    return KC_STOP;
+                    if (key_2 != KC_CANCEL) tap_code16(key_2);
+                    return KC_CANCEL;
                 }
             } else {
                 if (!vim_emulation_enabled()) {
-                    key_1 = key_2 = KC_STOP;
+                    key_1 = key_2 = KC_CANCEL;
                 }
             }
 
             if (vim_emulation_enabled()) {
-                if (key_2 == KC_STOP) {
+                if (key_2 == KC_CANCEL) {
                     return key_1;
                 } else {
                     process_normal_mode_user(key_1, record, true);
                     process_normal_mode_user(key_2, record, true);
                     // TODO add emulated ge with ctrl+left left
-                    if (!record->event.pressed) return key_1 = key_2 = KC_STOP;
+                    if (!record->event.pressed) return key_1 = key_2 = KC_CANCEL;
                 }
             }
 
             // clear_motions();
         }
         case VM_VERT: {
-            static uint16_t key_1 = KC_STOP;
-            static uint16_t key_2 = KC_STOP;
+            static uint16_t key_1 = KC_CANCEL;
+            static uint16_t key_2 = KC_CANCEL;
             if (record->event.pressed) {
                 switch (DIRECTIONS) {
                     case FB_MOTION: // https://neovim.io/doc/user/motion.html#%5D%5B
@@ -3352,32 +3379,32 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
 
                 if (!vim_emulation_enabled()) {
                     tap_code16(key_1);
-                    if (key_2 != KC_STOP) tap_code16(key_2);
-                    return KC_STOP;
+                    if (key_2 != KC_CANCEL) tap_code16(key_2);
+                    return KC_CANCEL;
                 }
             } else {
                 if (!vim_emulation_enabled()) {
-                    key_1 = key_2 = KC_STOP;
+                    key_1 = key_2 = KC_CANCEL;
                 }
             }
 
             if (vim_emulation_enabled()) {
-                if (key_2 == KC_STOP) {
+                if (key_2 == KC_CANCEL) {
                     return key_1;
                 } else {
                     process_normal_mode_user(key_1, record, true);
                     process_normal_mode_user(key_2, record, true);
                     // TODO add emulated ge with ctrl+left left
-                    if (!record->event.pressed) return key_1 = key_2 = KC_STOP;
+                    if (!record->event.pressed) return key_1 = key_2 = KC_CANCEL;
                 }
             }
 
             // clear_motions();
         }
         case VM_HORI: {
-            static uint16_t key_1 = KC_STOP;
-            static uint16_t key_2 = KC_STOP;
-            static uint16_t key_3 = KC_STOP;
+            static uint16_t key_1 = KC_CANCEL;
+            static uint16_t key_2 = KC_CANCEL;
+            static uint16_t key_3 = KC_CANCEL;
             // TODO decide if rot13 is worth adding
             if (record->event.pressed) {
                 switch (DIRECTIONS) {
@@ -3434,42 +3461,42 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
 
                 if (!vim_emulation_enabled()) {
                     tap_code16(key_1);
-                    if (key_2 != KC_STOP) tap_code16(key_2);
-                    if (key_3 != KC_STOP) tap_code16(key_3);
-                    return KC_STOP;
+                    if (key_2 != KC_CANCEL) tap_code16(key_2);
+                    if (key_3 != KC_CANCEL) tap_code16(key_3);
+                    return KC_CANCEL;
                 }
             } else {
                 if (!vim_emulation_enabled()) {
-                    key_1 = key_2 = key_3 = KC_STOP;
+                    key_1 = key_2 = key_3 = KC_CANCEL;
                 }
             }
 
             if (vim_emulation_enabled()) {
                 // TODO double check this covers key 3 case
-                if (key_1 == KC_STOP) {
+                if (key_1 == KC_CANCEL) {
                     return key_1;
                 } else {
                     process_normal_mode_user(key_1, record, true);
                 }
-                if (key_2 == KC_STOP) {
+                if (key_2 == KC_CANCEL) {
                     return key_2;
                 } else {
                     process_normal_mode_user(key_2, record, true);
                 }
-                if (key_3 != KC_STOP) {
+                if (key_3 != KC_CANCEL) {
                     return key_3;
                 } else {
                     process_normal_mode_user(key_3, record, true);
                 }
                 // TODO add emulated ge with ctrl+left left
-                if (!record->event.pressed) return key_1 = key_2 = key_3 = KC_STOP;
+                if (!record->event.pressed) return key_1 = key_2 = key_3 = KC_CANCEL;
             }
 
             // clear_motions();
         }
         case VM_NTRL: {
-            static uint16_t key_1 = KC_STOP;
-            static uint16_t key_2 = KC_STOP;
+            static uint16_t key_1 = KC_CANCEL;
+            static uint16_t key_2 = KC_CANCEL;
             if (record->event.pressed) {
                 switch (DIRECTIONS) {
                     // TODO find non text object commands and overload these. use ternary operator to check against is_text_object
@@ -3534,31 +3561,31 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
 
                 if (!vim_emulation_enabled()) {
                     tap_code16(key_1);
-                    if (key_2 != KC_STOP) tap_code16(key_2);
-                    return KC_STOP;
+                    if (key_2 != KC_CANCEL) tap_code16(key_2);
+                    return KC_CANCEL;
                 }
             } else {
                 if (!vim_emulation_enabled()) {
-                    key_1 = key_2 = KC_STOP;
+                    key_1 = key_2 = KC_CANCEL;
                 }
             }
 
             if (vim_emulation_enabled()) {
-                if (key_2 == KC_STOP) {
+                if (key_2 == KC_CANCEL) {
                     return key_1;
                 } else {
                     process_normal_mode_user(key_1, record, true);
                     process_normal_mode_user(key_2, record, true);
                     // TODO add emulated ge with ctrl+left left
-                    if (!record->event.pressed) return key_1 = key_2 = KC_STOP;
+                    if (!record->event.pressed) return key_1 = key_2 = KC_CANCEL;
                 }
             }
 
             // clear_motions();
         }
         case VM_CHAN: {
-            static uint16_t key_1 = KC_STOP;
-            static uint16_t key_2 = KC_STOP;
+            static uint16_t key_1 = KC_CANCEL;
+            static uint16_t key_2 = KC_CANCEL;
             if (record->event.pressed) {
                 switch (DIRECTIONS) {
                     case HCF_MOTION: // https://neovim.io/doc/user/change.html#C
@@ -3603,30 +3630,30 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
 
                 if (!vim_emulation_enabled()) {
                     tap_code16(key_1);
-                    if (key_2 != KC_STOP) tap_code16(key_2);
-                    return KC_STOP;
+                    if (key_2 != KC_CANCEL) tap_code16(key_2);
+                    return KC_CANCEL;
                 }
             } else {
                 if (!vim_emulation_enabled()) {
-                    key_1 = key_2 = KC_STOP;
+                    key_1 = key_2 = KC_CANCEL;
                 }
             }
 
             if (vim_emulation_enabled()) {
-                if (key_2 == KC_STOP) {
+                if (key_2 == KC_CANCEL) {
                     return key_1;
                 } else {
                     process_normal_mode_user(key_1, record, true);
                     process_normal_mode_user(key_2, record, true);
-                    if (!record->event.pressed) return key_1 = key_2 = KC_STOP;
+                    if (!record->event.pressed) return key_1 = key_2 = KC_CANCEL;
                 }
             }
 
             // clear_motions();
         }
         case VM_DELE: {
-            static uint16_t key_1 = KC_STOP;
-            static uint16_t key_2 = KC_STOP;
+            static uint16_t key_1 = KC_CANCEL;
+            static uint16_t key_2 = KC_CANCEL;
             if (record->event.pressed) {
                 switch (DIRECTIONS) {
                     case HCF_MOTION: // https://neovim.io/doc/user/change.html#D
@@ -3666,22 +3693,22 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
 
                 if (!vim_emulation_enabled()) {
                     tap_code16(key_1);
-                    if (key_2 != KC_STOP) tap_code16(key_2);
-                    return KC_STOP;
+                    if (key_2 != KC_CANCEL) tap_code16(key_2);
+                    return KC_CANCEL;
                 }
             } else {
                 if (!vim_emulation_enabled()) {
-                    key_1 = key_2 = KC_STOP;
+                    key_1 = key_2 = KC_CANCEL;
                 }
             }
 
             if (vim_emulation_enabled()) {
-                if (key_2 == KC_STOP) {
+                if (key_2 == KC_CANCEL) {
                     return key_1;
                 } else {
                     process_normal_mode_user(key_1, record, true);
                     process_normal_mode_user(key_2, record, true);
-                    if (!record->event.pressed) return key_1 = key_2 = KC_STOP;
+                    if (!record->event.pressed) return key_1 = key_2 = KC_CANCEL;
                 }
             }
 
@@ -3691,8 +3718,8 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
         // TODO maybe dedicated register one shot layer?
         // https://neovim.io/doc/user/change.html#registers
         case VM_YANK: {
-            static uint16_t key_1 = KC_STOP;
-            static uint16_t key_2 = KC_STOP;
+            static uint16_t key_1 = KC_CANCEL;
+            static uint16_t key_2 = KC_CANCEL;
             if (record->event.pressed) {
                 switch (DIRECTIONS) {
                     case HCF_MOTION: // https://neovim.io/doc/user/change.html#Y
@@ -3747,30 +3774,30 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
 
                 if (!vim_emulation_enabled()) {
                     tap_code16(key_1);
-                    if (key_2 != KC_STOP) tap_code16(key_2);
-                    return KC_STOP;
+                    if (key_2 != KC_CANCEL) tap_code16(key_2);
+                    return KC_CANCEL;
                 }
             } else {
                 if (!vim_emulation_enabled()) {
-                    key_1 = key_2 = KC_STOP;
+                    key_1 = key_2 = KC_CANCEL;
                 }
             }
 
             if (vim_emulation_enabled()) {
-                if (key_2 == KC_STOP) {
+                if (key_2 == KC_CANCEL) {
                     return key_1;
                 } else {
                     process_normal_mode_user(key_1, record, true);
                     process_normal_mode_user(key_2, record, true);
-                    if (!record->event.pressed) return key_1 = key_2 = KC_STOP;
+                    if (!record->event.pressed) return key_1 = key_2 = KC_CANCEL;
                 }
             }
 
             // clear_motions();
         }
         case VM_VISU: {
-            static uint16_t key_1 = KC_STOP;
-            static uint16_t key_2 = KC_STOP;
+            static uint16_t key_1 = KC_CANCEL;
+            static uint16_t key_2 = KC_CANCEL;
             if (record->event.pressed) {
                 switch (DIRECTIONS) {
                     case JUMP_HELD: // https://neovim.io/doc/user/visual.html#V
@@ -3795,30 +3822,30 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
 
                 if (!vim_emulation_enabled()) {
                     tap_code16(key_1);
-                    if (key_2 != KC_STOP) tap_code16(key_2);
-                    return KC_STOP;
+                    if (key_2 != KC_CANCEL) tap_code16(key_2);
+                    return KC_CANCEL;
                 }
             } else {
                 if (!vim_emulation_enabled()) {
-                    key_1 = key_2 = KC_STOP;
+                    key_1 = key_2 = KC_CANCEL;
                 }
             }
 
             if (vim_emulation_enabled()) {
-                if (key_2 == KC_STOP) {
+                if (key_2 == KC_CANCEL) {
                     return key_1;
                 } else {
                     process_normal_mode_user(key_1, record, true);
                     process_normal_mode_user(key_2, record, true);
-                    if (!record->event.pressed) return key_1 = key_2 = KC_STOP;
+                    if (!record->event.pressed) return key_1 = key_2 = KC_CANCEL;
                 }
             }
 
             // clear_motions();
         }
         case VM_MRKQ: {
-            static uint16_t key_1 = KC_STOP;
-            static uint16_t key_2 = KC_STOP;
+            static uint16_t key_1 = KC_CANCEL;
+            static uint16_t key_2 = KC_CANCEL;
             if (record->event.pressed) {
                 switch (DIRECTIONS) {
                     case HCFB_MOTION: // https://neovim.io/doc/user/motion.html#%5D'
@@ -3892,30 +3919,30 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
 
                 if (!vim_emulation_enabled()) {
                     tap_code16(key_1);
-                    if (key_2 != KC_STOP) tap_code16(key_2);
-                    return KC_STOP;
+                    if (key_2 != KC_CANCEL) tap_code16(key_2);
+                    return KC_CANCEL;
                 }
             } else {
                 if (!vim_emulation_enabled()) {
-                    key_1 = key_2 = KC_STOP;
+                    key_1 = key_2 = KC_CANCEL;
                 }
             }
 
             if (vim_emulation_enabled()) {
-                if (key_2 == KC_STOP) {
+                if (key_2 == KC_CANCEL) {
                     return key_1;
                 } else {
                     process_normal_mode_user(key_1, record, true);
                     process_normal_mode_user(key_2, record, true);
-                    if (!record->event.pressed) return key_1 = key_2 = KC_STOP;
+                    if (!record->event.pressed) return key_1 = key_2 = KC_CANCEL;
                 }
             }
 
             // clear_motions();
         }
         case VM_MRKG: {
-            static uint16_t key_1 = KC_STOP;
-            static uint16_t key_2 = KC_STOP;
+            static uint16_t key_1 = KC_CANCEL;
+            static uint16_t key_2 = KC_CANCEL;
             if (record->event.pressed) {
                 switch (DIRECTIONS) {
                     case HCFB_MOTION: // https://neovim.io/doc/user/motion.html#%5D%60
@@ -3989,31 +4016,31 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
 
                 if (!vim_emulation_enabled()) {
                     tap_code16(key_1);
-                    if (key_2 != KC_STOP) tap_code16(key_2);
-                    return KC_STOP;
+                    if (key_2 != KC_CANCEL) tap_code16(key_2);
+                    return KC_CANCEL;
                 }
             } else {
                 if (!vim_emulation_enabled()) {
-                    key_1 = key_2 = KC_STOP;
+                    key_1 = key_2 = KC_CANCEL;
                 }
             }
 
             if (vim_emulation_enabled()) {
-                if (key_2 == KC_STOP) {
+                if (key_2 == KC_CANCEL) {
                     return key_1;
                 } else {
                     process_normal_mode_user(key_1, record, true);
                     process_normal_mode_user(key_2, record, true);
-                    if (!record->event.pressed) return key_1 = key_2 = KC_STOP;
+                    if (!record->event.pressed) return key_1 = key_2 = KC_CANCEL;
                 }
             }
 
             // clear_motions();
         }
         case VM_FRMT: {
-            static uint16_t key_1 = KC_STOP;
-            static uint16_t key_2 = KC_STOP;
-            static uint16_t key_3 = KC_STOP;
+            static uint16_t key_1 = KC_CANCEL;
+            static uint16_t key_2 = KC_CANCEL;
+            static uint16_t key_3 = KC_CANCEL;
             if (record->event.pressed) {
                 switch (DIRECTIONS) {
                     case HCBF_MOTION: // https://neovim.io/doc/user/change.html#gqap
@@ -4077,42 +4104,42 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
 
                 if (!vim_emulation_enabled()) {
                     tap_code16(key_1);
-                    if (key_2 != KC_STOP) tap_code16(key_2);
-                    if (key_3 != KC_STOP) tap_code16(key_3);
-                    return KC_STOP;
+                    if (key_2 != KC_CANCEL) tap_code16(key_2);
+                    if (key_3 != KC_CANCEL) tap_code16(key_3);
+                    return KC_CANCEL;
                 }
             } else {
                 if (!vim_emulation_enabled()) {
-                    key_1 = key_2 = key_3 = KC_STOP;
+                    key_1 = key_2 = key_3 = KC_CANCEL;
                 }
             }
 
             if (vim_emulation_enabled()) {
                 // TODO double check this covers key 3 case
-                if (key_1 == KC_STOP) {
+                if (key_1 == KC_CANCEL) {
                     return key_1;
                 } else {
                     process_normal_mode_user(key_1, record, true);
                 }
-                if (key_2 == KC_STOP) {
+                if (key_2 == KC_CANCEL) {
                     return key_2;
                 } else {
                     process_normal_mode_user(key_2, record, true);
                 }
-                if (key_3 != KC_STOP) {
+                if (key_3 != KC_CANCEL) {
                     return key_3;
                 } else {
                     process_normal_mode_user(key_3, record, true);
                 }
-                if (!record->event.pressed) return key_1 = key_2 = key_3 = KC_STOP;
+                if (!record->event.pressed) return key_1 = key_2 = key_3 = KC_CANCEL;
             }
 
             // clear_motions();
         }
 
         case VM_FOLD: {
-            static uint16_t key_1 = KC_STOP;
-            static uint16_t key_2 = KC_STOP;
+            static uint16_t key_1 = KC_CANCEL;
+            static uint16_t key_2 = KC_CANCEL;
             if (record->event.pressed) {
                 switch (DIRECTIONS) {
                     case DQCB_MOTION: // https://neovim.io/doc/user/fold.html#zE
@@ -4199,22 +4226,22 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
 
                 if (!vim_emulation_enabled()) {
                     tap_code16(key_1);
-                    if (key_2 != KC_STOP) tap_code16(key_2);
-                    return KC_STOP;
+                    if (key_2 != KC_CANCEL) tap_code16(key_2);
+                    return KC_CANCEL;
                 }
             } else {
                 if (!vim_emulation_enabled()) {
-                    key_1 = key_2 = KC_STOP;
+                    key_1 = key_2 = KC_CANCEL;
                 }
             }
 
             if (vim_emulation_enabled()) {
-                if (key_2 == KC_STOP) {
+                if (key_2 == KC_CANCEL) {
                     return key_1;
                 } else {
                     process_normal_mode_user(key_1, record, true);
                     process_normal_mode_user(key_2, record, true);
-                    if (!record->event.pressed) return key_1 = key_2 = KC_STOP;
+                    if (!record->event.pressed) return key_1 = key_2 = KC_CANCEL;
                 }
             }
 
@@ -4222,8 +4249,8 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
         }
 
         case VM_SRCH: {
-            static uint16_t key_1 = KC_STOP;
-            static uint16_t key_2 = KC_STOP;
+            static uint16_t key_1 = KC_CANCEL;
+            static uint16_t key_2 = KC_CANCEL;
             if (record->event.pressed) {
                 switch (DIRECTIONS) {
                     case QCF_MOTION: // https://neovim.io/doc/user/pattern.html#n
@@ -4258,22 +4285,22 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
 
                 if (!vim_emulation_enabled()) {
                     tap_code16(key_1);
-                    if (key_2 != KC_STOP) tap_code16(key_2);
-                    return KC_STOP;
+                    if (key_2 != KC_CANCEL) tap_code16(key_2);
+                    return KC_CANCEL;
                 }
             } else {
                 if (!vim_emulation_enabled()) {
-                    key_1 = key_2 = KC_STOP;
+                    key_1 = key_2 = KC_CANCEL;
                 }
             }
 
             if (vim_emulation_enabled()) {
-                if (key_2 == KC_STOP) {
+                if (key_2 == KC_CANCEL) {
                     return key_1;
                 } else {
                     process_normal_mode_user(key_1, record, true);
                     process_normal_mode_user(key_2, record, true);
-                    if (!record->event.pressed) return key_1 = key_2 = KC_STOP;
+                    if (!record->event.pressed) return key_1 = key_2 = KC_CANCEL;
                 }
             }
 

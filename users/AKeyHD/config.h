@@ -48,6 +48,8 @@
                                     // If reactive effects are enabled, you also will want to enable SPLIT_TRANSPORT_MIRROR
 #define RGB_TRIGGER_ON_KEYDOWN      // Triggers RGB keypress events on key down. This makes RGB control feel more responsive. This may cause RGB to not function properly on some boards
 */
+// smtd
+#define MAX_DEFERRED_EXECUTORS 10
 
 // leader key
 #define LEADER_PER_KEY_TIMING
@@ -59,7 +61,7 @@
 #define TAPPING_TOGGLE 2
 // term settings
 #define TAPPING_TERM 175
-#define REPEAT_TERM (TAPPING_TERM / 3)
+#define REPEAT_TERM (TAPPING_TERM / 2)
 #define MAGIC_TERM (TAPPING_TERM * 3)
 
 // Auto shift

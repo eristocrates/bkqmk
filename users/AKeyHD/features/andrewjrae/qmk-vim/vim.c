@@ -150,9 +150,11 @@ bool process_vim_mode(uint16_t keycode, const keyrecord_t *record) {
         // for some reason with AVR gcc 8.3.0, the compile size is larger if you use a |= ???
         if (VIM_BYPASS) keycode = all_mods & 0xF0 ? keycode | (all_mods << 4) : keycode | (all_mods << 8);
 
+        /*
         // clear the mods
         clear_mods();
         clear_oneshot_mods();
+        */
 
         // process the current keycode
         bool do_process_key = process_func(keycode, record);

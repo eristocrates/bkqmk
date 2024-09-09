@@ -6,21 +6,18 @@ Copyright (C) 2023 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-Compiling: quantum/keymap_introspection.c                                                           [32;01m[OK][0m
-Linking: .build/bastardkb_charybdis_3x6_akeyhd.elf                                                  [32;01m[OK][0m
-Creating UF2 file for deployment: .build/bastardkb_charybdis_3x6_akeyhd.uf2                         [32;01m[OK][0m
 Copying bastardkb_charybdis_3x6_akeyhd.uf2 to qmk_firmware folder                                   [32;01m[OK][0m
 Copying bastardkb_charybdis_3x6_akeyhd.uf2 to userspace folder                                      [32;01m[OK][0m
 ###########################################
 # Highest flash usage:
-  259624 r keycode_display_map
-   12752 T process_normal_mode_user
-    9788 T process_record_user
+  259640 r keycode_display_map
+   12756 T process_normal_mode_user
+    9860 T process_record_user
     4094 R pmw33xx_firmware_data
     2400 R keymaps
     1428 t rgb_task_render
     1376 T rgb_matrix_layer_helper
-    1056 T key_combos
+    1068 T key_combos
      952 T process_action
      924 t vsnprintf_impl.constprop.0
 ###########################################
@@ -34,5 +31,5 @@ Copying bastardkb_charybdis_3x6_akeyhd.uf2 to userspace folder                  
      228 B USBD1
      192 b ch_c0_idle_thread_wa
      168 b WS2812_BUFFER
-     128 b repeat_buf
+     160 b basic_executors
 ###########################################

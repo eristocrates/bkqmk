@@ -89,7 +89,7 @@ __attribute__((weak)) uint16_t process_normal_mode_user(uint16_t keycode, const 
 // The function that handles normal mode keycode inputs
 bool process_normal_mode(uint16_t keycode, const keyrecord_t *record) {
     keycode = process_normal_mode_user(keycode, record, false);
-    if (keycode == KC_STOP) return false;
+    if (keycode == KC_CANCEL) return false;
 
 #ifdef QMK_VIM_DOT_REPEAT
     bool should_record_action = true;
@@ -272,6 +272,9 @@ bool process_normal_mode(uint16_t keycode, const keyrecord_t *record) {
                 NO_RECORD_ACTION();
                 break;
 #endif
+            case KC_ESC:
+                // normal_mode();
+                return true;
             default:
                 NO_RECORD_ACTION();
                 if (vim_emulation && keycode >= QK_MODS && (keycode & 0xFF00) != QK_LSFT) { // TODO double check if this was a good change

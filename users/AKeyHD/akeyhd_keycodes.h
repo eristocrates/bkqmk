@@ -135,6 +135,7 @@ enum keycodes {
     MD_WITH, // with
     MD_PVE,  // 've
     MD_PS,   // 's
+    MD_PT,   // 't
     MD_WHEN, // when
     MD_BE,   // be
     MD_OF,   // of
@@ -188,12 +189,13 @@ enum keycodes {
     FANCY_KEY,
     UCHAPPY,
     KC_QUOP,
+    KC_DSFB, // skipgram key
 
     KC_DBCL, // mouse double click
     RGB_MDE,
     CS__STP,
     CS_RSTP,
-    // biwise entry
+    // bitwise entry
     BIN__1,
     BIN__2,
     BIN__4,
@@ -382,7 +384,7 @@ enum keycodes {
     TS_LCTL,
     OSR_SFT, // and also n-shot Thumbshift (see n-shot mods for rolling differences)
 
-    // NEW_SAFE_RANGE // Use for keymap-specific codes
+    NEW_SAFE_RANGE, // Use for keymap-specific codes
 };
 /* ---------- Aliases ---------- */
 // vim fighter
@@ -431,7 +433,7 @@ enum keycodes {
 #define ALT___T LT(_ALTPR, KC_T)
 #define SML_SPC LT(_SYML, KC_SPC)
 #define SMR_SPC LT(_SYMR, KC_SPC)
-#define NUM_PAD LT(_NUMPAD, KC_TAB)
+#define NUM_PAD LT(_NUMPAD, KC_DSFB)
 // default LTs
 #define PT_Z LT(_POINTER, KC_Z)
 #define PT_SLSH LT(_POINTER, KC_SLSH)

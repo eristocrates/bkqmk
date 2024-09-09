@@ -7,7 +7,7 @@ void send_string_with_caps_word(const char *str);
 void call_keycode(uint16_t keycode);
 
 // Define the default value for the second variable
-#define DEFAULT_VALUE KC_STOP
+#define DEFAULT_VALUE KC_CANCEL
 
 // normal directions
 #define BACK_HELD 0x01
@@ -182,22 +182,22 @@ const char *key_name(uint16_t keycode, bool shifted);
             }                                                               \
             if (!vim_emulation_enabled()) {                                 \
                 tap_code16(key_1);                                            \
-                if (key_2 != KC_STOP) tap_code16(key_2);                      \
-                return KC_STOP;                                             \
+                if (key_2 != KC_CANCEL) tap_code16(key_2);                      \
+                return KC_CANCEL;                                             \
             }                                                               \
         } else {                                                            \
             if (!vim_emulation_enabled()) {                                 \
-                key_1 = key_2 = KC_STOP;                                    \
+                key_1 = key_2 = KC_CANCEL;                                    \
             }                                                               \
         }                                                                   \
                                                                             \
         if (vim_emulation_enabled()) {                                      \
-            if (key_2 == KC_STOP) {                                         \
+            if (key_2 == KC_CANCEL) {                                         \
                 return key_1;                                               \
             } else {                                                        \
                 process_normal_mode_user(key_1, record, true);              \
                 process_normal_mode_user(key_2, record, true);              \
-                if (!record->event.pressed) return key_1 = key_2 = KC_STOP; \
+                if (!record->event.pressed) return key_1 = key_2 = KC_CANCEL; \
             }                                                               \
         }                                                                   \
     } while (0)
