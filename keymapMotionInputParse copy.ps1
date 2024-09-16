@@ -1,5 +1,5 @@
 # Define the file path
-$filePath = "users\AKeyHD\AKeyHD.c"
+$filePath = "users\eristocrates\eristocrates.c"
 
 # Read the file content
 $fileContent = Get-Content -Path $filePath

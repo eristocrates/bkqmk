@@ -1,6 +1,6 @@
 
 
-// $filePath = "I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\keymap.yaml"
+// $filePath = "I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\keymap.yaml"
 //
 // # Read the content of the file
 // $content = Get-Content -Path $filePath -Raw

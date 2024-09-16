@@ -1,30 +1,30 @@
 # MSYS2
 
-qmk compile -j 0 -kb bastardkb/charybdis/3x6 -km akeyhd > qmk-output.log 2>&1; qmk c2json --no-cpp ./keyboards/bastardkb/charybdis/3x6/keymaps/akeyhd/keymap.c > ./keyboards/bastardkb/charybdis/3x6/keymaps/akeyhd/c2.json
-qmk compile -c -j 0 -kb bastardkb/charybdis/3x6 -km akeyhd
+qmk compile -j 0 -kb bastardkb/charybdis/3x6 -km eristocrates > qmk-output.log 2>&1; qmk c2json --no-cpp ./keyboards/bastardkb/charybdis/3x6/keymaps/eristocrates/keymap.c > ./keyboards/bastardkb/charybdis/3x6/keymaps/eristocrates/c2.json
+qmk compile -c -j 0 -kb bastardkb/charybdis/3x6 -km eristocrates
 
-qmk compile -c -kb bastardkb/charybdis/3x6 -km akeyhd
+qmk compile -c -kb bastardkb/charybdis/3x6 -km eristocrates
 
-qmk compile -c -j 0 -kb bastardkb/charybdis/3x6 -km akeyhd > qmk-output.log 2>&1
+qmk compile -c -j 0 -kb bastardkb/charybdis/3x6 -km eristocrates > qmk-output.log 2>&1
 
-qmk generate-compilation-database -kb bastardkb/charybdis/3x6 -km akeyhd ;
+qmk generate-compilation-database -kb bastardkb/charybdis/3x6 -km eristocrates ;
 qmk info -kb bastardkb/charybdis/3x6 -m
 
 # Powershell
 
-.\keymapPreParse.ps1; keymap parse -c 12 -q I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\c2.json > I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\keymap.yaml ; .\keymapPostParse.ps1 ; keymap -c I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\config.yaml draw I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\keymap.yaml > I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\keymap.svg ; keymap -c I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\config.yaml draw I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\keymapDesign.yaml > I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\keymapDesign.svg
+.\keymapPreParse.ps1; keymap parse -c 12 -q I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\c2.json > I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\keymap.yaml ; .\keymapPostParse.ps1 ; keymap -c I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\config.yaml draw I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\keymap.yaml > I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\keymap.svg ; keymap -c I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\config.yaml draw I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\keymapDesign.yaml > I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\keymapDesign.svg
 
 .\keymapPreParse.ps1
 
-keymap parse -c 12 -q I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\c2.json > I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\keymap.yaml
+keymap parse -c 12 -q I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\c2.json > I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\keymap.yaml
 
 .\keymapPostParse.ps1
 
-keymap -c I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\config.yaml draw I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\keymap.yaml > I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\keymap.svg
+keymap -c I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\config.yaml draw I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\keymap.yaml > I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\keymap.svg
 
-keymap -c I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\config.yaml draw I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\keymapDesign.yaml > I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\keymapDesign.svg
+keymap -c I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\config.yaml draw I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\keymapDesign.yaml > I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\keymapDesign.svg
 
-keymap -c i:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\config.yaml draw i:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\keymap.yaml -s random > i:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\blanks.svg
+keymap -c i:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\config.yaml draw i:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\keymap.yaml -s random > i:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\blanks.svg
 
 REG ADD HKCU\Software\Classes\ms-officeapp\Shell\Open\Command /t REG_SZ /d rundll32
 

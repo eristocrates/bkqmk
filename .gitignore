@@ -15,5 +15,5 @@
 /node_modules
 
 # secure data
-users/akeyhd/secret.h
+users/eristocrates/secret.h
 *.idx

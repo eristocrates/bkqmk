@@ -1,7 +1,7 @@
 # Define the file path
-$filePath = "I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\akeyhd\keymap.yaml"
-$enumFilePath = "I:\coding\bkqmk\users\AKeyHD\akeyhd_keycodes.h"
-$comboFilePath = "I:\coding\bkqmk\users\AKeyHD\combos.def"
+$filePath = "I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\keymap.yaml"
+$enumFilePath = "I:\coding\bkqmk\users\eristocrates\eristocrates_keycodes.h"
+$comboFilePath = "I:\coding\bkqmk\users\eristocrates\combos.def"
 
 function Get-StringIndex {
     param (
@@ -96,14 +96,38 @@ if ($matches.Success) {
     $content = $content -replace "COM ARC", "{t: ',', s: Adaptive, h: OSM Shift}"
     $content = $content -replace "DOT ARC", "{t: '.', s: Adaptive, h: Capsword}"
     $content = $content -replace "VIM TOG", "{t: Vim, s: Genuine, h: Emulation}"
+    $content = $content -replace "CTRL  S", "{t: S, h: CTRLR}"
+    $content = $content -replace "ALT   E", "{t: E, h: ALTT}"
     $content = $content -replace "QK LEAD", "{t: Leader, s: Core}"
     $content = $content -replace "NUM PAD", "{t: Num Pad, h: MO Layer}"
     $content = $content -replace "CTRL  R", "{t: R, h: CTRLR}"
     $content = $content -replace "SML SPC", "{t: Space, h: SML}"
     $content = $content -replace "SMR SPC", "{t: Space, h: SMR}"
     $content = $content -replace "ALT   T", "{t: T, h: ALTT}"
-
-
+    $content = $content -replace "LWKEY K", "{t: K, h: Left Win}"
+    $content = $content -replace "LTALT S", "{t: S, h: Left Alt}"
+    $content = $content -replace "LCTRL N", "{t: N, h: Left Ctrl}"
+    $content = $content -replace "LSHFT D", "{t: D, h: Left Shift}"
+    $content = $content -replace "RSHFT A", "{t: A, h: Right Shift}"
+    $content = $content -replace "RCTRL E", "{t: E, h: Right Ctrl}"
+    $content = $content -replace "RTALT I", "{t: I, h: Right Alt}"
+    $content = $content -replace "RTALT H", "{t: H, h: Right Alt}"
+    $content = $content -replace "RCTRL I", "{t: I, h: Right Ctrl}"
+    $content = $content -replace "RWKEY H", "{t: H, h: Right Win}"
+    $content = $content -replace "RWKEY U", "{t: U, h: Right Win}"
+    $content = $content -replace "CTRL  S", "{t: R, h: CTRLR}"
+    $content = $content -replace "ALT   E", "{t: T, h: ALTT}"
+    $content = $content -replace "LWKEY N", "{t: N, h: Left Win}"
+    $content = $content -replace "LWKEY C", "{t: C, h: Left Win}"
+    $content = $content -replace "LTALT R", "{t: R, h: Left Alt}"
+    $content = $content -replace "LCTRL T", "{t: T, h: Left Ctrl}"
+    $content = $content -replace "LSHFT C", "{t: C, h: Left Shift}"
+    $content = $content -replace "LSHFT T", "{t: T, h: Left Shift}"
+    $content = $content -replace "RSHFT H", "{t: H, h: Right Shift}"
+    $content = $content -replace "RCTRL O", "{t: O, h: Right Ctrl}"
+    $content = $content -replace "RTALT U", "{t: U, h: Right Alt}"
+    $content = $content -replace "RWKEY I", "{t: I, h: Right Win}"
+    $content = $content -replace "NUM   Z", "{t: Z, h: Num Pad}"
 
     # Define the regex pattern to match the layers section
     $layerPattern = 'layers:\s*(\w+):\s*-\s*\[([^\]]+)\]\s*-\s*\[([^\]]+)\]\s*-\s*\[([^\]]+)\]\s*-\s*\[([^\]]+)\]'

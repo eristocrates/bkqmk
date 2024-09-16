@@ -1,4 +1,4 @@
-$comboFilePath = "I:\coding\bkqmk\users\AKeyHD\combos.def"
+$comboFilePath = "I:\coding\bkqmk\users\eristocrates\combos.def"
 # Read the content of the combos file
 $comboContent = Get-Content -Path $comboFilePath -Raw
 $comboTempOutput = "I:\coding\bkqmk\comboTemp.txt"

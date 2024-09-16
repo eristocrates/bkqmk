@@ -1,0 +1,60 @@
+/*    COMBO NAME       | OUTPUT    | PARAMS    */
+DEFAULT_REF_LAYER(_COMBOREF)
+COMBO_REF_LAYER(_BITWISE, _BITWISE)
+COMBO_REF_LAYER(_VIMFIGHTER, _VIMFIGHTER)
+
+/*akl shenanigans*/
+SUBS(akl_meme,  "Wolfeschlegelsteinhausenbergerdorffvoralternwarengewissenhaftschaferswessenschafewarenwohlgepflegeundsorgfaltigkeitbeschutzenvonangreifendurchihrraubgierigfeindewelchevoralternzwolftausendjahresvorandieerscheinenwanderersteerdemenschderraumschiffgebrauchlichtalsseinursprungvonkraftgestartseinlangefahrthinzwischensternartigraumaufdersuchenachdiesternwelchegehabtbewohnbarplanetenkreisedrehensichundwohinderneurassevonverstandigmenschlichkeitkonntefortplanzenundsicherfreuenanlebenslanglichfreudeundruhemitnichteinfurchtvorangreifenvonandererintelligentgeschopfsvonhinzwischensternartigraum", LT_INNR, RT_INNR, LH_INNR, RH_INNR)
+
+/*---- Vim actions ----*/
+COMB(VIM_COMBO_VERTICAL, VM_VERT, VM___UP, VM_DOWN)
+COMB(VIM_COMBO_HORIZONTAL, VM_HORI, VM_LEFT, VM_RGHT)
+
+COMB(VIM_COMBO_YANK, VM_YANK, VM_NTRL, VM___UP)
+COMB(VIM_COMBO_CHANGE, VM_CHAN, VM_NTRL, VM_LEFT)
+COMB(VIM_COMBO_DELETE, VM_DELE, VM_NTRL, VM_DOWN)
+COMB(VIM_COMBO_VISUAL, VM_VISU, VM_NTRL, VM_RGHT)
+
+COMB(VIM_COMBO_MARK_QUOTE, VM_MRKQ, VM___UP, VM_LEFT)
+COMB(VIM_COMBO_MARK_GRAVE, VM_MRKG, VM___UP, VM_RGHT)
+
+COMB(VIM_COMBO_FOLD, VM_FOLD, VM_DOWN, VM_LEFT)
+COMB(VIM_COMBO_SEARCH, VM_SRCH, VM_DOWN, VM_RGHT)
+
+COMB(VIM_COMBO_CASES, VM_FRMT, VM_LEFT, VM_DOWN, VM_RGHT)
+
+/*COMB(VIM_COMBO_, VM_, VM___UP, VM_LEFT, VM_DOWN, VM_RGHT)*/
+/*COMB(VIM_COMBO_, VM_, VM_NTRL, VM_LEFT, VM_DOWN, VM_RGHT)*/
+
+/*COMB(VIM_COMBO_, VM_, VM_NTRL, VM___UP, VM_LEFT, VM_DOWN, VM_RGHT)*/
+
+
+/*---- Control ----*/
+COMB(CONTROL_COMBO_ENTER, KC_ENT, RB_MDLE, RB_RING)
+COMB(CONTROL_COMBO_ESCAPE, KC_ESC, LB_MDLE, LB_RING)
+COMB(CONTROL_COMBO_TAB, KC_RTAB, RB_RING, RB_INDX)
+COMB(CONTROL_COMBO_REVERSE_TAB, KC_LTAB, LB_RING, LB_INDX)
+COMB(CONTROL_COMBO_BACKSPACE, TD(TBW), RB_INDX, RB_MDLE)
+COMB(CONTROL_COMBO_DELETE, TD(TDW), RB_RING, RB_PNKY)
+COMB(CONTROL_COMBO_COLOR_SCHEME_STEP, CS__STP, RH_OUTR, RB_OUTR)
+COMB(CONTROL_COMBO_COLOR_SCHEME_REVERSE_STEP, CS_RSTP, LH_OUTR, LB_OUTR)
+
+/*---- layers ----*/
+COMB(LAYER_COMBOPANIC, PANIC, L_MTHMB, R_MTHMB)
+COMB(LAYER_COMBOCLEAR, K_CLEAR, L_RTHMB, R_LTHMB)
+
+/*---- Common english ----*/
+/* https://en.wikipedia.org/wiki/Most_common_words_in_English */
+
+COMB(WORD_COMBO_START, KC_TEST, L_LTHMB, L_MTHMB, L_RTHMB, R_LTHMB, R_MTHMB)
+COMB(WORD_COMBO_AL, MD_A, L_RTHMB, RH_INDX)
+COMB(WORD_COMBO_AR, MD_A, R_LTHMB, RH_INDX)
+COMB(WORD_COMBO_IL, MD_I, L_RTHMB, RH_MDLE)
+COMB(WORD_COMBO_IR, MD_I, R_LTHMB, RH_MDLE)
+COMB(WORD_COMBO_PS, MD_PS, RT_MDLE, LH_RING)
+COMB(WORD_COMBO_PLL, MD_PLL, RT_MDLE, RT_RING)
+COMB(WORD_COMBO_PVE, MD_PVE, RT_MDLE, LB_RING)
+COMB(WORD_COMBO_PT, MD_PT, RT_MDLE, LH_INDX)
+COMB(WORD_COMBO_PD, MD_PD, RT_MDLE, LT_INDX)
+COMB(WORD_COMBO_END, KC_TEST, L_LTHMB, L_MTHMB, L_RTHMB, R_LTHMB, R_MTHMB)
+
