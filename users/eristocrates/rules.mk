@@ -15,6 +15,7 @@ VIA_ENABLE = no
 #AUTOCORRECT_ENABLE = yes
 TOP_SYMBOLS = yes
 DEFERRED_EXEC_ENABLE = yes
+KEY_OVERRIDE_ENABLE = yes
 
 INTROSPECTION_KEYMAP_C = eristocrates.c
 
@@ -35,6 +36,7 @@ SRC += features/eristocrates/rgb_matrix_stuff.c
 SRC += features/eristocrates/eristocrates_colors.c
 SRC += features/eristocrates/utilities.c
 SRC += features/getreuer/layer_lock.c
+#SRC += features/getreuer/custom_shift_keys.c
 SRC += features/kalabasa/bitwise_num.c
 SRC += features/kalabasa/bitwise_f.c
 SRC += features/possumvibes/mod_lock.c

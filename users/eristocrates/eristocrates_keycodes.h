@@ -5,16 +5,16 @@
 // TODO ALWAYS KEEP _POINTER IN SYNC WITH RGB_MATRIX_STUFF
 // TODO ALWAYS KEEP _NUMPAD IN SYNC WITH bitwise_num
 enum layers {
-    _ZGEYSE,
-    _AKEYHD,
+    _CISTERN,
+    _TYPINGAME,
     _COMBOREF,
     _VIMNAV,
     _VIMFIGHTER,
-    _CTRLPR,
-    _ALTPR,
-    _GUIPR,
-    _SYML,
-    _SYMR,
+    _SHIFTISHL,
+    _SHIFTISHR,
+    _SHIFTISHB,
+    _ALTISHL,
+    _ALTISHR,
     _POINTER,
     _POINTEROPT,
     _BITWISE,
@@ -95,13 +95,16 @@ enum keycodes {
     SM_SAVE,
     SM_SNAP,
     // modal combo/keys. most of these are subject to smart space
-    MD_A,   // A
-    MD_I,   // I
-    MD_PS,  // 's
-    MD_PLL, // 'll
-    MD_PVE, // 've
-    MD_PT,  // 't
-    MD_PD,  // 'd
+    MD_A,    // A
+    MD_I,    // I
+    MD_PS,   // 's
+    MD_PLL,  // 'll
+    MD_PVE,  // 've
+    MD_PT,   // 't
+    MD_PD,   // 'd
+    MD_PM,   // 'm
+    MD_PALL, // 'all
+    MD_SCLN, // ;\n
 
     MD_BSPC, // backspace/backspace word
     MD_DEL,  // delete/delete word
@@ -139,7 +142,7 @@ enum keycodes {
     FANCY_KEY,
     UCHAPPY,
     KC_QUOP,
-    KC_DSFB, // skipgram key
+    SKP_GRM, // skipgram key
 
     KC_DBCL, // mouse double click
     RGB_MDE,
@@ -156,6 +159,7 @@ enum keycodes {
     BIN__64,
     BIN_128,
     BIN_256,
+    BIN_512,
 
     // TODO KEEP IN SYNC WITH ACTIONS MACRO
     // vim actions
@@ -184,13 +188,44 @@ enum keycodes {
     MI_JUMP, // up
 
     // fancy punctuation
-    KC_ESLH,
-    KC_DSLH,
+    KC_ESLH, // \\/
+    KC_DSLH, // //
     KC_DBSL,
-    KC_DPIP,
-    KC_DAMP,
-    KC_DEQL,
-    KC_TEQL,
+    KC_DPIP, // ||
+    KC_SARW, // ->
+    KC_DARW, // =>
+    KC_TGRV, // ```
+    KC_DAMP, // &&
+    KC_NEQL, // !=
+    KC_DEQL, // ==
+    KCNDEQL, // !==
+    KC_TEQL, // ===
+    KCNTEQL, // !===
+
+    KC_LEQL, // <=
+    KCDLEQL, // <==
+    KC_GEQL, // >=
+    KCDGEQL, // >==
+    KC_CEQL, // :=
+    KC_DCLN, // ::
+    KC_DPLS, // ++
+    KC_DMNS, // --
+    KC_LCCM, // /*
+    KC_RCCM, // \*/
+    KC_LGCM, // {{/*
+    KC_RGCM, // \*/}}
+    KCDLABK, // <<
+    KCDRABK, // >>
+    KC_RTAG, // />
+    KC_DTCM, // .com
+    KC_DTGV, // .gov
+    RGX_NCP, // non capturing group (?:)
+    RGX_PLA, // positive look ahead  (?=)
+    RGX_NLA, // negative look ahead (?!)
+    RGX_PLB, // positive look behind (?<=)
+    RGX_NLB, // negative look behind (?<!)
+    KC_ELIP, // ...
+    CASE_TERM,
 
     /* physical layout comboref keys
     legend = hand_row_column/thumb button
@@ -264,8 +299,10 @@ enum keycodes {
     LR_LOCK,
 
     // https://getreuer.info/posts/keyboards/macros/index.html
-    UP__DIR,
     SRCHSEL,
+    UP__DIR,
+    CUR_DIR,
+    HOM_DIR, // ~/
 
     // adapted from possumvibes
     // OS-specific utilities
@@ -287,6 +324,10 @@ enum keycodes {
     MCRMODE,
     K_CLEAR,
     PANIC,
+    BITWISE,
+    NUMPAD,
+
+    EXP_AND,
 
     // "Paired" macros: Undo/Redo, Comment/Uncomment, QMK Compile/Flash
     UND_RED,
@@ -342,34 +383,19 @@ enum keycodes {
     NEW_SAFE_RANGE, // Use for keymap-specific codes
 };
 /* ---------- Aliases ---------- */
+#define KC_DGSC LT(_POINTER, KC_1)
+#define KC_SNPE LT(_POINTER, KC_2)
 // home row mods
-
-#define LWKEY_K LGUI_T(KC_K)
+#define LWKEY_C LGUI_T(KC_C)
 #define LTALT_S LALT_T(KC_S)
-#define LCTRL_N LCTL_T(KC_N)
-#define LSHFT_D LSFT_T(KC_D)
-#define RSHFT_A RSFT_T(KC_A)
-#define RCTRL_E RCTL_T(KC_E)
+#define LCTRL_T LCTL_T(KC_T)
+#define LSHFT_N LSFT_T(KC_N)
+#define RSHFT_U RSFT_T(KC_U)
+#define RCTRL_A RCTL_T(KC_A)
 #define RTALT_I RALT_T(KC_I)
 #define RWKEY_H RGUI_T(KC_H)
 
-#define LWKEY_N LGUI_T(KC_N)
-#define LWKEY_C LGUI_T(KC_C)
-#define LTALT_R LALT_T(KC_R)
-#define LTALT_S LALT_T(KC_S)
-#define LCTRL_T LCTL_T(KC_T)
-#define LSHFT_C LSFT_T(KC_C)
-#define LSHFT_T LSFT_T(KC_T)
-#define RSHFT_H RSFT_T(KC_H)
-#define RCTRL_O RCTL_T(KC_O)
-#define RCTRL_A RCTL_T(KC_A)
-#define RCTRL_I RCTL_T(KC_I)
-#define RTALT_U RALT_T(KC_U)
-#define RTALT_H RALT_T(KC_H)
-#define RWKEY_I RGUI_T(KC_I)
-#define RWKEY_U RGUI_T(KC_U)
-
-// vim fighter
+#// vim fighter
 #define VF___UP VM___UP
 #define VF_LEFT VM_LEFT
 #define VF_DOWN VM_DOWN
@@ -391,29 +417,32 @@ enum keycodes {
 #define OSMMEH OSM(MOD_MEH)
 #define OSMHYPR OSM(MOD_HYPR)
 
-#define TH(k) LT(_AKEYHD, k)
+#define TH(k) LT(0, k)
 #define SG(k) LT(_SHIFTPR, k)
-#define CG(k) LT(_CTRLPR, k)
-#define AG(k) LT(_ALTPR, k)
-#define GG(k) LT(_GUIPR, k)
+#define CG(k) LT(_SHIFTISHL, k)
+#define AG(k) LT(_SHIFTISHR, k)
+#define GG(k) LT(_SHIFTISHB, k)
 
 // base layers
 #define BASE TO(0)
 #define QWERTY TO(_QWERTY)
-#define ZGEYSE TO(_ZGEYSE)
 #define GAME TO(_GAME)
+#define TYPING TO(_TYPINGAME)
 #define THINQU TO(_THINQU)
 
 // layer taps
-#define CTRL__R LT(_CTRLPR, KC_R)
-#define ALT___T LT(_ALTPR, KC_T)
-#define CTRL__S LT(_CTRLPR, KC_S)
-#define ALT___E LT(_ALTPR, KC_E)
-#define SML_SPC LT(_SYML, KC_SPC)
-#define SMR_SPC LT(_SYMR, KC_SPC)
+#define SFSHL_R LT(_SHIFTISHL, KC_R)
+#define SFSHLCR LT(_SHIFTISHL, S(KC_R))
+#define ALT___T LT(_SHIFTISHR, KC_T)
+#define CTRL__S LT(_SHIFTISHL, KC_S)
+#define SFSHR_E LT(_SHIFTISHR, KC_E)
+#define SFSHRCE LT(_SHIFTISHR, S(KC_E))
+#define ALTLSPC LT(_ALTISHL, KC_SPC)
+#define ALTRSPC LT(_ALTISHR, KC_SPC)
 #define NUM_PAD LT(_NUMPAD, SW_WIN)
-#define BIT___Z LT(_BITWISE, KC_Z)
-// default LTs
+#define NUM_SPC LT(_NUMPAD, KC_SPC)
+#define BITWISEZ LT(_BITWISE, KC_Z)
+//  default LTs
 #define PT_Z LT(_POINTER, KC_Z)
 #define PT_SLSH LT(_POINTER, KC_SLSH)
 
@@ -428,7 +457,7 @@ enum keycodes {
 #define MEDIA OSL(_MEDIA)
 #define PNTROPT OSL(_POINTEROPT)
 #define PNTRNAV OSL(_POINTERNAV)
-#define OSLBASE OSL(_AKEYHD)
+#define OSLBASE OSL(0)
 
 // toggle layers
 #define VIMFGHT TG(_VIMFIGHTER)

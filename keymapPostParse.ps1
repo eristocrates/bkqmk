@@ -86,48 +86,75 @@ if ($matches.Success) {
     #}
 
     #base layer
-    $content = $content -replace "LTP ARC", "{t: '*', s: Arcane}"
-    $content = $content -replace "RTP ARC", "{t: '%', s: Arcane}"
-    $content = $content -replace "LHM ARC", "{t: '=', s: Arcane}"
-    $content = $content -replace "RHM ARC", "{t: ':', s: Arcane}"
-    $content = $content -replace "LBM ARC", "{t: '\', s: Arcane}"
-    $content = $content -replace "RBM ARC", "{t: '/', s: Arcane}"
-    $content = $content -replace "TH   QU", "{t: QU, s: Q}"
-    $content = $content -replace "COM ARC", "{t: ',', s: Adaptive, h: OSM Shift}"
+    $content = $content -replace "LTP ARC", "{t: ':', s: '::', h: Arcane}"
+    $content = $content -replace "RTP ARC", "{t: '|', s: '||', h: Arcane}"
+    $content = $content -replace "LHM ARC", "{t: '(', s: '{', h: Arcane}"
+    $content = $content -replace "RHM ARC", "{t: ')', s: '}', h: Arcane}"
+    $content = $content -replace "LBM ARC", "{t: '\', s: '\\', h: Arcane}"
+    $content = $content -replace "RBM ARC", "{t: '/', s: '//', h: Arcane}"
+
+
+    $content = $content -replace "LWKEY C", "{t: C, h: Win}"
+    $content = $content -replace "LTALT S", "{t: S, h: Alt}"
+    $content = $content -replace "LCTRL T", "{t: T, h: Ctrl}"
+    $content = $content -replace "LSHFT N", "{t: N, h: Shift}"
+    $content = $content -replace "RSHFT U", "{t: U, h: Shift}"
+    $content = $content -replace "RCTRL A", "{t: A, h: Ctrl}"
+    $content = $content -replace "RTALT I", "{t: I, h: Alt}"
+    $content = $content -replace "RWKEY H", "{t: H, h: Win}"
+
+    $content = $content -replace "TH   QU", "{t: QU, h: Q}"
     $content = $content -replace "DOT ARC", "{t: '.', s: Adaptive, h: Capsword}"
-    $content = $content -replace "VIM TOG", "{t: Vim, s: Genuine, h: Emulation}"
-    $content = $content -replace "CTRL  S", "{t: S, h: CTRLR}"
-    $content = $content -replace "ALT   E", "{t: E, h: ALTT}"
-    $content = $content -replace "QK LEAD", "{t: Leader, s: Core}"
-    $content = $content -replace "NUM PAD", "{t: Num Pad, h: MO Layer}"
-    $content = $content -replace "CTRL  R", "{t: R, h: CTRLR}"
-    $content = $content -replace "SML SPC", "{t: Space, h: SML}"
-    $content = $content -replace "SMR SPC", "{t: Space, h: SMR}"
-    $content = $content -replace "ALT   T", "{t: T, h: ALTT}"
-    $content = $content -replace "LWKEY K", "{t: K, h: Left Win}"
-    $content = $content -replace "LTALT S", "{t: S, h: Left Alt}"
-    $content = $content -replace "LCTRL N", "{t: N, h: Left Ctrl}"
-    $content = $content -replace "LSHFT D", "{t: D, h: Left Shift}"
-    $content = $content -replace "RSHFT A", "{t: A, h: Right Shift}"
-    $content = $content -replace "RCTRL E", "{t: E, h: Right Ctrl}"
-    $content = $content -replace "RTALT I", "{t: I, h: Right Alt}"
-    $content = $content -replace "RTALT H", "{t: H, h: Right Alt}"
-    $content = $content -replace "RCTRL I", "{t: I, h: Right Ctrl}"
-    $content = $content -replace "RWKEY H", "{t: H, h: Right Win}"
-    $content = $content -replace "RWKEY U", "{t: U, h: Right Win}"
-    $content = $content -replace "CTRL  S", "{t: R, h: CTRLR}"
-    $content = $content -replace "ALT   E", "{t: T, h: ALTT}"
-    $content = $content -replace "LWKEY N", "{t: N, h: Left Win}"
-    $content = $content -replace "LWKEY C", "{t: C, h: Left Win}"
-    $content = $content -replace "LTALT R", "{t: R, h: Left Alt}"
-    $content = $content -replace "LCTRL T", "{t: T, h: Left Ctrl}"
-    $content = $content -replace "LSHFT C", "{t: C, h: Left Shift}"
-    $content = $content -replace "LSHFT T", "{t: T, h: Left Shift}"
-    $content = $content -replace "RSHFT H", "{t: H, h: Right Shift}"
-    $content = $content -replace "RCTRL O", "{t: O, h: Right Ctrl}"
-    $content = $content -replace "RTALT U", "{t: U, h: Right Alt}"
-    $content = $content -replace "RWKEY I", "{t: I, h: Right Win}"
-    $content = $content -replace "NUM   Z", "{t: Z, h: Num Pad}"
+    $content = $content -replace "PDOT", "{t: '.', s: '!'}"
+    $content = $content -replace "DOT", "{t: '.', s: '!'}"
+    $content = $content -replace "QUOT", "{t: '''', s: '`"'}"
+    $content = $content -replace "LEQL", "{t: '<=', s: '<=='}"
+    $content = $content -replace "GEQL", "{t: '>=', s: '>=='}"
+    $content = $content -replace "DEQL", "{t: '==', s: '!=='}"
+    $content = $content -replace "TEQL", "{t: '===', s: '!==='}"
+    $content = $content -replace "EQL", "{t: '=', s: '!='}"
+    $content = $content -replace "COMM", "{t: ', ', s: '?' }"
+    $content = $content -replace "QK LEAD", "{t: Leader, s: QMK }"
+
+    $content = $content -replace "BITWISEZ", "{t: Z, h: Bitwise }"
+    $content = $content -replace "SFSHL R", "{t: R, h: ShiftishL }"
+    $content = $content -replace "SFSHLCR", "{t: R, h: ShiftishL }"
+    $content = $content -replace "ALTLSPC", "{t: Space, h: AltishL }"
+    $content = $content -replace "ALTRSPC", "{t: Space, h: AltishR }"
+    $content = $content -replace "SFSHR E", "{t: E, h: ShiftishR }"
+    $content = $content -replace "SFSHRCE", "{t: E, h: ShiftishR }"
+    $content = $content -replace "\bNUM SPC\b", "{t: Space, h: NumPad }"
+    $content = $content -replace "PPLS", "{t: '+', s: '++'}"
+    $content = $content -replace "LBRC", "{t: '[', s: '/*'}"
+    $content = $content -replace "LABK", "{t: '<', s: '<<'}"
+    $content = $content -replace "PMNS", "{t: '-', s: '--'}"
+    $content = $content -replace "RBRC", "{t: ']', s: '*/'}"
+    $content = $content -replace "RABK", "{t: '>', s: '>>'}"
+    $content = $content -replace "SARW", "{t: '->', s: '=>'}"
+
+    $content = $content -replace "SKP GRM", "{t: Space, h: NumPad }"
+    $content = $content -replace "GRV", '{t: "`", s: "```"}'
+
+    $content = $content -replace "CUR DIR", "{t: './', s: '../' }"
+    $content = $content -replace "AMPR", "{t: '&', s: '&&' }"
+    $content = $content -replace "ESLH", "{t: '\/', s: '/>' }"
+    $content = $content -replace "OS LSFT", "{t: Shift, s: OneShot }"
+    $content = $content -replace "OS LCTL", "{t: Control, s: OneShot }"
+    $content = $content -replace "OS LALT", "{t: Alt, s: OneShot }"
+    $content = $content -replace "OS LGUI", "{t: Win, s: OneShot }"
+
+
+
+
+
+
+    $content = $content -replace "COM ARC", "{t: ', ', s: Adaptive, h: OSM Shift }"
+    $content = $content -replace "VIM TOG", "{t: Vim, s: Genuine, h: Emulation }"
+
+    $content = $content -replace "NUM PAD", "{t: Num Pad, h: MO Layer }"
+    $content = $content -replace "SML SPC", "{t: Space, h: SML }"
+    $content = $content -replace "SMR SPC", "{t: Space, h: SMR }"
+    $content = $content -replace "NUM   Z", "{t: Z, h: Num Pad }"
 
     # Define the regex pattern to match the layers section
     $layerPattern = 'layers:\s*(\w+):\s*-\s*\[([^\]]+)\]\s*-\s*\[([^\]]+)\]\s*-\s*\[([^\]]+)\]\s*-\s*\[([^\]]+)\]'
@@ -151,10 +178,10 @@ if ($matches.Success) {
         # Prepare the data to append
         $dataToAppend = @"
   TEST:
-  - [$line1]
-  - [$line2]
-  - [$line3]
-  - [$line4]
+    - [$line1]
+    - [$line2]
+    - [$line3]
+    - [$line4]
 "@
 
         # Append the data to the end of the content
@@ -180,7 +207,7 @@ if ($matches.Success) {
     $comboContent = Get-Content -Path $comboFilePath -Raw
 
     # Define the regex pattern to match combos
-    $comboPattern = 'COMB\(([^,]+),\s*([^,]+),\s*([^)]+)\)'
+    $comboPattern = 'COMB\(([^, ]+), \s*([^, ]+), \s*([^)]+)\)'
 
     # Find all matches
     $matches = [regex]::Matches($comboContent, $comboPattern)
@@ -200,7 +227,7 @@ if ($matches.Success) {
 
 
     # Define the regex pattern to match combos starting with VIM_COMBO_
-    $vcbComboPattern = 'COMB\((VIM_COMBO_[^,]+),\s*([^,]+),\s*([^)]+)\)'
+    $vcbComboPattern = 'COMB\((VIM_COMBO_[^, ]+), \s*([^, ]+), \s*([^)]+)\)'
 
     # Find all matches
     $matches = [regex]::Matches($comboContent, $vcbComboPattern)
@@ -221,7 +248,7 @@ if ($matches.Success) {
         ++$accumulator
         $comboName = $match.Groups[1].Value
         $output = $match.Groups[2].Value
-        $params = $match.Groups[3].Value -split ',\s*'
+        $params = $match.Groups[3].Value -split ', \s*'
         #++$offsetAdjustment
         if ($alignmentIndex -gt $alignments.Count - 1) {
             $alignmentIndex = 0
@@ -283,7 +310,7 @@ if ($matches.Success) {
         # TODO automate differentiating how combos are drawn https://github.com/caksoylar/keymap-drawer/blob/main/KEYMAP_SPEC.md#combos
         # Append the translated combo to the data
         #$alignment = $alignments[]
-        $dataToAppend += "  - {l: [VIMFIGHTER], p: [$($paramIndices -join ', ')], k: $output, a: $alignment, o: $offset, s: $slide}"
+        $dataToAppend += "  - { l: [VIMFIGHTER], p: [$($paramIndices -join ', ')], k: $output, a: $alignment, o: $offset, s: $slide }"
     }
 
     #Write-Host "$dataToAppend"
@@ -342,53 +369,53 @@ for ($i = 0; $i -lt $list.Count; $i++) {
 for ($i = 0; $i -lt $list.Count; $i++) {
     $keycode = $list[$i]
     $index = Get-StringIndex -string $keycode
-    $content = $content -replace "$keycode", "{t: $keycode, h: $index}"
+    $content = $content -replace "$keycode", "{ t: $keycode, h: $index }"
 }
 # vimnav
-$content = $content -replace "VM LEFT", "{t: Left, s: h, h: '<'}"
-$content = $content -replace "VM DOWN", "{t: Down, s: j, h: 'v'}"
-$content = $content -replace "VM   UP", "{t: Up, s: k, h: '^'}"
-$content = $content -replace "VM RGHT", "{t: Right, s: l, h: '>'}"
-$content = $content -replace "VIMFGHT", "{t: Vim Fighter, h: TO Layer}"
+$content = $content -replace "VM LEFT", "{t: Left, s: h, h: '<' }"
+$content = $content -replace "VM DOWN", "{t: Down, s: j, h: 'v' }"
+$content = $content -replace "VM   UP", "{t: Up, s: k, h: '^' }"
+$content = $content -replace "VM RGHT", "{t: Right, s: l, h: '>' }"
+$content = $content -replace "VIMFGHT", "{t: Vim Fighter, h: TO Layer }"
 
 # vim fighter
-$content = $content -replace "VF LEFT", "{t: Left, h: Attack}"
-$content = $content -replace "VF DOWN", "{t: Down, h: Attack}"
-$content = $content -replace "VF   UP", "{t: Up, h: Attack}"
-$content = $content -replace "VF RGHT", "{t: Right, h: Attack}"
-$content = $content -replace "VF NTRL", "{t: Neutral, h: Attack}"
-$content = $content -replace "VM VERT", "{t: Vertical, h: Attack}"
-$content = $content -replace "VM HORI", "{t: Horizontal, h: Attack}"
-$content = $content -replace "VM NTRL", "{t: Neutral, h: Attack}"
-$content = $content -replace "VM YANK", "{t: Yank, h: Attack}"
-$content = $content -replace "VM CHAN", "{t: Change, h: Attack}"
-$content = $content -replace "VM DELE", "{t: Delete, h: Attack}"
-$content = $content -replace "VM VISU", "{t: Visual, h: Attack}"
-$content = $content -replace "VM MRKQ", "{t: QuoMark, h: Attack}"
-$content = $content -replace "VM MRKG", "{t: GrvMark, h: Attack}"
-$content = $content -replace "VM FOLD", "{t: Fold, h: Attack}"
-$content = $content -replace "VM SRCH", "{t: Search, h: Attack}"
-$content = $content -replace "VM FRMT", "{t: Format, h: Attack}"
+$content = $content -replace "VF LEFT", "{t: Left, h: Attack }"
+$content = $content -replace "VF DOWN", "{t: Down, h: Attack }"
+$content = $content -replace "VF   UP", "{t: Up, h: Attack }"
+$content = $content -replace "VF RGHT", "{t: Right, h: Attack }"
+$content = $content -replace "VF NTRL", "{t: Neutral, h: Attack }"
+$content = $content -replace "VM VERT", "{t: Vertical, h: Attack }"
+$content = $content -replace "VM HORI", "{t: Horizontal, h: Attack }"
+$content = $content -replace "VM NTRL", "{t: Neutral, h: Attack }"
+$content = $content -replace "VM YANK", "{t: Yank, h: Attack }"
+$content = $content -replace "VM CHAN", "{t: Change, h: Attack }"
+$content = $content -replace "VM DELE", "{t: Delete, h: Attack }"
+$content = $content -replace "VM VISU", "{t: Visual, h: Attack }"
+$content = $content -replace "VM MRKQ", "{t: QuoMark, h: Attack }"
+$content = $content -replace "VM MRKG", "{t: GrvMark, h: Attack }"
+$content = $content -replace "VM FOLD", "{t: Fold, h: Attack }"
+$content = $content -replace "VM SRCH", "{t: Search, h: Attack }"
+$content = $content -replace "VM FRMT", "{t: Format, h: Attack }"
 
 # symbol stuff
-$content = $content -replace "APP", "{t: Context, s: Windows, h: Menu}"
-$content = $content -replace "ASST", "{t: Aware, s: Conntext, h: Assistant}"
+$content = $content -replace "APP", "{t: Context, s: Windows, h: Menu }"
+$content = $content -replace "ASST", "{t: Aware, s: Conntext, h: Assistant }"
 
 # pointer
-$content = $content -replace "PNTROPT", "{t: Pointer Options, h: OS Layer}"
-$content = $content -replace "DRGSCRL", "{t: Drag scroll, h: MO}"
-$content = $content -replace "SNIPING", "{t: Sniping, h: MO}"
-$content = $content -replace "DRG TOG", "{t: Drag scroll, h: TG}"
-$content = $content -replace "SCN TOG", "{t: Yomitan Scan, h: TG}"
-$content = $content -replace "SNP TOG", "{t: Sniping, h: TG}"
+$content = $content -replace "PNTROPT", "{t: Pointer Options, h: OS Layer }"
+$content = $content -replace "DRGSCRL", "{t: Drag scroll, h: MO }"
+$content = $content -replace "SNIPING", "{t: Sniping, h: MO }"
+$content = $content -replace "DRG TOG", "{t: Drag scroll, h: TG }"
+$content = $content -replace "SCN TOG", "{t: Yomitan Scan, h: TG }"
+$content = $content -replace "SNP TOG", "{t: Sniping, h: TG }"
 
 # numpad
-$content = $content -replace "FNCTION", "{t: Function, h: MO Layer}"
-$content = $content -replace "BN2 DC1", "{t: 0b2, h: 1d}"
-$content = $content -replace "BN4 DC2", "{t: 0b4, h: 2d}"
-$content = $content -replace "BN8 DC3", "{t: 0b8, h: 3d}"
-$content = $content -replace "BN16 ET", "{t: 0b16, h: Enter}"
-$content = $content -replace "BN1 DOT", "{t: '0b1', h: '.'}"
+$content = $content -replace "FNCTION", "{t: Function, h: MO Layer }"
+$content = $content -replace "BN2 DC1", "{t: 0b2, h: 1d }"
+$content = $content -replace "BN4 DC2", "{t: 0b4, h: 2d }"
+$content = $content -replace "BN8 DC3", "{t: 0b8, h: 3d }"
+$content = $content -replace "BN16 ET", "{t: 0b16, h: Enter }"
+$content = $content -replace "BN1 DOT", "{t: '0b1', h: '.' }"
 
 # vim combos
 $content = $content -replace "VM_VERT", "Vert Attack"

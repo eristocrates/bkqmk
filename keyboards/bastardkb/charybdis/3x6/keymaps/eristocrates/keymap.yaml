@@ -1,20 +1,20 @@
 layout: {qmk_keyboard: bastardkb/charybdis/3x6, qmk_layout: LAYOUT}
 layers:
-  ZGEYSE:
-  - ['   J', '   Y', '   F', '   B', '   D', {t: '*', s: Arcane}, {t: '%', s: Arcane}, '   O', '''', '   L', '   W', {t: QU, s: Q}]
-  - ['   M', {t: C, h: Left Win}, {t: S, h: Left Alt}, {t: N, h: Left Ctrl}, {t: T, h: Left Shift}, {t: '=', s: Arcane}, {t: ':', s: Arcane}, {t: A, h: Right Shift}, {t: I, h: Right Ctrl}, {t: H, h: Right Alt}, {t: U, h: Right Win}, '   G']
-  - [{t: Leader, s: Core}, '   P', '   V', '   X', '   K', {t: '\', s: Arcane}, {t: '/', s: Arcane}, (, {t: ',', s: Adaptive, h: OSM Shift}, {t: '.', s: Adaptive, h: Capsword}, ), {t: Vim, s: Genuine, h: Emulation}]
-  - [BIT   Z, {t: R, h: CTRLR}, {t: Space, h: SML}, {t: Space, h: SMR}, {t: E, h: ALTT}]
-  AKEYHD:
-  - ['   X', '   V', '   G', '   M', '   P', {t: '*', s: Arcane}, {t: '%', s: Arcane}, '   U', '   O', '   Y', '   B', '   Z']
-  - ['   J', {t: K, h: Left Win}, {t: S, h: Left Alt}, {t: N, h: Left Ctrl}, {t: D, h: Left Shift}, {t: '=', s: Arcane}, {t: ':', s: Arcane}, {t: A, h: Right Shift}, {t: E, h: Right Ctrl}, {t: I, h: Right Alt}, {t: H, h: Right Win}, {t: QU, s: Q}]
-  - [{t: Leader, s: Core}, '   W', '   F', '   L', '   C', {t: '\', s: Arcane}, {t: '/', s: Arcane}, (, {t: ',', s: Adaptive, h: OSM Shift}, {t: '.', s: Adaptive, h: Capsword}, ), {t: Vim, s: Genuine, h: Emulation}]
-  - [{t: Num Pad, h: MO Layer}, {t: R, h: CTRLR}, {t: Space, h: SML}, {t: Space, h: SMR}, {t: T, h: ALTT}]
+  CISTERN:
+  - [J, Y, F, D, B, {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, W, O, {t: '.', s: '!'}, L, {t: QU, h: Q}]
+  - [M, {t: C, h: Win}, {t: S, h: Alt}, {t: T, h: Ctrl}, {t: N, h: Shift}, {t: '(', s: '{', h: Arcane}, {t: ')', s: '}', h: Arcane}, {t: U, h: Shift}, {t: A, h: Ctrl}, {t: I, h: Alt}, {t: H, h: Win}, G]
+  - [{t: Leader, s: QMK }, P, V, K, X, {t: '\', s: '\\', h: Arcane}, {t: '/', s: '//', h: Arcane}, {t: '''', s: '"'}, {t: '=', s: '!='}, {t: ', ', s: '?' }, '', {t: Vim, s: Genuine, h: Emulation }]
+  - [{t: Z, h: Bitwise }, {t: R, h: ShiftishL }, {t: Space, h: AltishL }, {t: Space, h: AltishR }, {t: E, h: ShiftishR }]
+  TYPINGAME:
+  - [J, Y, F, D, B, {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, W, O, {t: '.', s: '!'}, L, Q]
+  - [M, C, S, T, N, {t: '(', s: '{', h: Arcane}, {t: ')', s: '}', h: Arcane}, U, A, I, H, G]
+  - [{t: Leader, s: QMK }, P, V, K, X, {t: '\', s: '\\', h: Arcane}, {t: '/', s: '//', h: Arcane}, {t: '''', s: '"'}, /, {t: ', ', s: '?' }, ;, {t: Vim, s: Genuine, h: Emulation }]
+  - [Z, R, {t: Space, h: NumPad }, Space, E]
   COMBOREF:
-  - [{t: LT OUTR, h: 0}, {t: LT PNKY, h: 1}, {t: LT RING, h: 2}, {t: LT MDLE, h: 3}, {t: LT INDX, h: 4}, {t: LT INNR, h: 5}, {t: RT INNR, h: 6}, {t: RT INDX, h: 7}, {t: RT MDLE, h: 8}, {t: RT RING, h: 9}, {t: RT PNKY, h: 10}, {t: RT OUTR, h: 11}]
-  - [{t: LH OUTR, h: 12}, {t: LH PNKY, h: 13}, {t: LH RING, h: 14}, {t: LH MDLE, h: 15}, {t: LH INDX, h: 16}, {t: LH INNR, h: 17}, {t: RH INNR, h: 18}, {t: RH INDX, h: 19}, {t: RH MDLE, h: 20}, {t: RH RING, h: 21}, {t: RH PNKY, h: 22}, {t: RH OUTR, h: 23}]
-  - [{t: LB OUTR, h: 24}, {t: LB PNKY, h: 25}, {t: LB RING, h: 26}, {t: LB MDLE, h: 27}, {t: LB INDX, h: 28}, {t: LB INNR, h: 29}, {t: RB INNR, h: 30}, {t: RB INDX, h: 31}, {t: RB MDLE, h: 32}, {t: RB RING, h: 33}, {t: RB PNKY, h: 34}, {t: RB OUTR, h: 35}]
-  - [{t: L LTHMB, h: 36}, {t: L MTHMB, h: 37}, {t: L RTHMB, h: 38}, {t: R LTHMB, h: 39}, {t: R MTHMB, h: 40}]
+  - [{ t: LT OUTR, h: 0 }, { t: LT PNKY, h: 1 }, { t: LT RING, h: 2 }, { t: LT MDLE, h: 3 }, { t: LT INDX, h: 4 }, { t: LT INNR, h: 5 }, { t: RT INNR, h: 6 }, { t: RT INDX, h: 7 }, { t: RT MDLE, h: 8 }, { t: RT RING, h: 9 }, { t: RT PNKY, h: 10 }, { t: RT OUTR, h: 11 }]
+  - [{ t: LH OUTR, h: 12 }, { t: LH PNKY, h: 13 }, { t: LH RING, h: 14 }, { t: LH MDLE, h: 15 }, { t: LH INDX, h: 16 }, { t: LH INNR, h: 17 }, { t: RH INNR, h: 18 }, { t: RH INDX, h: 19 }, { t: RH MDLE, h: 20 }, { t: RH RING, h: 21 }, { t: RH PNKY, h: 22 }, { t: RH OUTR, h: 23 }]
+  - [{ t: LB OUTR, h: 24 }, { t: LB PNKY, h: 25 }, { t: LB RING, h: 26 }, { t: LB MDLE, h: 27 }, { t: LB INDX, h: 28 }, { t: LB INNR, h: 29 }, { t: RB INNR, h: 30 }, { t: RB INDX, h: 31 }, { t: RB MDLE, h: 32 }, { t: RB RING, h: 33 }, { t: RB PNKY, h: 34 }, { t: RB OUTR, h: 35 }]
+  - [{ t: L LTHMB, h: 36 }, { t: L MTHMB, h: 37 }, { t: L RTHMB, h: 38 }, { t: R LTHMB, h: 39 }, { t: R MTHMB, h: 40 }]
   VIMNAV:
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -47,175 +47,175 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - {t: Left, s: h, h: '<'}
-    - {t: Down, s: j, h: 'v'}
-    - {t: Up, s: k, h: '^'}
-    - {t: Right, s: l, h: '>'}
+    - {t: Left, s: h, h: '<' }
+    - {t: Down, s: j, h: 'v' }
+    - {t: Up, s: k, h: '^' }
+    - {t: Right, s: l, h: '>' }
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - {t: Vim Fighter, h: TO Layer}
+    - {t: Vim Fighter, h: TO Layer }
     - {t: ▽, type: trans}
   VIMFIGHTER:
-  - ['', '', '', '', '', '', {t: QuoMark, h: Attack}, {t: Fold, h: Attack}, {t: Search, h: Attack}, {t: Vertical, h: Attack}, {t: Format, h: Attack}, {t: GrvMark, h: Attack}]
-  - ['', '', Back, Crouch, Forward, '', {t: Horizontal, h: Attack}, {t: Left, h: Attack}, {t: Down, h: Attack}, {t: Up, h: Attack}, {t: Right, h: Attack}, '']
+  - ['', '', '', '', '', '', {t: QuoMark, h: Attack }, {t: Fold, h: Attack }, {t: Search, h: Attack }, {t: Vertical, h: Attack }, {t: Format, h: Attack }, {t: GrvMark, h: Attack }]
+  - ['', '', Back, Crouch, Forward, '', {t: Horizontal, h: Attack }, {t: Left, h: Attack }, {t: Down, h: Attack }, {t: Up, h: Attack }, {t: Right, h: Attack }, '']
   - - ''
     - ''
     - ''
     - ''
     - ''
     - ''
-    - {t: Visual, h: Attack}
-    - {t: Yank, h: Attack}
-    - {t: Change, h: Attack}
-    - {t: Delete, h: Attack}
+    - {t: Visual, h: Attack }
+    - {t: Yank, h: Attack }
+    - {t: Change, h: Attack }
+    - {t: Delete, h: Attack }
     - ''
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
     - Jump
     - {t: ▽, type: trans}
-    - {t: Vim Fighter, h: TO Layer}
-    - {t: Neutral, h: Attack}
-  CTRLPR:
+    - {t: Vim Fighter, h: TO Layer }
+    - {t: Neutral, h: Attack }
+  SHIFTISHL:
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - ^
-    - '~'
+    - {t: '+', s: '++'}
+    - Skip gram
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - {t: '.', s: Adaptive, h: Capsword}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
   - - Caps Lock
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - ==
-    - '#'
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - {t: C, h: Win}
+    - {t: S, h: Alt}
+    - {t: T, h: Ctrl}
+    - {t: N, h: Shift}
+    - {t: '[', s: '/*'}
+    - Skip gram
+    - {t: U, h: Shift}
+    - {t: A, h: Ctrl}
+    - {t: I, h: Alt}
+    - {t: H, h: Win}
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - '&'
-    - ../
-    - '{'
-    - '"'
-    - '?'
-    - '}'
+    - {t: '<', s: '<<'}
+    - Skip gram
+    - {t: "`", s: "```"}
+    - {t: '<=', s: '<=='}
+    - {t: ', ', s: Adaptive, h: OSM Shift }
+    - ''
     - {t: ▽, type: trans}
   - - ''
     - {t: ▽, type: trans}
     - ''
     - _
-    - {t: T, h: ALTT}
-  ALTPR:
+    - {t: E, h: ShiftishR }
+  SHIFTISHR:
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - '@'
-    - $
+    - Skip gram
+    - {t: '-', s: '--'}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - '-'
-    - '|'
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - \
-    - //
-    - '['
-    - ''''
-    - '!'
-    - ']'
-    - {t: ▽, type: trans}
-  - - ''
-    - {t: R, h: CTRLR}
-    - _
-    - ''
-    - {t: ▽, type: trans}
-  GUIPR:
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - '**'
-    - '||'
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - /
-    - /
-    - <
-    - '`'
     - ;
-    - '>'
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: C, h: Win}
+    - {t: S, h: Alt}
+    - {t: T, h: Ctrl}
+    - {t: N, h: Shift}
+    - Skip gram
+    - {t: ']', s: '*/'}
+    - {t: U, h: Shift}
+    - {t: A, h: Ctrl}
+    - {t: I, h: Alt}
+    - {t: H, h: Win}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - Skip gram
+    - {t: '>', s: '>>'}
+    - ''
+    - {t: '>=', s: '>=='}
+    - {t: '->', s: '=>'}
+    - ''
+    - {t: ▽, type: trans}
+  - - ''
+    - {t: R, h: ShiftishL }
+    - _
+    - ''
+    - {t: ▽, type: trans}
+  SHIFTISHB:
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - '...'
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - '{{/*'
+    - /*}}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - :=
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - ''
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-  SYML:
-  - ['', '', '', '', '', DSFB, DSFB, '', '', '', '', '']
-  - ['', '', '', '', '', DSFB, DSFB, '', '', '', '', '']
-  - [{t: Aware, s: Conntext, h: Assistant}, '', '', '', '', DSFB, DSFB, OS LSFT, OS LCTL, OS LALT, OS LGUI, {t: Context, s: Windows, h: Menu}]
+  ALTISHL:
+  - ['', '', '', '', '', '', '', '', '', {t: './', s: '../' }, '', '']
+  - ['', '', '', '', '', '(?<=)', '(?!)', {t: Shift, s: OneShot }, {t: Control, s: OneShot }, {t: Alt, s: OneShot }, {t: Win, s: OneShot }, .gov]
+  - [{t: Aware, s: Conntext, h: Assistant }, '', '', '', '', '', {t: '\/', s: '/>' }, '', {t: '==', s: '!=='}, {t: '&', s: '&&' }, '', {t: Context, s: Windows, h: Menu }]
   - - ''
     - ''
     - {t: ▽, type: trans}
+    - '*'
     - ''
-    - ''
-  SYMR:
-  - ['', '', '', '', '', DSFB, DSFB, '', '', '', '', '']
-  - ['', '', '', '', '', DSFB, DSFB, '', '', '', '', '']
-  - ['', '', '', '', '', DSFB, DSFB, OS LSFT, TS LCTL, OS LALT, OS LGUI, Print Screen]
+  ALTISHR:
+  - ['', '', '', '', '', '(?:)', '', '', '', ~/, '', '']
+  - ['', .com, $, '', '', '(?<!)', '(?=)', '', '@', '', '#', '']
+  - ['', '', ^, '', '', '', '', '', {t: '===', s: '!==='}, '', '', '']
   - - ''
     - ''
     - ''
@@ -248,21 +248,21 @@ layers:
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - '   F'
-    - '   L'
+    - V
+    - K
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - Double Click
     - Left Click
     - Right Click
-    - {t: Drag scroll, h: MO}
+    - Drag Scroll
     - Scroll Wheel Click
-    - {t: Sniping, h: MO}
+    - {t: Sniping, h: MO }
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - {t: Space, h: SMR}
-    - {t: Pointer Options, h: OS Layer}
+    - {t: Space, h: AltishR }
+    - {t: Pointer Options, h: OS Layer }
   POINTEROPT:
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -282,7 +282,7 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - Snipe DPI Up
+    - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -290,61 +290,35 @@ layers:
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - '   F'
-    - '   L'
+    - V
+    - K
+    - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - Snipe DPI Down
     - DPI Down
     - DPI Up
-    - {t: Drag scroll, h: TG}
-    - {t: Yomitan Scan, h: TG}
-    - {t: Sniping, h: TG}
+    - Snipe DPI Up
+    - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
   BITWISE:
+  - ['', '', '', '', '', {t: ', ', s: '?' }, '%', {t: Shift, s: OneShot }, {t: Control, s: OneShot }, {t: Alt, s: OneShot }, {t: Win, s: OneShot }, '']
+  - [BSPC, BIN 512, BIN 256, BIN 128, BIN  64, {t: '=', s: '!='}, '00', BIN   8, BIN   4, BIN   2, BIN   1, '0']
+  - [Layer Lock, /, '*', {t: '-', s: '--'}, {t: '+', s: '++'}, ., $, F0b8, F0b4, F0b2, F0b1, BASE]
   - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - [Layer Lock, BIN 256, BIN 128, BIN  64, BIN  32, P00, '=', BIN   8, BIN   4, BIN   2, BIN   1, '0']
-  - - ''
-    - /
-    - '*'
-    - '-'
-    - +
-    - {t: ▽, type: trans}
-    - OS LSFT
-    - F0b8
-    - F0b4
-    - F0b2
-    - F0b1
-    - OS LCTL
-  - - {t: ▽, type: trans}
-    - MO NUMP
-    - ''
+    - BIN  32
+    - Space
     - F0b16
     - BIN  16
   NUMPAD:
-  - ['', Layer Lock, Print Screen, Scroll Lock, Pause, PCMM, '%', '7', '8', '9', PENT, '']
-  - ['', /, Insert, Home, Page Up, '=', $, '4', '5', '6', '*', '']
-  - ['', '-', Delete, End, Page Down, PDOT, P00, P1, P2, P3, +, '']
-  - - P00
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - SPC
-    - '0'
+  - ['', Layer Lock, Print Screen, Scroll Lock, Pause, {t: ', ', s: '?' }, '%', '7', '8', '9', Enter, '']
+  - [BSPC, /, Insert, Home, Page Up, {t: '=', s: '!='}, $, '4', '5', '6', '*', '']
+  - [Layer Lock, {t: '-', s: '--'}, Delete, End, Page Down, ., '00', '1', '2', '3', {t: '+', s: '++'}, BASE]
+  - ['', '', Space, Space, '0']
   MEDIA:
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -399,13 +373,13 @@ layers:
   GAME:
   - ['1', Q, I, W, R, T, Y, U, I, O, P, '']
   - [LCTL, A, A, S, D, G, H, J, K, L, ;, RCTL]
-  - [LSFT, PT Z, M, C, V, B, N, M, ',', ., PT SLSH, BASE]
-  - [ESC, SPC, '', '', ENT]
+  - [LSFT, PT Z, M, C, V, B, N, M, {t: ', ', s: '?' }, {t: '.', s: '!'}, PT SLSH, BASE]
+  - [ESC, Space, '', '', ENT]
   THINQU:
-  - [TAB, B, D, L, TH, V, Z, '''', U, H, K, '']
+  - [TAB, B, D, L, TH, V, Z, {t: '''', s: '"'}, U, H, K, '']
   - [BSPC, N, T, S, R, W, Y, A, E, O, I, ENT]
-  - [LSFT, X, G, M, C, ;, J, F, P, ',', ., BASE]
-  - ['', THINQUL, SPC, SPC, THINQUR]
+  - [LSFT, X, G, M, C, ;, J, F, P, {t: ', ', s: '?' }, {t: '.', s: '!'}, BASE]
+  - ['', THINQUL, Space, Space, THINQUR]
   THINQUL:
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -492,7 +466,7 @@ layers:
     - {t: ▽, type: trans}
   KEYBOARD:
   - - {t: ▽, type: trans}
-    - ZGEYSE
+    - TYPING
     - QWERTY
     - THINQU
     - GAME
@@ -587,28 +561,28 @@ layers:
   QWERTY:
   - [LGUI, Q, W, E, R, T, Y, U, I, O, P, RGUI]
   - [LCTL, A, S, D, F, G, H, J, K, L, ;, RCTL]
-  - [LSFT, PT Z, X, C, V, B, N, M, ',', ., PT SLSH, BASE]
-  - ['', SPC, BSPC, Delete, ENT]
+  - [LSFT, PT Z, X, C, V, B, N, M, {t: ', ', s: '?' }, {t: '.', s: '!'}, PT SLSH, BASE]
+  - ['', Space, BSPC, Delete, ENT]
   RANDOM:
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND]
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND]
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, BASE]
   - [RAND, RAND, RAND, RAND, RAND]
   TEST:
-  - ['   J', '   Y', '   F', '   B', '   D', {t: '*', s: Arcane}, {t: '%', s: Arcane}, '   O', '''', '   L', '   W', {t: QU, s: Q}]
-  - ['   M', {t: C, h: Left Win}, {t: S, h: Left Alt}, {t: N, h: Left Ctrl}, {t: T, h: Left Shift}, {t: '=', s: Arcane}, {t: ':', s: Arcane}, {t: A, h: Right Shift}, {t: I, h: Right Ctrl}, {t: H, h: Right Alt}, {t: U, h: Right Win}, '   G']
-  - [{t: Leader, s: Core}, '   P', '   V', '   X', '   K', {t: '\', s: Arcane}, {t: '/', s: Arcane}, (, {t: ',', s: Adaptive, h: OSM Shift}, {t: '.', s: Adaptive, h: Capsword}, ), {t: Vim, s: Genuine, h: Emulation}]
-  - [BIT   Z, {t: R, h: CTRLR}, {t: Space, h: SML}, {t: Space, h: SMR}, {t: E, h: ALTT}]
+    - [J, Y, F, D, B, {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, W, O, {t: '.', s: '!'}, L, {t: QU, h: Q}]
+    - [M, {t: C, h: Win}, {t: S, h: Alt}, {t: T, h: Ctrl}, {t: N, h: Shift}, {t: '(', s: '{', h: Arcane}, {t: ')', s: '}', h: Arcane}, {t: U, h: Shift}, {t: A, h: Ctrl}, {t: I, h: Alt}, {t: H, h: Win}, G]
+    - [{t: Leader, s: QMK }, P, V, K, X, {t: '\', s: '\\', h: Arcane}, {t: '/', s: '//', h: Arcane}, {t: '''', s: '"'}, {t: '=', s: '!='}, {t: ', ', s: '?' }, '', {t: Vim, s: Genuine, h: Emulation }]
+    - [{t: Z, h: Bitwise }, {t: R, h: ShiftishL }, {t: Space, h: AltishL }, {t: Space, h: AltishR }, {t: E, h: ShiftishR }]
 combos:
 
-  - {l: [VIMFIGHTER], p: [40, 32], k: Vert Attack, a: top, o: 0.102, s: -0.00010404}
-  - {l: [VIMFIGHTER], p: [31, 33], k: Hori Attack, a: bottom, o: 0.202, s: -0.00081608}
-  - {l: [VIMFIGHTER], p: [34, 40], k: Yank Attack, a: left, o: 0.302, s: -0.00273612}
-  - {l: [VIMFIGHTER], p: [34, 31], k: Change Attack, a: right, o: 0.402, s: -0.00646416}
-  - {l: [VIMFIGHTER], p: [34, 32], k: Delete Attack, a: top, o: 0.54515, s: 0.014859426125}
-  - {l: [VIMFIGHTER], p: [34, 33], k: Visual Attack, a: bottom, o: 0.64515, s: 0.02497311135}
-  - {l: [VIMFIGHTER], p: [40, 31], k: QuoMark Attack, a: left, o: 0.74515, s: 0.038867396575}
-  - {l: [VIMFIGHTER], p: [40, 33], k: GrvMark Attack, a: right, o: 0.84515, s: 0.0571422818}
-  - {l: [VIMFIGHTER], p: [32, 31], k: Fold Attack, a: top, o: 2.102, s: -0.39765636}
-  - {l: [VIMFIGHTER], p: [32, 33], k: Search Attack, a: bottom, o: 2.202, s: -0.4848804}
-  - {l: [VIMFIGHTER], p: [31, 32, 33], k: Format Attack, a: left, o: 2.302, s: -0.58291244}
+  - { l: [VIMFIGHTER], p: [40, 32], k: Vert Attack, a: top, o: 0.102, s: -0.00010404 }
+  - { l: [VIMFIGHTER], p: [31, 33], k: Hori Attack, a: bottom, o: 0.202, s: -0.00081608 }
+  - { l: [VIMFIGHTER], p: [34, 40], k: Yank Attack, a: left, o: 0.302, s: -0.00273612 }
+  - { l: [VIMFIGHTER], p: [34, 31], k: Change Attack, a: right, o: 0.402, s: -0.00646416 }
+  - { l: [VIMFIGHTER], p: [34, 32], k: Delete Attack, a: top, o: 0.54515, s: 0.014859426125 }
+  - { l: [VIMFIGHTER], p: [34, 33], k: Visual Attack, a: bottom, o: 0.64515, s: 0.02497311135 }
+  - { l: [VIMFIGHTER], p: [40, 31], k: QuoMark Attack, a: left, o: 0.74515, s: 0.038867396575 }
+  - { l: [VIMFIGHTER], p: [40, 33], k: GrvMark Attack, a: right, o: 0.84515, s: 0.0571422818 }
+  - { l: [VIMFIGHTER], p: [32, 31], k: Fold Attack, a: top, o: 2.102, s: -0.39765636 }
+  - { l: [VIMFIGHTER], p: [32, 33], k: Search Attack, a: bottom, o: 2.202, s: -0.4848804 }
+  - { l: [VIMFIGHTER], p: [31, 32, 33], k: Format Attack, a: left, o: 2.302, s: -0.58291244 }

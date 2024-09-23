@@ -18,6 +18,7 @@
 #include "features/eristocrates/rgb_matrix_stuff.h"
 #include "features/eristocrates/eristocrates_colors.h"
 #include "features/getreuer/layer_lock.h"
+// #include "features/getreuer/custom_shift_keys.h"
 #include "features/kalabasa/bitwise_num.h"
 #include "features/kalabasa/bitwise_f.h"
 #include "features/possumvibes/mod_lock.h"

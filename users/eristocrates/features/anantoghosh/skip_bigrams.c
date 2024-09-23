@@ -37,7 +37,7 @@ The trigger Keycode.
 Define a keycode for typing the second letter of the bigram.
 You can place this key in a lesser used position in your layout.
 */
-#define BIGRAM_KEY KC_DSFB
+#define BIGRAM_KEY SKP_GRM
 
 /* Define an array of bigram pairs. Adjust as per your layout */
 static const uint16_t skip_bigram_pairs[][2] = {

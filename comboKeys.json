@@ -5,39 +5,47 @@
   },
   {
     "Word": "al",
-    "ComboKeys": "<Space>, A"
+    "ComboKeys": "<Space>, E"
   },
   {
     "Word": "ar",
-    "ComboKeys": "<Space>, A"
+    "ComboKeys": "<Space>, E"
   },
   {
     "Word": "il",
-    "ComboKeys": "<Space>, E"
+    "ComboKeys": "<Space>, I"
   },
   {
     "Word": "ir",
-    "ComboKeys": "<Space>, E"
+    "ComboKeys": "<Space>, I"
   },
   {
     "Word": "'s",
-    "ComboKeys": "O, S"
+    "ComboKeys": "(, S"
   },
   {
     "Word": "'ll",
-    "ComboKeys": "O, Y"
+    "ComboKeys": "(, B"
   },
   {
     "Word": "'ve",
-    "ComboKeys": "F, O"
+    "ComboKeys": "(, F"
   },
   {
     "Word": "pt",
-    "ComboKeys": "D, O"
+    "ComboKeys": "(, N"
   },
   {
     "Word": "'d",
-    "ComboKeys": "O, P"
+    "ComboKeys": "(, M"
+  },
+  {
+    "Word": "pm",
+    "ComboKeys": "(, J"
+  },
+  {
+    "Word": "pall",
+    "ComboKeys": "(, E"
   },
   {
     "Word": "end",

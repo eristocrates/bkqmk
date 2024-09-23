@@ -38,8 +38,10 @@ void pointer_mode_process(uint16_t keycode, keyrecord_t *record) {
         case SNIPING:
         case SNP_TOG:
         case DRG_TOG:
+        case KC_DGSC:
+        case KC_SNPE:
         case PNTROPT:
-        case SMR_SPC:
+        case ALTRSPC:
         case SCN_TOG:
         case KC_ESC:
 

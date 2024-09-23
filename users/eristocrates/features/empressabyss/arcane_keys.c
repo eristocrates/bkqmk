@@ -35,10 +35,197 @@ void arcane_send_string_P(const char *str, uint16_t repeat_keycode) {
         set_mods(saved_mods);
     }
 }
+uint16_t arcane_tap(uint16_t keycode) {
+    set_last_keycode(keycode); // 2024-03-09 Disabled sending of string for mag-rep / rep-mag consistency.
+    return keycode;
+}
+
+#define LAST_LEFT_TOP_OUTER (last_key.col == 0 && last_key.row == 0)
+#define LAST_LEFT_TOP_PINKY (last_key.col == 1 && last_key.row == 0)
+#define LAST_LEFT_TOP_RING (last_key.col == 2 && last_key.row == 0)
+#define LAST_LEFT_TOP_MIDDLE (last_key.col == 3 && last_key.row == 0)
+#define LAST_LEFT_TOP_INDEX (last_key.col == 4 && last_key.row == 0)
+#define LAST_LEFT_HOME_OUTER (last_key.col == 0 && last_key.row == 1)
+#define LAST_LEFT_HOME_PINKY (last_key.col == 1 && last_key.row == 1)
+#define LAST_LEFT_HOME_RING (last_key.col == 2 && last_key.row == 1)
+#define LAST_LEFT_HOME_MIDDLE (last_key.col == 3 && last_key.row == 1)
+#define LAST_LEFT_HOME_INDEX (last_key.col == 4 && last_key.row == 1)
+#define LAST_LEFT_BOTTOM_OUTER (last_key.col == 0 && last_key.row == 2)
+#define LAST_LEFT_BOTTOM_PINKY (last_key.col == 1 && last_key.row == 2)
+#define LAST_LEFT_BOTTOM_RING (last_key.col == 2 && last_key.row == 2)
+#define LAST_LEFT_BOTTOM_MIDDLE (last_key.col == 3 && last_key.row == 2)
+#define LAST_LEFT_BOTTOM_INDEX (last_key.col == 4 && last_key.row == 2)
+#define LAST_RIGHT_TOP_OUTER (last_key.col == 0 && last_key.row == 4)
+#define LAST_RIGHT_TOP_PINKY (last_key.col == 1 && last_key.row == 4)
+#define LAST_RIGHT_TOP_RING (last_key.col == 2 && last_key.row == 4)
+#define LAST_RIGHT_TOP_MIDDLE (last_key.col == 3 && last_key.row == 4)
+#define LAST_RIGHT_TOP_INDEX (last_key.col == 4 && last_key.row == 4)
+#define LAST_RIGHT_HOME_OUTER (last_key.col == 0 && last_key.row == 5)
+#define LAST_RIGHT_HOME_PINKY (last_key.col == 1 && last_key.row == 5)
+#define LAST_RIGHT_HOME_RING (last_key.col == 2 && last_key.row == 5)
+#define LAST_RIGHT_HOME_MIDDLE (last_key.col == 3 && last_key.row == 5)
+#define LAST_RIGHT_HOME_INDEX (last_key.col == 4 && last_key.row == 5)
+#define LAST_RIGHT_BOTTOM_OUTER (last_key.col == 0 && last_key.row == 6)
+#define LAST_RIGHT_BOTTOM_PINKY (last_key.col == 1 && last_key.row == 6)
+#define LAST_RIGHT_BOTTOM_RING (last_key.col == 2 && last_key.row == 6)
+#define LAST_RIGHT_BOTTOM_MIDDLE (last_key.col == 3 && last_key.row == 6)
+#define LAST_RIGHT_BOTTOM_INDEX (last_key.col == 4 && last_key.row == 6)
+#define LAST_LEFT_INNER_THUMB (last_key.col == 3 && last_key.row == 3)
+#define LAST_LEFT_MIDDLE_THUMB (last_key.col == 4 && last_key.row == 3)
+#define LAST_LEFT_OUTER_THUMB (last_key.col == 1 && last_key.row == 3)
+#define LAST_RIGHT_OUTER_THUMB (last_key.col == 1 && last_key.row == 7)
+#define LAST_RIGHT_MIDDLE_THUMB (last_key.col == 3 && last_key.row == 7)
+
+#define MAGIC_LEFT_TOP_OUTER \
+    magic.col = 0;           \
+    magic.row = 0;
+
+#define MAGIC_LEFT_TOP_PINKY \
+    magic.col = 1;           \
+    magic.row = 0;
+
+#define MAGIC_LEFT_TOP_RING \
+    magic.col = 2;          \
+    magic.row = 0;
+
+#define MAGIC_LEFT_TOP_MIDDLE \
+    magic.col = 3;            \
+    magic.row = 0;
+
+#define MAGIC_LEFT_TOP_INDEX \
+    magic.col = 4;           \
+    magic.row = 0;
+
+#define MAGIC_LEFT_HOME_OUTER \
+    magic.col = 0;            \
+    magic.row = 1;
+
+#define MAGIC_LEFT_HOME_PINKY \
+    magic.col = 1;            \
+    magic.row = 1;
+
+#define MAGIC_LEFT_HOME_RING \
+    magic.col = 2;           \
+    magic.row = 1;
+
+#define MAGIC_LEFT_HOME_MIDDLE \
+    magic.col = 3;             \
+    magic.row = 1;
+
+#define MAGIC_LEFT_HOME_INDEX \
+    magic.col = 4;            \
+    magic.row = 1;
+
+#define MAGIC_LEFT_BOTTOM_OUTER \
+    magic.col = 0;              \
+    magic.row = 2;
+
+#define MAGIC_LEFT_BOTTOM_PINKY \
+    magic.col = 1;              \
+    magic.row = 2;
+
+#define MAGIC_LEFT_BOTTOM_RING \
+    magic.col = 2;             \
+    magic.row = 2;
+
+#define MAGIC_LEFT_BOTTOM_MIDDLE \
+    magic.col = 3;               \
+    magic.row = 2;
+
+#define MAGIC_LEFT_BOTTOM_INDEX \
+    magic.col = 4;              \
+    magic.row = 2;
+
+#define MAGIC_RIGHT_TOP_OUTER \
+    magic.col = 0;            \
+    magic.row = 4;
+
+#define MAGIC_RIGHT_TOP_PINKY \
+    magic.col = 1;            \
+    magic.row = 4;
+
+#define MAGIC_RIGHT_TOP_RING \
+    magic.col = 2;           \
+    magic.row = 4;
+
+#define MAGIC_RIGHT_TOP_MIDDLE \
+    magic.col = 3;             \
+    magic.row = 4;
+
+#define MAGIC_RIGHT_TOP_INDEX \
+    magic.col = 4;            \
+    magic.row = 4;
+
+#define MAGIC_RIGHT_HOME_OUTER \
+    magic.col = 0;             \
+    magic.row = 5;
+
+#define MAGIC_RIGHT_HOME_PINKY \
+    magic.col = 1;             \
+    magic.row = 5;
+
+#define MAGIC_RIGHT_HOME_RING \
+    magic.col = 2;            \
+    magic.row = 5;
+
+#define MAGIC_RIGHT_HOME_MIDDLE \
+    magic.col = 3;              \
+    magic.row = 5;
+
+#define MAGIC_RIGHT_HOME_INDEX \
+    magic.col = 4;             \
+    magic.row = 5;
+
+#define MAGIC_RIGHT_BOTTOM_OUTER \
+    magic.col = 0;               \
+    magic.row = 6;
+
+#define MAGIC_RIGHT_BOTTOM_PINKY \
+    magic.col = 1;               \
+    magic.row = 6;
+
+#define MAGIC_RIGHT_BOTTOM_RING \
+    magic.col = 2;              \
+    magic.row = 6;
+
+#define MAGIC_RIGHT_BOTTOM_MIDDLE \
+    magic.col = 3;                \
+    magic.row = 6;
+
+#define MAGIC_RIGHT_BOTTOM_INDEX \
+    magic.col = 4;               \
+    magic.row = 6;
+
+#define MAGIC_LEFT_INNER_THUMB \
+    magic.col = 3;             \
+    magic.row = 3;
+
+#define MAGIC_LEFT_MIDDLE_THUMB \
+    magic.col = 4;              \
+    magic.row = 3;
+
+#define MAGIC_LEFT_OUTER_THUMB \
+    magic.col = 1;             \
+    magic.row = 3;
+
+#define MAGIC_RIGHT_OUTER_THUMB \
+    magic.col = 1;              \
+    magic.row = 7;
+
+#define MAGIC_RIGHT_MIDDLE_THUMB \
+    magic.col = 3;               \
+    magic.row = 7;
+
+#define LEFT_TOP_ARCANE (arcane_key.col == 5 && arcane_key.row == 0)
+#define LEFT_HOME_ARCANE (arcane_key.col == 5 && arcane_key.row == 1)
+#define LEFT_BOTTOM_ARCANE (arcane_key.col == 5 && arcane_key.row == 2)
+#define RIGHT_TOP_ARCANE (arcane_key.col == 5 && arcane_key.row == 4)
+#define RIGHT_HOME_ARCANE (arcane_key.col == 5 && arcane_key.row == 5)
+#define RIGHT_BOTTOM_ARCANE (arcane_key.col == 5 && arcane_key.row == 6)
 
 // Notably, middle arcane is considered the same row as thumb keys
-#define SAME_ROW_LEFT_HAND last_key.row == arcane_key.row || (((last_key.col == 3 && last_key.row == 3) || (last_key.col == 4 && last_key.row == 3)) && arcane_key.col == 5 && arcane_key.row == 1)
-#define SAME_ROW_RIGHT_HAND last_key.row == arcane_key.row || (arcane_key.col == 5 && arcane_key.row == 5 && last_key.col == 3 && last_key.row == 7)
+#define SAME_ROW_LEFT_HAND last_key.row == arcane_key.row || (((LAST_LEFT_INNER_THUMB) || (LAST_LEFT_MIDDLE_THUMB)) && LEFT_HOME_ARCANE)
+#define SAME_ROW_RIGHT_HAND last_key.row == arcane_key.row || (RIGHT_HOME_ARCANE && LAST_RIGHT_MIDDLE_THUMB)
 #define SAME_ROW_SAME_HAND (arcane_key.row < 3 ? SAME_ROW_LEFT_HAND : SAME_ROW_RIGHT_HAND)
 // excludes opposite an prior last key on the same row as the arcane key for other magic
 #define OTHER_ROW_LEFT_HAND last_key.row <= 4 && abs(last_key.row - arcane_key.row) != 4 && last_key.row != arcane_key.row
@@ -46,86 +233,171 @@ void arcane_send_string_P(const char *str, uint16_t repeat_keycode) {
 #define OTHER_ROW_OTHER_HAND (arcane_key.row < 3 ? OTHER_ROW_RIGHT_HAND : OTHER_ROW_LEFT_HAND)
 #define OTHER_ROW abs(last_key.row - arcane_key.row) != 4 && last_key.row != arcane_key.row
 
-void process_arcane_matrix(keypos_t arcane_key, uint16_t last_keycode, keypos_t last_key, uint16_t last_keydown, uint8_t mods, uint16_t default_keycode) {
+uint16_t process_arcane_matrix(keypos_t arcane_key, uint16_t last_keycode, keypos_t last_key, uint16_t last_keydown, uint8_t mods, uint16_t default_keycode) {
     uint8_t rowOffset = arcane_key.row < 3 ? 4 : -4;
     if (timer_elapsed(last_keydown) < REPEAT_TERM) {
         // same row same hand repeats
         if (SAME_ROW_SAME_HAND) {
-#ifdef CONSOLE_ENABLE
-            uprintf("arcane repeat: last_key col: %u, last_key row: %u, last_keycode: 0x%04X, key name: %s\n", last_key.col, last_key.row, last_keycode, key_name(last_keycode, false));
-#endif
-            ARCANE_STRING(key_name(last_keycode, false), last_keycode);
-            return;
+            // ARCANE_STRING(key_name(last_keycode, false), last_keycode);
+            return arcane_tap(last_keycode);
         }
     }
     // TODO add descriptive macros for conditionals
     if (timer_elapsed(last_keydown) < MAGIC_TERM) {
+        keypos_t magic;
         if (OTHER_ROW) {
-            keypos_t magic;
             /*  L_LTHMB -> LBM_ARC = L_MTHMB ||
                 L_RTHMB -> LBM_ARC = L_MTHMB
             */
-            if ((arcane_key.row == 2 && last_key.col == 3 && last_key.row == 3) || (arcane_key.row == 1 && last_key.col == 1 && last_key.row == 3)) {
-                magic.col = 4;
-                magic.row = 3;
-            } else if (arcane_key.row == 2 && last_key.col == 4 && last_key.row == 3) { // L_MTHMB -> LBM_ARC = L_LTHMB
-                magic.col = 3;
-                magic.row = 3;
-            } else if (arcane_key.row == 5 && last_key.col == 1 && last_key.row == 7) { // R_LTHMB -> RHM_ARC = R_MTHMB
-                magic.col = 3;
-                magic.row = 7;
-            } else if (arcane_key.row == 5 && last_key.col == 1 && last_key.row == 4) { // RT_PNKY -> RHM_ARC = RH_RING
-                magic.col = 2;
-                magic.row = 5;
-            } else if (arcane_key.row == 1 && last_key.col == 1 && last_key.row == 0) { // LT_PNKY -> LHM_ARC = LH_RING
-                magic.col = 2;
-                magic.row = 1;
-            } else if (arcane_key.row == 2 && last_key.col == 0 && last_key.row == 1) { // LH_OUTR -> LBM_ARC = LB_PNKY
-                magic.col = 1;
-                magic.row = 2;
-            } else if (arcane_key.row == 6 && last_key.col == 0 && last_key.row == 5) { // RH_OUTR -> RBM_ARC = RB_PNKY
-                magic.col = 1;
-                magic.row = 6;
-            } else if (!(last_key.col == 3 && last_key.row == 3) && !(last_key.col == 4 && last_key.row == 3) && !(last_key.col == 1 && last_key.row == 3) && !(last_key.col == 3 && last_key.row == 7) && !(last_key.col == 1 && last_key.row == 7)) {
+            // if ((LEFT_HOME_ARCANE && LAST_LEFT_OUTER_THUMB)) {
+            if ((LAST_LEFT_OUTER_THUMB && LEFT_HOME_ARCANE)) {
+                MAGIC_LEFT_MIDDLE_THUMB
+            } else if ((LAST_LEFT_MIDDLE_THUMB && RIGHT_BOTTOM_ARCANE)) { // L_LTHMB -> RBM_ARC = L_MTHMB
+                MAGIC_LEFT_INNER_THUMB
+            } else if ((LAST_LEFT_INNER_THUMB && RIGHT_BOTTOM_ARCANE)) { // L_RTHMB -> RBM_ARC = L_MTHMB
+                MAGIC_LEFT_MIDDLE_THUMB
+            } else if ((LAST_LEFT_INNER_THUMB && LEFT_BOTTOM_ARCANE) || (LAST_LEFT_MIDDLE_THUMB && LEFT_BOTTOM_ARCANE) || (LAST_RIGHT_MIDDLE_THUMB && RIGHT_BOTTOM_ARCANE)) { // thumb alpha -> bottom arcane = space
+                MAGIC_LEFT_OUTER_THUMB
+            } else if (LAST_RIGHT_OUTER_THUMB && RIGHT_HOME_ARCANE) {
+                MAGIC_RIGHT_MIDDLE_THUMB
+            } else if (LAST_RIGHT_TOP_PINKY && RIGHT_HOME_ARCANE) {
+                MAGIC_RIGHT_HOME_RING
+            } else if (LAST_LEFT_TOP_PINKY && LEFT_HOME_ARCANE) {
+                MAGIC_LEFT_HOME_RING
+            } else if (LAST_LEFT_HOME_OUTER && LEFT_BOTTOM_ARCANE) {
+                MAGIC_LEFT_BOTTOM_PINKY
+            } else if (LAST_RIGHT_HOME_OUTER && RIGHT_BOTTOM_ARCANE) {
+                MAGIC_RIGHT_BOTTOM_PINKY
+            } else if ((LAST_LEFT_HOME_RING || LAST_LEFT_HOME_MIDDLE) && LEFT_TOP_ARCANE) {
+                MAGIC_LEFT_TOP_PINKY
+            } else if (LAST_LEFT_BOTTOM_PINKY && LEFT_HOME_ARCANE) {
+                MAGIC_LEFT_HOME_OUTER
+            } else if (LAST_LEFT_BOTTOM_INDEX && LEFT_TOP_ARCANE) {
+                MAGIC_LEFT_HOME_RING
+            } else if (LAST_LEFT_TOP_MIDDLE && LEFT_HOME_ARCANE) {
+                MAGIC_LEFT_BOTTOM_RING
+            } else if ((LAST_RIGHT_HOME_RING || LAST_RIGHT_HOME_MIDDLE) && RIGHT_TOP_ARCANE) {
+                MAGIC_RIGHT_TOP_PINKY
+            } else if (LAST_LEFT_TOP_PINKY && LEFT_BOTTOM_ARCANE) {
+                MAGIC_LEFT_HOME_OUTER
+            } else if (LAST_RIGHT_TOP_PINKY && RIGHT_BOTTOM_ARCANE) {
+                MAGIC_RIGHT_HOME_OUTER
+            } else if ((LAST_LEFT_BOTTOM_MIDDLE || LAST_LEFT_BOTTOM_RING || LAST_LEFT_HOME_OUTER) && LEFT_HOME_ARCANE) {
+                MAGIC_LEFT_TOP_PINKY
+            } else if (LAST_LEFT_HOME_RING && LEFT_BOTTOM_ARCANE) {
+                MAGIC_LEFT_BOTTOM_PINKY
+            } else if (!(LAST_LEFT_INNER_THUMB) && !(LAST_LEFT_MIDDLE_THUMB) && !(LAST_LEFT_OUTER_THUMB) && !(LAST_RIGHT_MIDDLE_THUMB) && !(LAST_RIGHT_OUTER_THUMB)) {
                 // TODO figure out what to do about same hand different row magic that isn't defined above. below was too destructive to above exceptions to b added to OTHER_ROW
                 //  && !(arcane_key.row < 3 && last_key.col < 5 && last_key.row < 3) && !(arcane_key.row > 3 && last_key.col < 5 && last_key.row > 3
                 magic.col = last_key.col;
                 magic.row = arcane_key.row + rowOffset;
             }
-            uint16_t keycode = keycode_config(QK_LAYER_TAP_GET_TAP_KEYCODE(keymap_key_to_keycode(layer_switch_get_layer(magic), magic)));
-            // uint16_t keycode = keymap_key_to_keycode(layer_switch_get_layer(magic), magic);
-
-#ifdef CONSOLE_ENABLE
-            uprintf("arcane magic: last_key col: %u, last_key row: %u, magic col: %u, magic row: %u, keycode: 0x%04X, key name: %s\n", last_key.col, last_key.row, magic.col, magic.row, keycode, key_name(keycode, false));
-#endif
-            if (keycode != 0) {
-                ARCANE_STRING(key_name(keycode, false), keycode);
-                return;
-            }
+        } else if (LEFT_HOME_ARCANE && LAST_RIGHT_HOME_OUTER) {
+            MAGIC_RIGHT_HOME_PINKY
+        } else if (LEFT_HOME_ARCANE && LAST_RIGHT_HOME_MIDDLE) {
+            ARCANE_STRING("nd", KC_D); // a
+            return KC_NO;
+        } else if (RIGHT_TOP_ARCANE && LAST_LEFT_TOP_INDEX) {
+            ARCANE_STRING("ut", KC_T); // b
+            return KC_NO;
+        } else if (RIGHT_HOME_ARCANE && LAST_LEFT_HOME_PINKY) {
+            ARCANE_STRING("an", KC_N); // c
+            return KC_NO;
+        } else if (RIGHT_TOP_ARCANE && LAST_LEFT_TOP_MIDDLE) {
+            ARCANE_STRING("efinitely", KC_Y); // d
+            return KC_NO;
+        } else if (LEFT_BOTTOM_ARCANE && LAST_RIGHT_MIDDLE_THUMB) {
+            ARCANE_STRING("very", KC_Y); // e
+            return KC_NO;
+        } else if (RIGHT_TOP_ARCANE && LAST_LEFT_TOP_RING) {
+            ARCANE_STRING("or", KC_R); // f
+            return KC_NO;
+        } else if (LEFT_HOME_ARCANE && LAST_RIGHT_HOME_OUTER) {
+            ARCANE_STRING("et", KC_T); // g
+            return KC_NO;
+        } else if (LEFT_HOME_ARCANE && LAST_RIGHT_HOME_PINKY) {
+            ARCANE_STRING("ave", KC_E); // h
+            return KC_NO;
+        } else if (LEFT_HOME_ARCANE && LAST_RIGHT_HOME_RING) {
+            ARCANE_STRING("on", KC_N); // i
+            return KC_NO;
+        } else if (RIGHT_TOP_ARCANE && LAST_LEFT_TOP_OUTER) {
+            ARCANE_STRING("ust", KC_T); // j
+            return KC_NO;
+        } else if (RIGHT_BOTTOM_ARCANE && LAST_LEFT_BOTTOM_MIDDLE) {
+            ARCANE_STRING("eyboard", KC_D); // k
+            return KC_NO;
+        } else if (LEFT_TOP_ARCANE && LAST_RIGHT_TOP_PINKY) {
+            ARCANE_STRING("ike", KC_E); // l
+            return KC_NO;
+        } else if (RIGHT_HOME_ARCANE && LAST_LEFT_HOME_OUTER) {
+            ARCANE_STRING("ore", KC_E); // m
+            return KC_NO;
+        } else if (RIGHT_HOME_ARCANE && LAST_LEFT_HOME_INDEX) {
+            ARCANE_STRING("g", KC_G); // n
+        } else if (LEFT_TOP_ARCANE && LAST_RIGHT_TOP_MIDDLE) {
+            ARCANE_STRING("uld", KC_D); // o
+            return KC_NO;
+        } else if (RIGHT_BOTTOM_ARCANE && LAST_LEFT_BOTTOM_PINKY) {
+            ARCANE_STRING("robably", KC_Y); // p
+            return KC_NO;
+        } else if (LEFT_TOP_ARCANE && LAST_RIGHT_TOP_OUTER) {
+            ARCANE_STRING("i", KC_I); // qu
+            return KC_NO;
+        } else if (RIGHT_BOTTOM_ARCANE && LAST_LEFT_MIDDLE_THUMB) {
+            ARCANE_STRING("eally", KC_Y); // r
+            return KC_NO;
+        } else if (RIGHT_HOME_ARCANE && LAST_LEFT_HOME_RING) {
+            ARCANE_STRING("uper", KC_R); // s
+            return KC_NO;
+        } else if (RIGHT_HOME_ARCANE && LAST_LEFT_HOME_MIDDLE) {
+            ARCANE_STRING("he", KC_E); // t
+            return KC_NO;
+        } else if (LEFT_HOME_ARCANE && LAST_RIGHT_HOME_INDEX) {
+            ARCANE_STRING("pdate", KC_E); // u
+            return KC_NO;
+        } else if (RIGHT_BOTTOM_ARCANE && LAST_LEFT_BOTTOM_RING) {
+            ARCANE_STRING("ery", KC_Y); // v
+            return KC_NO;
+        } else if (LEFT_TOP_ARCANE && LAST_RIGHT_TOP_INDEX) {
+            ARCANE_STRING("ill", KC_L); // w
+            return KC_NO;
+        } else if (RIGHT_TOP_ARCANE && LAST_LEFT_TOP_PINKY) {
+            ARCANE_STRING("ou", KC_U); // y
+            return KC_NO;
+        } else if (RIGHT_BOTTOM_ARCANE && LAST_LEFT_INNER_THUMB) {
+            ARCANE_STRING("ero", KC_O); // z
+            return KC_NO;
         }
+
+        uint16_t keycode = keycode_config(QK_LAYER_TAP_GET_TAP_KEYCODE(keymap_key_to_keycode(layer_switch_get_layer(magic), magic)));
+        // uint16_t keycode = keymap_key_to_keycode(layer_switch_get_layer(magic), magic);
+
+        return arcane_tap(keycode);
     }
     // TODO consider space magic term with extra wide window?
 
-    tap_code16(default_keycode);
+    // tap_code16(default_keycode);
+    return default_keycode;
 }
 
-void process_top_left_arcane(uint16_t last_keycode, keypos_t last_key, uint16_t last_keydown, uint8_t mods, uint16_t default_keycode) {
-    process_arcane_matrix((keypos_t){5, 0}, last_keycode, last_key, last_keydown, mods, default_keycode);
+uint16_t process_top_left_arcane(uint16_t last_keycode, keypos_t last_key, uint16_t last_keydown, uint8_t mods, uint16_t default_keycode) {
+    return process_arcane_matrix((keypos_t){5, 0}, last_keycode, last_key, last_keydown, mods, default_keycode);
 }
-void process_home_left_arcane(uint16_t last_keycode, keypos_t last_key, uint16_t last_keydown, uint8_t mods, uint16_t default_keycode) {
-    process_arcane_matrix((keypos_t){5, 1}, last_keycode, last_key, last_keydown, mods, default_keycode);
+uint16_t process_home_left_arcane(uint16_t last_keycode, keypos_t last_key, uint16_t last_keydown, uint8_t mods, uint16_t default_keycode) {
+    return process_arcane_matrix((keypos_t){5, 1}, last_keycode, last_key, last_keydown, mods, default_keycode);
 }
-void process_bottom_left_arcane(uint16_t last_keycode, keypos_t last_key, uint16_t last_keydown, uint8_t mods, uint16_t default_keycode) {
-    process_arcane_matrix((keypos_t){5, 2}, last_keycode, last_key, last_keydown, mods, default_keycode);
+uint16_t process_bottom_left_arcane(uint16_t last_keycode, keypos_t last_key, uint16_t last_keydown, uint8_t mods, uint16_t default_keycode) {
+    return process_arcane_matrix((keypos_t){5, 2}, last_keycode, last_key, last_keydown, mods, default_keycode);
 }
-void process_top_right_arcane(uint16_t last_keycode, keypos_t last_key, uint16_t last_keydown, uint8_t mods, uint16_t default_keycode) {
-    process_arcane_matrix((keypos_t){5, 4}, last_keycode, last_key, last_keydown, mods, default_keycode);
+uint16_t process_top_right_arcane(uint16_t last_keycode, keypos_t last_key, uint16_t last_keydown, uint8_t mods, uint16_t default_keycode) {
+    return process_arcane_matrix((keypos_t){5, 4}, last_keycode, last_key, last_keydown, mods, default_keycode);
 }
-void process_home_right_arcane(uint16_t last_keycode, keypos_t last_key, uint16_t last_keydown, uint8_t mods, uint16_t default_keycode) {
-    process_arcane_matrix((keypos_t){5, 5}, last_keycode, last_key, last_keydown, mods, default_keycode);
+uint16_t process_home_right_arcane(uint16_t last_keycode, keypos_t last_key, uint16_t last_keydown, uint8_t mods, uint16_t default_keycode) {
+    return process_arcane_matrix((keypos_t){5, 5}, last_keycode, last_key, last_keydown, mods, default_keycode);
 }
-void process_bottom_right_arcane(uint16_t last_keycode, keypos_t last_key, uint16_t last_keydown, uint8_t mods, uint16_t default_keycode) {
-    process_arcane_matrix((keypos_t){5, 6}, last_keycode, last_key, last_keydown, mods, default_keycode);
+uint16_t process_bottom_right_arcane(uint16_t last_keycode, keypos_t last_key, uint16_t last_keydown, uint8_t mods, uint16_t default_keycode) {
+    return process_arcane_matrix((keypos_t){5, 6}, last_keycode, last_key, last_keydown, mods, default_keycode);
 }
 
 // inspired from https://www.reddit.com/r/KeyboardLayouts/comments/1cc2yri/oneshot_shift_via_adaptive_keys/?share_id=J_a-r4rEr1p26tZg4lRpc&utm_content=1&utm_medium=android_app&utm_name=androidcss&utm_source=share&utm_term=1

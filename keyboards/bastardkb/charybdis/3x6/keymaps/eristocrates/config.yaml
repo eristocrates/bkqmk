@@ -158,13 +158,11 @@ parse_config:
     MI_DOWN: "Crouch"
     MI_JUMP: "Jump"
     MI_FRNT: "Forward"
-    DEQL: "=="
     UP__DIR: "../"
     DBSL: "\\"
     DSLH: "//"
     DAMP: "**"
     DPIP: "||"
-    ESLH: "\/"
     PSCR: "Print Screen"
     DBCL: "Double Click"
     BTN1: "Left Click"
@@ -184,11 +182,9 @@ parse_config:
     INS: "Insert"
     HOME: "Home"
     PGUP: "Page Up"
-    PMNS: "-"
     P4: "4"
     P5: "5"
     P6: "6"
-    PPLS: "+"
     DEL: "Delete"
     END: "End"
     PGDN: "Page Down"
@@ -212,17 +208,38 @@ parse_config:
     MSTP: "Stop Track"
     MUTE: "Mute"
     KC_CAPS: "Caps Lock"
+    EXP_AND: ""
+    KC_PDOT: "."
+    KC_CEQL: ":="
+    SPC: "Space"
+    SKP_GRM: "Skip gram"
+    ELIP: "..."
+    LGCM: "{{/*"
+    RGCM: "/*}}"
+    RGX_PLB: "(?<=)"
+    RGX_NLA: "(?!)"
+    DTGV: ".gov"
+    DTCM: ".com"
+    HOM_DIR: "~/"
+    RGX_NCP: "(?:)"
+    RGX_NLB: "(?<!)"
+    RGX_PLA: "(?=)"
+    DGSC: "Drag Scroll"
+    SNPE: "Sniping"
+    P00: "00"
+    P1: "1"
+    P2: "2"
+    P3: "3"
+    PENT: "Enter"
+
 
     XXXXXXX: ''
     'NO': ''
     MINUS: '-'
     MINS: '-'
     EQUAL: '='
-    EQL: '='
     LEFT_BRACKET: '['
-    LBRC: '['
     RIGHT_BRACKET: ']'
-    RBRC: ']'
     BACKSLASH: \
     BSLS: \
     NONUS_HASH: '#'
@@ -230,12 +247,7 @@ parse_config:
     SEMICOLON: ;
     SCLN: ;
     QUOTE: ''''
-    QUOT: ''''
     GRAVE: '`'
-    GRV: '`'
-    COMMA: ','
-    COMM: ','
-    DOT: .
     SLASH: /
     SLSH: /
     TILDE: '~'
@@ -251,7 +263,6 @@ parse_config:
     CIRCUMFLEX: ^
     CIRC: ^
     AMPERSAND: '&'
-    AMPR: '&'
     ASTERISK: '*'
     ASTR: '*'
     LEFT_PAREN: (
@@ -272,10 +283,8 @@ parse_config:
     DQUO: '"'
     DQT: '"'
     LEFT_ANGLE_BRACKET: <
-    LABK: <
     LT: <
     RIGHT_ANGLE_BRACKET: '>'
-    RABK: '>'
     GT: '>'
     QUESTION: '?'
     QUES: '?'
