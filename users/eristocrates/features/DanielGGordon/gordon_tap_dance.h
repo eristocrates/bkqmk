@@ -210,7 +210,7 @@ enum gordon_layers {
     _NUMPAD,         // For getting a numpad under the right hand, and a few helpful things under the left
     _NAV,            // Windows navigation. Windows snapping, changing workspaces, and ARROWS
     _MACROS,         // Non-text related Macros.
-    _BITWISE,        // Not sure what I had in mind for this one
+    _BITNUM,         // Not sure what I had in mind for this one
     _APPSWITCH,      // For switching between apps using the `ctrl + Win + [num]` shortcut.
                      // This allows for toggling windows of the same app with one button.
                      // Example: Press and hold `I`, then tap `j` multiple times to cycle through all

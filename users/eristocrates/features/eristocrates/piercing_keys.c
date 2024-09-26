@@ -8,11 +8,11 @@ bool process_piercing_keys(uint16_t keycode, keyrecord_t *record) {
         case TH____A:
             tap_keycode  = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
             hold_keycode = tap_keycode;
-            if (IS_LAYER_ON(_SHIFTISHB)) {
+            if (IS_LAYER_ON(_ALTISHB)) {
                 hold_mod = KC_LGUI;
-            } else if (IS_LAYER_ON(_SHIFTISHL)) {
+            } else if (IS_LAYER_ON(_NGRAML)) {
                 hold_mod = KC_LCTL;
-            } else if (IS_LAYER_ON(_SHIFTISHR)) {
+            } else if (IS_LAYER_ON(_NGRAMR)) {
                 hold_mod = KC_LALT;
             } else {
                 hold_mod = KC_LSFT;

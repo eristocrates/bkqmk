@@ -10,15 +10,16 @@ enum layers {
     _COMBOREF,
     _VIMNAV,
     _VIMFIGHTER,
-    _SHIFTISHL,
-    _SHIFTISHR,
-    _SHIFTISHB,
+    _NGRAML,
+    _NGRAMR,
     _ALTISHL,
     _ALTISHR,
+    _ALTISHB,
+    _BITNUM,
+    _BITFUNC,
+    _NUMPAD,
     _POINTER,
     _POINTEROPT,
-    _BITWISE,
-    _NUMPAD,
     _MEDIA,
     _ONESHOT,
     _GAME,
@@ -227,6 +228,56 @@ enum keycodes {
     KC_ELIP, // ...
     CASE_TERM,
 
+    NG_ATE,
+    NG_ANCE,
+    NG_BL,
+    NG_BY,
+    NG_COM,
+    NG_CON,
+    NG_DON,
+    NG_DAY,
+    NG_ERS,
+    NG_FRO,
+    NG_FOR,
+    NG_GER,
+    NG_GRE,
+    NG_HER,
+    NG_HEA,
+    NG_IN,
+    NG_ING,
+    NG_JOY,
+    NG_JECT,
+    NG_KNO,
+    NG_CK,
+    NG_LIN,
+    NG_LEA,
+    NG_MAN,
+    NG_MEN,
+    NG_NTI,
+    NG_NTE,
+    NG_OME,
+    NG_ONE,
+    NG_PRO,
+    NG_PLA,
+    NG_QUA,
+    NG_QUE,
+    NG_RAT,
+    NG_STR,
+    NG_STI,
+    NG_TER,
+    NG_TED,
+    NG_UST,
+    NG_ULD,
+    NG_VES,
+    NG_VEN,
+    NG_WAY,
+    NG_WAS,
+    NG_XPL,
+    NG_XPE,
+    NG_YTH,
+    NG_YEA,
+    NG_ZED,
+
     /* physical layout comboref keys
     legend = hand_row_column/thumb button
     L = Left hand
@@ -385,6 +436,9 @@ enum keycodes {
 /* ---------- Aliases ---------- */
 #define KC_DGSC LT(_POINTER, KC_1)
 #define KC_SNPE LT(_POINTER, KC_2)
+
+#define PLS_FUN LT(_BITNUM, KC_PPLS)
+
 // home row mods
 #define LWKEY_C LGUI_T(KC_C)
 #define LTALT_S LALT_T(KC_S)
@@ -419,9 +473,9 @@ enum keycodes {
 
 #define TH(k) LT(0, k)
 #define SG(k) LT(_SHIFTPR, k)
-#define CG(k) LT(_SHIFTISHL, k)
-#define AG(k) LT(_SHIFTISHR, k)
-#define GG(k) LT(_SHIFTISHB, k)
+#define CG(k) LT(_NGRAML, k)
+#define AG(k) LT(_NGRAMR, k)
+#define GG(k) LT(_ALTISHB, k)
 
 // base layers
 #define BASE TO(0)
@@ -431,17 +485,17 @@ enum keycodes {
 #define THINQU TO(_THINQU)
 
 // layer taps
-#define SFSHL_R LT(_SHIFTISHL, KC_R)
-#define SFSHLCR LT(_SHIFTISHL, S(KC_R))
-#define ALT___T LT(_SHIFTISHR, KC_T)
-#define CTRL__S LT(_SHIFTISHL, KC_S)
-#define SFSHR_E LT(_SHIFTISHR, KC_E)
-#define SFSHRCE LT(_SHIFTISHR, S(KC_E))
+#define NGRML_R LT(_NGRAML, KC_R)
+#define NGRMLCR LT(_NGRAML, S(KC_R))
+#define ALT___T LT(_NGRAMR, KC_T)
+#define CTRL__S LT(_NGRAML, KC_S)
+#define NGRMR_E LT(_NGRAMR, KC_E)
+#define NGRMRCE LT(_NGRAMR, S(KC_E))
 #define ALTLSPC LT(_ALTISHL, KC_SPC)
 #define ALTRSPC LT(_ALTISHR, KC_SPC)
 #define NUM_PAD LT(_NUMPAD, SW_WIN)
 #define NUM_SPC LT(_NUMPAD, KC_SPC)
-#define BITWISEZ LT(_BITWISE, KC_Z)
+#define BITWISEZ LT(_BITNUM, KC_Z)
 //  default LTs
 #define PT_Z LT(_POINTER, KC_Z)
 #define PT_SLSH LT(_POINTER, KC_SLSH)
@@ -453,7 +507,7 @@ enum keycodes {
 #define MO_NUMP MO(_NUMPAD)
 
 // one shot layers
-#define SHRTCUT OSL(_BITWISE)
+#define SHRTCUT OSL(_BITNUM)
 #define MEDIA OSL(_MEDIA)
 #define PNTROPT OSL(_POINTEROPT)
 #define PNTRNAV OSL(_POINTERNAV)
@@ -476,7 +530,7 @@ enum keycodes {
 // TODO go through these and apply them
 // oneshot layers
 #define MAT_OSL OSL(_NUMPAD)
-#define SHC_OSL OSL(_BITWISE)
+#define SHC_OSL OSL(_BITNUM)
 
 // mouse button aliases for ease of use
 #define LCLICK KC_BTN1

@@ -1,6 +1,5 @@
 [
   {
-    "Keycode": "VM_LEFT",
     "Directions": [
       {
         "Keys": [
@@ -74,10 +73,10 @@
         "Direction": "default",
         "Link": "https://neovim.io/doc/user/motion.html#h"
       }
-    ]
+    ],
+    "Keycode": "VM_LEFT"
   },
   {
-    "Keycode": "VM_DOWN",
     "Directions": [
       {
         "Keys": [
@@ -153,10 +152,10 @@
         "Direction": "default",
         "Link": "https://neovim.io/doc/user/motion.html#j"
       }
-    ]
+    ],
+    "Keycode": "VM_DOWN"
   },
   {
-    "Keycode": "VM___UP",
     "Directions": [
       {
         "Keys": [
@@ -224,10 +223,10 @@
         "Direction": "default",
         "Link": "https://neovim.io/doc/user/motion.html#k"
       }
-    ]
+    ],
+    "Keycode": "VM___UP"
   },
   {
-    "Keycode": "VM_RGHT",
     "Directions": [
       {
         "Keys": [
@@ -307,10 +306,10 @@
         "Direction": "default",
         "Link": "https://neovim.io/doc/user/motion.html#l"
       }
-    ]
+    ],
+    "Keycode": "VM_RGHT"
   },
   {
-    "Keycode": "VM_VERT",
     "Directions": [
       {
         "Keys": [
@@ -399,10 +398,10 @@
         "Direction": "default",
         "Link": "https://neovim.io/doc/user/scroll.html#z."
       }
-    ]
+    ],
+    "Keycode": "VM_VERT"
   },
   {
-    "Keycode": "VM_HORI",
     "Directions": [
       {
         "Keys": [
@@ -502,10 +501,10 @@
         "Direction": "default",
         "Link": "https://neovim.io/doc/user/motion.html#M"
       }
-    ]
+    ],
+    "Keycode": "VM_HORI"
   },
   {
-    "Keycode": "VM_NTRL",
     "Directions": [
       {
         "Keys": [
@@ -614,10 +613,10 @@
         "Direction": "default",
         "Link": "https://neovim.io/doc/user/intro.html#i_esc"
       }
-    ]
+    ],
+    "Keycode": "VM_NTRL"
   },
   {
-    "Keycode": "VM_CHAN",
     "Directions": [
       {
         "Keys": [
@@ -693,10 +692,10 @@
         "Direction": "default",
         "Link": "https://neovim.io/doc/user/change.html#c"
       }
-    ]
+    ],
+    "Keycode": "VM_CHAN"
   },
   {
-    "Keycode": "VM_DELE",
     "Directions": [
       {
         "Keys": [
@@ -765,10 +764,10 @@
         "Direction": "default",
         "Link": "https://neovim.io/doc/user/change.html#d"
       }
-    ]
+    ],
+    "Keycode": "VM_DELE"
   },
   {
-    "Keycode": "VM_YANK",
     "Directions": [
       {
         "Keys": [
@@ -864,10 +863,10 @@
         "Direction": "default",
         "Link": "https://neovim.io/doc/user/change.html#y"
       }
-    ]
+    ],
+    "Keycode": "VM_YANK"
   },
   {
-    "Keycode": "VM_VISU",
     "Directions": [
       {
         "Keys": [
@@ -906,10 +905,10 @@
         "Direction": "default",
         "Link": "https://neovim.io/doc/user/visual.html#v"
       }
-    ]
+    ],
+    "Keycode": "VM_VISU"
   },
   {
-    "Keycode": "VM_MRKQ",
     "Directions": [
       {
         "Keys": [
@@ -1045,10 +1044,10 @@
         "Direction": "default",
         "Link": "https://neovim.io/doc/user/motion.html#m"
       }
-    ]
+    ],
+    "Keycode": "VM_MRKQ"
   },
   {
-    "Keycode": "VM_MRKG",
     "Directions": [
       {
         "Keys": [
@@ -1184,10 +1183,10 @@
         "Direction": "default",
         "Link": "https://neovim.io/doc/user/motion.html#m"
       }
-    ]
+    ],
+    "Keycode": "VM_MRKG"
   },
   {
-    "Keycode": "VM_FRMT",
     "Directions": [
       {
         "Keys": [
@@ -1295,10 +1294,10 @@
         "Direction": "default",
         "Link": "https://neovim.io/doc/user/change.html#gq"
       }
-    ]
+    ],
+    "Keycode": "VM_FRMT"
   },
   {
-    "Keycode": "VM_FOLD",
     "Directions": [
       {
         "Keys": [
@@ -1460,10 +1459,10 @@
         "Direction": "default",
         "Link": "https://neovim.io/doc/user/fold.html#zi"
       }
-    ]
+    ],
+    "Keycode": "VM_FOLD"
   },
   {
-    "Keycode": "VM_SRCH",
     "Directions": [
       {
         "Keys": [
@@ -1530,6 +1529,7 @@
         "Direction": "default",
         "Link": "https://neovim.io/doc/user/motion.html#%25"
       }
-    ]
+    ],
+    "Keycode": "VM_SRCH"
   }
 ]

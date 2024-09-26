@@ -113,6 +113,8 @@ void call_keycode(uint16_t keycode);
          && keycode != MI_DOWN\
          && keycode != MI_JUMP\
          && keycode != MI_FRNT\
+         && keycode != KC_DGSC\
+         && keycode != KC_SNPE\
 )
 /*
 

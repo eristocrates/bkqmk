@@ -256,7 +256,7 @@ static bool process_quopostrokey(uint16_t keycode, keyrecord_t *record) {
     // Determine whether the key is a letter.
     switch (keycode) {
         case KC_A ... KC_Z:
-        case SFSHL_R:
+        case NGRML_R:
         case ALT___T:
             within_word = true;
             break;
@@ -709,7 +709,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static uint16_t tap_timer = 0;
     */
 
-    uint16_t basic_keycode      = extract_basic_keycode(keycode, record, false);
+    // uint16_t basic_keycode      = extract_basic_keycode(keycode, record, false);
     uint16_t last_basic_keycode = extract_basic_keycode(get_last_keycode(), last_record, false);
 #ifdef CONSOLE_ENABLE
     // if (record->event.pressed) uprintf("process_last_record_user: last_basic_keycode: 0x%04X, last key name: %s, col: %u, row: %u, pressed: %b, time: %u, interrupt: %b, count: %u\n", last_basic_keycode, key_name(last_basic_keycode, false), last_record->event.key.col, last_record->event.key.row, last_record->event.pressed, last_record->event.time, last_record->tap.interrupted, last_record->tap.count);
@@ -789,51 +789,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
     }
     switch (keycode) {
-        case LWKEY_C:
-        case LTALT_S:
-        case LCTRL_T:
-        case LSHFT_N:
-        case RSHFT_U:
-        case RCTRL_A:
-        case RTALT_I:
-        case RWKEY_H:
-        case SFSHL_R:
-        case SFSHR_E:
-            if ((IS_LAYER_ON(_SHIFTISHL) || IS_LAYER_ON(_SHIFTISHR) || IS_LAYER_ON(_SHIFTISHB)) && record->tap.count && record->event.pressed) {
-                register_code(KC_LSFT);
-                tap_code16(basic_keycode);
-                unregister_code(KC_LSFT);
-                pointer_mode_disable();
-                return false;
-            }
-            return true;
-
-        case KC_A ... KC_R:
-        case KC_T ... KC_Z:
-
-            tap_keycode = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
-            if ((IS_LAYER_ON(_SHIFTISHL) || IS_LAYER_ON(_SHIFTISHR) || IS_LAYER_ON(_SHIFTISHB)) && record->event.pressed) {
-                register_code(KC_LSFT);
-                tap_code(tap_keycode);
-                unregister_code(KC_LSFT);
-                return false;
-            }
-            return true;
-
-        case KC_S:
-            // TODO decide what to do with last smart space
-            tap_keycode = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
-            if ((IS_LAYER_ON(_SHIFTISHL) || IS_LAYER_ON(_SHIFTISHR) || IS_LAYER_ON(_SHIFTISHB)) && record->event.pressed) {
-                register_code(KC_LSFT);
-                tap_code(tap_keycode);
-                unregister_code(KC_LSFT);
-                return false;
-            } else if (record->event.pressed && last_smart_space) {
-                tap_code(KC_BSPC);
-                tap_code(KC_S);
-                tap_code(KC_SPC);
-            }
-            return true;
         case KC_P00:
             if (record->event.pressed) {
                 SEND_STRING("00");
@@ -884,7 +839,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             layer_on(_NUMPAD);
             return false;
         case BITWISE:
-            layer_on(_BITWISE);
+            layer_on(_BITNUM);
             return false;
 
         case K_CLEAR:
@@ -1083,7 +1038,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 if (last_smart_space) {
                     tap_code(KC_BSPC);
                 }
-                send_string_with_caps_word("'ll");
+                send_string_with_caps_word("'all");
             }
             return true;
         case MD_SCLN:
@@ -1790,6 +1745,253 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
+            /*------------------------------ ngram keys ------------------------------*/
+        case NG_ATE:
+            if (record->event.pressed) {
+                SEND_STRING("ate");
+            }
+            return false;
+        case NG_ANCE:
+            if (record->event.pressed) {
+                SEND_STRING("ance");
+            }
+            return false;
+        case NG_BL:
+            if (record->event.pressed) {
+                SEND_STRING("bl");
+            }
+            return false;
+        case NG_BY:
+            if (record->event.pressed) {
+                SEND_STRING("by");
+            }
+            return false;
+        case NG_COM:
+            if (record->event.pressed) {
+                SEND_STRING("com");
+            }
+            return false;
+        case NG_CON:
+            if (record->event.pressed) {
+                SEND_STRING("con");
+            }
+            return false;
+        case NG_DON:
+            if (record->event.pressed) {
+                SEND_STRING("don");
+            }
+            return false;
+        case NG_DAY:
+            if (record->event.pressed) {
+                SEND_STRING("day");
+            }
+            return false;
+        case NG_ERS:
+            if (record->event.pressed) {
+                SEND_STRING("ers");
+            }
+            return false;
+        case NG_FRO:
+            if (record->event.pressed) {
+                SEND_STRING("fro");
+            }
+            return false;
+        case NG_FOR:
+            if (record->event.pressed) {
+                SEND_STRING("for");
+            }
+            return false;
+        case NG_GER:
+            if (record->event.pressed) {
+                SEND_STRING("ger");
+            }
+            return false;
+        case NG_GRE:
+            if (record->event.pressed) {
+                SEND_STRING("gre");
+            }
+            return false;
+        case NG_HER:
+            if (record->event.pressed) {
+                SEND_STRING("her");
+            }
+            return false;
+        case NG_HEA:
+            if (record->event.pressed) {
+                SEND_STRING("hea");
+            }
+            return false;
+        case NG_IN:
+            if (record->event.pressed) {
+                SEND_STRING("in");
+            }
+            return false;
+        case NG_ING:
+            if (record->event.pressed) {
+                SEND_STRING("ing");
+            }
+            return false;
+        case NG_JOY:
+            if (record->event.pressed) {
+                SEND_STRING("joy");
+            }
+            return false;
+        case NG_JECT:
+            if (record->event.pressed) {
+                SEND_STRING("ject");
+            }
+            return false;
+        case NG_KNO:
+            if (record->event.pressed) {
+                SEND_STRING("kno");
+            }
+            return false;
+        case NG_CK:
+            if (record->event.pressed) {
+                SEND_STRING("ck");
+            }
+            return false;
+        case NG_LIN:
+            if (record->event.pressed) {
+                SEND_STRING("lin");
+            }
+            return false;
+        case NG_LEA:
+            if (record->event.pressed) {
+                SEND_STRING("lea");
+            }
+            return false;
+        case NG_MAN:
+            if (record->event.pressed) {
+                SEND_STRING("man");
+            }
+            return false;
+        case NG_MEN:
+            if (record->event.pressed) {
+                SEND_STRING("men");
+            }
+            return false;
+        case NG_NTI:
+            if (record->event.pressed) {
+                SEND_STRING("nti");
+            }
+            return false;
+        case NG_NTE:
+            if (record->event.pressed) {
+                SEND_STRING("nte");
+            }
+            return false;
+        case NG_OME:
+            if (record->event.pressed) {
+                SEND_STRING("ome");
+            }
+            return false;
+        case NG_ONE:
+            if (record->event.pressed) {
+                SEND_STRING("one");
+            }
+            return false;
+        case NG_PRO:
+            if (record->event.pressed) {
+                SEND_STRING("pro");
+            }
+            return false;
+        case NG_PLA:
+            if (record->event.pressed) {
+                SEND_STRING("pla");
+            }
+            return false;
+        case NG_QUA:
+            if (record->event.pressed) {
+                SEND_STRING("qua");
+            }
+            return false;
+        case NG_QUE:
+            if (record->event.pressed) {
+                SEND_STRING("que");
+            }
+            return false;
+        case NG_RAT:
+            if (record->event.pressed) {
+                SEND_STRING("rat");
+            }
+            return false;
+        case NG_STR:
+            if (record->event.pressed) {
+                SEND_STRING("str");
+            }
+            return false;
+        case NG_STI:
+            if (record->event.pressed) {
+                SEND_STRING("sti");
+            }
+            return false;
+        case NG_TER:
+            if (record->event.pressed) {
+                SEND_STRING("ter");
+            }
+            return false;
+        case NG_TED:
+            if (record->event.pressed) {
+                SEND_STRING("ted");
+            }
+            return false;
+        case NG_UST:
+            if (record->event.pressed) {
+                SEND_STRING("ust");
+            }
+            return false;
+        case NG_ULD:
+            if (record->event.pressed) {
+                SEND_STRING("uld");
+            }
+            return false;
+        case NG_VES:
+            if (record->event.pressed) {
+                SEND_STRING("ves");
+            }
+            return false;
+        case NG_VEN:
+            if (record->event.pressed) {
+                SEND_STRING("ven");
+            }
+            return false;
+        case NG_WAY:
+            if (record->event.pressed) {
+                SEND_STRING("way");
+            }
+            return false;
+        case NG_WAS:
+            if (record->event.pressed) {
+                SEND_STRING("was");
+            }
+            return false;
+        case NG_XPL:
+            if (record->event.pressed) {
+                SEND_STRING("xpl");
+            }
+            return false;
+        case NG_XPE:
+            if (record->event.pressed) {
+                SEND_STRING("xpe");
+            }
+            return false;
+        case NG_YTH:
+            if (record->event.pressed) {
+                SEND_STRING("yth");
+            }
+            return false;
+        case NG_YEA:
+            if (record->event.pressed) {
+                SEND_STRING("yea");
+            }
+            return false;
+        case NG_ZED:
+            if (record->event.pressed) {
+                SEND_STRING("zed");
+            }
+            return false;
+
         // TODO explore this fancy key
         case FANCY_KEY:
             if (record->tap.count > 0) { // Key is being tapped.
@@ -1934,7 +2136,7 @@ void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
             case KC____L:
             case KC____C:
                 // thumb row
-            case SFSHL_R:
+            case NGRML_R:
             case ALTLSPC:
             case ALTRSPC:
             case ALT___T:
@@ -2156,7 +2358,7 @@ bool process_combo_key_release(uint16_t combo_index, combo_t *combo, uint8_t key
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    state = update_tri_layer_state(state, _SHIFTISHL, _SHIFTISHR, _SHIFTISHB);
+    state = update_tri_layer_state(state, _ALTISHL, _ALTISHR, _ALTISHB);
     // TODO might as well find an excuse to put layer taps on my spaces and add a tri layer here
     return state;
 }
@@ -2164,7 +2366,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 // TODO think of cool things arcane could do on hold
 bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case SFSHL_R:
+        case NGRML_R:
         case ALT___T:
         case DOT_ARC:
         case COM_ARC:
@@ -3667,13 +3869,13 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 
     color_scheme_max = sizeof(color_schemes) / sizeof(rgb_color_scheme_t);
     switch (current_layer) {
-        case _SHIFTISHL:
-        case _SHIFTISHR:
-        case _SHIFTISHB:
+        case _NGRAML:
+        case _NGRAMR:
+        case _ALTISHB:
         case _ALTISHL:
         case _ALTISHR:
         case _NUMPAD:
-        case _BITWISE:
+        case _BITNUM:
         case _VIMNAV:
         case _VIMFIGHTER:
             rgb_matrix_layer_helper(keeb_state.vim_emulation, color_schemes[keeb_state.color_scheme_index], keeb_state.vim_mode_index, current_layer, rgb_matrix_get_mode(), rgb_matrix_config.speed, LED_FLAG_KEYLIGHT, led_min, led_max);
