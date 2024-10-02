@@ -117,12 +117,12 @@ if ($matches.Success) {
     $content = $content -replace "QK LEAD", "{t: Leader, s: QMK }"
 
     $content = $content -replace "BITWISEZ", "{t: Z, h: Bitwise }"
-    $content = $content -replace "NGRML R", "{t: R, h: NGramL }"
-    $content = $content -replace "NGRMLCR", "{t: R, h: NGramL }"
+    $content = $content -replace "SFSHL R", "{t: R, h: NGramL }"
+    $content = $content -replace "SFSHLCR", "{t: R, h: NGramL }"
     $content = $content -replace "ALTLSPC", "{t: Space, h: AltishL }"
     $content = $content -replace "ALTRSPC", "{t: Space, h: AltishR }"
-    $content = $content -replace "NGRMR E", "{t: E, h: NGramR }"
-    $content = $content -replace "NGRMRCE", "{t: E, h: NGramR }"
+    $content = $content -replace "SFSHR E", "{t: E, h: NGramR }"
+    $content = $content -replace "SFSHRCE", "{t: E, h: NGramR }"
     $content = $content -replace "\bNUM SPC\b", "{t: Space, h: NumPad }"
     $content = $content -replace "PPLS", "{t: '+', s: '++'}"
     $content = $content -replace "LBRC", "{t: '[', s: '/*'}"
@@ -362,7 +362,7 @@ for ($i = 0; $i -lt $list.Count; $i++) {
 }
 
 
-
+# ngrams
 
 
 # combo ref

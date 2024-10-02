@@ -21,6 +21,7 @@
 #include "eristocrates_keycodes.h"
 #include "eristocrates_layout.h"
 #include "features/possumvibes/smart_layer.h"
+#include "features/eristocrates/utilities.h"
 // #include "smtd_keycodes.h"
 // #include "features/stasmarkin/sm_td.h"
 
@@ -48,9 +49,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* ├───────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────┤ */
      KC____M, LWKEY_C, LTALT_S, LCTRL_T, LSHFT_N, LHM_ARC, RHM_ARC, RSHFT_U, RCTRL_A, RTALT_I, RWKEY_H, KC____G,
   /* ├───────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────┤ */
-     QK_LEAD, KC____P, KC____V, KC____K, KC____X, LBM_ARC, RBM_ARC, KC_QUOT,  KC_EQL, KC_COMM, EXP_AND, VIM_TOG,
+     QK_LEAD, KC____P, KC____V, KC____K, KC____X, LBM_ARC, RBM_ARC, KC_QUOT,  KC_EQL, KC_COMM, KC___WH, VIM_TOG,
   /* ╰───────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────╯ */
-                                BITWISEZ, NGRML_R, ALTLSPC, ALTRSPC, NGRMR_E
+                                BITWISEZ, SFSHL_R, ALTLSPC, ALTRSPC, SFSHR_E
   /*                            ╰────────────────────────╯ ╰──────────────╯                                      */
   ),
 
@@ -102,26 +103,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                   _______, MI_JUMP, _______,    VIMFGHT, VF_NTRL
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
   ),
-  [_NGRAML] = LAYOUT(
+  [_SHIFTISHL] = LAYOUT(
   /* ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮ */
-       NG_JOY, NG_YTH, NG_FRO, NG_DON, NG_BL, KC_PMNS,    SKP_GRM, NG_WAY, NG_OME, DOT_ARC, NG_LIN, NG_QUA,
+       _______, _______, _______, _______, _______, KC_PMNS,    SKP_GRM, _______, _______, DOT_ARC, _______, _______,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       NG_MAN, NG_COM, NG_STR, NG_TER, NG_NTI, KC_LBRC,    SKP_GRM, NG_UST, NG_ATE, NG_IN, NG_HER, NG_GER,
+       _______, LWKEY_C, LTALT_S, LCTRL_T, LSHFT_N, KC_LBRC,    SKP_GRM, RSHFT_U, RCTRL_A, RTALT_I, RWKEY_H, _______,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       KC_CAPS, NG_PRO, NG_VES, NG_KNO, NG_XPL, KC_LABK,    SKP_GRM,  KC_GRV, KC_LEQL, COM_ARC, XXXXXXX, _______,
+       KC_CAPS, _______, _______, _______, _______, KC_LABK,    SKP_GRM,  KC_GRV, KC_LEQL, COM_ARC, XXXXXXX, _______,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
-                                  XXXXXXX, _______, XXXXXXX,    KC_UNDS, NG_ERS
+                                  XXXXXXX, _______, XXXXXXX,    KC_UNDS, _______
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
   ),
-  [_NGRAMR] = LAYOUT(
+  [_SHIFTISHR] = LAYOUT(
   /* ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮ */
-       NG_JECT, NG_YEA, NG_FOR, NG_DAY, NG_BY, SKP_GRM,    KC_PPLS, NG_WAS, NG_ONE, KC_SCLN, NG_LEA, NG_QUE,
+       _______, _______, _______, _______, _______, SKP_GRM,    KC_PPLS, _______, _______, KC_SCLN, _______, _______,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       NG_MEN, NG_CON, NG_STI, NG_TED, NG_NTE, SKP_GRM,    KC_RBRC, NG_ULD, NG_ANCE, NG_ING, NG_HEA, NG_GRE,
+       _______, LWKEY_C, LTALT_S, LCTRL_T, LSHFT_N, SKP_GRM,    KC_RBRC, RSHFT_U, RCTRL_A, RTALT_I, RWKEY_H, _______,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       _______, NG_PLA, NG_VEN, NG_CK, NG_XPE, SKP_GRM,    KC_RABK, XXXXXXX, KC_GEQL, KC_SARW, XXXXXXX, _______,
+       _______, _______, _______, _______, _______, SKP_GRM,    KC_RABK, XXXXXXX, KC_GEQL, KC_SARW, XXXXXXX, _______,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
-                                  NG_ZED, NG_RAT, KC_UNDS,    XXXXXXX, _______
+                                  XXXXXXX, _______, KC_UNDS,    XXXXXXX, _______
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
   ),
 
@@ -143,7 +144,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
        XXXXXXX, KC_DTCM,  KC_DLR, XXXXXXX, XXXXXXX, RGX_NLB,    RGX_PLA, XXXXXXX,   KC_AT, XXXXXXX, KC_HASH, XXXXXXX,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       XXXXXXX, XXXXXXX, KC_CIRC, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, KC_TEQL, XXXXXXX, XXXXXXX, XXXXXXX,
+       XXXXXXX, XXXXXXX, KC_CIRC, XXXXXXX, XXXXXXX, XXXXXXX,    KC_PERC, XXXXXXX, KC_TEQL, XXXXXXX, XXXXXXX, XXXXXXX,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
                                   XXXXXXX, KC_PMNS, ALTLSPC,    _______, XXXXXXX
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
@@ -371,7 +372,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #ifdef POINTING_DEVICE_ENABLE
 #    ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
-    if (abs(mouse_report.x) > CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD || abs(mouse_report.y) > CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD) {
+    if ((timer_elapsed(last_keydown) > REPEAT_TERM) && (abs(mouse_report.x) > CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD || abs(mouse_report.y) > CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD)) {
         if (auto_pointer_layer_timer == 0) {
             _pointer_mode_active = true;
             layer_on(_POINTER);

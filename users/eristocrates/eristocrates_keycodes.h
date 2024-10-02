@@ -10,8 +10,8 @@ enum layers {
     _COMBOREF,
     _VIMNAV,
     _VIMFIGHTER,
-    _NGRAML,
-    _NGRAMR,
+    _SHIFTISHL,
+    _SHIFTISHR,
     _ALTISHL,
     _ALTISHR,
     _ALTISHB,
@@ -238,7 +238,7 @@ enum keycodes {
     NG_DAY,
     NG_ERS,
     NG_FRO,
-    NG_FOR,
+    NG_FUL,
     NG_GER,
     NG_GRE,
     NG_HER,
@@ -277,6 +277,7 @@ enum keycodes {
     NG_YTH,
     NG_YEA,
     NG_ZED,
+    KC___WH,
 
     /* physical layout comboref keys
     legend = hand_row_column/thumb button
@@ -437,7 +438,7 @@ enum keycodes {
 #define KC_DGSC LT(_POINTER, KC_1)
 #define KC_SNPE LT(_POINTER, KC_2)
 
-#define PLS_FUN LT(_BITNUM, KC_PPLS)
+#define PLS_FUN LT(_BITFUNC, KC_PPLS)
 
 // home row mods
 #define LWKEY_C LGUI_T(KC_C)
@@ -473,8 +474,8 @@ enum keycodes {
 
 #define TH(k) LT(0, k)
 #define SG(k) LT(_SHIFTPR, k)
-#define CG(k) LT(_NGRAML, k)
-#define AG(k) LT(_NGRAMR, k)
+#define CG(k) LT(_SHIFTISHL, k)
+#define AG(k) LT(_SHIFTISHR, k)
 #define GG(k) LT(_ALTISHB, k)
 
 // base layers
@@ -485,12 +486,12 @@ enum keycodes {
 #define THINQU TO(_THINQU)
 
 // layer taps
-#define NGRML_R LT(_NGRAML, KC_R)
-#define NGRMLCR LT(_NGRAML, S(KC_R))
-#define ALT___T LT(_NGRAMR, KC_T)
-#define CTRL__S LT(_NGRAML, KC_S)
-#define NGRMR_E LT(_NGRAMR, KC_E)
-#define NGRMRCE LT(_NGRAMR, S(KC_E))
+#define SFSHL_R LT(_SHIFTISHL, KC_R)
+#define SFSHLCR LT(_SHIFTISHL, S(KC_R))
+#define ALT___T LT(_SHIFTISHR, KC_T)
+#define CTRL__S LT(_SHIFTISHL, KC_S)
+#define SFSHR_E LT(_SHIFTISHR, KC_E)
+#define SFSHRCE LT(_SHIFTISHR, S(KC_E))
 #define ALTLSPC LT(_ALTISHL, KC_SPC)
 #define ALTRSPC LT(_ALTISHR, KC_SPC)
 #define NUM_PAD LT(_NUMPAD, SW_WIN)

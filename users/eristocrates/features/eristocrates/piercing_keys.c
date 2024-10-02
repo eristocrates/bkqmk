@@ -10,9 +10,9 @@ bool process_piercing_keys(uint16_t keycode, keyrecord_t *record) {
             hold_keycode = tap_keycode;
             if (IS_LAYER_ON(_ALTISHB)) {
                 hold_mod = KC_LGUI;
-            } else if (IS_LAYER_ON(_NGRAML)) {
+            } else if (IS_LAYER_ON(_SHIFTISHL)) {
                 hold_mod = KC_LCTL;
-            } else if (IS_LAYER_ON(_NGRAMR)) {
+            } else if (IS_LAYER_ON(_SHIFTISHR)) {
                 hold_mod = KC_LALT;
             } else {
                 hold_mod = KC_LSFT;

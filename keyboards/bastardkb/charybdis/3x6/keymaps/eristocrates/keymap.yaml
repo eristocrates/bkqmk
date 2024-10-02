@@ -3,7 +3,7 @@ layers:
   CISTERN:
   - [J, Y, F, D, B, {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, W, O, {t: '.', s: '!'}, L, {t: QU, h: Q}]
   - [M, {t: C, h: Win}, {t: S, h: Alt}, {t: T, h: Ctrl}, {t: N, h: Shift}, {t: '(', s: '{', h: Arcane}, {t: ')', s: '}', h: Arcane}, {t: U, h: Shift}, {t: A, h: Ctrl}, {t: I, h: Alt}, {t: H, h: Win}, G]
-  - [{t: Leader, s: QMK }, P, V, K, X, {t: '\', s: '\\', h: Arcane}, {t: '/', s: '//', h: Arcane}, {t: '''', s: '"'}, {t: '=', s: '!='}, {t: ', ', s: '?' }, '', {t: Vim, s: Genuine, h: Emulation }]
+  - [{t: Leader, s: QMK }, P, V, K, X, {t: '\', s: '\\', h: Arcane}, {t: '/', s: '//', h: Arcane}, {t: '''', s: '"'}, {t: '=', s: '!='}, {t: ', ', s: '?' }, '  WH', {t: Vim, s: Genuine, h: Emulation }]
   - [{t: Z, h: Bitwise }, {t: R, h: NGramL }, {t: Space, h: AltishL }, {t: Space, h: AltishR }, {t: E, h: NGramR }]
   TYPINGAME:
   - [J, Y, F, D, B, {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, W, O, {t: '.', s: '!'}, L, Q]
@@ -77,14 +77,36 @@ layers:
     - {t: ▽, type: trans}
     - {t: Vim Fighter, h: TO Layer }
     - {t: Neutral, h: Attack }
-  NGRAML:
-  - [NG JOY, NG YTH, NG FRO, NG DON, NG BL, {t: '-', s: '--'}, Skip gram, NG WAY, NG OME, {t: '.', s: Adaptive, h: Capsword}, NG LIN, NG QUA]
-  - [NG MAN, NG COM, NG STR, NG TER, NG NTI, {t: '[', s: '/*'}, Skip gram, NG UST, NG ATE, NG IN, NG HER, NG GER]
+  SHIFTISHL:
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: '-', s: '--'}
+    - Skip gram
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: '.', s: Adaptive, h: Capsword}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: C, h: Win}
+    - {t: S, h: Alt}
+    - {t: T, h: Ctrl}
+    - {t: N, h: Shift}
+    - {t: '[', s: '/*'}
+    - Skip gram
+    - {t: U, h: Shift}
+    - {t: A, h: Ctrl}
+    - {t: I, h: Alt}
+    - {t: H, h: Win}
+    - {t: ▽, type: trans}
   - - Caps Lock
-    - NG PRO
-    - NG VES
-    - NG KNO
-    - NG XPL
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
     - {t: '<', s: '<<'}
     - Skip gram
     - {t: "`", s: "```"}
@@ -96,15 +118,37 @@ layers:
     - {t: ▽, type: trans}
     - ''
     - _
-    - NG ERS
-  NGRAMR:
-  - [NG JECT, NG YEA, NG FOR, NG DAY, NG BY, Skip gram, {t: '+', s: '++'}, NG WAS, NG ONE, ;, NG LEA, NG QUE]
-  - [NG MEN, NG CON, NG STI, NG TED, NG NTE, Skip gram, {t: ']', s: '*/'}, NG ULD, NG ANCE, NG ING, NG HEA, NG GRE]
+    - {t: ▽, type: trans}
+  SHIFTISHR:
   - - {t: ▽, type: trans}
-    - NG PLA
-    - NG VEN
-    - NG CK
-    - NG XPE
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - Skip gram
+    - {t: '+', s: '++'}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - ;
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: C, h: Win}
+    - {t: S, h: Alt}
+    - {t: T, h: Ctrl}
+    - {t: N, h: Shift}
+    - Skip gram
+    - {t: ']', s: '*/'}
+    - {t: U, h: Shift}
+    - {t: A, h: Ctrl}
+    - {t: I, h: Alt}
+    - {t: H, h: Win}
+    - {t: ▽, type: trans}
+  - - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
     - Skip gram
     - {t: '>', s: '>>'}
     - ''
@@ -112,8 +156,8 @@ layers:
     - {t: '->', s: '=>'}
     - ''
     - {t: ▽, type: trans}
-  - - NG ZED
-    - NG RAT
+  - - ''
+    - {t: ▽, type: trans}
     - _
     - ''
     - {t: ▽, type: trans}
@@ -129,7 +173,7 @@ layers:
   ALTISHR:
   - ['', '', '', '', '', '(?:)', '', '', '', ~/, '', '']
   - ['', .com, $, '', '', '(?<!)', '(?=)', '', '@', '', '#', '']
-  - ['', '', ^, '', '', '', '', '', {t: '===', s: '!==='}, '', '', '']
+  - ['', '', ^, '', '', '', '%', '', {t: '===', s: '!==='}, '', '', '']
   - - ''
     - {t: '-', s: '--'}
     - {t: Space, h: AltishL }
@@ -547,7 +591,7 @@ layers:
   TEST:
     - [J, Y, F, D, B, {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, W, O, {t: '.', s: '!'}, L, {t: QU, h: Q}]
     - [M, {t: C, h: Win}, {t: S, h: Alt}, {t: T, h: Ctrl}, {t: N, h: Shift}, {t: '(', s: '{', h: Arcane}, {t: ')', s: '}', h: Arcane}, {t: U, h: Shift}, {t: A, h: Ctrl}, {t: I, h: Alt}, {t: H, h: Win}, G]
-    - [{t: Leader, s: QMK }, P, V, K, X, {t: '\', s: '\\', h: Arcane}, {t: '/', s: '//', h: Arcane}, {t: '''', s: '"'}, {t: '=', s: '!='}, {t: ', ', s: '?' }, '', {t: Vim, s: Genuine, h: Emulation }]
+    - [{t: Leader, s: QMK }, P, V, K, X, {t: '\', s: '\\', h: Arcane}, {t: '/', s: '//', h: Arcane}, {t: '''', s: '"'}, {t: '=', s: '!='}, {t: ', ', s: '?' }, '  WH', {t: Vim, s: Genuine, h: Emulation }]
     - [{t: Z, h: Bitwise }, {t: R, h: NGramL }, {t: Space, h: AltishL }, {t: Space, h: AltishR }, {t: E, h: NGramR }]
 combos:
 

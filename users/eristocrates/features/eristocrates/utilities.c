@@ -1,6 +1,7 @@
 #include "utilities.h"
 
-void send_string_with_caps_word(const char *str) {
+uint16_t last_keydown = 0; // timer of keydown for adaptive threshhold.
+void     send_string_with_caps_word(const char *str) {
     if (is_caps_word_on()) {
         // Add shift modifier for each character in the string
         while (*str) {

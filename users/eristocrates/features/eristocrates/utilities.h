@@ -4,8 +4,9 @@
 #include "../../eristocrates_keycodes.h"
 #include "../../smtd_keycodes.h"
 
-void send_string_with_caps_word(const char *str);
-void call_keycode(uint16_t keycode);
+extern uint16_t last_keydown; // timer of keydown for adaptive threshhold.
+void            send_string_with_caps_word(const char *str);
+void            call_keycode(uint16_t keycode);
 
 // Define the default value for the second variable
 #define DEFAULT_VALUE KC_CANCEL

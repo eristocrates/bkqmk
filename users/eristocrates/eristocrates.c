@@ -128,9 +128,9 @@ uint8_t NUM_bitwise_num_KEYS = sizeof(bitwise_num_keys) / sizeof(uint16_t);
 // taken from https://github.com/moutis/HandsDown/blob/9e4bf52d013d5a7981d61ff1f5f36d9a3144aa73/moutis.c#L17
 uint16_t     preprior_keycode = KC_NO;
 uint16_t     prior_keycode    = KC_NO;
-uint16_t     last_keydown     = 0; // timer of keydown for adaptive threshhold.
 keyrecord_t *last_record;
 keypos_t     last_key = {0, 0};
+// uint16_t     last_keydown = 0; // timer of keydown for adaptive threshhold.
 
 // https://getreuer.info/posts/keyboards/triggers/index.html#when-another-key-is-held
 static bool is_back_held   = false;
@@ -256,7 +256,7 @@ static bool process_quopostrokey(uint16_t keycode, keyrecord_t *record) {
     // Determine whether the key is a letter.
     switch (keycode) {
         case KC_A ... KC_Z:
-        case NGRML_R:
+        case SFSHL_R:
         case ALT___T:
             within_word = true;
             break;
@@ -709,7 +709,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static uint16_t tap_timer = 0;
     */
 
-    // uint16_t basic_keycode      = extract_basic_keycode(keycode, record, false);
+    uint16_t basic_keycode      = extract_basic_keycode(keycode, record, false);
     uint16_t last_basic_keycode = extract_basic_keycode(get_last_keycode(), last_record, false);
 #ifdef CONSOLE_ENABLE
     // if (record->event.pressed) uprintf("process_last_record_user: last_basic_keycode: 0x%04X, last key name: %s, col: %u, row: %u, pressed: %b, time: %u, interrupt: %b, count: %u\n", last_basic_keycode, key_name(last_basic_keycode, false), last_record->event.key.col, last_record->event.key.row, last_record->event.pressed, last_record->event.time, last_record->tap.interrupted, last_record->tap.count);
@@ -789,6 +789,52 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
     }
     switch (keycode) {
+        case LWKEY_C:
+        case LTALT_S:
+        case LCTRL_T:
+        case LSHFT_N:
+        case RSHFT_U:
+        case RCTRL_A:
+        case RTALT_I:
+        case RWKEY_H:
+        case SFSHL_R:
+        case SFSHR_E:
+            if ((IS_LAYER_ON(_SHIFTISHL) || IS_LAYER_ON(_SHIFTISHR)) && record->tap.count && record->event.pressed) {
+                register_code(KC_LSFT);
+                tap_code16(basic_keycode);
+                unregister_code(KC_LSFT);
+                pointer_mode_disable();
+                return false;
+            }
+            return true;
+
+        case KC_A ... KC_R:
+        case KC_T ... KC_Z:
+
+            tap_keycode = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            if ((IS_LAYER_ON(_SHIFTISHL) || IS_LAYER_ON(_SHIFTISHR)) && record->event.pressed) {
+                register_code(KC_LSFT);
+                tap_code(tap_keycode);
+                unregister_code(KC_LSFT);
+                return false;
+            }
+            return true;
+
+        case KC_S:
+            // TODO decide what to do with last smart space
+            tap_keycode = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
+            if ((IS_LAYER_ON(_SHIFTISHL) || IS_LAYER_ON(_SHIFTISHR)) && record->event.pressed) {
+                register_code(KC_LSFT);
+                tap_code(tap_keycode);
+                unregister_code(KC_LSFT);
+                return false;
+            } else if (record->event.pressed && last_smart_space) {
+                tap_code(KC_BSPC);
+                tap_code(KC_S);
+                tap_code(KC_SPC);
+            }
+            return true;
+
         case KC_P00:
             if (record->event.pressed) {
                 SEND_STRING("00");
@@ -867,6 +913,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case KC_IN:
             if (record->event.pressed) {
                 send_string_with_caps_word("in");
+            }
+            return true;
+        case KC___WH:
+            if (record->event.pressed) {
+                send_string_with_caps_word("wh");
             }
             return true;
         case TH___QU:
@@ -1796,9 +1847,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING("fro");
             }
             return false;
-        case NG_FOR:
+        case NG_FUL:
             if (record->event.pressed) {
-                SEND_STRING("for");
+                SEND_STRING("ful");
             }
             return false;
         case NG_GER:
@@ -2136,7 +2187,7 @@ void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
             case KC____L:
             case KC____C:
                 // thumb row
-            case NGRML_R:
+            case SFSHL_R:
             case ALTLSPC:
             case ALTRSPC:
             case ALT___T:
@@ -2327,12 +2378,37 @@ bool caps_word_press_user(uint16_t keycode) {
 
 // Define the tapping term for the custom keycode
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        default:
-            return TAPPING_TERM; // Default tapping term
+    // if (timer_elapsed(last_keydown) > REPEAT_TERM) {
+    if ((keycode == TD(TBW) || keycode == TD(TDW) || keycode == TH___QU) || timer_elapsed(last_keydown) > MAGIC_TERM) {
+        return TAPPING_TERM; // Default tapping term
+    } else {
+        return TAPPING_TERM + REPEAT_TERM + MAGIC_TERM;
     }
+    /*
+        switch (keycode) {
+            default:
+                return TAPPING_TERM; // Default tapping term
+        }
+    */
 }
-
+bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
+    // if (timer_elapsed(last_keydown) > MAGIC_TERM) {
+    if (timer_elapsed(last_keydown) > REPEAT_TERM) {
+        return true;
+    } else {
+        return false;
+    }
+    /*
+    switch (keycode) {
+        case LT(1, KC_BSPC):
+            // Immediately select the hold action when another key is tapped.
+            return true;
+        default:
+            // Do not select the hold action when another key is tapped.
+            return false;
+    }
+    */
+}
 bool process_combo_key_release(uint16_t combo_index, combo_t *combo, uint8_t key_index, uint16_t keycode) {
     // TODO keep in sync with combos
     switch (combo_index) {
@@ -2366,7 +2442,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 // TODO think of cool things arcane could do on hold
 bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case NGRML_R:
+        case SFSHL_R:
         case ALT___T:
         case DOT_ARC:
         case COM_ARC:
@@ -3869,8 +3945,8 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 
     color_scheme_max = sizeof(color_schemes) / sizeof(rgb_color_scheme_t);
     switch (current_layer) {
-        case _NGRAML:
-        case _NGRAMR:
+        case _SHIFTISHL:
+        case _SHIFTISHR:
         case _ALTISHB:
         case _ALTISHL:
         case _ALTISHR:

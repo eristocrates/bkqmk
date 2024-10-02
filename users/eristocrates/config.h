@@ -57,7 +57,8 @@
 #define LEADER_NO_TIMEOUT
 
 // timing settings
-#define TAPPING_TERM_PER_KEY // TODO do i still need this?
+#define TAPPING_TERM_PER_KEY
+#define PERMISSIVE_HOLD_PER_KEY
 #define TAPPING_TOGGLE 2
 // term settings
 #undef QUICK_TAP_TERM
@@ -66,7 +67,7 @@
 #define QUICK_TAP_TERM 120
 #define PERMISSIVE_HOLD
 // #define TAPPING_TERM 175
-#define REPEAT_TERM (QUICK_TAP_TERM * 2)
+#define REPEAT_TERM (TAPPING_TERM / 2)
 #define MAGIC_TERM (TAPPING_TERM * 4)
 // Auto shift
 /*
