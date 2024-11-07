@@ -1,8 +1,8 @@
-$comboFilePath = "I:\coding\bkqmk\users\eristocrates\combos.def"
+$comboFilePath = "E:\uranus\coding\bkqmk\users\eristocrates\combos.def"
 # Read the content of the combos file
 $comboContent = Get-Content -Path $comboFilePath -Raw
-$comboTempOutput = "I:\coding\bkqmk\comboTemp.txt"
-$jsonOutputPath = "I:\coding\bkqmk\comboKeys.json"
+$comboTempOutput = "E:\uranus\coding\bkqmk\comboTemp.txt"
+$jsonOutputPath = "E:\uranus\coding\bkqmk\comboKeys.json"
 $content = ""
 $dataToAppend = @()
 $jsonData = @()

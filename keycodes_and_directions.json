@@ -1,1535 +1,1535 @@
 [
   {
+    "Keycode": "VM_LEFT",
     "Directions": [
       {
         "Link": "https://neovim.io/doc/user/motion.html#%5E",
+        "Direction": "HCBF_MOTION",
         "Keys": [
           "KC_CIRC"
-        ],
-        "Direction": "HCBF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#0",
+        "Direction": "HCB_MOTION",
         "Keys": [
           "KC_0"
-        ],
-        "Direction": "HCB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#)",
+        "Direction": "DPB_MOTION",
         "Keys": [
           "is_text_object ? KC_S : KC_RPRN"
-        ],
-        "Direction": "DPB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#B",
+        "Direction": "QCB_MOTION",
         "Keys": [
           "S(KC_B)"
-        ],
-        "Direction": "QCB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#gE",
+        "Direction": "QCF_MOTION",
         "Keys": [
           "KC_G",
           "S(KC_E)"
-        ],
-        "Direction": "QCF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#T",
+        "Direction": "FB_MOTION",
         "Keys": [
           "S(KC_T)"
-        ],
-        "Direction": "FB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#F",
+        "Direction": "BB_MOTION",
         "Keys": [
           "S(KC_F)"
-        ],
-        "Direction": "BB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#b",
+        "Direction": "BACK_HELD",
         "Keys": [
           "KC_B"
-        ],
-        "Direction": "BACK_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#ge",
+        "Direction": "FRNT_HELD",
         "Keys": [
           "KC_G",
           "KC_E"
-        ],
-        "Direction": "FRNT_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#h",
+        "Direction": "default",
         "Keys": [
           "KC_H"
-        ],
-        "Direction": "default"
+        ]
       }
-    ],
-    "Keycode": "VM_LEFT"
+    ]
   },
   {
+    "Keycode": "VM_DOWN",
     "Directions": [
       {
         "Link": "https://neovim.io/doc/user/motion.html#g_",
+        "Direction": "HCFB_MOTION",
         "Keys": [
           "KC_G",
           "KC_UNDS"
-        ],
-        "Direction": "HCFB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#H",
+        "Direction": "HCB_MOTION",
         "Keys": [
           "KC_H"
-        ],
-        "Direction": "HCB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/fold.html#zj",
+        "Direction": "QCF_MOTION",
         "Keys": [
           "KC_Z",
           "KC_J"
-        ],
-        "Direction": "QCF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#CTRL-X",
+        "Direction": "DD_MOTION",
         "Keys": [
           "C(KC_X)"
-        ],
-        "Direction": "DD_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#M",
+        "Direction": "DJ_MOTION",
         "Keys": [
           "S(KC_M)"
-        ],
-        "Direction": "DJ_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#v_g_CTRL-X",
+        "Direction": "JD_MOTION",
         "Keys": [
           "KC_G",
           "C(KC_X)"
-        ],
-        "Direction": "JD_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%2B",
+        "Direction": "BACK_HELD",
         "Keys": [
           "KC_PLUS"
-        ],
-        "Direction": "BACK_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#gj",
+        "Direction": "JUMP_HELD",
         "Keys": [
           "KC_G",
           "KC_J"
-        ],
-        "Direction": "JUMP_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%7D",
+        "Direction": "DOWN_HELD",
         "Keys": [
           "is_text_object ? KC_P : KC_RCBR"
-        ],
-        "Direction": "DOWN_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#j",
+        "Direction": "default",
         "Keys": [
           "KC_J"
-        ],
-        "Direction": "default"
+        ]
       }
-    ],
-    "Keycode": "VM_DOWN"
+    ]
   },
   {
+    "Keycode": "VM___UP",
     "Directions": [
       {
         "Link": "https://neovim.io/doc/user/motion.html#L",
+        "Direction": "HCF_MOTION",
         "Keys": [
           "KC_L"
-        ],
-        "Direction": "HCF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/fold.html#zk",
+        "Direction": "QCB_MOTION",
         "Keys": [
           "KC_Z",
           "KC_K"
-        ],
-        "Direction": "QCB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#v_g_CTRL-A",
+        "Direction": "DJ_MOTION",
         "Keys": [
           "KC_G",
           "C(KC_A)"
-        ],
-        "Direction": "DJ_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#M",
+        "Direction": "JD_MOTION",
         "Keys": [
           "S(KC_M)"
-        ],
-        "Direction": "JD_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#CTRL-A",
+        "Direction": "JJ_MOTION",
         "Keys": [
           "C(KC_A)"
-        ],
-        "Direction": "JJ_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#-",
+        "Direction": "BACK_HELD",
         "Keys": [
           "KC_MINUS"
-        ],
-        "Direction": "BACK_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%7B",
+        "Direction": "JUMP_HELD",
         "Keys": [
           "is_text_object ? KC_P : KC_LCBR"
-        ],
-        "Direction": "JUMP_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#gk",
+        "Direction": "DOWN_HELD",
         "Keys": [
           "KC_G",
           "KC_K"
-        ],
-        "Direction": "DOWN_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#k",
+        "Direction": "default",
         "Keys": [
           "KC_K"
-        ],
-        "Direction": "default"
+        ]
       }
-    ],
-    "Keycode": "VM___UP"
+    ]
   },
   {
+    "Keycode": "VM_RGHT",
     "Directions": [
       {
         "Link": "https://neovim.io/doc/user/motion.html#g%24",
+        "Direction": "HCFB_MOTION",
         "Keys": [
           "KC_G",
           "KC_END"
-        ],
-        "Direction": "HCFB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%24",
+        "Direction": "HCF_MOTION",
         "Keys": [
           "KC_DLR"
-        ],
-        "Direction": "HCF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#(",
+        "Direction": "DPF_MOTION",
         "Keys": [
           "is_text_object ? KC_S : KC_LPRN"
-        ],
-        "Direction": "DPF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%3CC-Right%3E",
+        "Direction": "QCF_MOTION",
         "Keys": [
           "S(KC_W)"
-        ],
-        "Direction": "QCF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#E",
+        "Direction": "QCB_MOTION",
         "Keys": [
           "S(KC_E)"
-        ],
-        "Direction": "QCB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#f",
+        "Direction": "FF_MOTION",
         "Keys": [
           "KC_F"
-        ],
-        "Direction": "FF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#t",
+        "Direction": "BF_MOTION",
         "Keys": [
           "KC_T"
-        ],
-        "Direction": "BF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#~",
+        "Direction": "DJ_MOTION",
         "Keys": [
           "KC_TILDE"
-        ],
-        "Direction": "DJ_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#w",
+        "Direction": "FRNT_HELD",
         "Keys": [
           "KC_W"
-        ],
-        "Direction": "FRNT_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#e",
+        "Direction": "BACK_HELD",
         "Keys": [
           "KC_E"
-        ],
-        "Direction": "BACK_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#l",
+        "Direction": "default",
         "Keys": [
           "KC_L"
-        ],
-        "Direction": "default"
+        ]
       }
-    ],
-    "Keycode": "VM_RGHT"
+    ]
   },
   {
+    "Keycode": "VM_VERT",
     "Directions": [
       {
         "Link": "https://neovim.io/doc/user/motion.html#%5D%5B",
+        "Direction": "FB_MOTION",
         "Keys": [
           "KC_RBRC",
           "KC_LBRC"
-        ],
-        "Direction": "FB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%5B%5D",
+        "Direction": "BF_MOTION",
         "Keys": [
           "KC_LBRC",
           "KC_RBRC"
-        ],
-        "Direction": "BF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#G",
+        "Direction": "JD_MOTION",
         "Keys": [
           "S(KC_G)"
-        ],
-        "Direction": "JD_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#gg",
+        "Direction": "DJ_MOTION",
         "Keys": [
           "KC_G",
           "KC_G"
-        ],
-        "Direction": "DJ_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%5D%7D",
+        "Direction": "DD_MOTION",
         "Keys": [
           "KC_RBRC",
           "KC_RCBR"
-        ],
-        "Direction": "DD_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%5B%7B",
+        "Direction": "JJ_MOTION",
         "Keys": [
           "KC_LBRC",
           "KC_LCBR"
-        ],
-        "Direction": "JJ_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%5D%5D",
+        "Direction": "FRNT_HELD",
         "Keys": [
           "KC_RBRC",
           "KC_RBRC"
-        ],
-        "Direction": "FRNT_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%5B%5B",
+        "Direction": "BACK_HELD",
         "Keys": [
           "KC_LBRC",
           "KC_LBRC"
-        ],
-        "Direction": "BACK_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%5D%7D",
+        "Direction": "DOWN_HELD",
         "Keys": [
           "KC_RBRC",
           "KC_RPRN"
-        ],
-        "Direction": "DOWN_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%5D%7D",
+        "Direction": "JUMP_HELD",
         "Keys": [
           "KC_LBRC",
           "KC_LPRN"
-        ],
-        "Direction": "JUMP_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/scroll.html#z.",
+        "Direction": "default",
         "Keys": [
           "KC_Z",
           "KC_DOT"
-        ],
-        "Direction": "default"
+        ]
       }
-    ],
-    "Keycode": "VM_VERT"
+    ]
   },
   {
+    "Keycode": "VM_HORI",
     "Directions": [
       {
         "Link": "https://neovim.io/doc/user/motion.html#bar",
+        "Direction": "HCF_MOTION",
         "Keys": [
           "KC_BAR"
-        ],
-        "Direction": "HCF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/fold.html#%5Bz",
+        "Direction": "QCB_MOTION",
         "Keys": [
           "KC_LBRC",
           "KC_Z"
-        ],
-        "Direction": "QCB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/fold.html#%5Dz",
+        "Direction": "QCF_MOTION",
         "Keys": [
           "KC_RBRC",
           "KC_Z"
-        ],
-        "Direction": "QCF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#m%3C",
+        "Direction": "BB_MOTION",
         "Keys": [
           "KC_M",
           "KC_LABK"
-        ],
-        "Direction": "BB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#m%3E",
+        "Direction": "FF_MOTION",
         "Keys": [
           "KC_M",
           "KC_RABK"
-        ],
-        "Direction": "FF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#gqq",
+        "Direction": "BF_MOTION",
         "Keys": [
           "KC_G",
           "KC_Q",
           "KC_Q"
-        ],
-        "Direction": "BF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#g~~",
+        "Direction": "DJ_MOTION",
         "Keys": [
           "KC_G",
           "KC_TILDE",
           "KC_TILDE"
-        ],
-        "Direction": "DJ_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#guu",
+        "Direction": "DD_MOTION",
         "Keys": [
           "KC_G",
           "KC_U",
           "KC_U"
-        ],
-        "Direction": "DD_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#gUU",
+        "Direction": "JJ_MOTION",
         "Keys": [
           "KC_G",
           "S(KC_U)",
           "S(KC_U)"
-        ],
-        "Direction": "JJ_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#m%5B",
+        "Direction": "JUMP_HELD",
         "Keys": [
           "KC_M",
           "KC_LBRC"
-        ],
-        "Direction": "JUMP_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#m%5D",
+        "Direction": "DOWN_HELD",
         "Keys": [
           "KC_M",
           "KC_RBRC"
-        ],
-        "Direction": "DOWN_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#M",
+        "Direction": "default",
         "Keys": [
           "S(KC_M)"
-        ],
-        "Direction": "default"
+        ]
       }
-    ],
-    "Keycode": "VM_HORI"
+    ]
   },
   {
+    "Keycode": "VM_NTRL",
     "Directions": [
       {
         "Link": "https://neovim.io/doc/user/motion.html#g%3B",
+        "Direction": "QCF_MOTION",
         "Keys": [
           "KC_G",
           "KC_SCLN"
-        ],
-        "Direction": "QCF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#quote",
+        "Direction": "DJ_MOTION",
         "Keys": [
           "KC_DQUO"
-        ],
-        "Direction": "DJ_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#g%2C",
+        "Direction": "QCB_MOTION",
         "Keys": [
           "KC_G",
           "KC_COMMA"
-        ],
-        "Direction": "QCB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/repeat.html#.",
+        "Direction": "JD_MOTION",
         "Keys": [
           "KC_DOT"
-        ],
-        "Direction": "JD_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%3B",
+        "Direction": "BF_MOTION",
         "Keys": [
           "KC_SCLN"
-        ],
-        "Direction": "BF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%2C",
+        "Direction": "FB_MOTION",
         "Keys": [
           "KC_COMMA"
-        ],
-        "Direction": "FB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#a'",
+        "Direction": "BB_MOTION",
         "Keys": [
           "KC_QUOT"
-        ],
-        "Direction": "BB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#aquote",
+        "Direction": "DD_MOTION",
         "Keys": [
           "KC_DQUO"
-        ],
-        "Direction": "DD_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#a%60",
+        "Direction": "FF_MOTION",
         "Keys": [
           "KC_GRV"
-        ],
-        "Direction": "FF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#at",
+        "Direction": "JJ_MOTION",
         "Keys": [
           "KC_T"
-        ],
-        "Direction": "JJ_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#a%7B",
+        "Direction": "BACK_HELD",
         "Keys": [
           "KC_LCBR"
-        ],
-        "Direction": "BACK_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#i(",
+        "Direction": "DOWN_HELD",
         "Keys": [
           "KC_LPRN"
-        ],
-        "Direction": "DOWN_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#a%5B",
+        "Direction": "FRNT_HELD",
         "Keys": [
           "is_text_object ? KC_LBRC : KC_N"
-        ],
-        "Direction": "FRNT_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#a%3C",
+        "Direction": "JUMP_HELD",
         "Keys": [
           "KC_LABK"
-        ],
-        "Direction": "JUMP_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/intro.html#i_esc",
+        "Direction": "default",
         "Keys": [
           "KC_ESC"
-        ],
-        "Direction": "default"
+        ]
       }
-    ],
-    "Keycode": "VM_NTRL"
+    ]
   },
   {
+    "Keycode": "VM_CHAN",
     "Directions": [
       {
         "Link": "https://neovim.io/doc/user/change.html#C",
+        "Direction": "HCF_MOTION",
         "Keys": [
           "S(KC_C)"
-        ],
-        "Direction": "HCF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#R",
+        "Direction": "JJ_MOTION",
         "Keys": [
           "S(KC_R)"
-        ],
-        "Direction": "JJ_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#gR",
+        "Direction": "JD_MOTION",
         "Keys": [
           "KC_G",
           "S(KC_R)"
-        ],
-        "Direction": "JD_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#gr",
+        "Direction": "DJ_MOTION",
         "Keys": [
           "KC_G",
           "KC_R"
-        ],
-        "Direction": "DJ_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#S",
+        "Direction": "DD_MOTION",
         "Keys": [
           "S(KC_S)"
-        ],
-        "Direction": "DD_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#_5.-text-object-motions",
+        "Direction": "BACK_HELD",
         "Keys": [
           "KC_C",
           "KC_A"
-        ],
-        "Direction": "BACK_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#_5.-text-object-motions",
+        "Direction": "FRNT_HELD",
         "Keys": [
           "KC_C",
           "KC_I"
-        ],
-        "Direction": "FRNT_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#s",
+        "Direction": "DOWN_HELD",
         "Keys": [
           "KC_S"
-        ],
-        "Direction": "DOWN_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#v_r",
+        "Direction": "JUMP_HELD",
         "Keys": [
           "KC_R"
-        ],
-        "Direction": "JUMP_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#c",
+        "Direction": "default",
         "Keys": [
           "KC_C"
-        ],
-        "Direction": "default"
+        ]
       }
-    ],
-    "Keycode": "VM_CHAN"
+    ]
   },
   {
+    "Keycode": "VM_DELE",
     "Directions": [
       {
         "Link": "https://neovim.io/doc/user/change.html#D",
+        "Direction": "HCF_MOTION",
         "Keys": [
           "S(KC_D)"
-        ],
-        "Direction": "HCF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#X",
+        "Direction": "QCB_MOTION",
         "Keys": [
           "S(KC_X)"
-        ],
-        "Direction": "QCB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#gJ",
+        "Direction": "DJ_MOTION",
         "Keys": [
           "KC_G",
           "S(KC_J)"
-        ],
-        "Direction": "DJ_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#dd",
+        "Direction": "DD_MOTION",
         "Keys": [
           "KC_D",
           "KC_D"
-        ],
-        "Direction": "DD_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#_5.-text-object-motions",
+        "Direction": "BACK_HELD",
         "Keys": [
           "KC_D",
           "KC_A"
-        ],
-        "Direction": "BACK_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#_5.-text-object-motions",
+        "Direction": "FRNT_HELD",
         "Keys": [
           "KC_D",
           "KC_I"
-        ],
-        "Direction": "FRNT_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#x",
+        "Direction": "DOWN_HELD",
         "Keys": [
           "KC_X"
-        ],
-        "Direction": "DOWN_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#J",
+        "Direction": "JUMP_HELD",
         "Keys": [
           "S(KC_J)"
-        ],
-        "Direction": "JUMP_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#d",
+        "Direction": "default",
         "Keys": [
           "KC_D"
-        ],
-        "Direction": "default"
+        ]
       }
-    ],
-    "Keycode": "VM_DELE"
+    ]
   },
   {
+    "Keycode": "VM_YANK",
     "Directions": [
       {
         "Link": "https://neovim.io/doc/user/change.html#Y",
+        "Direction": "HCF_MOTION",
         "Keys": [
           "S(KC_Y)"
-        ],
-        "Direction": "HCF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#gp",
+        "Direction": "QCF_MOTION",
         "Keys": [
           "KC_G",
           "KC_P"
-        ],
-        "Direction": "QCF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#gP",
+        "Direction": "QCB_MOTION",
         "Keys": [
           "KC_G",
           "S(KC_P)"
-        ],
-        "Direction": "QCB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#zp",
+        "Direction": "DPF_MOTION",
         "Keys": [
           "KC_Z",
           "KC_P"
-        ],
-        "Direction": "DPF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#zP",
+        "Direction": "DPB_MOTION",
         "Keys": [
           "KC_Z",
           "S(KC_P)"
-        ],
-        "Direction": "DPB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#yy",
+        "Direction": "JJ_MOTION",
         "Keys": [
           "KC_Y",
           "KC_Y"
-        ],
-        "Direction": "JJ_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#%5DP",
+        "Direction": "DD_MOTION",
         "Keys": [
           "KC_RBRC",
           "S(KC_P)"
-        ],
-        "Direction": "DD_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#zy",
+        "Direction": "DJ_MOTION",
         "Keys": [
           "KC_Z",
           "KC_Y"
-        ],
-        "Direction": "DJ_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#_5.-text-object-motions",
+        "Direction": "BACK_HELD",
         "Keys": [
           "KC_Y",
           "KC_A"
-        ],
-        "Direction": "BACK_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#_5.-text-object-motions",
+        "Direction": "FRNT_HELD",
         "Keys": [
           "KC_Y",
           "KC_I"
-        ],
-        "Direction": "FRNT_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#%5Dp",
+        "Direction": "DOWN_HELD",
         "Keys": [
           "KC_RBRC",
           "KC_P"
-        ],
-        "Direction": "DOWN_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#y",
+        "Direction": "default",
         "Keys": [
           "KC_Y"
-        ],
-        "Direction": "default"
+        ]
       }
-    ],
-    "Keycode": "VM_YANK"
+    ]
   },
   {
+    "Keycode": "VM_VISU",
     "Directions": [
       {
         "Link": "https://neovim.io/doc/user/visual.html#V",
+        "Direction": "JUMP_HELD",
         "Keys": [
           "S(KC_V)"
-        ],
-        "Direction": "JUMP_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/visual.html#CTRL-V",
+        "Direction": "DOWN_HELD",
         "Keys": [
           "C(KC_V)"
-        ],
-        "Direction": "DOWN_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#_5.-text-object-motions",
+        "Direction": "BACK_HELD",
         "Keys": [
           "KC_V",
           "KC_A"
-        ],
-        "Direction": "BACK_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#_5.-text-object-motions",
+        "Direction": "FRNT_HELD",
         "Keys": [
           "KC_V",
           "KC_I"
-        ],
-        "Direction": "FRNT_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/visual.html#v",
+        "Direction": "default",
         "Keys": [
           "KC_V"
-        ],
-        "Direction": "default"
+        ]
       }
-    ],
-    "Keycode": "VM_VISU"
+    ]
   },
   {
+    "Keycode": "VM_MRKQ",
     "Directions": [
       {
         "Link": "https://neovim.io/doc/user/motion.html#%5D'",
+        "Direction": "HCFB_MOTION",
         "Keys": [
           "KC_RBRC",
           "KC_QUOT"
-        ],
-        "Direction": "HCFB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%5B'",
+        "Direction": "HCBF_MOTION",
         "Keys": [
           "KC_LBRC",
           "KC_QUOT"
-        ],
-        "Direction": "HCBF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#'%3C",
+        "Direction": "HCB_MOTION",
         "Keys": [
           "KC_QUOT",
           "KC_LABK"
-        ],
-        "Direction": "HCB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#'%3E",
+        "Direction": "HCF_MOTION",
         "Keys": [
           "KC_QUOT",
           "KC_RABK"
-        ],
-        "Direction": "HCF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#'(",
+        "Direction": "DPB_MOTION",
         "Keys": [
           "KC_QUOT",
           "KC_LPRN"
-        ],
-        "Direction": "DPB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#')",
+        "Direction": "DPF_MOTION",
         "Keys": [
           "KC_QUOT",
           "KC_RPRN"
-        ],
-        "Direction": "DPF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#'",
+        "Direction": "QCF_MOTION",
         "Keys": [
           "KC_QUOT"
-        ],
-        "Direction": "QCF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#'%5E",
+        "Direction": "JD_MOTION",
         "Keys": [
           "KC_QUOT",
           "KC_CIRC"
-        ],
-        "Direction": "JD_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#''",
+        "Direction": "BB_MOTION",
         "Keys": [
           "KC_QUOT",
           "KC_QUOT"
-        ],
-        "Direction": "BB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#m'",
+        "Direction": "FB_MOTION",
         "Keys": [
           "KC_M",
           "KC_QUOT"
-        ],
-        "Direction": "FB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#'.",
+        "Direction": "BF_MOTION",
         "Keys": [
           "KC_QUOT",
           "KC_DOT"
-        ],
-        "Direction": "BF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#g'",
+        "Direction": "DJ_MOTION",
         "Keys": [
           "KC_G",
           "KC_QUOT"
-        ],
-        "Direction": "DJ_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#'%5B",
+        "Direction": "BACK_HELD",
         "Keys": [
           "KC_QUOT",
           "KC_LBRC"
-        ],
-        "Direction": "BACK_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#'%5D",
+        "Direction": "FRNT_HELD",
         "Keys": [
           "KC_QUOT",
           "KC_RBRC"
-        ],
-        "Direction": "FRNT_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#'(",
+        "Direction": "JUMP_HELD",
         "Keys": [
           "KC_QUOT",
           "KC_LCBR"
-        ],
-        "Direction": "JUMP_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#'%7D",
+        "Direction": "DOWN_HELD",
         "Keys": [
           "KC_QUOT",
           "KC_RCBR"
-        ],
-        "Direction": "DOWN_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#m",
+        "Direction": "default",
         "Keys": [
           "KC_M"
-        ],
-        "Direction": "default"
+        ]
       }
-    ],
-    "Keycode": "VM_MRKQ"
+    ]
   },
   {
+    "Keycode": "VM_MRKG",
     "Directions": [
       {
         "Link": "https://neovim.io/doc/user/motion.html#%5D%60",
+        "Direction": "HCFB_MOTION",
         "Keys": [
           "KC_RBRC",
           "KC_GRV"
-        ],
-        "Direction": "HCFB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%5B%60",
+        "Direction": "HCBF_MOTION",
         "Keys": [
           "KC_LBRC",
           "KC_GRV"
-        ],
-        "Direction": "HCBF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%60%3C",
+        "Direction": "HCB_MOTION",
         "Keys": [
           "KC_GRV",
           "KC_LABK"
-        ],
-        "Direction": "HCB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%60%3E",
+        "Direction": "HCF_MOTION",
         "Keys": [
           "KC_GRV",
           "KC_RABK"
-        ],
-        "Direction": "HCF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%60(",
+        "Direction": "DPB_MOTION",
         "Keys": [
           "KC_GRV",
           "KC_LPRN"
-        ],
-        "Direction": "DPB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%60)",
+        "Direction": "DPF_MOTION",
         "Keys": [
           "KC_GRV",
           "KC_RPRN"
-        ],
-        "Direction": "DPF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%60",
+        "Direction": "QCF_MOTION",
         "Keys": [
           "KC_GRV"
-        ],
-        "Direction": "QCF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%60%5E",
+        "Direction": "JD_MOTION",
         "Keys": [
           "KC_GRV",
           "KC_CIRC"
-        ],
-        "Direction": "JD_MOTION"
+        ]
       },
       {
         "Link": "https: // https://neovim.io/doc/user/motion.html#g%60",
+        "Direction": "DJ_MOTION",
         "Keys": [
           "KC_G",
           "KC_GRV"
-        ],
-        "Direction": "DJ_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%60%60",
+        "Direction": "BB_MOTION",
         "Keys": [
           "KC_GRV",
           "KC_GRV"
-        ],
-        "Direction": "BB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#m%60",
+        "Direction": "FB_MOTION",
         "Keys": [
           "KC_M",
           "KC_GRV"
-        ],
-        "Direction": "FB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%60.",
+        "Direction": "BF_MOTION",
         "Keys": [
           "KC_GRV",
           "KC_DOT"
-        ],
-        "Direction": "BF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%60%5B",
+        "Direction": "BACK_HELD",
         "Keys": [
           "KC_GRV",
           "KC_LBRC"
-        ],
-        "Direction": "BACK_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%60%5D",
+        "Direction": "FRNT_HELD",
         "Keys": [
           "KC_GRV",
           "KC_RBRC"
-        ],
-        "Direction": "FRNT_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%60%7B",
+        "Direction": "JUMP_HELD",
         "Keys": [
           "KC_GRV",
           "KC_LCBR"
-        ],
-        "Direction": "JUMP_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%60%7D",
+        "Direction": "DOWN_HELD",
         "Keys": [
           "KC_GRV",
           "KC_RCBR"
-        ],
-        "Direction": "DOWN_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#m",
+        "Direction": "default",
         "Keys": [
           "KC_M"
-        ],
-        "Direction": "default"
+        ]
       }
-    ],
-    "Keycode": "VM_MRKG"
+    ]
   },
   {
+    "Keycode": "VM_FRMT",
     "Directions": [
       {
         "Link": "https://neovim.io/doc/user/change.html#gqap",
+        "Direction": "HCBF_MOTION",
         "Keys": [
           "KC_G",
           "KC_W",
           "KC_A"
-        ],
-        "Direction": "HCBF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#gqap",
+        "Direction": "HCFB_MOTION",
         "Keys": [
           "KC_G",
           "KC_W",
           "KC_I"
-        ],
-        "Direction": "HCFB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#%3E%3E",
+        "Direction": "HCF_MOTION",
         "Keys": [
           "KC_RABK",
           "KC_RABK"
-        ],
-        "Direction": "HCF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#%3C%3C",
+        "Direction": "HCB_MOTION",
         "Keys": [
           "KC_LABK",
           "KC_LABK"
-        ],
-        "Direction": "HCB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#gw",
+        "Direction": "QCB_MOTION",
         "Keys": [
           "KC_G",
           "KC_W"
-        ],
-        "Direction": "QCB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#g~",
+        "Direction": "DJ_MOTION",
         "Keys": [
           "KC_G",
           "KC_TILD"
-        ],
-        "Direction": "DJ_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#%3C",
+        "Direction": "BB_MOTION",
         "Keys": [
           "KC_LABK"
-        ],
-        "Direction": "BB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#%3E",
+        "Direction": "FF_MOTION",
         "Keys": [
           "KC_RABK"
-        ],
-        "Direction": "FF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#gU",
+        "Direction": "JUMP_HELD",
         "Keys": [
           "KC_G",
           "S(KC_U)"
-        ],
-        "Direction": "JUMP_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#gu",
+        "Direction": "DOWN_HELD",
         "Keys": [
           "KC_G",
           "KC_U"
-        ],
-        "Direction": "DOWN_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#_5.-text-object-motions",
+        "Direction": "BACK_HELD",
         "Keys": [
           "KC_G",
           "KC_Q",
           "KC_A"
-        ],
-        "Direction": "BACK_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#_5.-text-object-motions",
+        "Direction": "FRNT_HELD",
         "Keys": [
           "KC_G",
           "KC_Q",
           "KC_I"
-        ],
-        "Direction": "FRNT_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/change.html#gq",
+        "Direction": "default",
         "Keys": [
           "KC_G",
           "KC_Q"
-        ],
-        "Direction": "default"
+        ]
       }
-    ],
-    "Keycode": "VM_FRMT"
+    ]
   },
   {
+    "Keycode": "VM_FOLD",
     "Directions": [
       {
         "Link": "https://neovim.io/doc/user/fold.html#zE",
+        "Direction": "DQCB_MOTION",
         "Keys": [
           "KC_Z",
           "S(KC_E)"
-        ],
-        "Direction": "DQCB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/fold.html#zf",
+        "Direction": "HCBF_MOTION",
         "Keys": [
           "KC_Z",
           "KC_F"
-        ],
-        "Direction": "HCBF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/fold.html#zF",
+        "Direction": "HCFB_MOTION",
         "Keys": [
           "KC_Z",
           "S(KC_F)"
-        ],
-        "Direction": "HCFB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/fold.html#zd",
+        "Direction": "HCF_MOTION",
         "Keys": [
           "KC_Z",
           "KC_D"
-        ],
-        "Direction": "HCF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/fold.html#zD",
+        "Direction": "HCB_MOTION",
         "Keys": [
           "KC_Z",
           "S(KC_D)"
-        ],
-        "Direction": "HCB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/fold.html#zr",
+        "Direction": "QCF_MOTION",
         "Keys": [
           "KC_Z",
           "KC_R"
-        ],
-        "Direction": "QCF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/fold.html#zR",
+        "Direction": "DPF_MOTION",
         "Keys": [
           "KC_Z",
           "S(KC_R)"
-        ],
-        "Direction": "DPF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/fold.html#zm",
+        "Direction": "QCB_MOTION",
         "Keys": [
           "KC_Z",
           "KC_M"
-        ],
-        "Direction": "QCB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/fold.html#zM",
+        "Direction": "DPB_MOTION",
         "Keys": [
           "KC_Z",
           "S(KC_M)"
-        ],
-        "Direction": "DPB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/fold.html#zO",
+        "Direction": "DD_MOTION",
         "Keys": [
           "KC_Z",
           "S(KC_O)"
-        ],
-        "Direction": "DD_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/fold.html#zC",
+        "Direction": "JJ_MOTION",
         "Keys": [
           "KC_Z",
           "S(KC_C)"
-        ],
-        "Direction": "JJ_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/fold.html#za",
+        "Direction": "DJ_MOTION",
         "Keys": [
           "KC_Z",
           "KC_A"
-        ],
-        "Direction": "DJ_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/fold.html#zA",
+        "Direction": "JD_MOTION",
         "Keys": [
           "KC_Z",
           "S(KC_A)"
-        ],
-        "Direction": "JD_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/fold.html#zx",
+        "Direction": "BB_MOTION",
         "Keys": [
           "KC_Z",
           "KC_X"
-        ],
-        "Direction": "BB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/fold.html#zX",
+        "Direction": "BF_MOTION",
         "Keys": [
           "KC_Z",
           "S(KC_X)"
-        ],
-        "Direction": "BF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/fold.html#zN",
+        "Direction": "FF_MOTION",
         "Keys": [
           "KC_Z",
           "S(KC_N)"
-        ],
-        "Direction": "FF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/fold.html#zn",
+        "Direction": "FB_MOTION",
         "Keys": [
           "KC_Z",
           "KC_N"
-        ],
-        "Direction": "FB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/fold.html#zo",
+        "Direction": "DOWN_HELD",
         "Keys": [
           "KC_Z",
           "KC_O"
-        ],
-        "Direction": "DOWN_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/fold.html#zc",
+        "Direction": "JUMP_HELD",
         "Keys": [
           "KC_Z",
           "KC_C"
-        ],
-        "Direction": "JUMP_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/fold.html#zi",
+        "Direction": "default",
         "Keys": [
           "KC_Z",
           "KC_I"
-        ],
-        "Direction": "default"
+        ]
       }
-    ],
-    "Keycode": "VM_FOLD"
+    ]
   },
   {
+    "Keycode": "VM_SRCH",
     "Directions": [
       {
         "Link": "https://neovim.io/doc/user/pattern.html#n",
+        "Direction": "QCF_MOTION",
         "Keys": [
           "KC_N"
-        ],
-        "Direction": "QCF_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/pattern.html#n",
+        "Direction": "QCB_MOTION",
         "Keys": [
           "S(KC_N)"
-        ],
-        "Direction": "QCB_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/tagsrch.html#%5B_CTRL-I",
+        "Direction": "JJ_MOTION",
         "Keys": [
           "KC_LBRC",
           "C(KC_I)"
-        ],
-        "Direction": "JJ_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/tagsrch.html#CTRL-T",
+        "Direction": "DJ_MOTION",
         "Keys": [
           "C(KC_T)"
-        ],
-        "Direction": "DJ_MOTION"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/pattern.html#%23",
+        "Direction": "BACK_HELD",
         "Keys": [
           "KC_HASH"
-        ],
-        "Direction": "BACK_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/pattern.html#star",
+        "Direction": "FRNT_HELD",
         "Keys": [
           "KC_ASTR"
-        ],
-        "Direction": "FRNT_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/tagsrch.html#%5BI",
+        "Direction": "JUMP_HELD",
         "Keys": [
           "KC_LBRC",
           "S(KC_I)"
-        ],
-        "Direction": "JUMP_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/tagsrch.html#CTRL-%5D",
+        "Direction": "DOWN_HELD",
         "Keys": [
           "C(KC_RBRC)"
-        ],
-        "Direction": "DOWN_HELD"
+        ]
       },
       {
         "Link": "https://neovim.io/doc/user/motion.html#%25",
+        "Direction": "default",
         "Keys": [
           "KC_PERC"
-        ],
-        "Direction": "default"
+        ]
       }
-    ],
-    "Keycode": "VM_SRCH"
+    ]
   }
 ]

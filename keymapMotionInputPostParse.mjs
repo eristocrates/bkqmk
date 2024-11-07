@@ -1,6 +1,6 @@
 
 
-// $filePath = "I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\keymap.yaml"
+// $filePath = "E:\uranus\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\keymap.yaml"
 //
 // # Read the content of the file
 // $content = Get-Content -Path $filePath -Raw
@@ -13,17 +13,17 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { escape } from "querystring";
 // Define the path to the output Markdown file
-const vimFighterMarkdownPath = path.join('I:', 'coding', 'bkqmk', 'vimFighter.md');
-const comboMarkdownPath = path.join('I:', 'coding', 'bkqmk', 'comboKeys.md');
+const vimFighterMarkdownPath = path.join('E:', 'uranus', 'coding', 'bkqmk', 'vimFighter.md');
+const comboMarkdownPath = path.join('E:', 'uranus', 'coding', 'bkqmk', 'comboKeys.md');
 // Define the path to the quick reference file
-const indexFilePath = path.join('I:', 'coding', 'bkqmk', 'index.txt');
-const quickrefFilePath = path.join('I:', 'coding', 'bkqmk', 'quickref.txt');
-const motionFilePath = path.join('I:', 'coding', 'bkqmk', 'motion.txt');
-const changeFilePath = path.join('I:', 'coding', 'bkqmk', 'change.txt');
+const indexFilePath = path.join('E:', 'uranus', 'coding', 'bkqmk', 'index.txt');
+const quickrefFilePath = path.join('E:', 'uranus', 'coding', 'bkqmk', 'quickref.txt');
+const motionFilePath = path.join('E:', 'uranus', 'coding', 'bkqmk', 'motion.txt');
+const changeFilePath = path.join('E:', 'uranus', 'coding', 'bkqmk', 'change.txt');
 
 // Define the path to the JSON file
-const vimFighterJsonPath = path.join('I:', 'coding', 'bkqmk', 'keycodes_and_directions.json');
-const comboJsonPath = path.join('I:', 'coding', 'bkqmk', 'comboKeys.json');
+const vimFighterJsonPath = path.join('E:', 'uranus', 'coding', 'bkqmk', 'keycodes_and_directions.json');
+const comboJsonPath = path.join('E:', 'uranus', 'coding', 'bkqmk', 'comboKeys.json');
 
 var vimFighterParsedData = []
 var comboParsedData = []

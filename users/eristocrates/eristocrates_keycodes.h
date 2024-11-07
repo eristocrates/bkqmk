@@ -445,10 +445,14 @@ enum keycodes {
 #define LTALT_S LALT_T(KC_S)
 #define LCTRL_T LCTL_T(KC_T)
 #define LSHFT_N LSFT_T(KC_N)
+#define LHYPR_D HYPR_T(KC_D)
+#define LMEH__F MEH_T(KC_F)
 #define RSHFT_U RSFT_T(KC_U)
 #define RCTRL_A RCTL_T(KC_A)
 #define RTALT_I RALT_T(KC_I)
 #define RWKEY_H RGUI_T(KC_H)
+#define RHYPR_O HYPR_T(KC_O)
+#define RMEH_DT MEH_T(KC_DOT)
 
 #// vim fighter
 #define VF___UP VM___UP

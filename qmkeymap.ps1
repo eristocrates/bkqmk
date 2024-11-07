@@ -4,14 +4,14 @@ Add-Type -AssemblyName presentationCore
 $mediaPlayer = New-Object system.windows.media.mediaplayer
 
 # Define the paths
-$mingwPath = "I:\msys2\usr\bin\bash.exe"
-$keymapPathMingw = "I:/coding/bkqmk/keyboards/bastardkb/charybdis/3x6/keymaps/eristocrates"
-#$userspacePathMingw = "I:/coding/bkqmk/users/eristocrates"
-$keymapPath = "I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates"
+$mingwPath = "C:\msys64\usr\bin\bash.exe"
+$keymapPathMingw = "E:/uranus/coding/bkqmk/keyboards/bastardkb/charybdis/3x6/keymaps/eristocrates"
+#$userspacePathMingw = "E:/uranus/coding/bkqmk/users/eristocrates"
+$keymapPath = "E:\uranus\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates"
 # Play an MP3 sound
 # https://stackoverflow.com/questions/25895428/how-to-play-mp3-with-powershell-simple
-$filesDone = "I:\coding\bkqmk\files-done.mp3"
-$baka = "I:\coding\bkqmk\naruto-saying-baka.mp3"
+$filesDone = "E:\uranus\coding\bkqmk\files-done.mp3"
+$baka = "E:\uranus\coding\bkqmk\naruto-saying-baka.mp3"
 
 
 $logFilePath = "./qmk-output.log"

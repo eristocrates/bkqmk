@@ -1,7 +1,7 @@
 # Define the file path
-$filePath = "I:\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\keymap.yaml"
-$enumFilePath = "I:\coding\bkqmk\users\eristocrates\eristocrates_keycodes.h"
-$comboFilePath = "I:\coding\bkqmk\users\eristocrates\combos.def"
+$filePath = "E:\uranus\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\keymap.yaml"
+$enumFilePath = "E:\uranus\coding\bkqmk\users\eristocrates\eristocrates_keycodes.h"
+$comboFilePath = "E:\uranus\coding\bkqmk\users\eristocrates\combos.def"
 
 function Get-StringIndex {
     param (

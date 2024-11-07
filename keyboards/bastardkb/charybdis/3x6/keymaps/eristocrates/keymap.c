@@ -45,7 +45,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_CISTERN] = LAYOUT(
   /* ╭───────────────────────────────────────────────────╮ ╭───────────────────────────────────────────────────╮ */
-     KC____J, KC____Y, KC____F, KC____D, KC____B, LTP_ARC, RTP_ARC, KC____W, KC____O,  KC_DOT, KC____L, TH___QU,
+     KC____J, KC____Y, LMEH__F, LHYPR_D, KC____B, LTP_ARC, RTP_ARC, KC____W, RHYPR_O, RMEH_DT, KC____L, TH___QU,
   /* ├───────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────┤ */
      KC____M, LWKEY_C, LTALT_S, LCTRL_T, LSHFT_N, LHM_ARC, RHM_ARC, RSHFT_U, RCTRL_A, RTALT_I, RWKEY_H, KC____G,
   /* ├───────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────┤ */
@@ -132,7 +132,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGX_PLB,    RGX_NLA, OS_LSFT, OS_LCTL, OS_LALT, OS_LGUI, KC_DTGV,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       KC_ASST, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    KC_ESLH, XXXXXXX, KC_DEQL, KC_AMPR, XXXXXXX, KC_APP,
+       KC_ASST, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    KC_PERC, XXXXXXX, KC_DEQL, KC_AMPR, XXXXXXX, KC_APP,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
                                   XXXXXXX, XXXXXXX, _______,    ALTRSPC, KC_ASTR
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
@@ -144,7 +144,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
        XXXXXXX, KC_DTCM,  KC_DLR, XXXXXXX, XXXXXXX, RGX_NLB,    RGX_PLA, XXXXXXX,   KC_AT, XXXXXXX, KC_HASH, XXXXXXX,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       XXXXXXX, XXXXXXX, KC_CIRC, XXXXXXX, XXXXXXX, XXXXXXX,    KC_PERC, XXXXXXX, KC_TEQL, XXXXXXX, XXXXXXX, XXXXXXX,
+       XXXXXXX, XXXXXXX, KC_CIRC, XXXXXXX, XXXXXXX, XXXXXXX,    KC_ESLH, XXXXXXX, KC_TEQL, XXXXXXX, XXXXXXX, XXXXXXX,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
                                   XXXXXXX, KC_PMNS, ALTLSPC,    _______, XXXXXXX
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
@@ -203,7 +203,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
        _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       _______, _______, KC____V, KC____K, _______, _______,    KC_DBCL, KC_BTN1, KC_BTN2, KC_DGSC, KC_BTN3, _______,
+       _______, _______, KC____V, KC____K, _______, _______,    KC_DBCL, KC_BTN1, KC_BTN2, KC_DGSC, KC_BTN3, SCN_TOG,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
                                   _______, _______, _______,      ALTRSPC, PNTROPT
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
