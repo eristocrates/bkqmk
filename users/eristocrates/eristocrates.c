@@ -280,7 +280,7 @@ static bool process_quopostrokey(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-const key_override_t dot_override      = ko_make_basic(MOD_MASK_SHIFT, KC_DOT, KC_EXLM);  // . !
+const key_override_t dot_override      = ko_make_basic(MOD_MASK_SHIFT, RMEH_DT, KC_EXLM);  // . !
 const key_override_t comma_override    = ko_make_basic(MOD_MASK_SHIFT, KC_COMM, KC_QUES); // , ?
 const key_override_t quote_override    = ko_make_basic(MOD_MASK_SHIFT, KC_QUOT, KC_DQUO); // ' "
 const key_override_t l_parens_override = ko_make_basic(MOD_MASK_SHIFT, KC_LPRN, KC_LCBR); // ( {

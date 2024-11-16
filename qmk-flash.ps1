@@ -1,6 +1,6 @@
 # Define the source and destination paths
 $sourcePath = "E:\uranus\coding\bkqmk\bastardkb_charybdis_3x6_eristocrates.uf2"
-$destinationPath = "N:\bastardkb_charybdis_3x6_eristocrates.uf2"
+$destinationPath = "I:\bastardkb_charybdis_3x6_eristocrates.uf2"
 
 # Check if the source file exists
 if (Test-Path $sourcePath) {

@@ -1,7 +1,7 @@
 layout: {qmk_keyboard: bastardkb/charybdis/3x6, qmk_layout: LAYOUT}
 layers:
   CISTERN:
-  - [J, Y, LMEH  F, LHYPR D, B, {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, W, RHYPR O, RMEH DT, L, {t: QU, h: Q}]
+  - [J, LCAG  Y, LMEH  F, LHYPR D, B, {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, W, RHYPR O, RMEH DT, RCAG  L, {t: QU, h: Q}]
   - [M, {t: C, h: Win}, {t: S, h: Alt}, {t: T, h: Ctrl}, {t: N, h: Shift}, {t: '(', s: '{', h: Arcane}, {t: ')', s: '}', h: Arcane}, {t: U, h: Shift}, {t: A, h: Ctrl}, {t: I, h: Alt}, {t: H, h: Win}, G]
   - [{t: Leader, s: QMK }, P, V, K, X, {t: '\', s: '\\', h: Arcane}, {t: '/', s: '//', h: Arcane}, {t: '''', s: '"'}, {t: '=', s: '!='}, {t: ', ', s: '?' }, '  WH', {t: Vim, s: Genuine, h: Emulation }]
   - [{t: Z, h: Bitwise }, {t: R, h: NGramL }, {t: Space, h: AltishL }, {t: Space, h: AltishR }, {t: E, h: NGramR }]
@@ -589,7 +589,7 @@ layers:
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, BASE]
   - [RAND, RAND, RAND, RAND, RAND]
   TEST:
-    - [J, Y, LMEH  F, LHYPR D, B, {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, W, RHYPR O, RMEH DT, L, {t: QU, h: Q}]
+    - [J, LCAG  Y, LMEH  F, LHYPR D, B, {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, W, RHYPR O, RMEH DT, RCAG  L, {t: QU, h: Q}]
     - [M, {t: C, h: Win}, {t: S, h: Alt}, {t: T, h: Ctrl}, {t: N, h: Shift}, {t: '(', s: '{', h: Arcane}, {t: ')', s: '}', h: Arcane}, {t: U, h: Shift}, {t: A, h: Ctrl}, {t: I, h: Alt}, {t: H, h: Win}, G]
     - [{t: Leader, s: QMK }, P, V, K, X, {t: '\', s: '\\', h: Arcane}, {t: '/', s: '//', h: Arcane}, {t: '''', s: '"'}, {t: '=', s: '!='}, {t: ', ', s: '?' }, '  WH', {t: Vim, s: Genuine, h: Emulation }]
     - [{t: Z, h: Bitwise }, {t: R, h: NGramL }, {t: Space, h: AltishL }, {t: Space, h: AltishR }, {t: E, h: NGramR }]

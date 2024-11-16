@@ -45,7 +45,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_CISTERN] = LAYOUT(
   /* ╭───────────────────────────────────────────────────╮ ╭───────────────────────────────────────────────────╮ */
-     KC____J, KC____Y, LMEH__F, LHYPR_D, KC____B, LTP_ARC, RTP_ARC, KC____W, RHYPR_O, RMEH_DT, KC____L, TH___QU,
+     KC____J, LCAG__Y, LMEH__F, LHYPR_D, KC____B, LTP_ARC, RTP_ARC, KC____W, RHYPR_O, RMEH_DT, RCAG__L, TH___QU,
   /* ├───────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────┤ */
      KC____M, LWKEY_C, LTALT_S, LCTRL_T, LSHFT_N, LHM_ARC, RHM_ARC, RSHFT_U, RCTRL_A, RTALT_I, RWKEY_H, KC____G,
   /* ├───────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────┤ */
