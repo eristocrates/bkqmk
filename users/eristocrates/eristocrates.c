@@ -98,7 +98,7 @@ enum syncs {
 keeb_state_config_t keeb_state = {
     .color_scheme_index = 0,
     .vim_mode_index = INSERT_MODE,
-    .vim_emulation = true,
+    .vim_emulation = false,
     .semicolon_mode = 0,
     .smart_space_mode = 0,
     .autopair_mode = 0,
@@ -200,6 +200,12 @@ bool is_scan_toggled = false;
 
 uint8_t saved_mods = 0; // for custom shift keys
 
+uint8_t  current_slice   = VIM;
+uint16_t sl_indx_keycode = KC_NO;
+uint16_t sl_mdle_keycode = KC_NO;
+uint16_t sl_ring_keycode = KC_NO;
+uint16_t sl_pnky_keycode = KC_NO;
+
 static uint16_t input_buffer[INPUT_BUFFER_SIZE]   = {KC_NO};
 static uint16_t motion_buffer[MOTION_BUFFER_SIZE] = {KC_NO}; // holds time of all keydowns of the input buffer
 static uint16_t input_buffer_deadline             = 0;
@@ -250,7 +256,7 @@ static bool process_quopostrokey(uint16_t keycode, keyrecord_t *record) {
             keycode = QK_LAYER_TAP_GET_TAP_KEYCODE(keycode);
             break;
 #    endif // NO_ACTION_LAYER
-#endif     // NO_ACTION_TAPPING
+#endif // NO_ACTION_TAPPING
     }
 
     // Determine whether the key is a letter.
@@ -280,7 +286,7 @@ static bool process_quopostrokey(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-const key_override_t dot_override      = ko_make_basic(MOD_MASK_SHIFT, RMEH_DT, KC_EXLM);  // . !
+const key_override_t dot_override      = ko_make_basic(MOD_MASK_SHIFT, RMEH_DT, KC_EXLM); // . !
 const key_override_t comma_override    = ko_make_basic(MOD_MASK_SHIFT, KC_COMM, KC_QUES); // , ?
 const key_override_t quote_override    = ko_make_basic(MOD_MASK_SHIFT, KC_QUOT, KC_DQUO); // ' "
 const key_override_t l_parens_override = ko_make_basic(MOD_MASK_SHIFT, KC_LPRN, KC_LCBR); // ( {
@@ -711,6 +717,35 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     uint16_t basic_keycode      = extract_basic_keycode(keycode, record, false);
     uint16_t last_basic_keycode = extract_basic_keycode(get_last_keycode(), last_record, false);
+    bool     is_shifted         = (get_mods() & MOD_MASK_SHIFT) || (get_oneshot_mods() & MOD_MASK_SHIFT);
+
+    slice_state_t slices[] = {
+        VIM,
+        ARROW,
+        NAV,
+        SLICE_END,
+    };
+
+    switch (current_slice) {
+        case VIM:
+            sl_indx_keycode = KC_H;
+            sl_mdle_keycode = KC_J;
+            sl_ring_keycode = KC_K;
+            sl_pnky_keycode = KC_L;
+            break;
+        case ARROW:
+            sl_indx_keycode = KC_LEFT;
+            sl_mdle_keycode = KC_DOWN;
+            sl_ring_keycode = KC_UP;
+            sl_pnky_keycode = KC_RIGHT;
+            break;
+        case NAV:
+            sl_indx_keycode = KC_HOME;
+            sl_mdle_keycode = KC_PGDN;
+            sl_ring_keycode = KC_PGUP;
+            sl_pnky_keycode = KC_END;
+            break;
+    }
 #ifdef CONSOLE_ENABLE
     // if (record->event.pressed) uprintf("process_last_record_user: last_basic_keycode: 0x%04X, last key name: %s, col: %u, row: %u, pressed: %b, time: %u, interrupt: %b, count: %u\n", last_basic_keycode, key_name(last_basic_keycode, false), last_record->event.key.col, last_record->event.key.row, last_record->event.pressed, last_record->event.time, last_record->tap.interrupted, last_record->tap.count);
     // if (record->event.pressed) uprintf("process_record_user: basic_keycode: 0x%04X, key name: %s, col: %u, row: %u, pressed: %b, time: %u, interrupt: %b, count: %u\n", basic_keycode, key_name(basic_keycode, false), record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
@@ -724,7 +759,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     */
     // TODO find where this gets used
     // I think it was part of the string mappings?
-    // bool is_shifted = (get_mods() & MOD_MASK_SHIFT) || (get_oneshot_mods() & MOD_MASK_SHIFT);
     // TODO send github issue on how destructive this is to get_last_keycode()
     /*
     if (!process_smtd(keycode, record)) {
@@ -746,7 +780,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
     process_nshot_state(keycode, record);
-    if (!process_vim_mode(keycode, record)) {
+    if (vim_emulation_enabled() && !process_vim_mode(keycode, record)) {
         return !vim_emulation_enabled();
     }
 
@@ -813,6 +847,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
             tap_keycode = keymap_key_to_keycode(get_highest_layer(default_layer_state), (keypos_t){record->event.key.col, record->event.key.row});
             if ((IS_LAYER_ON(_SHIFTISHL) || IS_LAYER_ON(_SHIFTISHR)) && record->event.pressed) {
+                if (IS_LAYER_ON(_SHIFTISHR)) {
+                    switch (keycode) {
+                        case KC_H:
+                        case KC_J:
+                        case KC_K:
+                        case KC_L:
+                            return true;
+                    }
+                }
                 register_code(KC_LSFT);
                 tap_code(tap_keycode);
                 unregister_code(KC_LSFT);
@@ -840,6 +883,49 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING("00");
             }
             return false;
+
+            /*------------------------------slice------------------------------*/
+        case SL_INDX:
+            if (record->event.pressed) {
+                register_code16(sl_indx_keycode);
+            } else {
+                unregister_code16(sl_indx_keycode);
+            }
+            return false;
+        case SL_MDLE:
+            if (record->event.pressed) {
+                register_code16(sl_mdle_keycode);
+            } else {
+                unregister_code16(sl_mdle_keycode);
+            }
+            return false;
+        case SL_RING:
+            if (record->event.pressed) {
+                register_code16(sl_ring_keycode);
+            } else {
+                unregister_code16(sl_ring_keycode);
+            }
+            return false;
+        case SL_PNKY:
+            if (record->event.pressed) {
+                register_code16(sl_pnky_keycode);
+            } else {
+                unregister_code16(sl_pnky_keycode);
+            }
+            return false;
+        case SL_STEP:
+            if (record->event.pressed) {
+                uint8_t index = is_shifted ? current_slice - 1 < 0 ? SLICE_END - 1 : current_slice - 1 : current_slice + 1 == SLICE_END ? 0 : current_slice + 1;
+                current_slice = slices[index];
+            }
+            return false;
+        case SL_RSTP:
+            if (record->event.pressed) {
+                uint8_t index = current_slice - 1 < 0 ? SLICE_END - 1 : current_slice - 1;
+                current_slice = slices[index];
+            }
+            return false;
+
             /*------------------------------Pointer codes ------------------------------*/
 
         case KC_DBCL:
@@ -1132,6 +1218,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 kana_input_mode = !kana_input_mode;
             }
             return false;
+            /*
+
         case KC_ENT:
             if (record->event.pressed) {
                 if (work_mode) {
@@ -1142,6 +1230,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             return false;
+            */
         /*
                 https://github.com/Kalabasa/qmk_firmware/blob/2d1608287bb8b52669255266472975875f7c2423/keyboards/lily58/keymaps/Kalabasa/main.c#L160-L167
         Put cursor inside after typing empty pair of brackets
@@ -2281,6 +2370,22 @@ void matrix_scan_user(void) {
 
 // clang-format off
 void leader_end_user(void) {
+    // slices
+        if (leader_sequence_one_key(KC_V)) {
+             layer_on(_SLICE);
+        current_slice = VIM;
+    } else
+            if (leader_sequence_one_key(KC_A)) {
+             layer_on(_SLICE);
+        current_slice = ARROW;
+    } else
+            if (leader_sequence_one_key(KC_N)) {
+             layer_on(_SLICE);
+        current_slice = NAV;
+    } else
+            if (leader_sequence_one_key(KC_T)) {
+             layer_off(_SLICE);
+    } else
     // modes
     if (leader_sequence_two_keys(KC_N, KC_4)) {
         work_mode = !work_mode;
@@ -2505,11 +2610,11 @@ void insert_mode_user(void) {
         restore_motion_layer = true;
         layer_off(_VIMFIGHTER);
     }
-    layer_off(_VIMNAV);
+    layer_off(_SLICE);
     keeb_state.vim_mode_index = INSERT_MODE;
 }
 void normal_mode_user(void) {
-    layer_on(_VIMNAV);
+    layer_on(_SLICE);
     if (restore_motion_layer) {
         layer_on(_VIMFIGHTER);
         restore_motion_layer = false;
@@ -2517,13 +2622,13 @@ void normal_mode_user(void) {
     keeb_state.vim_mode_index = NORMAL_MODE;
 }
 void visual_mode_user(void) {
-    if (IS_LAYER_OFF(_VIMNAV)) {
-        layer_on(_VIMNAV);
+    if (IS_LAYER_OFF(_SLICE)) {
+        layer_on(_SLICE);
     }
 }
 void visual_line_mode_user(void) {
-    if (IS_LAYER_OFF(_VIMNAV)) {
-        layer_on(_VIMNAV);
+    if (IS_LAYER_OFF(_SLICE)) {
+        layer_on(_SLICE);
     }
 }
 uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, bool recursive) {
@@ -2635,9 +2740,9 @@ uint16_t process_normal_mode_user(uint16_t keycode, const keyrecord_t *record, b
 
     // TODO figure out how to handle command command mode for  https://neovim.io/doc/user/motion.html#%3A%5Brange%5D
     switch (keycode) {
-        case KC_ENT:
-            if (vim_emulation_enabled() && record->event.pressed) tap_code16(KC_ENT);
-            return KC_CANCEL;
+            /*case KC_ENT:
+                if (vim_emulation_enabled() && record->event.pressed) tap_code16(KC_ENT);
+                return KC_CANCEL;*/
 
         case VIM_TOG:
             if (record->event.pressed) toggle_vim_emulation();
@@ -3952,7 +4057,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         case _ALTISHR:
         case _NUMPAD:
         case _BITNUM:
-        case _VIMNAV:
+        case _SLICE:
         case _VIMFIGHTER:
             rgb_matrix_layer_helper(keeb_state.vim_emulation, color_schemes[keeb_state.color_scheme_index], keeb_state.vim_mode_index, current_layer, rgb_matrix_get_mode(), rgb_matrix_config.speed, LED_FLAG_KEYLIGHT, led_min, led_max);
             break;
@@ -4009,7 +4114,7 @@ void keeb_state_transport_sync(void) {
 
 void keyboard_post_init_user(void) {
     enable_vim_mode();
-    enable_vim_emulation();
+    disable_vim_emulation();
     current_mode = RGB_MATRIX_DEFAULT_MODE;
     transaction_register_rpc(RPC_ID_KEEB_STATE_SYNC, keeb_state_sync);
 }

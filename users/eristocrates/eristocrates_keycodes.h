@@ -8,7 +8,7 @@ enum layers {
     _CISTERN,
     _TYPINGAME,
     _COMBOREF,
-    _VIMNAV,
+    _SLICE,
     _VIMFIGHTER,
     _SHIFTISHL,
     _SHIFTISHR,
@@ -33,6 +33,13 @@ enum layers {
     _QWERTY,
     _RANDOM,
 };
+
+typedef enum  {
+    VIM,
+    ARROW,
+    NAV,
+    SLICE_END,
+} slice_state_t;
 
 typedef enum {
     TD_NONE,
@@ -279,6 +286,15 @@ enum keycodes {
     NG_ZED,
     KC___WH,
 
+// slices
+    SL_INDX,
+    SL_MDLE,
+    SL_RING,
+    SL_PNKY,
+    SL_STEP,
+    SL_RSTP,
+
+
     /* physical layout comboref keys
     legend = hand_row_column/thumb button
     L = Left hand
@@ -510,7 +526,7 @@ enum keycodes {
 // momentary layer holds
 #define THINQUL MO(_THINQUL)
 #define THINQUR MO(_THINQUR)
-#define VIMNAV MO(_VIMNAV)
+#define VIMNAV MO(_SLICE)
 #define MO_NUMP MO(_NUMPAD)
 
 // one shot layers
@@ -529,10 +545,10 @@ enum keycodes {
 // TODO clean up these rejects from eristocrates_layout.h
 #define PT_K LT(_POINTER, KC_K)
 #define PT_H LT(_POINTER, KC_H)
-#define VIMNV_S LT(_VIMNAV, KC_SPC)
+#define VIMNV_S LT(_SLICE, KC_SPC)
 #define PNT_T(k0) LT(_POINTER, k0)
 #define _T(k0) LT(_ONESHOT, k0)
-#define VIMNAV_T(k0) LT(_VIMNAV, k0)
+#define VIMNAV_T(k0) LT(_SLICE, k0)
 
 // TODO go through these and apply them
 // oneshot layers
