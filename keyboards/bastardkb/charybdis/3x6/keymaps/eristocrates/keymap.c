@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* ├───────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────┤ */
      KC____M, LWKEY_C, LTALT_S, LCTRL_T, LSHFT_N, LHM_ARC, RHM_ARC, RSHFT_U, RCTRL_A, RTALT_I, RWKEY_H, KC____G,
   /* ├───────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────┤ */
-     QK_LEAD, KC____P, KC____V, KC____K, KC____X, LBM_ARC, RBM_ARC, KC_QUOT,  KC_EQL, KC_COMM, KC___WH, VIM_TOG,
+     QK_LEAD, KC____P, KC____V, KC____K, KC____X, LBM_ARC, RBM_ARC, KC_EQL,  KC_QUOT, KC_COMM, KC___WH, VIM_TOG,
   /* ╰───────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────╯ */
                                 BITWISEZ, SFSHL_R, ALTLSPC, ALTRSPC, SFSHR_E
   /*                            ╰────────────────────────╯ ╰──────────────╯                                      */

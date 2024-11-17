@@ -291,10 +291,10 @@ uint16_t arcane_tap(uint16_t keycode) {
                 ARCANE_STRING("nt", KC_T); \
                 return KC_NO;\
             } else if (LAST_RIGHT_MIDDLE_THUMB && LEFT_HOME_ARCANE) {\
-                ARCANE_STRING("re", KC_E);\
+                ARCANE_STRING("ve", KC_E);\
                 return KC_NO;\
             } else if (LAST_RIGHT_MIDDLE_THUMB && LEFT_BOTTOM_ARCANE) {\
-                ARCANE_STRING("ve", KC_E);\
+                ARCANE_STRING("re", KC_E);\
                 return KC_NO;\
             } else if (RIGHT_TOP_ARCANE && LAST_LEFT_MIDDLE_THUMB) {\
                 ARCANE_STRING("or", KC_R);\
@@ -333,8 +333,7 @@ uint16_t process_arcane_columns(keypos_t arcane_key, uint16_t last_keycode, keyp
                 ARCANE_STRING("nd", KC_D); // a
                 return KC_NO;
             } else if (LAST_RIGHT_HOME_MIDDLE && LEFT_BOTTOM_ARCANE) {
-                ARCANE_STRING("te", KC_D); // a
-                return KC_NO;
+                MAGIC_LEFT_TOP_PINKY
             } else if (LAST_LEFT_TOP_INDEX && RIGHT_TOP_ARCANE) {
                 ARCANE_STRING("ut", KC_T); // b
                 return KC_NO;
@@ -376,6 +375,7 @@ uint16_t process_arcane_columns(keypos_t arcane_key, uint16_t last_keycode, keyp
                 return KC_NO;
             } else if (LAST_RIGHT_HOME_OUTER && LEFT_HOME_ARCANE) {
                 ARCANE_STRING("ht", KC_O); // g
+                return KC_NO;
             } else if (LAST_RIGHT_HOME_OUTER && LEFT_BOTTOM_ARCANE) {
                 MAGIC_RIGHT_HOME_PINKY // g -> h
             } else if (LAST_RIGHT_HOME_PINKY && LEFT_TOP_ARCANE) {
@@ -415,13 +415,13 @@ uint16_t process_arcane_columns(keypos_t arcane_key, uint16_t last_keycode, keyp
                 ARCANE_STRING("le", KC_N); // k
                 return KC_NO;
             } else if (LAST_RIGHT_TOP_PINKY && LEFT_TOP_ARCANE) {
-                ARCANE_STRING("oy", KC_N); // l
+                ARCANE_STRING("og", KC_N); // l
                 return KC_NO;
             } else if (LAST_RIGHT_TOP_PINKY && LEFT_HOME_ARCANE) {
                 ARCANE_STRING("ine", KC_A); // l
                 return KC_NO;
             } else if (LAST_RIGHT_TOP_PINKY && LEFT_BOTTOM_ARCANE) {
-                ARCANE_STRING("ike", KC_E); // l
+                ARCANE_STRING("ag", KC_E); // l
                 return KC_NO;
             } else if (LAST_LEFT_HOME_OUTER && RIGHT_TOP_ARCANE) {
                 ARCANE_STRING("fy", KC_N); // m
@@ -442,13 +442,13 @@ uint16_t process_arcane_columns(keypos_t arcane_key, uint16_t last_keycode, keyp
                 ARCANE_STRING("gle", KC_I); // n
                 return KC_NO;
             } else if (LAST_RIGHT_TOP_MIDDLE && LEFT_TOP_ARCANE) {
-                ARCANE_STRING("me", KC_E); // o
+                ARCANE_STRING("ne", KC_E); // o
                 return KC_NO;
             } else if (LAST_RIGHT_TOP_MIDDLE && LEFT_HOME_ARCANE) {
-                ARCANE_STRING("un", KC_S); // o
+                ARCANE_STRING("uld", KC_S); // o
                 return KC_NO;
             } else if (LAST_RIGHT_TOP_MIDDLE && LEFT_BOTTOM_ARCANE) {
-                ARCANE_STRING("ne", KC_E); // o
+                ARCANE_STRING("me", KC_E); // o
                 return KC_NO;
             } else if (LAST_LEFT_BOTTOM_PINKY && RIGHT_TOP_ARCANE) {
                 ARCANE_STRING("y", KC_O); // p
@@ -480,7 +480,7 @@ uint16_t process_arcane_columns(keypos_t arcane_key, uint16_t last_keycode, keyp
                 ARCANE_STRING("he", KC_E); // t
                 return KC_NO;
             } else if (LAST_LEFT_HOME_MIDDLE && RIGHT_BOTTOM_ARCANE) {
-                ARCANE_STRING("hat", KC_R); // t
+                ARCANE_STRING("ha", KC_R); // t
                 return KC_NO;
             } else if (LAST_RIGHT_HOME_INDEX && LEFT_TOP_ARCANE) {
                 ARCANE_STRING("nd", KC_T); // u
@@ -522,7 +522,7 @@ uint16_t process_arcane_columns(keypos_t arcane_key, uint16_t last_keycode, keyp
                 ARCANE_STRING("pe", KC_E); // x
                 return KC_NO;
             } else if (LAST_LEFT_BOTTOM_INDEX && RIGHT_HOME_ARCANE) {
-                ARCANE_STRING("pl", KC_L); // x
+                ARCANE_STRING("y", KC_L); // x
                 return KC_NO;
             } else if (LAST_LEFT_BOTTOM_INDEX && RIGHT_BOTTOM_ARCANE) {
                 ARCANE_STRING("tr", KC_R); // x
@@ -541,6 +541,9 @@ uint16_t process_arcane_columns(keypos_t arcane_key, uint16_t last_keycode, keyp
                 return KC_NO;
             } else if (RIGHT_HOME_ARCANE && LAST_LEFT_INNER_THUMB) {
                 ARCANE_STRING("ero", KC_T); // z
+                return KC_NO;
+            } else if (LEFT_TOP_ARCANE && LAST_RIGHT_TOP_RING) {
+                ARCANE_STRING("*", KC_ASTR); // .
                 return KC_NO;
             } else
                 DUAL_CASES

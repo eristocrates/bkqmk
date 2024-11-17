@@ -7,7 +7,7 @@ if (Test-Path $sourcePath) {
     try {
         # Copy the file to the destination
         Copy-Item -Path $sourcePath -Destination $destinationPath -Force
-        Write-Host "File copied successfully to N: drive."
+        Write-Host "File copied successfully to keyboard."
     }
     catch {
         Write-Host "Error copying file: $_"
@@ -16,3 +16,6 @@ if (Test-Path $sourcePath) {
 else {
     Write-Host "Source file not found: $sourcePath"
 }
+# Keep the window open
+Write-Host "Press Enter to exit..."
+Read-Host

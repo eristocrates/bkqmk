@@ -1,15 +1,15 @@
 layout: {qmk_keyboard: bastardkb/charybdis/3x6, qmk_layout: LAYOUT}
 layers:
   CISTERN:
-  - ['   J', LCAG  Y, LMEH  F, LHYPR D, '   B', {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, '   W', RHYPR O, RMEH DT, RCAG  L, {t: QU, h: Q}]
-  - ['   M', {t: C, h: Win}, {t: S, h: Alt}, {t: T, h: Ctrl}, {t: N, h: Shift}, {t: '(', s: '{', h: Arcane}, {t: ')', s: '}', h: Arcane}, {t: U, h: Shift}, {t: A, h: Ctrl}, {t: I, h: Alt}, {t: H, h: Win}, '   G']
-  - [{t: Leader, s: QMK }, '   P', '   V', '   K', '   X', {t: '\', s: '\\', h: Arcane}, {t: '/', s: '//', h: Arcane}, {t: '''', s: '"'}, {t: '=', s: '!='}, {t: ', ', s: '?' }, '  WH', {t: Vim, s: Genuine, h: Emulation }]
+  - [J, LCAG  Y, LMEH  F, LHYPR D, B, {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, W, RHYPR O, RMEH DT, RCAG  L, {t: QU, h: Q}]
+  - [M, {t: C, h: Win}, {t: S, h: Alt}, {t: T, h: Ctrl}, {t: N, h: Shift}, {t: '(', s: '{', h: Arcane}, {t: ')', s: '}', h: Arcane}, {t: U, h: Shift}, {t: A, h: Ctrl}, {t: I, h: Alt}, {t: H, h: Win}, G]
+  - [{t: Leader, s: QMK }, P, V, K, X, {t: '\', s: '\\', h: Arcane}, {t: '/', s: '//', h: Arcane}, {t: '=', s: '!='}, {t: '''', s: '"'}, {t: ', ', s: '?' }, '  WH', {t: Vim, s: Genuine, h: Emulation }]
   - [{t: Z, h: Bitwise }, {t: R, h: NGramL }, {t: Space, h: AltishL }, {t: Space, h: AltishR }, {t: E, h: NGramR }]
   TYPINGAME:
-  - ['   J', '   Y', '   F', '   D', '   B', {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, '   W', '   O', {t: '.', s: '!'}, '   L', '   Q']
-  - ['   M', '   C', '   S', '   T', '   N', {t: '(', s: '{', h: Arcane}, {t: ')', s: '}', h: Arcane}, '   U', '   A', '   I', '   H', '   G']
-  - [{t: Leader, s: QMK }, '   P', '   V', '   K', '   X', {t: '\', s: '\\', h: Arcane}, {t: '/', s: '//', h: Arcane}, {t: '''', s: '"'}, /, {t: ', ', s: '?' }, ;, {t: Vim, s: Genuine, h: Emulation }]
-  - ['   Z', '   R', {t: Space, h: NumPad }, Space, '   E']
+  - [J, Y, F, D, B, {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, W, O, {t: '.', s: '!'}, L, Q]
+  - [M, C, S, T, N, {t: '(', s: '{', h: Arcane}, {t: ')', s: '}', h: Arcane}, U, A, I, H, G]
+  - [{t: Leader, s: QMK }, P, V, K, X, {t: '\', s: '\\', h: Arcane}, {t: '/', s: '//', h: Arcane}, {t: '''', s: '"'}, /, {t: ', ', s: '?' }, ;, {t: Vim, s: Genuine, h: Emulation }]
+  - [Z, R, {t: Space, h: NumPad }, Space, E]
   COMBOREF:
   - [{ t: LT OUTR, h: 0 }, { t: LT PNKY, h: 1 }, { t: LT RING, h: 2 }, { t: LT MDLE, h: 3 }, { t: LT INDX, h: 4 }, { t: LT INNR, h: 5 }, { t: RT INNR, h: 6 }, { t: RT INDX, h: 7 }, { t: RT MDLE, h: 8 }, { t: RT RING, h: 9 }, { t: RT PNKY, h: 10 }, { t: RT OUTR, h: 11 }]
   - [{ t: LH OUTR, h: 12 }, { t: LH PNKY, h: 13 }, { t: LH RING, h: 14 }, { t: LH MDLE, h: 15 }, { t: LH INDX, h: 16 }, { t: LH INNR, h: 17 }, { t: RH INNR, h: 18 }, { t: RH INDX, h: 19 }, { t: RH MDLE, h: 20 }, { t: RH RING, h: 21 }, { t: RH PNKY, h: 22 }, { t: RH OUTR, h: 23 }]
@@ -282,8 +282,8 @@ layers:
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - '   V'
-    - '   K'
+    - V
+    - K
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - Double Click
@@ -324,8 +324,8 @@ layers:
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - '   V'
-    - '   K'
+    - V
+    - K
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -589,9 +589,9 @@ layers:
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, BASE]
   - [RAND, RAND, RAND, RAND, RAND]
   TEST:
-    - ['   J', LCAG  Y, LMEH  F, LHYPR D, '   B', {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, '   W', RHYPR O, RMEH DT, RCAG  L, {t: QU, h: Q}]
-    - ['   M', {t: C, h: Win}, {t: S, h: Alt}, {t: T, h: Ctrl}, {t: N, h: Shift}, {t: '(', s: '{', h: Arcane}, {t: ')', s: '}', h: Arcane}, {t: U, h: Shift}, {t: A, h: Ctrl}, {t: I, h: Alt}, {t: H, h: Win}, '   G']
-    - [{t: Leader, s: QMK }, '   P', '   V', '   K', '   X', {t: '\', s: '\\', h: Arcane}, {t: '/', s: '//', h: Arcane}, {t: '''', s: '"'}, {t: '=', s: '!='}, {t: ', ', s: '?' }, '  WH', {t: Vim, s: Genuine, h: Emulation }]
+    - [J, LCAG  Y, LMEH  F, LHYPR D, B, {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, W, RHYPR O, RMEH DT, RCAG  L, {t: QU, h: Q}]
+    - [M, {t: C, h: Win}, {t: S, h: Alt}, {t: T, h: Ctrl}, {t: N, h: Shift}, {t: '(', s: '{', h: Arcane}, {t: ')', s: '}', h: Arcane}, {t: U, h: Shift}, {t: A, h: Ctrl}, {t: I, h: Alt}, {t: H, h: Win}, G]
+    - [{t: Leader, s: QMK }, P, V, K, X, {t: '\', s: '\\', h: Arcane}, {t: '/', s: '//', h: Arcane}, {t: '=', s: '!='}, {t: '''', s: '"'}, {t: ', ', s: '?' }, '  WH', {t: Vim, s: Genuine, h: Emulation }]
     - [{t: Z, h: Bitwise }, {t: R, h: NGramL }, {t: Space, h: AltishL }, {t: Space, h: AltishR }, {t: E, h: NGramR }]
 combos:
 
