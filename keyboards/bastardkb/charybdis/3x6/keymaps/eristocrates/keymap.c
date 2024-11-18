@@ -38,7 +38,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #    ifndef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD
 #        define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD 1
 #    endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD
-#endif     // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+#endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 
 // clang-format off
 
@@ -105,11 +105,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_SHIFTISHL] = LAYOUT(
   /* ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮ */
-       _______, _______, _______, _______, _______, KC_PMNS,    SKP_GRM, _______, _______, DOT_ARC, _______, _______,
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    SKP_GRM, _______, _______, KC_SCLN, _______, _______,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       _______, LWKEY_C, LTALT_S, LCTRL_T, LSHFT_N, KC_LBRC,    SKP_GRM, RSHFT_U, RCTRL_A, RTALT_I, RWKEY_H, _______,
+       RGX_PLB, KC_LBRC, KC_LPRN, KC_RPRN,  KC_RBRC, RGX_PLA,    SKP_GRM, RSHFT_U, RCTRL_A, RTALT_I, RWKEY_H, _______,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       KC_CAPS, _______, _______, _______, _______, KC_LABK,     KC_APP,  KC_LEQL, KC_GRV, COM_ARC, XXXXXXX, _______,
+       RGX_NLB, KC_LABK, KC_LCBR, KC_RCBR, KC_RABK, RGX_NLA,     KC_APP,  KC_MINS, KC_GRV, KC_AMPR, KC_TILD, KC_CAPS,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
                                   XXXXXXX, _______, XXXXXXX,    KC_UNDS, _______
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
@@ -120,7 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
        _______, LWKEY_C, LTALT_S, LCTRL_T, LSHFT_N, SKP_GRM,    KC_RBRC, KC_H, KC_J, KC_K, KC_L, _______,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       _______, _______, _______, _______, _______, KC_PSCR,    KC_RABK, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______,
+       KC_CAPS, _______, _______, _______, _______, SKP_GRM,    KC_RABK, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
                                   XXXXXXX, _______, KC_UNDS,    XXXXXXX, _______
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
@@ -128,11 +128,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
  [_ALTISHL] = LAYOUT(
   /* ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮ */
-       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, KC_SCLN, XXXXXXX, XXXXXXX,
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, _______, _______, DOT_ARC, _______, _______,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGX_PLB,    RGX_NLA, OS_LSFT, OS_LCTL, OS_LALT, OS_LGUI, KC_DTGV,
+       XXXXXXX, KC_BSLS, KC_PIPE, KC_COLN, KC_SLSH, XXXXXXX,    XXXXXXX, _______,   KC_AT, _______, _______, KC_GMIL,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       KC_ASST, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    KC_PERC, KC_DEQL, XXXXXXX, KC_AMPR, XXXXXXX, KC_APP,
+       XXXXXXX, RGX_NLB, RGX_NLA, RGX_PLA, RGX_PLA, RGX_NCG,    KC_ASST, KC_LEQL, KC_TGRV, COM_ARC, KC_GEQL, KC_APP,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
                                   XXXXXXX, XXXXXXX, _______,    ALTRSPC, KC_ASTR
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
@@ -140,11 +140,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
  [_ALTISHR] = LAYOUT(
   /* ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮ */
-       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGX_NCP,    XXXXXXX, XXXXXXX, XXXXXXX, HOM_DIR, XXXXXXX, XXXXXXX,
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       XXXXXXX, KC_DTCM,  KC_DLR, XXXXXXX, XXXXXXX, RGX_NLB,    RGX_PLA, XXXXXXX,   KC_AT, XXXXXXX, KC_HASH, XXXXXXX,
+       XXXXXXX, KC_DTCM,  KC_DLR, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HASH, XXXXXXX,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       XXXXXXX, XXXXXXX, KC_CIRC, XXXXXXX, XXXXXXX, XXXXXXX,    KC_ESLH, KC_TEQL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+       XXXXXXX, KC_PERC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
                                   XXXXXXX, KC_PMNS, ALTLSPC,    _______, XXXXXXX
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
@@ -397,7 +397,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return state;
 }
 #    endif // CHARYBDIS_AUTO_SNIPING_ON_LAYER
-#endif     // POINTING_DEVICE_ENABLE
+#endif // POINTING_DEVICE_ENABLE
 
 #ifdef RGB_MATRIX_ENABLE
 // Forward-declare this helper function since it is defined in rgb_matrix.c.

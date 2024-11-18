@@ -78,42 +78,31 @@ layers:
     - {t: Vim Fighter, h: TO Layer }
     - {t: Neutral, h: Attack }
   SHIFTISHL:
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: '-', s: '--'}
+  - - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
     - Skip gram
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - {t: '.', s: Adaptive, h: Capsword}
+    - ;
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: C, h: Win}
-    - {t: S, h: Alt}
-    - {t: T, h: Ctrl}
-    - {t: N, h: Shift}
+  - - (?<=)
     - {t: '[', s: '/*'}
+    - (
+    - )
+    - {t: ']', s: '*/'}
+    - (?=)
     - Skip gram
     - {t: U, h: Shift}
     - {t: A, h: Ctrl}
     - {t: I, h: Alt}
     - {t: H, h: Win}
     - {t: ▽, type: trans}
-  - - Caps Lock
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: '<', s: '<<'}
-    - {t: Context, s: Windows, h: Menu }
-    - {t: '<=', s: '<=='}
-    - {t: "`", s: "```"}
-    - {t: ', ', s: Adaptive, h: OSM Shift }
-    - ''
-    - {t: ▽, type: trans}
+  - ['(?<!)', {t: '<', s: '<<'}, '{', '}', {t: '>', s: '>>'}, '(?!)', {t: Context, s: Windows, h: Menu }, '-', {t: "`", s: "```"}, {t: '&', s: '&&' }, '~', Caps Lock]
   - - ''
     - {t: ▽, type: trans}
     - ''
@@ -144,12 +133,12 @@ layers:
     - K
     - L
     - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
+  - - Caps Lock
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - Print Screen
+    - Skip gram
     - {t: '>', s: '>>'}
     - LEFT
     - DOWN
@@ -162,18 +151,40 @@ layers:
     - ''
     - {t: ▽, type: trans}
   ALTISHL:
-  - ['', '', '', '', '', '', '', '', '', ;, '', '']
-  - ['', '', '', '', '', '(?<=)', '(?!)', {t: Shift, s: OneShot }, {t: Control, s: OneShot }, {t: Alt, s: OneShot }, {t: Win, s: OneShot }, .gov]
-  - [{t: Aware, s: Conntext, h: Assistant }, '', '', '', '', '', '%', {t: '==', s: '!=='}, '', {t: '&', s: '&&' }, '', {t: Context, s: Windows, h: Menu }]
+  - - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - {t: '.', s: Adaptive, h: Capsword}
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+  - - ''
+    - \
+    - '|'
+    - ':'
+    - /
+    - ''
+    - ''
+    - {t: ▽, type: trans}
+    - '@'
+    - {t: ▽, type: trans}
+    - {t: ▽, type: trans}
+    - GMIL
+  - ['', '(?<!)', '(?!)', '(?=)', '(?=)', RGX NCG, {t: Aware, s: Conntext, h: Assistant }, {t: '<=', s: '<=='}, T{t: "`", s: "```"}, {t: ', ', s: Adaptive, h: OSM Shift }, {t: '>=', s: '>=='}, {t: Context, s: Windows, h: Menu }]
   - - ''
     - ''
     - {t: ▽, type: trans}
     - {t: Space, h: AltishR }
     - '*'
   ALTISHR:
-  - ['', '', '', '', '', '(?:)', '', '', '', ~/, '', '']
-  - ['', .com, $, '', '', '(?<!)', '(?=)', '', '@', '', '#', '']
-  - ['', '', ^, '', '', '', {t: '\/', s: '/>' }, {t: '===', s: '!==='}, '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', .com, $, '', '', '', '', '', '', '', '#', '']
+  - ['', '%', '', '', '', '', '', '', '', '', '', '']
   - - ''
     - {t: '-', s: '--'}
     - {t: Space, h: AltishL }

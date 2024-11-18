@@ -227,7 +227,8 @@ enum keycodes {
     KC_RTAG, // />
     KC_DTCM, // .com
     KC_DTGV, // .gov
-    RGX_NCP, // non capturing group (?:)
+    KC_GMIL, // gmail
+    RGX_NCG, // non capturing group (?:)
     RGX_PLA, // positive look ahead  (?=)
     RGX_NLA, // negative look ahead (?!)
     RGX_PLB, // positive look behind (?<=)

@@ -286,11 +286,13 @@ static bool process_quopostrokey(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-const key_override_t dot_override      = ko_make_basic(MOD_MASK_SHIFT, RMEH_DT, KC_EXLM); // . !
-const key_override_t comma_override    = ko_make_basic(MOD_MASK_SHIFT, KC_COMM, KC_QUES); // , ?
-const key_override_t quote_override    = ko_make_basic(MOD_MASK_SHIFT, KC_QUOT, KC_DQUO); // ' "
-const key_override_t l_parens_override = ko_make_basic(MOD_MASK_SHIFT, KC_LPRN, KC_LCBR); // ( {
-const key_override_t r_parens_override = ko_make_basic(MOD_MASK_SHIFT, KC_RPRN, KC_RCBR); // ) }
+const key_override_t dot_override       = ko_make_basic(MOD_MASK_SHIFT, RMEH_DT, KC_EXLM); // . !
+const key_override_t comma_override     = ko_make_basic(MOD_MASK_SHIFT, KC_COMM, KC_QUES); // , ?
+const key_override_t quote_override     = ko_make_basic(MOD_MASK_SHIFT, KC_QUOT, KC_DQUO); // ' "
+const key_override_t minus_override     = ko_make_basic(MOD_MASK_SHIFT, KC_MINS, KC_NEQL); // - !=
+const key_override_t grave_override     = ko_make_basic(MOD_MASK_SHIFT, KC_GRV, KC_ASTR);  // ` *
+const key_override_t tilde_override     = ko_make_basic(MOD_MASK_SHIFT, KC_TILD, KC_CIRC); // ~ ^
+const key_override_t r_bracket_override = ko_make_basic(MOD_MASK_SHIFT, KC_RBRC, KC_ESLH); // ] \/
 
 // clang-format off
 // This globally defines all key overrides to be used
@@ -298,8 +300,10 @@ const key_override_t  *key_overrides_list[] = {
 &dot_override,
 &comma_override,
 &quote_override,
-&l_parens_override,
-&r_parens_override,
+&minus_override,
+&grave_override,
+&tilde_override,
+&r_bracket_override,
 NULL};
 
 // clang-format on
@@ -851,6 +855,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     switch (keycode) {
                         case KC_H:
                         case KC_J:
+
                         case KC_K:
                         case KC_L:
                             return true;
@@ -1294,6 +1299,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return true;
         case KC_LPRN:
             if (record->event.pressed) {
+                if ((get_weak_mods() & MOD_MASK_SHIFT) || (get_mods() & MOD_MASK_SHIFT)) {
+                    del_mods(MOD_MASK_SHIFT);
+                    SEND_STRING("/*");
+                    return false;
+                }
                 if (autopair_mode) {
                     send_autopair(KC_LPRN, KC_RPRN, record);
                 } else if (roll_reversal_mode) {
@@ -1311,7 +1321,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 if ((get_weak_mods() & MOD_MASK_SHIFT) || (get_mods() & MOD_MASK_SHIFT)) {
                     del_mods(MOD_MASK_SHIFT);
-                    SEND_STRING("/*");
+                    SEND_STRING("/>");
                     return false;
                 }
 
@@ -1330,6 +1340,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return true;
         case KC_LCBR:
             if (record->event.pressed) {
+                if ((get_weak_mods() & MOD_MASK_SHIFT) || (get_mods() & MOD_MASK_SHIFT)) {
+                    del_mods(MOD_MASK_SHIFT);
+                    SEND_STRING("{{/*");
+                    tap_code(KC_ENT);
+                    return false;
+                }
                 if (autopair_mode) {
                     send_autopair(KC_LCBR, KC_RCBR, record);
                 } else if (roll_reversal_mode) {
@@ -1350,6 +1366,42 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     del_mods(MOD_MASK_SHIFT);
                     SEND_STRING(";");
                     tap_code(KC_ENT);
+                    return false;
+                }
+            }
+            return true;
+        case KC_SLSH:
+            if (record->event.pressed) {
+                if ((get_weak_mods() & MOD_MASK_SHIFT) || (get_mods() & MOD_MASK_SHIFT)) {
+                    del_mods(MOD_MASK_SHIFT);
+                    SEND_STRING("//");
+                    return false;
+                }
+            }
+            return true;
+        case KC_COLN:
+            if (record->event.pressed) {
+                if ((get_weak_mods() & MOD_MASK_SHIFT) || (get_mods() & MOD_MASK_SHIFT)) {
+                    del_mods(MOD_MASK_SHIFT);
+                    SEND_STRING("::");
+                    return false;
+                }
+            }
+            return true;
+        case KC_PIPE:
+            if (record->event.pressed) {
+                if ((get_weak_mods() & MOD_MASK_SHIFT) || (get_mods() & MOD_MASK_SHIFT)) {
+                    del_mods(MOD_MASK_SHIFT);
+                    SEND_STRING("||");
+                    return false;
+                }
+            }
+            return true;
+        case KC_BSLS:
+            if (record->event.pressed) {
+                if ((get_weak_mods() & MOD_MASK_SHIFT) || (get_mods() & MOD_MASK_SHIFT)) {
+                    del_mods(MOD_MASK_SHIFT);
+                    SEND_STRING("\\");
                     return false;
                 }
             }
@@ -1415,6 +1467,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case KC_RPRN:
             if (record->event.pressed) {
+                if ((get_weak_mods() & MOD_MASK_SHIFT) || (get_mods() & MOD_MASK_SHIFT)) {
+                    del_mods(MOD_MASK_SHIFT);
+                    SEND_STRING("*/");
+                    return false;
+                }
                 if (roll_reversal_mode) {
                     if (roll_reversal_state == 1) roll_reversal_state++;
                 } else {
@@ -1434,7 +1491,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 if ((get_weak_mods() & MOD_MASK_SHIFT) || (get_mods() & MOD_MASK_SHIFT)) {
                     del_mods(MOD_MASK_SHIFT);
-                    SEND_STRING("*/");
+                    SEND_STRING("\\/");
                     return false;
                 }
                 if (roll_reversal_mode) {
@@ -1454,6 +1511,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return true;
         case KC_RCBR:
             if (record->event.pressed) {
+                if ((get_weak_mods() & MOD_MASK_SHIFT) || (get_mods() & MOD_MASK_SHIFT)) {
+                    del_mods(MOD_MASK_SHIFT);
+                    SEND_STRING("/*}}");
+                    tap_code(KC_ENT);
+                    return false;
+                }
                 if (roll_reversal_mode) {
                     if (roll_reversal_state == 1) roll_reversal_state++;
                 } else {
@@ -1844,12 +1907,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING(".com");
             }
             return false;
+        case KC_GMIL:
+            if (record->event.pressed) {
+                SEND_STRING("@gmail.com");
+            }
+            return false;
+
         case KC_DTGV:
             if (record->event.pressed) {
                 SEND_STRING(".gov");
             }
             return false;
-        case RGX_NCP:
+        case RGX_NCG:
             if (record->event.pressed) {
                 SEND_STRING("(?:)");
                 tap_code(KC_LEFT);
