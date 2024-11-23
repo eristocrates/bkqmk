@@ -105,9 +105,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_SHIFTISHL] = LAYOUT(
   /* ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮ */
-       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    SKP_GRM, _______, _______, KC_SCLN, _______, _______,
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, _______, _______, KC_SCLN, _______, _______,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       RGX_PLB, KC_LBRC, KC_LPRN, KC_RPRN,  KC_RBRC, RGX_PLA,    SKP_GRM, RSHFT_U, RCTRL_A, RTALT_I, RWKEY_H, _______,
+       RGX_PLB, KC_LBRC, KC_LPRN, KC_RPRN,  KC_RBRC, RGX_PLA,    XXXXXXX, RSHFT_U, RCTRL_A, RTALT_I, RWKEY_H, _______,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
        RGX_NLB, KC_LABK, KC_LCBR, KC_RCBR, KC_RABK, RGX_NLA,     KC_APP,  KC_MINS, KC_GRV, KC_AMPR, KC_TILD, KC_CAPS,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
@@ -116,11 +116,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_SHIFTISHR] = LAYOUT(
   /* ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮ */
-       _______, _______, _______, _______, _______, SKP_GRM,    KC_PPLS, KC_HOME, KC_PGDN, KC_PGUP, KC_END, _______,
+       _______, _______, _______, _______, _______, SKP_GRM,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       _______, LWKEY_C, LTALT_S, LCTRL_T, LSHFT_N, SKP_GRM,    KC_RBRC, KC_H, KC_J, KC_K, KC_L, _______,
+       _______, LWKEY_C, LTALT_S, LCTRL_T, LSHFT_N, SKP_GRM,    XXXXXXX, KC_H, KC_J, KC_K, KC_L, _______,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       KC_CAPS, _______, _______, _______, _______, SKP_GRM,    KC_RABK, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______,
+       KC_CAPS, _______, _______, _______, _______, SKP_GRM,    XXXXXXX, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
                                   XXXXXXX, _______, KC_UNDS,    XXXXXXX, _______
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
@@ -144,7 +144,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
        XXXXXXX, KC_DTCM,  KC_DLR, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HASH, XXXXXXX,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
-       XXXXXXX, KC_PERC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+       XXXXXXX, KC_PERC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END, XXXXXXX,
   /* ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯ */
                                   XXXXXXX, KC_PMNS, ALTLSPC,    _______, XXXXXXX
   /*                            ╰───────────────────────────╯ ╰──────────────────╯                                     */
