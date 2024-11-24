@@ -13,7 +13,11 @@ nshot_state_t nshot_states[] = {
     {OS_LGUI, MOD_BIT(KC_LGUI), 1, false, os_up_unqueued, 0, 0, false},                    // G-a
     {OS_LGLC, MOD_BIT(KC_LCTL) | MOD_BIT(KC_LGUI), 1, false, os_up_unqueued, 0, 0, false}, // G-C-a
     {TS_LCTL, MOD_BIT(KC_LCTL), 2, false, os_up_unqueued, 0, 0, false},                    // C-a
-    {OSR_SFT, MOD_BIT(KC_LSFT), 1, false, os_up_unqueued, 0, 0, false}                     // a
+    {OSR_SFT, MOD_BIT(KC_LSFT), 1, false, os_up_unqueued, 0, 0, false},                    // a
+    {OS__MEH, MOD_BIT(KC_LCTL) | MOD_BIT(KC_LSFT) | MOD_BIT(KC_LALT), 1, false, os_up_unqueued, 0, 0, false},
+    {OS_HYPR, MOD_BIT(KC_LCTL) | MOD_BIT(KC_LSFT) | MOD_BIT(KC_LGUI) | MOD_BIT(KC_LALT), 1, false, os_up_unqueued, 0, 0, false},
+    {OS__CAG, MOD_BIT(KC_LCTL) | MOD_BIT(KC_LALT) | MOD_BIT(KC_LGUI), 1, false, os_up_unqueued, 0, 0, false},
+
 };
 uint8_t NUM_NSHOT_STATES = sizeof(nshot_states) / sizeof(nshot_state_t);
 

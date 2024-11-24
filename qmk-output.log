@@ -6,17 +6,17 @@ Copyright (C) 2023 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-Compiling: E:/uranus/coding/bkqmk/users/eristocrates/features/andrewjrae/qmk-vim/motions.c          [32;01m[OK][0m
 Compiling: E:/uranus/coding/bkqmk/users/eristocrates/features/andrewjrae/qmk-vim/vim.c              [32;01m[OK][0m
+Compiling: E:/uranus/coding/bkqmk/users/eristocrates/features/andrewjrae/qmk-vim/motions.c          [32;01m[OK][0m
 Compiling: E:/uranus/coding/bkqmk/users/eristocrates/features/eristocrates/rgb_matrix_stuff.c       [32;01m[OK][0m
 Compiling: E:/uranus/coding/bkqmk/users/eristocrates/features/kalabasa/bitwise_num.c                [32;01m[OK][0m
 Compiling: E:/uranus/coding/bkqmk/users/eristocrates/features/eristocrates/utilities.c              [32;01m[OK][0m
 Compiling: E:/uranus/coding/bkqmk/users/eristocrates/features/empressabyss/arcane_keys.c            [32;01m[OK][0m
 Compiling: E:/uranus/coding/bkqmk/users/eristocrates/features/possumvibes/mod_lock.c                [32;01m[OK][0m
-Compiling: E:/uranus/coding/bkqmk/users/eristocrates/features/possumvibes/override_keys.c           [32;01m[OK][0m
-Compiling: E:/uranus/coding/bkqmk/users/eristocrates/features/possumvibes/nshot_mod.c               [32;01m[OK][0m
-Compiling: E:/uranus/coding/bkqmk/users/eristocrates/features/anantoghosh/skip_bigrams.c            [32;01m[OK][0m
 Compiling: E:/uranus/coding/bkqmk/users/eristocrates/features/possumvibes/smart_layer.c             [32;01m[OK][0m
+Compiling: E:/uranus/coding/bkqmk/users/eristocrates/features/possumvibes/nshot_mod.c               [32;01m[OK][0m
+Compiling: E:/uranus/coding/bkqmk/users/eristocrates/features/possumvibes/override_keys.c           [32;01m[OK][0m
+Compiling: E:/uranus/coding/bkqmk/users/eristocrates/features/anantoghosh/skip_bigrams.c            [32;01m[OK][0m
 Compiling: quantum/keymap_introspection.c                                                           [32;01m[OK][0m
 Linking: .build/bastardkb_charybdis_3x6_eristocrates.elf                                            [32;01m[OK][0m
 Creating UF2 file for deployment: .build/bastardkb_charybdis_3x6_eristocrates.uf2                   [32;01m[OK][0m

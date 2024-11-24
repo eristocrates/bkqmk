@@ -450,6 +450,9 @@ enum keycodes {
     OS_LGLC,
     TS_LCTL,
     OSR_SFT, // and also n-shot Thumbshift (see n-shot mods for rolling differences)
+    OS__MEH,
+    OS_HYPR,
+    OS__CAG,
 
     NEW_SAFE_RANGE, // Use for keymap-specific codes
 };

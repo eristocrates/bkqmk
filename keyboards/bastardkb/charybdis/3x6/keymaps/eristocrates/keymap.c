@@ -176,7 +176,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_BITNUM] = LAYOUT(
   /* ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮ */
-       XXXXXXX, XXXXXXX, XXXXXXX,    KC_R, XXXXXXX, KC_COMM,    KC_PERC, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX,
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_COMM,    KC_PERC, XXXXXXX, OS_HYPR, OS__MEH,  OS__CAG, XXXXXXX,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */
        TD(TBW), BIN_512, BIN_256, BIN_128, BIN__64,  KC_EQL,     KC_P00, BIN___8, BIN___4, BIN___2, BIN___1,   KC_P0,
   /* ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤ */

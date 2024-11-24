@@ -275,7 +275,7 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
   BITNUM:
-  - ['', '', '', R, '', {t: ', ', s: '?' }, '%', '', '', '', '', '']
+  - ['', '', '', '', '', {t: ', ', s: '?' }, '%', '', OS HYPR, OS  MEH, OS  CAG, '']
   - [TD(TBW), BIN 512, BIN 256, BIN 128, BIN  64, {t: '=', s: '!='}, '00', BIN   8, BIN   4, BIN   2, BIN   1, '0']
   - [Layer Lock, /, '*', {t: '-', s: '--'}, PLS FUN, ., $, {t: Shift, s: OneShot }, {t: Control, s: OneShot }, {t: Alt, s: OneShot }, {t: Win, s: OneShot }, BASE]
   - - {t: ▽, type: trans}
