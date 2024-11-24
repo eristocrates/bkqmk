@@ -1,6 +1,6 @@
 # Define the file path
 $filePath = "E:\uranus\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\keymap.yaml"
-$enumFilePath = "E:\uranus\coding\bkqmk\users\eristocrates\eristocrates_keycodes.h"
+
 $comboFilePath = "E:\uranus\coding\bkqmk\users\eristocrates\combos.def"
 
 function Get-StringIndex {
@@ -53,130 +53,101 @@ $vimExceptions = @{
 # Read the content of the file
 $content = Get-Content -Path $filePath -Raw
 
-# Read the content of the enum file
-$enumContent = Get-Content -Path $enumFilePath -Raw
-
-# Extract the layers enum
-$enumPattern = 'enum layers \{([^}]*)\}'
-$matches = [regex]::Matches($enumContent, $enumPattern)
 
 
-
-if ($matches.Success) {
-    $enumBlock = $matches.Groups[1].Value
-
-    # Print the extracted enum block
-    #Write-Host "Extracted layers enum:"
-    #Write-Host $enumBlock
-
-    # Parse the individual layer names
-    $layerNames = @()
-    foreach ($line in $enumBlock -split "`n") {
-        $line = $line.Trim()
-        if ($line -match '^\s*_(\w+),?\s*$') {
-            $layerName = $line -replace '^\s*_(\w+),?\s*$', '$1'
-            $layerNames += $layerName
-        }
-    }
-
-    ## Iterate through the layer names and print them
-    #Write-Host "Parsed layer names:"
-    #for ($i = 0; $i -lt $layerNames.Count; $i++) {
-    #    Write-Host "L$i = $($layerNames[$i])"
-    #}
-
-    #base layer
-    $content = $content -replace "LTP ARC", "{t: ':', s: '::', h: Arcane}"
-    $content = $content -replace "RTP ARC", "{t: '|', s: '||', h: Arcane}"
-    $content = $content -replace "LHM ARC", "{t: '(', s: '{', h: Arcane}"
-    $content = $content -replace "RHM ARC", "{t: ')', s: '}', h: Arcane}"
-    $content = $content -replace "LBM ARC", "{t: '\', s: '\\', h: Arcane}"
-    $content = $content -replace "RBM ARC", "{t: '/', s: '//', h: Arcane}"
+#base layer
+$content = $content -replace "LTP ARC", "{t: ':', s: '::', h: Arcane}"
+$content = $content -replace "RTP ARC", "{t: '|', s: '||', h: Arcane}"
+$content = $content -replace "LHM ARC", "{t: '(', s: '{', h: Arcane}"
+$content = $content -replace "RHM ARC", "{t: ')', s: '}', h: Arcane}"
+$content = $content -replace "LBM ARC", "{t: '\', s: '\\', h: Arcane}"
+$content = $content -replace "RBM ARC", "{t: '/', s: '//', h: Arcane}"
 
 
-    $content = $content -replace "LWKEY C", "{t: C, h: Win}"
-    $content = $content -replace "LTALT S", "{t: S, h: Alt}"
-    $content = $content -replace "LCTRL T", "{t: T, h: Ctrl}"
-    $content = $content -replace "LSHFT N", "{t: N, h: Shift}"
-    $content = $content -replace "RSHFT U", "{t: U, h: Shift}"
-    $content = $content -replace "RCTRL A", "{t: A, h: Ctrl}"
-    $content = $content -replace "RTALT I", "{t: I, h: Alt}"
-    $content = $content -replace "RWKEY H", "{t: H, h: Win}"
+$content = $content -replace "LWKEY C", "{t: C, h: Win}"
+$content = $content -replace "LTALT S", "{t: S, h: Alt}"
+$content = $content -replace "LCTRL T", "{t: T, h: Ctrl}"
+$content = $content -replace "LSHFT N", "{t: N, h: Shift}"
+$content = $content -replace "RSHFT U", "{t: U, h: Shift}"
+$content = $content -replace "RCTRL A", "{t: A, h: Ctrl}"
+$content = $content -replace "RTALT I", "{t: I, h: Alt}"
+$content = $content -replace "RWKEY H", "{t: H, h: Win}"
 
-    $content = $content -replace "TH   QU", "{t: QU, h: Q}"
-    $content = $content -replace "DOT ARC", "{t: '.', s: Adaptive, h: Capsword}"
-    $content = $content -replace "PDOT", "{t: '.', s: '!'}"
-    $content = $content -replace "DOT", "{t: '.', s: '!'}"
-    $content = $content -replace "QUOT", "{t: '''', s: '`"'}"
-    $content = $content -replace "LEQL", "{t: '<=', s: '<=='}"
-    $content = $content -replace "GEQL", "{t: '>=', s: '>=='}"
-    $content = $content -replace "DEQL", "{t: '==', s: '!=='}"
-    $content = $content -replace "TEQL", "{t: '===', s: '!==='}"
-    $content = $content -replace "EQL", "{t: '=', s: '!='}"
-    $content = $content -replace "COMM", "{t: ', ', s: '?' }"
-    $content = $content -replace "QK LEAD", "{t: Leader, s: QMK }"
+$content = $content -replace "TH   QU", "{t: QU, h: Q}"
+$content = $content -replace "DOT ARC", "{t: '.', s: Adaptive, h: Capsword}"
+$content = $content -replace "PDOT", "{t: '.', s: '!'}"
+$content = $content -replace "DOT", "{t: '.', s: '!'}"
+$content = $content -replace "QUOT", "{t: '''', s: '`"'}"
+$content = $content -replace "LEQL", "{t: '<=', s: '<=='}"
+$content = $content -replace "GEQL", "{t: '>=', s: '>=='}"
+$content = $content -replace "DEQL", "{t: '==', s: '!=='}"
+$content = $content -replace "TEQL", "{t: '===', s: '!==='}"
+$content = $content -replace "EQL", "{t: '=', s: '!='}"
+$content = $content -replace "COMM", "{t: ', ', s: '?' }"
+$content = $content -replace "QK LEAD", "{t: Leader, s: QMK }"
 
-    $content = $content -replace "BITWISEZ", "{t: Z, h: Bitwise }"
-    $content = $content -replace "SFSHL R", "{t: R, h: NGramL }"
-    $content = $content -replace "SFSHLCR", "{t: R, h: NGramL }"
-    $content = $content -replace "ALTLSPC", "{t: Space, h: AltishL }"
-    $content = $content -replace "ALTRSPC", "{t: Space, h: AltishR }"
-    $content = $content -replace "SFSHR E", "{t: E, h: NGramR }"
-    $content = $content -replace "SFSHRCE", "{t: E, h: NGramR }"
-    $content = $content -replace "\bNUM SPC\b", "{t: Space, h: NumPad }"
-    $content = $content -replace "PPLS", "{t: '+', s: '++'}"
-    $content = $content -replace "LBRC", "{t: '[', s: '/*'}"
-    $content = $content -replace "LABK", "{t: '<', s: '<<'}"
-    $content = $content -replace "PMNS", "{t: '-', s: '--'}"
-    $content = $content -replace "RBRC", "{t: ']', s: '*/'}"
-    $content = $content -replace "RABK", "{t: '>', s: '>>'}"
-    $content = $content -replace "SARW", "{t: '->', s: '=>'}"
+$content = $content -replace "BITWISEZ", "{t: Z, h: Bitwise }"
+$content = $content -replace "SFSHL R", "{t: R, h: NGramL }"
+$content = $content -replace "SFSHLCR", "{t: R, h: NGramL }"
+$content = $content -replace "ALTLSPC", "{t: Space, h: AltishL }"
+$content = $content -replace "ALTRSPC", "{t: Space, h: AltishR }"
+$content = $content -replace "SFSHR E", "{t: E, h: NGramR }"
+$content = $content -replace "SFSHRCE", "{t: E, h: NGramR }"
+$content = $content -replace "\bNUM SPC\b", "{t: Space, h: NumPad }"
+$content = $content -replace "PPLS", "{t: '+', s: '++'}"
+$content = $content -replace "LBRC", "{t: '[', s: '/*'}"
+$content = $content -replace "LABK", "{t: '<', s: '<<'}"
+$content = $content -replace "PMNS", "{t: '-', s: '--'}"
+$content = $content -replace "RBRC", "{t: ']', s: '*/'}"
+$content = $content -replace "RABK", "{t: '>', s: '>>'}"
+$content = $content -replace "SARW", "{t: '->', s: '=>'}"
 
-    $content = $content -replace "SKP GRM", "{t: Space, h: NumPad }"
-    $content = $content -replace "GRV", '{t: "`", s: "```"}'
+$content = $content -replace "SKP GRM", "{t: Space, h: NumPad }"
+$content = $content -replace "TGRV", '"```"'
+$content = $content -replace "GRV", '{t: "`", s: "*"}'
 
-    $content = $content -replace "CUR DIR", "{t: './', s: '../' }"
-    $content = $content -replace "AMPR", "{t: '&', s: '&&' }"
-    $content = $content -replace "ESLH", "{t: '\/', s: '/>' }"
-    $content = $content -replace "OS LSFT", "{t: Shift, s: OneShot }"
-    $content = $content -replace "OS LCTL", "{t: Control, s: OneShot }"
-    $content = $content -replace "OS LALT", "{t: Alt, s: OneShot }"
-    $content = $content -replace "OS LGUI", "{t: Win, s: OneShot }"
+$content = $content -replace "CUR DIR", "{t: './', s: '../' }"
+$content = $content -replace "AMPR", "{t: '&', s: '&&' }"
+$content = $content -replace "ESLH", "{t: '\/', s: '/>' }"
+$content = $content -replace "OS LSFT", "{t: Shift, s: OneShot }"
+$content = $content -replace "OS LCTL", "{t: Control, s: OneShot }"
+$content = $content -replace "OS LALT", "{t: Alt, s: OneShot }"
+$content = $content -replace "OS LGUI", "{t: Win, s: OneShot }"
 
 
 
 
 
 
-    $content = $content -replace "COM ARC", "{t: ', ', s: Adaptive, h: OSM Shift }"
-    $content = $content -replace "VIM TOG", "{t: Vim, s: Genuine, h: Emulation }"
+$content = $content -replace "COM ARC", "{t: ', ', s: Adaptive, h: OSM Shift }"
+$content = $content -replace "VIM TOG", "{t: Vim, s: Genuine, h: Emulation }"
 
-    $content = $content -replace "NUM PAD", "{t: Num Pad, h: MO Layer }"
-    $content = $content -replace "SML SPC", "{t: Space, h: SML }"
-    $content = $content -replace "SMR SPC", "{t: Space, h: SMR }"
-    $content = $content -replace "NUM   Z", "{t: Z, h: Num Pad }"
+$content = $content -replace "NUM PAD", "{t: Num Pad, h: MO Layer }"
+$content = $content -replace "SML SPC", "{t: Space, h: SML }"
+$content = $content -replace "SMR SPC", "{t: Space, h: SMR }"
+$content = $content -replace "NUM   Z", "{t: Z, h: Num Pad }"
 
-    # Define the regex pattern to match the layers section
-    $layerPattern = 'layers:\s*(\w+):\s*-\s*\[([^\]]+)\]\s*-\s*\[([^\]]+)\]\s*-\s*\[([^\]]+)\]\s*-\s*\[([^\]]+)\]'
+# Define the regex pattern to match the layers section
+$layerPattern = 'layers:\s*(\w+):\s*-\s*\[([^\]]+)\]\s*-\s*\[([^\]]+)\]\s*-\s*\[([^\]]+)\]\s*-\s*\[([^\]]+)\]'
 
-    # Find the match
-    $match = [regex]::Match($content, $layerPattern)
+# Find the match
+$match = [regex]::Match($content, $layerPattern)
 
-    if ($match.Success) {
-        $layerName = $match.Groups[1].Value
-        $line1 = $match.Groups[2].Value
-        $line2 = $match.Groups[3].Value
-        $line3 = $match.Groups[4].Value
-        $line4 = $match.Groups[5].Value
+if ($match.Success) {
+    $layerName = $match.Groups[1].Value
+    $line1 = $match.Groups[2].Value
+    $line2 = $match.Groups[3].Value
+    $line3 = $match.Groups[4].Value
+    $line4 = $match.Groups[5].Value
 
-        # Print the captured layer name and lines
-        #Write-Host "Layer Name: $layerName"
-        #Write-Host "Line 1: $line1"
-        #Write-Host "Line 2: $line2"
-        #Write-Host "Line 3: $line3"
-        #Write-Host "Line 4: $line4"
-        # Prepare the data to append
-        $dataToAppend = @"
+    # Print the captured layer name and lines
+    #Write-Host "Layer Name: $layerName"
+    #Write-Host "Line 1: $line1"
+    #Write-Host "Line 2: $line2"
+    #Write-Host "Line 3: $line3"
+    #Write-Host "Line 4: $line4"
+    # Prepare the data to append
+    $dataToAppend = @"
   TEST:
     - [$line1]
     - [$line2]
@@ -184,166 +155,145 @@ if ($matches.Success) {
     - [$line4]
 "@
 
-        # Append the data to the end of the content
-        $content += $dataToAppend
+    # Append the data to the end of the content
+    $content += $dataToAppend
 
-        #Write-Host "Data appended successfully."
-    }
-    else {
-        Write-Error "No layers section found in the file."
-    }
-
-
-    $alignments = @(
-        "top",
-        "bottom",
-        "left",
-        "right"
-    )
-
-
-
-    # Read the content of the combos file
-    $comboContent = Get-Content -Path $comboFilePath -Raw
-
-    # Define the regex pattern to match combos
-    $comboPattern = 'COMB\(([^, ]+), \s*([^, ]+), \s*([^)]+)\)'
-
-    # Find all matches
-    $matches = [regex]::Matches($comboContent, $comboPattern)
-
-    # Iterate through the matches and print them
-    foreach ($match in $matches) {
-        $comboName = $match.Groups[1].Value
-        $output = $match.Groups[2].Value
-        $params = $match.Groups[3].Value
-
-        #Write-Host "Combo Name: $comboName"
-        #Write-Host "Output: $output"
-        #Write-Host "Params: $params"
-        #Write-Host "-------------------------"
-    }
-
-
-
-    # Define the regex pattern to match combos starting with VIM_COMBO_
-    $vcbComboPattern = 'COMB\((VIM_COMBO_[^, ]+), \s*([^, ]+), \s*([^)]+)\)'
-
-    # Find all matches
-    $matches = [regex]::Matches($comboContent, $vcbComboPattern)
-
-    # Initialize the data to append
-    $dataToAppend = @(
-        "combos:",
-        ""
-    )
-
-    $alignmentIndex = 0
-    $offsetAdjustment = 1
-    $slideAdjustment = -1
-    $accumulator = 0
-    $offset = 0
-    # Iterate through the matches and translate them
-    foreach ($match in $matches) {
-        ++$accumulator
-        $comboName = $match.Groups[1].Value
-        $output = $match.Groups[2].Value
-        $params = $match.Groups[3].Value -split ', \s*'
-        #++$offsetAdjustment
-        if ($alignmentIndex -gt $alignments.Count - 1) {
-            $alignmentIndex = 0
-            $offsetAdjustment = $offsetAdjustment + 300
-            $slideAdjustment = $slideAdjustment * -1
-        }
-
-        #Write-Host "Combo Name: $comboName"
-        #Write-Host "Output: $output"
-        #Write-Host "Params: $params"
-        # Get the indices for the parameters
-        $paramAverage = 0
-        $paramIndices = @()
-        foreach ($param in $params) {
-            $paramIndex = [int](Get-StringIndex -string $param)
-            if ([int]::TryParse($paramIndex, [ref]$null)) {
-                $paramIndex = [int]$paramIndex
-                $paramIndices += $paramIndex
-                $paramAverage += $paramIndex
-
-                #Write-Host paramIndex $paramIndex
-                #if ($paramIndex -gt $largestIndex) {
-                #    $largestIndex = $param
-                #}
-                #if ([int]$paramIndex -lt $smallestIndex) {
-                #    $smallestIndex = $param
-                #}
-            }
-        }
-
-        #Write-Host "-------------------------"
-        if ($paramIndices.Count -gt 0) {
-            $paramAverage = $paramAverage / $paramIndices.Count
-        }
-        else {
-            $paramAverage = 0
-        }
-        $paramAverage = $paramAverage / $matches.Count
-        # Generate a random integer between 2 and 10
-        #$randomInt = Get-Random -Minimum 3 -Maximum 11
-        if ($slideAdjustment -gt 0) {
-            $offset = ($accumulator + (.15 * $offsetAdjustment / 100)) / 10
-        }
-        else {
-            $offset = ($accumulator + (2 * $offsetAdjustment / 100)) / 10
-        }
-        $alignment = $alignments[$alignmentIndex++] #[$modResult]
-        # Generate a random float between 0 and 1
-        #$randomFloat = Get-Random -Minimum 0.0 -Maximum 1.0
-
-        # Scale and shift to get a float between -1 and 0
-        $slide = ($offset * (($accumulator * $offset ) / 100) % 1) * $slideAdjustment
-
-        #Write-Host offset $offset
-        #Write-Host slide $slide
-
-
-
-        # TODO automate differentiating how combos are drawn https://github.com/caksoylar/keymap-drawer/blob/main/KEYMAP_SPEC.md#combos
-        # Append the translated combo to the data
-        #$alignment = $alignments[]
-        $dataToAppend += "  - { l: [VIMFIGHTER], p: [$($paramIndices -join ', ')], k: $output, a: $alignment, o: $offset, s: $slide }"
-    }
-
-    #Write-Host "$dataToAppend"
-    # Join the data with newlines
-    $dataToAppendString = $dataToAppend -join "`n"
-
-    # Append the new data to the existing content
-    $content += "`n$dataToAppendString"
-
-    #Write-Host "Combos translated and appended successfully."
-
-
-
-
-
-
-
-
-
-
-    # Perform the replacement
-    for ($i = 0; $i -lt $layerNames.Count; $i++) {
-        $content = $content -replace "\bL$i\b", $layerNames[$i]
-    }
-
-    # Write the modified content back to the target file
-    #Set-Content -Path $filePath -Value $content
-
-    #Write-Host "Replacements completed successfully."
+    #Write-Host "Data appended successfully."
 }
 else {
-    Write-Error "No layers enum found in the file."
+    Write-Error "No layers section found in the file."
 }
+
+
+$alignments = @(
+    "top",
+    "bottom",
+    "left",
+    "right"
+)
+
+
+
+# Read the content of the combos file
+$comboContent = Get-Content -Path $comboFilePath -Raw
+
+# Define the regex pattern to match combos
+$comboPattern = 'COMB\(([^, ]+), \s*([^, ]+), \s*([^)]+)\)'
+
+# Find all matches
+$matches = [regex]::Matches($comboContent, $comboPattern)
+
+# Iterate through the matches and print them
+foreach ($match in $matches) {
+    $comboName = $match.Groups[1].Value
+    $output = $match.Groups[2].Value
+    $params = $match.Groups[3].Value
+
+    #Write-Host "Combo Name: $comboName"
+    #Write-Host "Output: $output"
+    #Write-Host "Params: $params"
+    #Write-Host "-------------------------"
+}
+
+
+
+# Define the regex pattern to match combos starting with VIM_COMBO_
+$vcbComboPattern = 'COMB\((VIM_COMBO_[^, ]+), \s*([^, ]+), \s*([^)]+)\)'
+
+# Find all matches
+$matches = [regex]::Matches($comboContent, $vcbComboPattern)
+
+# Initialize the data to append
+$dataToAppend = @(
+    "combos:",
+    ""
+)
+
+$alignmentIndex = 0
+$offsetAdjustment = 1
+$slideAdjustment = -1
+$accumulator = 0
+$offset = 0
+# Iterate through the matches and translate them
+foreach ($match in $matches) {
+    ++$accumulator
+    $comboName = $match.Groups[1].Value
+    $output = $match.Groups[2].Value
+    $params = $match.Groups[3].Value -split ', \s*'
+    #++$offsetAdjustment
+    if ($alignmentIndex -gt $alignments.Count - 1) {
+        $alignmentIndex = 0
+        $offsetAdjustment = $offsetAdjustment + 300
+        $slideAdjustment = $slideAdjustment * -1
+    }
+
+    #Write-Host "Combo Name: $comboName"
+    #Write-Host "Output: $output"
+    #Write-Host "Params: $params"
+    # Get the indices for the parameters
+    $paramAverage = 0
+    $paramIndices = @()
+    foreach ($param in $params) {
+        $paramIndex = [int](Get-StringIndex -string $param)
+        if ([int]::TryParse($paramIndex, [ref]$null)) {
+            $paramIndex = [int]$paramIndex
+            $paramIndices += $paramIndex
+            $paramAverage += $paramIndex
+
+            #Write-Host paramIndex $paramIndex
+            #if ($paramIndex -gt $largestIndex) {
+            #    $largestIndex = $param
+            #}
+            #if ([int]$paramIndex -lt $smallestIndex) {
+            #    $smallestIndex = $param
+            #}
+        }
+    }
+
+    #Write-Host "-------------------------"
+    if ($paramIndices.Count -gt 0) {
+        $paramAverage = $paramAverage / $paramIndices.Count
+    }
+    else {
+        $paramAverage = 0
+    }
+    $paramAverage = $paramAverage / $matches.Count
+    # Generate a random integer between 2 and 10
+    #$randomInt = Get-Random -Minimum 3 -Maximum 11
+    if ($slideAdjustment -gt 0) {
+        $offset = ($accumulator + (.15 * $offsetAdjustment / 100)) / 10
+    }
+    else {
+        $offset = ($accumulator + (2 * $offsetAdjustment / 100)) / 10
+    }
+    $alignment = $alignments[$alignmentIndex++] #[$modResult]
+    # Generate a random float between 0 and 1
+    #$randomFloat = Get-Random -Minimum 0.0 -Maximum 1.0
+
+    # Scale and shift to get a float between -1 and 0
+    $slide = ($offset * (($accumulator * $offset ) / 100) % 1) * $slideAdjustment
+
+    #Write-Host offset $offset
+    #Write-Host slide $slide
+
+
+
+    # TODO automate differentiating how combos are drawn https://github.com/caksoylar/keymap-drawer/blob/main/KEYMAP_SPEC.md#combos
+    # Append the translated combo to the data
+    #$alignment = $alignments[]
+    $dataToAppend += "  - { l: [VIMFIGHTER], p: [$($paramIndices -join ', ')], k: $output, a: $alignment, o: $offset, s: $slide }"
+}
+
+#Write-Host "$dataToAppend"
+# Join the data with newlines
+$dataToAppendString = $dataToAppend -join "`n"
+
+# Append the new data to the existing content
+## $content += "`n$dataToAppendString"
+
+#Write-Host "Combos translated and appended successfully."
+
+
 
 # Define the list of strings
 $list = @(

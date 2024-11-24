@@ -1,15 +1,15 @@
-layout: {qmk_keyboard: bastardkb/charybdis/3x6, qmk_layout: LAYOUT}
+layout: {qmk_keyboard: bastardkb/charybdis/3x6, layout_name: LAYOUT}
 layers:
   CISTERN:
-  - ['   J', LCAG  Y, LMEH  F, LHYPR D, '   B', {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, '   W', RHYPR O, RMEH DT, RCAG  L, {t: QU, h: Q}]
-  - ['   M', {t: C, h: Win}, {t: S, h: Alt}, {t: T, h: Ctrl}, {t: N, h: Shift}, {t: '(', s: '{', h: Arcane}, {t: ')', s: '}', h: Arcane}, {t: U, h: Shift}, {t: A, h: Ctrl}, {t: I, h: Alt}, {t: H, h: Win}, '   G']
-  - [{t: Leader, s: QMK }, '   P', '   V', '   K', '   X', {t: '\', s: '\\', h: Arcane}, {t: '/', s: '//', h: Arcane}, {t: '=', s: '!='}, {t: '''', s: '"'}, {t: ', ', s: '?' }, '  WH', {t: Vim, s: Genuine, h: Emulation }]
+  - [J, LCAG  Y, LMEH  F, LHYPR D, B, {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, W, RHYPR O, RMEH DT, RCAG  L, {t: QU, h: Q}]
+  - [M, {t: C, h: Win}, {t: S, h: Alt}, {t: T, h: Ctrl}, {t: N, h: Shift}, {t: '(', s: '{', h: Arcane}, {t: ')', s: '}', h: Arcane}, {t: U, h: Shift}, {t: A, h: Ctrl}, {t: I, h: Alt}, {t: H, h: Win}, G]
+  - [{t: Leader, s: QMK }, P, V, K, X, {t: '\', s: '\\', h: Arcane}, {t: '/', s: '//', h: Arcane}, {t: '=', s: '!='}, {t: '''', s: '"'}, {t: ', ', s: '?' }, '  WH', {t: Vim, s: Genuine, h: Emulation }]
   - [{t: Z, h: Bitwise }, {t: R, h: NGramL }, {t: Space, h: AltishL }, {t: Space, h: AltishR }, {t: E, h: NGramR }]
   TYPINGAME:
-  - ['   J', '   Y', '   F', '   D', '   B', {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, '   W', '   O', {t: '.', s: '!'}, '   L', '   Q']
-  - ['   M', '   C', '   S', '   T', '   N', {t: '(', s: '{', h: Arcane}, {t: ')', s: '}', h: Arcane}, '   U', '   A', '   I', '   H', '   G']
-  - [{t: Leader, s: QMK }, '   P', '   V', '   K', '   X', {t: '\', s: '\\', h: Arcane}, {t: '/', s: '//', h: Arcane}, /, {t: '''', s: '"'}, {t: ', ', s: '?' }, ;, {t: Vim, s: Genuine, h: Emulation }]
-  - ['   Z', '   R', {t: Space, h: NumPad }, Space, '   E']
+  - [J, Y, F, D, B, {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, W, O, {t: '.', s: '!'}, L, Q]
+  - [M, C, S, T, N, {t: '(', s: '{', h: Arcane}, {t: ')', s: '}', h: Arcane}, U, A, I, H, G]
+  - [{t: Leader, s: QMK }, P, V, K, X, {t: '\', s: '\\', h: Arcane}, {t: '/', s: '//', h: Arcane}, /, {t: '''', s: '"'}, {t: ', ', s: '?' }, ;, {t: Vim, s: Genuine, h: Emulation }]
+  - [Z, R, {t: Space, h: NumPad }, Space, E]
   COMBOREF:
   - [{ t: LT OUTR, h: 0 }, { t: LT PNKY, h: 1 }, { t: LT RING, h: 2 }, { t: LT MDLE, h: 3 }, { t: LT INDX, h: 4 }, { t: LT INNR, h: 5 }, { t: RT INNR, h: 6 }, { t: RT INDX, h: 7 }, { t: RT MDLE, h: 8 }, { t: RT RING, h: 9 }, { t: RT PNKY, h: 10 }, { t: RT OUTR, h: 11 }]
   - [{ t: LH OUTR, h: 12 }, { t: LH PNKY, h: 13 }, { t: LH RING, h: 14 }, { t: LH MDLE, h: 15 }, { t: LH INDX, h: 16 }, { t: LH INNR, h: 17 }, { t: RH INNR, h: 18 }, { t: RH INDX, h: 19 }, { t: RH MDLE, h: 20 }, { t: RH RING, h: 21 }, { t: RH PNKY, h: 22 }, { t: RH OUTR, h: 23 }]
@@ -144,7 +144,7 @@ layers:
     - {t: I, h: Alt}
     - {t: H, h: Win}
     - {t: ▽, type: trans}
-  - ['(?<!)', {t: '<', s: '<<'}, '{', '}', {t: '>', s: '>>'}, '(?!)', {t: Context, s: Windows, h: Menu }, '-', {t: "`", s: "```"}, {t: '&', s: '&&' }, '~', Caps Lock]
+  - ['(?<!)', {t: '<', s: '<<'}, '{', '}', {t: '>', s: '>>'}, '(?!)', {t: Context, s: Windows, h: Menu }, '-', {t: "`", s: "*"}, {t: '&', s: '&&' }, '~', Caps Lock]
   - - ''
     - {t: ▽, type: trans}
     - ''
@@ -217,7 +217,7 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - GMIL
-  - ['', '(?<!)', '(?!)', '(?=)', '(?=)', RGX NCG, {t: Aware, s: Conntext, h: Assistant }, {t: '<=', s: '<=='}, T{t: "`", s: "```"}, {t: ', ', s: Adaptive, h: OSM Shift }, {t: '>=', s: '>=='}, {t: Context, s: Windows, h: Menu }]
+  - ['', '(?<!)', '(?!)', '(?=)', '(?=)', RGX NCG, {t: Aware, s: Conntext, h: Assistant }, {t: '<=', s: '<=='}, "```", {t: ', ', s: Adaptive, h: OSM Shift }, {t: '>=', s: '>=='}, {t: Context, s: Windows, h: Menu }]
   - - ''
     - ''
     - {t: ▽, type: trans}
@@ -335,8 +335,8 @@ layers:
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - '   V'
-    - '   K'
+    - V
+    - K
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - Double Click
@@ -377,8 +377,8 @@ layers:
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - '   V'
-    - '   K'
+    - V
+    - K
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -641,21 +641,18 @@ layers:
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND]
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, BASE]
   - [RAND, RAND, RAND, RAND, RAND]
+  BITCOMBO:
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '']
+  SYSKEYS:
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '']
   TEST:
-    - ['   J', LCAG  Y, LMEH  F, LHYPR D, '   B', {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, '   W', RHYPR O, RMEH DT, RCAG  L, {t: QU, h: Q}]
-    - ['   M', {t: C, h: Win}, {t: S, h: Alt}, {t: T, h: Ctrl}, {t: N, h: Shift}, {t: '(', s: '{', h: Arcane}, {t: ')', s: '}', h: Arcane}, {t: U, h: Shift}, {t: A, h: Ctrl}, {t: I, h: Alt}, {t: H, h: Win}, '   G']
-    - [{t: Leader, s: QMK }, '   P', '   V', '   K', '   X', {t: '\', s: '\\', h: Arcane}, {t: '/', s: '//', h: Arcane}, {t: '=', s: '!='}, {t: '''', s: '"'}, {t: ', ', s: '?' }, '  WH', {t: Vim, s: Genuine, h: Emulation }]
+    - [J, LCAG  Y, LMEH  F, LHYPR D, B, {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, W, RHYPR O, RMEH DT, RCAG  L, {t: QU, h: Q}]
+    - [M, {t: C, h: Win}, {t: S, h: Alt}, {t: T, h: Ctrl}, {t: N, h: Shift}, {t: '(', s: '{', h: Arcane}, {t: ')', s: '}', h: Arcane}, {t: U, h: Shift}, {t: A, h: Ctrl}, {t: I, h: Alt}, {t: H, h: Win}, G]
+    - [{t: Leader, s: QMK }, P, V, K, X, {t: '\', s: '\\', h: Arcane}, {t: '/', s: '//', h: Arcane}, {t: '=', s: '!='}, {t: '''', s: '"'}, {t: ', ', s: '?' }, '  WH', {t: Vim, s: Genuine, h: Emulation }]
     - [{t: Z, h: Bitwise }, {t: R, h: NGramL }, {t: Space, h: AltishL }, {t: Space, h: AltishR }, {t: E, h: NGramR }]
-combos:
-
-  - { l: [VIMFIGHTER], p: [40, 32], k: Vert Attack, a: top, o: 0.102, s: -0.00010404 }
-  - { l: [VIMFIGHTER], p: [31, 33], k: Hori Attack, a: bottom, o: 0.202, s: -0.00081608 }
-  - { l: [VIMFIGHTER], p: [34, 40], k: Yank Attack, a: left, o: 0.302, s: -0.00273612 }
-  - { l: [VIMFIGHTER], p: [34, 31], k: Change Attack, a: right, o: 0.402, s: -0.00646416 }
-  - { l: [VIMFIGHTER], p: [34, 32], k: Delete Attack, a: top, o: 0.54515, s: 0.014859426125 }
-  - { l: [VIMFIGHTER], p: [34, 33], k: Visual Attack, a: bottom, o: 0.64515, s: 0.02497311135 }
-  - { l: [VIMFIGHTER], p: [40, 31], k: QuoMark Attack, a: left, o: 0.74515, s: 0.038867396575 }
-  - { l: [VIMFIGHTER], p: [40, 33], k: GrvMark Attack, a: right, o: 0.84515, s: 0.0571422818 }
-  - { l: [VIMFIGHTER], p: [32, 31], k: Fold Attack, a: top, o: 2.102, s: -0.39765636 }
-  - { l: [VIMFIGHTER], p: [32, 33], k: Search Attack, a: bottom, o: 2.202, s: -0.4848804 }
-  - { l: [VIMFIGHTER], p: [31, 32, 33], k: Format Attack, a: left, o: 2.302, s: -0.58291244 }

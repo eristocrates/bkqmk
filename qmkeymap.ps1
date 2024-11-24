@@ -12,7 +12,7 @@ $keymapPath = "E:\uranus\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\
 # https://stackoverflow.com/questions/25895428/how-to-play-mp3-with-powershell-simple
 $filesDone = "E:\uranus\coding\bkqmk\files-done.mp3"
 $baka = "E:\uranus\coding\bkqmk\naruto-saying-baka.mp3"
-
+$enumFilePath = "E:\uranus\coding\bkqmk\users\eristocrates\eristocrates_keycodes.h"
 
 $logFilePath = "./qmk-output.log"
 $searchString = "Copying bastardkb_charybdis_3x6_eristocrates.uf2 to userspace folder"
@@ -22,11 +22,15 @@ $compile2jsonCmd = "qmk compile -j 0 -kb bastardkb/charybdis/3x6 -km eristocrate
 #$compile2jsonCmd = "qmk generate-autocorrect-data $userspacePathMingw/autocorrect_dictionary.txt -kb bastardkb/charybdis/3x6 -km eristocrates ; qmk compile -j 0 -kb bastardkb/charybdis/3x6 -km eristocrates > qmk-output.log 2>&1 ; qmk c2json --no-cpp $keymapPathMingw/keymap.c > $keymapPathMingw/c2.json"
 
 
-$keymapParseCmd = "keymap -c $keymapPath\config.yaml parse -c 12 -q $keymapPath\c2.json -o $keymapPath\keymap.yaml"
+
 $keymapPostParseCmd = ".\keymapPostParse.ps1"
-$keymapDrawCmd1 = "keymap -c $keymapPath\config.yaml draw $keymapPath\keymap.yaml -o $keymapPath\keymap.svg"
-$keymapDrawCmd2 = "keymap -c $keymapPath\config.yaml draw $keymapPath\keymapDesign.yaml -o $keymapPath\keymapDesign.svg"
+
 $vimFighterTableCmd = "node .\keymapMotionInputPostParse.mjs"
+
+
+
+
+
 
 
 # Function to run a command in MinGW
@@ -42,13 +46,39 @@ function Invoke-InMinGW {
 Invoke-InMinGW $compile2jsonCmd
 if (Select-String -Path $logFilePath -Pattern $searchString) {
     # Run the remaining commands in PowerShell
-    Invoke-Expression $keymapParseCmd
-    Invoke-Expression $keymapPostParseCmd
-    Invoke-Expression ".\keymapMotionInputParse.ps1"
-    Invoke-Expression ".\comboEdit.ps1"
-    Invoke-Expression $vimFighterTableCmd
-    Invoke-Expression $keymapDrawCmd1
-    Invoke-Expression $keymapDrawCmd2
+    $enumContent = Get-Content -Path $enumFilePath -Raw
+    $enumPattern = 'enum layers \{([^}]*)\}'
+    $matches = [regex]::Matches($enumContent, $enumPattern)
+    if ($matches.Success) {
+        $enumBlock = $matches.Groups[1].Value
+
+        # Parse the individual layer names
+        $layerNames = @()
+        foreach ($line in $enumBlock -split "`n") {
+            $line = $line.Trim()
+            if ($line -match '^\s*_(\w+),?\s*$') {
+                $layerName = $line -replace '^\s*_(\w+),?\s*$', '$1'
+                $layerNames += $layerName
+            }
+        }
+        # Join the array into a single string with spaces
+        $layers = $layerNames -join " "
+        Invoke-Expression "keymap -c $keymapPath\config.yaml parse -c 12 -q $keymapPath\c2.json -l $layers --virtual-layers BITCOMBO SYSKEYS -o $keymapPath\keymap.yaml"
+        Invoke-Expression "keymap -c $keymapPath\config.yaml draw $keymapPath\keymap.yaml  -o $keymapPath\draw\keymap.svg"
+
+        Invoke-Expression $keymapPostParseCmd
+
+        $layerNames += "BITCOMBO"
+        $layerNames += "SYSKEYS"
+        $layerNames += "TEST"
+        foreach ($layer in $layerNames) {
+            Invoke-Expression "keymap -c $keymapPath\config.yaml draw $keymapPath\keymap.yaml -s $layer -o $keymapPath\draw\$layer.svg"
+        }
+    }
+
+    ## Invoke-Expression ".\keymapMotionInputParse.ps1"
+    ## Invoke-Expression ".\comboEdit.ps1"
+    ## Invoke-Expression $vimFighterTableCmd
     Write-Output "Ding! Firmware done."
     New-BurntToastNotification -Text "QMK Compilation", "Ding! Firmware done."
     $mediaPlayer.open($filesDone)
