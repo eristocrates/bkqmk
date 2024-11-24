@@ -9,7 +9,8 @@ enum layers {
     _TYPINGAME,
     _COMBOREF,
     _SLICE,
-    _VIMFIGHTER,
+    _BSLICE,
+   _VIMFIGHTER,
     _SHIFTISHL,
     _SHIFTISHR,
     _ALTISHL,
@@ -521,6 +522,7 @@ enum keycodes {
 #define NUM_PAD LT(_NUMPAD, SW_WIN)
 #define NUM_SPC LT(_NUMPAD, KC_SPC)
 #define BITWISEZ LT(_BITNUM, KC_Z)
+#define BSESLCE LT(_BSLICE, KC_SPC)
 //  default LTs
 #define PT_Z LT(_POINTER, KC_Z)
 #define PT_SLSH LT(_POINTER, KC_SLSH)

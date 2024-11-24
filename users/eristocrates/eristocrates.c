@@ -734,10 +734,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     bool     is_shifted         = (get_mods() & MOD_MASK_SHIFT) || (get_oneshot_mods() & MOD_MASK_SHIFT);
 
     slice_state_t slices[] = {
-        VIM,
-        ARROW,
-        NAV,
-        SLICE_END,
+        VIM, ARROW, NAV, BIN, SLICE_END,
     };
 
     switch (current_slice) {
