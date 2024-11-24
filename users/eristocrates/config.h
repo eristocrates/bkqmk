@@ -89,7 +89,7 @@
 
 // combos
 #define COMBO_PROCESS_KEY_RELEASE
-
+#define COMBO_SHOULD_TRIGGER
 // caps word
 #define CAPS_WORD_INVERT_ON_SHIFT
 #define CAPS_WORD_IDLE_TIMEOUT 30000

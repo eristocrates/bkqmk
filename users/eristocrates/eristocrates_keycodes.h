@@ -38,6 +38,7 @@ typedef enum  {
     VIM,
     ARROW,
     NAV,
+    BIN,
     SLICE_END,
 } slice_state_t;
 

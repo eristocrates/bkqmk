@@ -712,6 +712,16 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
     }
 }
 */
+bool process_slices(uint16_t keycode, keyrecord_t *record) {
+    if (current_slice == BIN && !process_bitwise_num(keycode, record)) return false;
+
+    if (record->event.pressed) {
+        register_code16(keycode);
+    } else {
+        unregister_code16(keycode);
+    }
+    return false;
+}
 // TODO blindly calling false on these keycodes has prevented things like caps_word_press_user from working. Make sure to actually evaluate what keycodes do not require further processingr
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     /*
@@ -749,6 +759,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             sl_ring_keycode = KC_PGUP;
             sl_pnky_keycode = KC_END;
             break;
+        case BIN:
+            sl_indx_keycode = BIN___8;
+            sl_mdle_keycode = BIN___4;
+            sl_ring_keycode = BIN___2;
+            sl_pnky_keycode = BIN___1;
+            break;
     }
 #ifdef CONSOLE_ENABLE
     // if (record->event.pressed) uprintf("process_last_record_user: last_basic_keycode: 0x%04X, last key name: %s, col: %u, row: %u, pressed: %b, time: %u, interrupt: %b, count: %u\n", last_basic_keycode, key_name(last_basic_keycode, false), last_record->event.key.col, last_record->event.key.row, last_record->event.pressed, last_record->event.time, last_record->tap.interrupted, last_record->tap.count);
@@ -777,7 +793,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_skip_bigrams(keycode, record)) {
         return false;
     }
-    if (binary_mode && !process_bitwise_num(keycode, record)) return false;
+    if (!process_bitwise_num(keycode, record)) return false;
     if (!process_bitwise_f(keycode, record)) return false;
     if (!process_quopostrokey(keycode, record)) {
         return false;
@@ -891,33 +907,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
             /*------------------------------slice------------------------------*/
         case SL_INDX:
-            if (record->event.pressed) {
-                register_code16(sl_indx_keycode);
-            } else {
-                unregister_code16(sl_indx_keycode);
-            }
-            return false;
+            return process_slices(sl_indx_keycode, record);
         case SL_MDLE:
-            if (record->event.pressed) {
-                register_code16(sl_mdle_keycode);
-            } else {
-                unregister_code16(sl_mdle_keycode);
-            }
-            return false;
+            return process_slices(sl_mdle_keycode, record);
         case SL_RING:
-            if (record->event.pressed) {
-                register_code16(sl_ring_keycode);
-            } else {
-                unregister_code16(sl_ring_keycode);
-            }
-            return false;
+            return process_slices(sl_ring_keycode, record);
         case SL_PNKY:
-            if (record->event.pressed) {
-                register_code16(sl_pnky_keycode);
-            } else {
-                unregister_code16(sl_pnky_keycode);
-            }
-            return false;
+            return process_slices(sl_pnky_keycode, record);
         case SL_STEP:
             if (record->event.pressed) {
                 uint8_t index = is_shifted ? current_slice - 1 < 0 ? SLICE_END - 1 : current_slice - 1 : current_slice + 1 == SLICE_END ? 0 : current_slice + 1;
@@ -2452,6 +2448,10 @@ void leader_end_user(void) {
              layer_on(_SLICE);
         current_slice = NAV;
     } else
+                if (leader_sequence_one_key(KC_B)) {
+             layer_on(_SLICE);
+        current_slice = BIN;
+    } else
             if (leader_sequence_one_key(KC_T)) {
              layer_off(_SLICE);
     } else
@@ -2582,6 +2582,21 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
             return false;
     }
     */
+}
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
+    switch (combo_index) {
+        case CONTROL_COMBO_ENTER:
+        case CONTROL_COMBO_TAB:
+        case CONTROL_COMBO_BACKSPACE:
+        case CONTROL_COMBO_DELETE:
+        case CONTROL_COMBO_PRINT_SCREEN:
+        case CONTROL_COMBO_SCROLL_LOCK:
+            if (IS_LAYER_ON(_SLICE) && current_slice == BIN) {
+                return false;
+            }
+    }
+
+    return true;
 }
 bool process_combo_key_release(uint16_t combo_index, combo_t *combo, uint8_t key_index, uint16_t keycode) {
     // TODO keep in sync with combos
