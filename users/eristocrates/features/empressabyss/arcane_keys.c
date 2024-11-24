@@ -299,8 +299,7 @@ uint16_t arcane_tap(uint16_t keycode) {
             } else if (LAST_RIGHT_BOTTOM_PINKY && RIGHT_HOME_ARCANE) {\
                 MAGIC_RIGHT_HOME_RING\
             } else if (LAST_RIGHT_BOTTOM_PINKY && RIGHT_TOP_ARCANE) {\
-                 ARCANE_STRING("el", KC_L); \
-                return KC_NO;\
+                 MAGIC_LEFT_TOP_PINKY\
             } else if (LAST_LEFT_HOME_OUTER && LEFT_TOP_ARCANE) {\
                 ARCANE_STRING("aybe", KC_E); \
                 return KC_NO;\
