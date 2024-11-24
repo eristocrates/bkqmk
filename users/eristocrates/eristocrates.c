@@ -1637,6 +1637,36 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
         }
             return false;
+        case SECRETR: {
+            if (record->event.pressed) {
+                SEND_STRING(SECRET_R);
+            }
+        }
+            return false;
+        case SECRETC: {
+            if (record->event.pressed) {
+                SEND_STRING(SECRET_C);
+            }
+        }
+            return false;
+        case SECRETT: {
+            if (record->event.pressed) {
+                SEND_STRING(SECRET_T);
+            }
+        }
+            return false;
+        case SECRETL: {
+            if (record->event.pressed) {
+                SEND_STRING(SECRET_L);
+            }
+        }
+            return false;
+        case SECRETG: {
+            if (record->event.pressed) {
+                SEND_STRING(SECRET_G);
+            }
+        }
+            return false;
         /*------------------------------vim------------------------------*/
         case VIM_TOG:
             if (record->event.pressed) {

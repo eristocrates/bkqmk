@@ -10,7 +10,7 @@ enum layers {
     _COMBOREF,
     _SLICE,
     _BSLICE,
-   _VIMFIGHTER,
+    _VIMFIGHTER,
     _SHIFTISHL,
     _SHIFTISHR,
     _ALTISHL,
@@ -35,7 +35,7 @@ enum layers {
     _RANDOM,
 };
 
-typedef enum  {
+typedef enum {
     VIM,
     ARROW,
     NAV,
@@ -141,6 +141,11 @@ enum keycodes {
     // secrets
     SECRET1,
     SECRET2,
+    SECRETR,
+    SECRETC,
+    SECRETT,
+    SECRETL,
+    SECRETG,
     // vim
     VIM_TOG,
     VIM_G_,
@@ -289,14 +294,13 @@ enum keycodes {
     NG_ZED,
     KC___WH,
 
-// slices
+    // slices
     SL_INDX,
     SL_MDLE,
     SL_RING,
     SL_PNKY,
     SL_STEP,
     SL_RSTP,
-
 
     /* physical layout comboref keys
     legend = hand_row_column/thumb button

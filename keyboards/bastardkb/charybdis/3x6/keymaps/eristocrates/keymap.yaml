@@ -590,9 +590,12 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - SECRETL
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
+    - SECRETC
+    - {t: ▽, type: trans}
+    - SECRETT
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -600,10 +603,7 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - SECRETG
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -617,7 +617,7 @@ layers:
     - {t: ▽, type: trans}
     - BASE
   - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - SECRETR
     - {t: ▽, type: trans}
     - SECRET1
     - SECRET2
