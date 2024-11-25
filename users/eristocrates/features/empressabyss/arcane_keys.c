@@ -545,12 +545,12 @@ uint16_t process_arcane_columns(keypos_t arcane_key, uint16_t last_keycode, keyp
                 ARCANE_STRING("tr", KC_R); // x
                 return KC_NO;
             } else if (LAST_LEFT_TOP_PINKY && RIGHT_TOP_ARCANE) {
-                ARCANE_STRING("ou", KC_U); // y
+                 ARCANE_STRING("m", KC_M); // y
                 return KC_NO;
             } else if (LAST_LEFT_TOP_PINKY && RIGHT_HOME_ARCANE) {
-                ARCANE_STRING("m", KC_E); // y
+                ARCANE_STRING("ou", KC_U); // y
                 return KC_NO;
-            } else if (LAST_LEFT_TOP_PINKY && RIGHT_BOTTOM_ARCANE) {
+           } else if (LAST_LEFT_TOP_PINKY && RIGHT_BOTTOM_ARCANE) {
                 ARCANE_STRING("th", KC_H); // y
                 return KC_NO;
             } else if (RIGHT_TOP_ARCANE && LAST_LEFT_INNER_THUMB) {

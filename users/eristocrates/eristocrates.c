@@ -2583,7 +2583,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     if ((keycode == TD(TBW) || keycode == TD(TDW) || keycode == TH___QU) || timer_elapsed(last_keydown) > MAGIC_TERM) {
         return TAPPING_TERM; // Default tapping term
     } else {
-        return TAPPING_TERM + REPEAT_TERM;
+        return TAPPING_TERM;
     }
     /*
         switch (keycode) {

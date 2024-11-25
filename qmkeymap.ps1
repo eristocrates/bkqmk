@@ -72,7 +72,8 @@ if (Select-String -Path $logFilePath -Pattern $searchString) {
         $layerNames += "SYSKEYS"
         $layerNames += "TEST"
         foreach ($layer in $layerNames) {
-            Invoke-Expression "keymap -c $keymapPath\config.yaml draw $keymapPath\keymap.yaml -s $layer -o $keymapPath\draw\$layer.svg"
+            Invoke-Expression "keymap -c $keymapPath\config.yaml draw $keymapPath\keymap.yaml -s $layer -o $keymapPath\draw\svg\$layer.svg"
+            Invoke-Expression "cairosvg -f png -o $keymapPath\draw\png\$layer.png $keymapPath\draw\svg\$layer.svg"
         }
     }
 

@@ -151,9 +151,14 @@ parse_config:
     type: trans
   mark_alternate_layer_activators: false
   qmk_remove_keycode_prefix:
-  - KC____
   - KC_
   qmk_keycode_map:
+    SL_INDX: "Index"
+    SL_MDLE: "Middle"
+    SL_RING: "Ring"
+    SL_PNKY: "Pinky"
+    SL_STEP: "Cycle"
+
     MI_BACK: "Back"
     MI_DOWN: "Crouch"
     MI_JUMP: "Jump"

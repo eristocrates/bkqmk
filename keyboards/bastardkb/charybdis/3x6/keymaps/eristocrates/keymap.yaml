@@ -1,15 +1,15 @@
 layout: {qmk_keyboard: bastardkb/charybdis/3x6, layout_name: LAYOUT}
 layers:
   CISTERN:
-  - [J, LCAG  Y, LMEH  F, LHYPR D, B, {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, W, RHYPR O, RMEH DT, RCAG  L, {t: QU, h: Q}]
-  - [M, {t: C, h: Win}, {t: S, h: Alt}, {t: T, h: Ctrl}, {t: N, h: Shift}, {t: '(', s: '{', h: Arcane}, {t: ')', s: '}', h: Arcane}, {t: U, h: Shift}, {t: A, h: Ctrl}, {t: I, h: Alt}, {t: H, h: Win}, G]
-  - [{t: Leader, s: QMK }, P, V, K, X, {t: '\', s: '\\', h: Arcane}, {t: '/', s: '//', h: Arcane}, {t: '=', s: '!='}, {t: '''', s: '"'}, {t: ', ', s: '?' }, '  WH', {t: Vim, s: Genuine, h: Emulation }]
-  - [{t: Z, h: Bitwise }, {t: R, h: NGramL }, {t: Space, h: AltishL }, {t: Space, h: AltishR }, {t: E, h: NGramR }]
+  - ['J', {t: Y, h: Yuh}, {t: F, h: Meh}, {t: D, h: Hyper}, 'B', {t: $$mdi:arrow-top-left$$, h: Arcane}, {t: $$mdi:arrow-top-right$$, h: Arcane}, 'W', {t: O, h: Hyper}, {t: '.', s: '!', h: Meh}, {t: L, h: Yuh}, {t: QU, h: Q}]
+  - ['M', {t: C, h: Win}, {t: S, h: Alt}, {t: T, h: Ctrl}, {t: N, h: Shift}, {t: $$mdi:arrow-left$$, h: Arcane}, {t: $$mdi:arrow-right$$, h: Arcane}, {t: U, h: Shift}, {t: A, h: Ctrl}, {t: I, h: Alt}, {t: H, h: Win}, 'G']
+  - [{t: Leader, s: QMK }, 'P', 'V', 'K', 'X', {t: $$mdi:arrow-bottom-left$$, h: Arcane}, {t: $$mdi:arrow-bottom-right$$, h: Arcane}, {t: '=', s: '+'}, {t: '''', s: '"'}, {t: ', ', s: '?' }, '  WH', '']
+  - [{t: Z, h: Bitwise }, {t: R, h: ShftshL }, {t: Space, h: AltishL }, {t: Space, h: AltishR }, {t: E, h: ShftshR }]
   TYPINGAME:
-  - [J, Y, F, D, B, {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, W, O, {t: '.', s: '!'}, L, Q]
-  - [M, C, S, T, N, {t: '(', s: '{', h: Arcane}, {t: ')', s: '}', h: Arcane}, U, A, I, H, G]
-  - [{t: Leader, s: QMK }, P, V, K, X, {t: '\', s: '\\', h: Arcane}, {t: '/', s: '//', h: Arcane}, /, {t: '''', s: '"'}, {t: ', ', s: '?' }, ;, {t: Vim, s: Genuine, h: Emulation }]
-  - [Z, R, {t: Space, h: NumPad }, Space, E]
+  - ['J', 'Y', 'F', 'D', 'B', {t: $$mdi:arrow-top-left$$, h: Arcane}, {t: $$mdi:arrow-top-right$$, h: Arcane}, 'W', 'O', {t: '.', s: '!'}, 'L', 'Q']
+  - ['M', 'C', 'S', 'T', 'N', {t: $$mdi:arrow-left$$, h: Arcane}, {t: $$mdi:arrow-right$$, h: Arcane}, 'U', 'A', 'I', 'H', 'G']
+  - [{t: Leader, s: QMK }, 'P', 'V', 'K', 'X', {t: $$mdi:arrow-bottom-left$$, h: Arcane}, {t: $$mdi:arrow-bottom-right$$, h: Arcane}, /, {t: '''', s: '"'}, {t: ', ', s: '?' }, ;, '']
+  - ['Z', 'R', {t: Space, h: NumPad }, Space, 'E']
   COMBOREF:
   - [{ t: LT OUTR, h: 0 }, { t: LT PNKY, h: 1 }, { t: LT RING, h: 2 }, { t: LT MDLE, h: 3 }, { t: LT INDX, h: 4 }, { t: LT INNR, h: 5 }, { t: RT INNR, h: 6 }, { t: RT INDX, h: 7 }, { t: RT MDLE, h: 8 }, { t: RT RING, h: 9 }, { t: RT PNKY, h: 10 }, { t: RT OUTR, h: 11 }]
   - [{ t: LH OUTR, h: 12 }, { t: LH PNKY, h: 13 }, { t: LH RING, h: 14 }, { t: LH MDLE, h: 15 }, { t: LH INDX, h: 16 }, { t: LH INNR, h: 17 }, { t: RH INNR, h: 18 }, { t: RH INDX, h: 19 }, { t: RH MDLE, h: 20 }, { t: RH RING, h: 21 }, { t: RH PNKY, h: 22 }, { t: RH OUTR, h: 23 }]
@@ -47,15 +47,15 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - SL INDX
-    - SL MDLE
-    - SL RING
-    - SL PNKY
-    - SL STEP
+    - Index
+    - Middle
+    - Ring
+    - Pinky
+    - Cycle
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - BSESLCE
+    - {t: Space, h: BSlice}
     - {t: ▽, type: trans}
   BSLICE:
   - - {t: ▽, type: trans}
@@ -89,7 +89,7 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - {t: '=', s: '!='}
+    - {t: '=', s: '+'}
     - {t: '''', s: '"'}
     - {t: ', ', s: '?' }
     - '  WH'
@@ -276,7 +276,7 @@ layers:
     - {t: ▽, type: trans}
   BITNUM:
   - ['', '', '', '', '', {t: ', ', s: '?' }, '%', '', OS HYPR, OS  MEH, OS  CAG, '']
-  - [TD(TBW), BIN 512, BIN 256, BIN 128, BIN  64, {t: '=', s: '!='}, '00', BIN   8, BIN   4, BIN   2, BIN   1, '0']
+  - [TD(TBW), BIN 512, BIN 256, BIN 128, BIN  64, {t: '=', s: '+'}, '00', BIN   8, BIN   4, BIN   2, BIN   1, '0']
   - [Layer Lock, /, '*', {t: '-', s: '--'}, PLS FUN, ., $, {t: Shift, s: OneShot }, {t: Control, s: OneShot }, {t: Alt, s: OneShot }, {t: Win, s: OneShot }, BASE]
   - - {t: ▽, type: trans}
     - BIN  32
@@ -285,7 +285,7 @@ layers:
     - BIN  16
   BITFUNC:
   - ['', '', '', '', '', {t: ', ', s: '?' }, '%', '', '', '', '', '']
-  - [TD(TBW), BIN 512, BIN 256, BIN 128, BIN  64, {t: '=', s: '!='}, '00', F0b8, F0b4, F0b2, F0b1, '0']
+  - [TD(TBW), BIN 512, BIN 256, BIN 128, BIN  64, {t: '=', s: '+'}, '00', F0b8, F0b4, F0b2, F0b1, '0']
   - - Layer Lock
     - /
     - '*'
@@ -305,7 +305,7 @@ layers:
     - F0b16
   NUMPAD:
   - ['', Layer Lock, Print Screen, Scroll Lock, Pause, {t: ', ', s: '?' }, '%', '7', '8', '9', Enter, '']
-  - [BSPC, /, Insert, Home, Page Up, {t: '=', s: '!='}, $, '4', '5', '6', '*', '']
+  - [BSPC, /, Insert, Home, Page Up, {t: '=', s: '+'}, $, '4', '5', '6', '*', '']
   - [Layer Lock, {t: '-', s: '--'}, Delete, End, Page Down, ., '00', '1', '2', '3', {t: '+', s: '++'}, BASE]
   - ['', '', Space, Space, '0']
   POINTER:
@@ -335,8 +335,8 @@ layers:
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - V
-    - K
+    - 'V'
+    - 'K'
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - Double Click
@@ -377,8 +377,8 @@ layers:
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - V
-    - K
+    - 'V'
+    - 'K'
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -652,7 +652,7 @@ layers:
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', '', '', '', '']
   TEST:
-    - [J, LCAG  Y, LMEH  F, LHYPR D, B, {t: ':', s: '::', h: Arcane}, {t: '|', s: '||', h: Arcane}, W, RHYPR O, RMEH DT, RCAG  L, {t: QU, h: Q}]
-    - [M, {t: C, h: Win}, {t: S, h: Alt}, {t: T, h: Ctrl}, {t: N, h: Shift}, {t: '(', s: '{', h: Arcane}, {t: ')', s: '}', h: Arcane}, {t: U, h: Shift}, {t: A, h: Ctrl}, {t: I, h: Alt}, {t: H, h: Win}, G]
-    - [{t: Leader, s: QMK }, P, V, K, X, {t: '\', s: '\\', h: Arcane}, {t: '/', s: '//', h: Arcane}, {t: '=', s: '!='}, {t: '''', s: '"'}, {t: ', ', s: '?' }, '  WH', {t: Vim, s: Genuine, h: Emulation }]
-    - [{t: Z, h: Bitwise }, {t: R, h: NGramL }, {t: Space, h: AltishL }, {t: Space, h: AltishR }, {t: E, h: NGramR }]
+    - ['J', {t: Y, h: Yuh}, {t: F, h: Meh}, {t: D, h: Hyper}, 'B', {t: $$mdi:arrow-top-left$$, h: Arcane}, {t: $$mdi:arrow-top-right$$, h: Arcane}, 'W', {t: O, h: Hyper}, {t: '.', s: '!', h: Meh}, {t: L, h: Yuh}, {t: QU, h: Q}]
+    - ['M', {t: C, h: Win}, {t: S, h: Alt}, {t: T, h: Ctrl}, {t: N, h: Shift}, {t: $$mdi:arrow-left$$, h: Arcane}, {t: $$mdi:arrow-right$$, h: Arcane}, {t: U, h: Shift}, {t: A, h: Ctrl}, {t: I, h: Alt}, {t: H, h: Win}, 'G']
+    - [{t: Leader, s: QMK }, 'P', 'V', 'K', 'X', {t: $$mdi:arrow-bottom-left$$, h: Arcane}, {t: $$mdi:arrow-bottom-right$$, h: Arcane}, {t: '=', s: '+'}, {t: '''', s: '"'}, {t: ', ', s: '?' }, '  WH', '']
+    - [{t: Z, h: Bitwise }, {t: R, h: ShftshL }, {t: Space, h: AltishL }, {t: Space, h: AltishR }, {t: E, h: ShftshR }]

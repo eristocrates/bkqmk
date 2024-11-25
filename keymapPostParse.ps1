@@ -56,22 +56,29 @@ $content = Get-Content -Path $filePath -Raw
 
 
 #base layer
-$content = $content -replace "LTP ARC", "{t: ':', s: '::', h: Arcane}"
-$content = $content -replace "RTP ARC", "{t: '|', s: '||', h: Arcane}"
-$content = $content -replace "LHM ARC", "{t: '(', s: '{', h: Arcane}"
-$content = $content -replace "RHM ARC", "{t: ')', s: '}', h: Arcane}"
-$content = $content -replace "LBM ARC", "{t: '\', s: '\\', h: Arcane}"
-$content = $content -replace "RBM ARC", "{t: '/', s: '//', h: Arcane}"
+$content = $content -replace "LTP ARC", '{t: $$$mdi:arrow-top-left$$$, h: Arcane}'
+$content = $content -replace "RTP ARC", '{t: $$$mdi:arrow-top-right$$$, h: Arcane}'
+$content = $content -replace "LHM ARC", '{t: $$$mdi:arrow-left$$$, h: Arcane}'
+$content = $content -replace "RHM ARC", '{t: $$$mdi:arrow-right$$$, h: Arcane}'
+$content = $content -replace "LBM ARC", '{t: $$$mdi:arrow-bottom-left$$$, h: Arcane}'
+$content = $content -replace "RBM ARC", '{t: $$$mdi:arrow-bottom-right$$$, h: Arcane}'
 
 
 $content = $content -replace "LWKEY C", "{t: C, h: Win}"
 $content = $content -replace "LTALT S", "{t: S, h: Alt}"
 $content = $content -replace "LCTRL T", "{t: T, h: Ctrl}"
 $content = $content -replace "LSHFT N", "{t: N, h: Shift}"
+$content = $content -replace "LCAG  Y", "{t: Y, h: Yuh}"
+$content = $content -replace "LMEH  F", "{t: F, h: Meh}"
+$content = $content -replace "LHYPR D", "{t: D, h: Hyper}"
+$content = $content -replace "RHYPR O", "{t: O, h: Hyper}"
+$content = $content -replace "RMEH DT", "{t: '.', s: '!', h: Meh}"
+$content = $content -replace "RCAG  L", "{t: L, h: Yuh}"
 $content = $content -replace "RSHFT U", "{t: U, h: Shift}"
 $content = $content -replace "RCTRL A", "{t: A, h: Ctrl}"
 $content = $content -replace "RTALT I", "{t: I, h: Alt}"
 $content = $content -replace "RWKEY H", "{t: H, h: Win}"
+
 
 $content = $content -replace "TH   QU", "{t: QU, h: Q}"
 $content = $content -replace "DOT ARC", "{t: '.', s: Adaptive, h: Capsword}"
@@ -82,16 +89,16 @@ $content = $content -replace "LEQL", "{t: '<=', s: '<=='}"
 $content = $content -replace "GEQL", "{t: '>=', s: '>=='}"
 $content = $content -replace "DEQL", "{t: '==', s: '!=='}"
 $content = $content -replace "TEQL", "{t: '===', s: '!==='}"
-$content = $content -replace "EQL", "{t: '=', s: '!='}"
+$content = $content -replace "EQL", "{t: '=', s: '+'}"
 $content = $content -replace "COMM", "{t: ', ', s: '?' }"
 $content = $content -replace "QK LEAD", "{t: Leader, s: QMK }"
 
 $content = $content -replace "BITWISEZ", "{t: Z, h: Bitwise }"
-$content = $content -replace "SFSHL R", "{t: R, h: NGramL }"
+$content = $content -replace "SFSHL R", "{t: R, h: ShftshL }"
 $content = $content -replace "SFSHLCR", "{t: R, h: NGramL }"
 $content = $content -replace "ALTLSPC", "{t: Space, h: AltishL }"
 $content = $content -replace "ALTRSPC", "{t: Space, h: AltishR }"
-$content = $content -replace "SFSHR E", "{t: E, h: NGramR }"
+$content = $content -replace "SFSHR E", "{t: E, h: ShftshR }"
 $content = $content -replace "SFSHRCE", "{t: E, h: NGramR }"
 $content = $content -replace "\bNUM SPC\b", "{t: Space, h: NumPad }"
 $content = $content -replace "PPLS", "{t: '+', s: '++'}"
@@ -115,17 +122,19 @@ $content = $content -replace "OS LALT", "{t: Alt, s: OneShot }"
 $content = $content -replace "OS LGUI", "{t: Win, s: OneShot }"
 
 
+$content = $content -replace "BSESLCE", "{t: Space, h: BSlice}"
 
 
 
 
 $content = $content -replace "COM ARC", "{t: ', ', s: Adaptive, h: OSM Shift }"
-$content = $content -replace "VIM TOG", "{t: Vim, s: Genuine, h: Emulation }"
+$content = $content -replace "VIM TOG", "''"
 
 $content = $content -replace "NUM PAD", "{t: Num Pad, h: MO Layer }"
 $content = $content -replace "SML SPC", "{t: Space, h: SML }"
 $content = $content -replace "SMR SPC", "{t: Space, h: SMR }"
 $content = $content -replace "NUM   Z", "{t: Z, h: Num Pad }"
+$content = $content -replace "'   ", "'"
 
 # Define the regex pattern to match the layers section
 $layerPattern = 'layers:\s*(\w+):\s*-\s*\[([^\]]+)\]\s*-\s*\[([^\]]+)\]\s*-\s*\[([^\]]+)\]\s*-\s*\[([^\]]+)\]'
