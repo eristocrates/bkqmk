@@ -164,8 +164,6 @@ path.combo { stroke: #7f7f7f; }
 <g transform="translate(812, 45)" class="key keypos-9">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">.</text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 88%">Capsword</tspan></text>
-<text x="0" y="-24" class="key shifted"><tspan style="font-size: 88%">Adaptive</tspan></text>
 </g>
 <g transform="translate(868, 78)" class="key trans keypos-10">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
@@ -218,7 +216,7 @@ path.combo { stroke: #7f7f7f; }
 </g>
 <g transform="translate(924, 134)" class="key keypos-23">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="0" class="key tap">GMIL</text>
+<text x="0" y="0" class="key tap">gmail</text>
 </g>
 <g transform="translate(28, 190)" class="key keypos-24">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -241,15 +239,11 @@ path.combo { stroke: #7f7f7f; }
 </g>
 <g transform="translate(308, 151)" class="key keypos-29">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="0" class="key tap">
-<tspan x="0" dy="-0.6em">RGX</tspan><tspan x="0" dy="1.2em">NCG</tspan>
-</text>
+<text x="0" y="0" class="key tap">(?:)</text>
 </g>
 <g transform="translate(644, 151)" class="key keypos-30">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="0" class="key tap">Aware</text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 78%">Assistant</tspan></text>
-<text x="0" y="-24" class="key shifted"><tspan style="font-size: 88%">Conntext</tspan></text>
+<text x="0" y="0" class="key tap">Assist</text>
 </g>
 <g transform="translate(700, 151)" class="key keypos-31">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -263,8 +257,6 @@ path.combo { stroke: #7f7f7f; }
 <g transform="translate(812, 157)" class="key keypos-33">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">,</text>
-<text x="0" y="24" class="key hold"><tspan style="font-size: 78%">OSM Shift</tspan></text>
-<text x="0" y="-24" class="key shifted"><tspan style="font-size: 88%">Adaptive</tspan></text>
 </g>
 <g transform="translate(868, 190)" class="key keypos-34">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>

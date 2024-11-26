@@ -100,25 +100,25 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
   VIMFIGHTER:
-  - ['', '', '', '', '', '', {t: QuoMark, h: Attack }, {t: Fold, h: Attack }, {t: Search, h: Attack }, {t: Vertical, h: Attack }, {t: Format, h: Attack }, {t: GrvMark, h: Attack }]
-  - ['', '', Back, Crouch, Forward, '', {t: Horizontal, h: Attack }, {t: Left, h: Attack }, {t: Down, h: Attack }, {t: Up, h: Attack }, {t: Right, h: Attack }, '']
+  - ['', '', '', '', '', '', {t: Quo}, {t: Fold}, {t: Search}, {t: Vert}, {t: Format}, {t: Grv}]
+  - ['', '', Back, Crouch, Forward, '', {t: Hori}, {t: Left}, {t: Down}, {t: Up}, {t: Right}, '']
   - - ''
     - ''
     - ''
     - ''
     - ''
     - ''
-    - {t: Visual, h: Attack }
-    - {t: Yank, h: Attack }
-    - {t: Change, h: Attack }
-    - {t: Delete, h: Attack }
+    - {t: Visual}
+    - {t: Yank}
+    - {t: Change}
+    - {t: Delete}
     - ''
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
     - Jump
     - {t: ▽, type: trans}
-    - {t: Vim Fighter, h: TO Layer }
-    - {t: Neutral, h: Attack }
+    - Toggle}
+    - {t: Neutral}
   SHIFTISHL:
   - - ''
     - ''
@@ -133,10 +133,10 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
   - - (?<=)
-    - {t: '[', s: '/*'}
+    - {t: '[', s: '/>'}
     - (
     - )
-    - {t: ']', s: '*/'}
+    - {t: ']', s: '\\/'}
     - (?=)
     - ''
     - {t: U, h: Shift}
@@ -202,7 +202,7 @@ layers:
     - ''
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - {t: '.', s: Adaptive, h: Capsword}
+    - '.'
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
   - - ''
@@ -216,8 +216,8 @@ layers:
     - '@'
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - GMIL
-  - ['', '(?<!)', '(?!)', '(?=)', '(?=)', RGX NCG, {t: Aware, s: Conntext, h: Assistant }, {t: '<=', s: '<=='}, "```", {t: ', ', s: Adaptive, h: OSM Shift }, {t: '>=', s: '>=='}, {t: Context, s: Windows, h: Menu }]
+    - gmail
+  - ['', '(?<!)', '(?!)', '(?=)', '(?=)', '(?:)', Assist, {t: '<=', s: '<=='}, "```", ',', {t: '>=', s: '>=='}, {t: Context, s: Windows, h: Menu }]
   - - ''
     - ''
     - {t: ▽, type: trans}
@@ -349,7 +349,7 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: Space, h: AltishR }
-    - {t: Pointer Options, h: OS Layer }
+    - Opt
   POINTEROPT:
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -399,11 +399,11 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - Launch Media Player
-    - Previous Track
-    - Brightness Down
-    - Brightness Up
-    - Next Track
+    - Launch
+    - Rwind
+    - Bright
+    - Dim
+    - Next
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -411,11 +411,11 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - Play/ Pause Track
-    - Previous Track
-    - Volume Down
-    - Volume Up
-    - Next Track
+    - Plause
+    - Prev
+    - Vol Down
+    - Vol Up
+    - Next
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -423,7 +423,7 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - Stop Track
+    - Stop
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
