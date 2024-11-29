@@ -26,7 +26,7 @@ svg path {
 
 /* font and background color specifications */
 svg.keymap {
-    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+    font-family: Monaspace Krypton,Consolas,Liberation Mono,Menlo,monospace;
     font-size: 14px;
     font-kerning: normal;
     text-rendering: optimizeLegibility;
@@ -68,6 +68,7 @@ text {
 
 /* styling for layer labels */
 text.label {
+ font-size: 30px;
     font-weight: bold;
     text-anchor: start;
     stroke: white;
@@ -155,11 +156,11 @@ path.combo { stroke: #7f7f7f; }
 </g>
 <g transform="translate(700, 39)" class="key trans keypos-7">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<text x="0" y="0" class="key trans tap">▽</text>
+<text x="0" y="0" class="key trans tap">▼</text>
 </g>
 <g transform="translate(756, 28)" class="key trans keypos-8">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<text x="0" y="0" class="key trans tap">▽</text>
+<text x="0" y="0" class="key trans tap">▼</text>
 </g>
 <g transform="translate(812, 45)" class="key keypos-9">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -167,11 +168,11 @@ path.combo { stroke: #7f7f7f; }
 </g>
 <g transform="translate(868, 78)" class="key trans keypos-10">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<text x="0" y="0" class="key trans tap">▽</text>
+<text x="0" y="0" class="key trans tap">▼</text>
 </g>
 <g transform="translate(924, 78)" class="key trans keypos-11">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<text x="0" y="0" class="key trans tap">▽</text>
+<text x="0" y="0" class="key trans tap">▼</text>
 </g>
 <g transform="translate(28, 134)" class="key keypos-12">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -200,7 +201,7 @@ path.combo { stroke: #7f7f7f; }
 </g>
 <g transform="translate(700, 95)" class="key trans keypos-19">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<text x="0" y="0" class="key trans tap">▽</text>
+<text x="0" y="0" class="key trans tap">▼</text>
 </g>
 <g transform="translate(756, 84)" class="key keypos-20">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -208,11 +209,11 @@ path.combo { stroke: #7f7f7f; }
 </g>
 <g transform="translate(812, 101)" class="key trans keypos-21">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<text x="0" y="0" class="key trans tap">▽</text>
+<text x="0" y="0" class="key trans tap">▼</text>
 </g>
 <g transform="translate(868, 134)" class="key trans keypos-22">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<text x="0" y="0" class="key trans tap">▽</text>
+<text x="0" y="0" class="key trans tap">▼</text>
 </g>
 <g transform="translate(924, 134)" class="key keypos-23">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -277,7 +278,7 @@ path.combo { stroke: #7f7f7f; }
 </g>
 <g transform="translate(425, 233) rotate(20.0)" class="key trans keypos-38">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<text x="0" y="0" class="key trans tap">▽</text>
+<text x="0" y="0" class="key trans tap">▼</text>
 </g>
 <g transform="translate(527, 233) rotate(-20.0)" class="key keypos-39">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>

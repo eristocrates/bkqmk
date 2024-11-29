@@ -16,89 +16,89 @@ layers:
   - [{ t: LB OUTR, h: 24 }, { t: LB PNKY, h: 25 }, { t: LB RING, h: 26 }, { t: LB MDLE, h: 27 }, { t: LB INDX, h: 28 }, { t: LB INNR, h: 29 }, { t: RB INNR, h: 30 }, { t: RB INDX, h: 31 }, { t: RB MDLE, h: 32 }, { t: RB RING, h: 33 }, { t: RB PNKY, h: 34 }, { t: RB OUTR, h: 35 }]
   - [{ t: L LTHMB, h: 36 }, { t: L MTHMB, h: 37 }, { t: L RTHMB, h: 38 }, { t: R LTHMB, h: 39 }, { t: R MTHMB, h: 40 }]
   SLICE:
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - Index
     - Middle
     - Ring
     - Pinky
     - Cycle
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - {t: Space, h: BSlice}
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
   BSLICE:
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - {t: '=', s: '+'}
     - {t: '''', s: '"'}
     - {t: ', ', s: '?' }
     - '  WH'
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
   VIMFIGHTER:
   - ['', '', '', '', '', '', {t: Quo}, {t: Fold}, {t: Search}, {t: Vert}, {t: Format}, {t: Grv}]
   - ['', '', Back, Crouch, Forward, '', {t: Hori}, {t: Left}, {t: Down}, {t: Up}, {t: Right}, '']
@@ -113,10 +113,10 @@ layers:
     - {t: Change}
     - {t: Delete}
     - ''
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
     - Jump
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
     - Toggle}
     - {t: Neutral}
   SHIFTISHL:
@@ -127,11 +127,11 @@ layers:
     - ''
     - ''
     - ''
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - ;
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
   - - (?<=)
     - {t: '[', s: '/>'}
     - (
@@ -143,27 +143,27 @@ layers:
     - {t: A, h: Ctrl}
     - {t: I, h: Alt}
     - {t: H, h: Win}
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
   - ['(?<!)', {t: '<', s: '<<'}, '{', '}', {t: '>', s: '>>'}, '(?!)', {t: Context, s: Windows, h: Menu }, '-', {t: "`", s: "*"}, {t: '&', s: '&&' }, '~', Caps Lock]
   - - ''
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
     - ''
     - _
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
   SHIFTISHR:
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - ''
     - ''
     - ''
     - ''
     - ''
     - ''
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
     - {t: C, h: Win}
     - {t: S, h: Alt}
     - {t: T, h: Ctrl}
@@ -174,24 +174,24 @@ layers:
     - J
     - K
     - L
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
   - - Caps Lock
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - ''
     - ''
     - LEFT
     - DOWN
     - UP
     - RIGHT
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
   - - ''
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
     - _
     - ''
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
   ALTISHL:
   - - ''
     - ''
@@ -200,11 +200,11 @@ layers:
     - ''
     - ''
     - ''
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - '.'
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
   - - ''
     - \
     - '|'
@@ -212,15 +212,15 @@ layers:
     - /
     - ''
     - ''
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
     - '@'
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - gmail
   - ['', '(?<!)', '(?!)', '(?=)', '(?=)', '(?:)', Assist, {t: '<=', s: '<=='}, "```", ',', {t: '>=', s: '>=='}, {t: Context, s: Windows, h: Menu }]
   - - ''
     - ''
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
     - {t: Space, h: AltishR }
     - '*'
   ALTISHR:
@@ -230,55 +230,55 @@ layers:
   - - ''
     - {t: '-', s: '--'}
     - {t: Space, h: AltishL }
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
     - ''
   ALTISHB:
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - '~'
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - '...'
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - '{{/*'
     - /*}}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - :=
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
   BITNUM:
   - ['', '', '', '', '', {t: ', ', s: '?' }, '%', '', OS HYPR, OS  MEH, OS  CAG, '']
   - [TD(TBW), BIN 512, BIN 256, BIN 128, BIN  64, {t: '=', s: '+'}, '00', BIN   8, BIN   4, BIN   2, BIN   1, '0']
   - [Layer Lock, /, '*', {t: '-', s: '--'}, PLS FUN, ., $, {t: Shift, s: OneShot }, {t: Control, s: OneShot }, {t: Alt, s: OneShot }, {t: Win, s: OneShot }, BASE]
-  - - {t: ▽, type: trans}
+  - - {t: ▼, type: trans}
     - BIN  32
     - Space
     - Space
@@ -290,7 +290,7 @@ layers:
     - /
     - '*'
     - {t: '-', s: '--'}
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
     - .
     - $
     - {t: Shift, s: OneShot }
@@ -298,7 +298,7 @@ layers:
     - {t: Alt, s: OneShot }
     - {t: Win, s: OneShot }
     - BASE
-  - - {t: ▽, type: trans}
+  - - {t: ▼, type: trans}
     - BIN  32
     - Space
     - Space
@@ -309,136 +309,136 @@ layers:
   - [Layer Lock, {t: '-', s: '--'}, Delete, End, Page Down, ., '00', '1', '2', '3', {t: '+', s: '++'}, BASE]
   - ['', '', Space, Space, '0']
   POINTER:
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - {t: Sniping, h: MO }
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - 'V'
     - 'K'
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - Double Click
     - Left Click
     - Right Click
     - Drag Scroll
     - Scroll Wheel Click
     - {t: Yomitan Scan, h: TG }
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - {t: Space, h: AltishR }
     - Opt
   POINTEROPT:
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - 'V'
     - 'K'
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - Snipe DPI Down
     - DPI Down
     - DPI Up
     - Snipe DPI Up
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
   MEDIA:
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - Launch
     - Rwind
     - Bright
     - Dim
     - Next
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - Plause
     - Prev
     - Vol Down
     - Vol Up
     - Next
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - Stop
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - Mute
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
   ONESHOT:
   - ['', '', '', '', '', '', '', '', '', '', '', '']
   - ['', MEDIA, KEYBRD, MATH, SHRTCUT, '', '', '', '', '', '', '']
   - [RANDOM, '', '', '', '', '', '', '', '', '', '', '']
-  - - {t: ▽, type: trans}
+  - - {t: ▼, type: trans}
     - ''
     - ''
     - ''
@@ -454,171 +454,171 @@ layers:
   - [LSFT, X, G, M, C, ;, J, F, P, {t: ', ', s: '?' }, {t: '.', s: '!'}, BASE]
   - ['', THINQUL, Space, Space, THINQUR]
   THINQUL:
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
   THINQUR:
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
   KEYBOARD:
-  - - {t: ▽, type: trans}
+  - - {t: ▼, type: trans}
     - TYPING
     - QWERTY
     - THINQU
     - GAME
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
     - RGB TOG
     - RGB HUI
     - RGB SAI
     - RGB VAI
     - RGB SPI
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - RGB RMOD
     - RGB HUD
     - RGB SAD
     - RGB VAD
     - RGB SPD
     - RGB MOD
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - RGB MDE
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - BASE
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
   SECRET:
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - SECRETL
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
     - SECRETC
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
     - SECRETT
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - SECRETG
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - BASE
-  - - {t: ▽, type: trans}
+  - - {t: ▼, type: trans}
     - SECRETR
-    - {t: ▽, type: trans}
+    - {t: ▼, type: trans}
     - SECRET1
     - SECRET2
   NAGINATA:

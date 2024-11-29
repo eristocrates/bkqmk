@@ -36,7 +36,7 @@ draw_config:
 
     /* font and background color specifications */
     svg.keymap {
-        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+        font-family: Monaspace Krypton,Consolas,Liberation Mono,Menlo,monospace;
         font-size: 14px;
         font-kerning: normal;
         text-rendering: optimizeLegibility;
@@ -78,6 +78,7 @@ draw_config:
 
     /* styling for layer labels */
     text.label {
+     font-size: 30px;
         font-weight: bold;
         text-anchor: start;
         stroke: white;
@@ -147,7 +148,7 @@ parse_config:
   sticky_label: sticky
   toggle_label: toggle
   trans_legend:
-    t: ▽
+    t: '▼'
     type: trans
   mark_alternate_layer_activators: false
   qmk_remove_keycode_prefix:
