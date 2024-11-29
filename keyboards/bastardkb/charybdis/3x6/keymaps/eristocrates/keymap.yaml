@@ -156,7 +156,7 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - Skip gram
+    - ''
     - ''
     - ''
     - ''
@@ -168,7 +168,7 @@ layers:
     - {t: S, h: Alt}
     - {t: T, h: Ctrl}
     - {t: N, h: Shift}
-    - Skip gram
+    - ''
     - ''
     - H
     - J
@@ -180,7 +180,7 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - Skip gram
+    - ''
     - ''
     - LEFT
     - DOWN

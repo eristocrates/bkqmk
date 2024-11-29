@@ -1506,7 +1506,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 if ((get_weak_mods() & MOD_MASK_SHIFT) || (get_mods() & MOD_MASK_SHIFT)) {
                     del_mods(MOD_MASK_SHIFT);
-                    SEND_STRING("/*}}");
+                    SEND_STRING("*/}}");
                     tap_code(KC_ENT);
                     return false;
                 }
