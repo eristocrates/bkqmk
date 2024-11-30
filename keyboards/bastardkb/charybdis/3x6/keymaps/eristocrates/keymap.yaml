@@ -2,7 +2,7 @@ layout: {qmk_keyboard: bastardkb/charybdis/3x6, layout_name: LAYOUT}
 layers:
   CISTERN:
   - ['J', {t: Y, h: Yuh}, {t: F, h: Meh}, {t: D, h: Hyper}, 'B', {t: $$mdi:arrow-top-left$$, h: Arcane}, {t: $$mdi:arrow-top-right$$, h: Arcane}, 'W', {t: O, h: Hyper}, {t: '.', s: '!', h: Meh}, {t: L, h: Yuh}, {t: QU, h: Q}]
-  - ['M', {t: C, h: Win}, {t: S, h: Alt}, {t: T, h: Ctrl}, {t: N, h: Shift}, {t: $$mdi:arrow-left$$, h: Arcane}, {t: $$mdi:arrow-right$$, h: Arcane}, {t: U, h: Shift}, {t: A, h: Ctrl}, {t: I, h: Alt}, {t: H, h: Win}, 'G']
+  - [{t: M, h: Bitwise }, {t: C, h: Win}, {t: S, h: Alt}, {t: T, h: Ctrl}, {t: N, h: Shift}, {t: $$mdi:arrow-left$$, h: Arcane}, {t: $$mdi:arrow-right$$, h: Arcane}, {t: U, h: Shift}, {t: A, h: Ctrl}, {t: I, h: Alt}, {t: H, h: Win}, 'G']
   - [{t: Leader, s: QMK }, 'P', 'V', 'K', 'X', {t: $$mdi:arrow-bottom-left$$, h: Arcane}, {t: $$mdi:arrow-bottom-right$$, h: Arcane}, {t: '=', s: '+'}, {t: '''', s: '"'}, {t: ', ', s: '?' }, '  WH', '']
   - [{t: Z, h: Bitwise }, {t: R, h: ShftshL }, {t: Space, h: AltishL }, {t: Space, h: AltishR }, {t: E, h: ShftshR }]
   TYPINGAME:

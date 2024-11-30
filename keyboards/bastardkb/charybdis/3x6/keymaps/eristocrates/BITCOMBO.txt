@@ -1,3 +1,12 @@
 combos:
 
   - { l: ["BITCOMBO"], p: [19, 21], k: 10 }
+  - { l: ["BITCOMBO"], p: [40, 20], k: 20 }
+  - { l: ["BITCOMBO"], p: [40, 19, 20, 21], k: 30 }
+  - { l: ["BITCOMBO"], p: [37, 19], k: 40 }
+  - { l: ["BITCOMBO"], p: [37, 40, 21], k: 50 }
+  - { l: ["BITCOMBO"], p: [37, 40, 19, 20], k: 60 }
+  - { l: ["BITCOMBO"], p: [16, 20, 21], k: 70 }
+  - { l: ["BITCOMBO"], p: [16, 40], k: 80 }
+  - { l: ["BITCOMBO"], p: [16, 40, 19, 21], k: 90 }
+  - { l: ["BITCOMBO"], p: [16, 37, 20], k: 100 }

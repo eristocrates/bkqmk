@@ -81,6 +81,7 @@ $content = $content -replace "COMM", "{t: ', ', s: '?' }"
 $content = $content -replace "QK LEAD", "{t: Leader, s: QMK }"
 
 $content = $content -replace "BITWISEZ", "{t: Z, h: Bitwise }"
+$content = $content -replace "BITWISEM", "{t: M, h: Bitwise }"
 $content = $content -replace "SFSHL R", "{t: R, h: ShftshL }"
 $content = $content -replace "SFSHLCR", "{t: R, h: NGramL }"
 $content = $content -replace "ALTLSPC", "{t: Space, h: AltishL }"
@@ -303,7 +304,34 @@ $dataToAppend = @(
     "combos:",
     ""
 )
-$dataToAppend += '  - { l: ["BITCOMBO"]' + ", p: [19, 21], k: 10 }"
+$customMapping = 22, 21, 20, 19, 40, 37, 16, 15, 14, 13
+
+
+# Function to convert a number to the custom mapping based binary translation
+function Convert-ToCustomPosition ($decimal) {
+    $binary = [System.Convert]::ToString($decimal, 2)  # Convert the number to binary
+    $customPosition = @()
+    $binaryLength = $binary.Length
+
+    # Iterate over the binary number from right to left
+    for ($i = 0; $i -lt $binaryLength; $i++) {
+        # Check if binary digit is 1
+        if ($binary[$i] -eq '1') {
+            $customPosition += $customMapping[$binaryLength - $i - 1]
+        }
+    }
+
+    return $customPosition
+}
+
+# Start the loop at 10 and increment by 10 each iteration
+for ($i = 10; $i -le 100; $i += 10) {
+$customMappingResult = Convert-ToCustomPosition $i
+# Write-Host "Decimal $i maps to: $($customMappingResult -join ', ')"
+$dataToAppend += '  - { l: ["BITCOMBO"]' + ", p: [$($customMappingResult -join ', ')], k: $i }"
+}
+
+
 $dataToAppendString = $dataToAppend -join "`n"
 # Save the string to the specified file
 Set-Content -Path $bitcomboFilePath -Value $dataToAppendString

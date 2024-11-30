@@ -536,6 +536,7 @@ enum keycodes {
 #define NUM_PAD LT(_NUMPAD, SW_WIN)
 #define NUM_SPC LT(_NUMPAD, KC_SPC)
 #define BITWISEZ LT(_BITNUM, KC_Z)
+#define BITWISEM LT(_BITNUM, KC_M)
 #define BSESLCE LT(_BSLICE, KC_SPC)
 //  default LTs
 #define PT_Z LT(_POINTER, KC_Z)
