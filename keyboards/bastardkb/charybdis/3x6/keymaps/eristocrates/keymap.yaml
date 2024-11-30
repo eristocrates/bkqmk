@@ -8,7 +8,7 @@ layers:
   TYPINGAME:
   - ['J', 'Y', 'F', 'D', 'B', {t: $$mdi:arrow-top-left$$, h: Arcane}, {t: $$mdi:arrow-top-right$$, h: Arcane}, 'W', 'O', {t: '.', s: '!'}, 'L', 'Q']
   - ['M', 'C', 'S', 'T', 'N', {t: $$mdi:arrow-left$$, h: Arcane}, {t: $$mdi:arrow-right$$, h: Arcane}, 'U', 'A', 'I', 'H', 'G']
-  - [{t: Leader, s: QMK }, 'P', 'V', 'K', 'X', {t: $$mdi:arrow-bottom-left$$, h: Arcane}, {t: $$mdi:arrow-bottom-right$$, h: Arcane}, /, {t: '''', s: '"'}, {t: ', ', s: '?' }, ;, '']
+  - [{t: Leader, s: QMK }, 'P', 'V', 'K', 'X', {t: $$mdi:arrow-bottom-left$$, h: Arcane}, {t: $$mdi:arrow-bottom-right$$, h: Arcane}, {t: '/', s: '//'}, {t: '''', s: '"'}, {t: ', ', s: '?' }, ;, '']
   - ['Z', 'R', {t: Space, h: NumPad }, Space, 'E']
   COMBOREF:
   - [{ t: LT OUTR, h: 0 }, { t: LT PNKY, h: 1 }, { t: LT RING, h: 2 }, { t: LT MDLE, h: 3 }, { t: LT INDX, h: 4 }, { t: LT INNR, h: 5 }, { t: RT INNR, h: 6 }, { t: RT INDX, h: 7 }, { t: RT MDLE, h: 8 }, { t: RT RING, h: 9 }, { t: RT PNKY, h: 10 }, { t: RT OUTR, h: 11 }]
@@ -122,8 +122,8 @@ layers:
   SHIFTISHL:
   - - ''
     - ''
-    - ''
-    - ''
+    - {t: '[', s: '/>'}
+    - {t: ']', s: '\\/'}
     - ''
     - ''
     - ''
@@ -133,18 +133,18 @@ layers:
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
   - - (?<=)
-    - {t: '[', s: '/>'}
-    - (
-    - )
-    - {t: ']', s: '\\/'}
+    - {t: '/', s: '//'}
+    - {t: '(', s: '/*'}
+    - {t: ')', s: '*/'}
+    - {t: ':', s: '::'}
     - (?=)
-    - ''
+    - (?:)
     - {t: U, h: Shift}
     - {t: A, h: Ctrl}
     - {t: I, h: Alt}
     - {t: H, h: Win}
     - {t: ▼, type: trans}
-  - ['(?<!)', {t: '<', s: '<<'}, '{', '}', {t: '>', s: '>>'}, '(?!)', {t: Context, s: Windows, h: Menu }, '-', {t: "`", s: "*"}, {t: '&', s: '&&' }, '~', Caps Lock]
+  - ['(?<!)', {t: '<', s: '<<'}, {t: '{', s: '{{/*'}, {t: '}', s: '*/}}'}, {t: '>', s: '>>'}, '(?!)', {t: Context, s: Windows, h: Menu }, {t: '-', s: '^'}, {t: "`", s: "*"}, {t: '&', s: '&&' }, '~', Caps Lock]
   - - ''
     - {t: ▼, type: trans}
     - ''
@@ -164,10 +164,10 @@ layers:
     - ''
     - {t: ▼, type: trans}
   - - {t: ▼, type: trans}
-    - {t: C, h: Win}
-    - {t: S, h: Alt}
-    - {t: T, h: Ctrl}
-    - {t: N, h: Shift}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - ''
     - ''
     - H
@@ -202,31 +202,64 @@ layers:
     - ''
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
-    - '.'
+    - {t: '.', h: Adpt}
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
-  - - ''
+  - - gmail
     - \
-    - '|'
-    - ':'
-    - /
-    - ''
-    - ''
-    - {t: ▼, type: trans}
+    - $
     - '@'
+    - '#'
+    - ''
+    - ''
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
-    - gmail
-  - ['', '(?<!)', '(?!)', '(?=)', '(?=)', '(?:)', Assist, {t: '<=', s: '<=='}, "```", ',', {t: '>=', s: '>=='}, {t: Context, s: Windows, h: Menu }]
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+  - ['', {t: '|', s: '||'}, '', '%', '~', '', Assist, {t: '<=', s: '<=='}, "```", {t: ',', h: Adpt}, {t: '>=', s: '>=='}, {t: Context, s: Windows, h: Menu }]
   - - ''
     - ''
     - {t: ▼, type: trans}
     - {t: Space, h: AltishR }
     - '*'
   ALTISHR:
-  - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', .com, $, '', '', '', '', '', '', '', '#', '']
-  - ['', '%', '', '', '', '', '', Home, Page Down, Page Up, End, '']
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+  - - .com
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+  - - ''
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - ''
+    - ''
+    - Home
+    - Page Down
+    - Page Up
+    - End
+    - ''
   - - ''
     - {t: '-', s: '--'}
     - {t: Space, h: AltishL }
@@ -275,17 +308,17 @@ layers:
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
   BITNUM:
-  - ['', '', '', '', '', {t: ', ', s: '?' }, '%', '', OS HYPR, OS  MEH, OS  CAG, '']
-  - [TD(TBW), BIN 512, BIN 256, BIN 128, BIN  64, {t: '=', s: '+'}, '00', BIN   8, BIN   4, BIN   2, BIN   1, '0']
-  - [Layer Lock, /, '*', {t: '-', s: '--'}, PLS FUN, ., $, {t: Shift, s: OneShot }, {t: Control, s: OneShot }, {t: Alt, s: OneShot }, {t: Win, s: OneShot }, BASE]
+  - ['', '', '', '', '', {t: ', ', s: '?' }, '%', '', {t: Hyper, h: OneShot }, {t: Meh, h: OneShot }, {t: Yuh, h: OneShot }, '']
+  - [{t: BSpc, h: ^Bspc }, BIN 512, BIN 256, BIN 128, BIN  64, {t: '=', s: '+'}, '00', BIN   8, BIN   4, BIN   2, BIN   1, '0']
+  - [Layer Lock, /, '*', {t: '-', s: '--'}, {t: '+', h: BitFunc }, ., $, {t: Shift, h: OneShot }, {t: Control, h: OneShot }, {t: Alt, h: OneShot }, {t: Win, h: OneShot }, BASE]
   - - {t: ▼, type: trans}
     - BIN  32
     - Space
     - Space
     - BIN  16
   BITFUNC:
-  - ['', '', '', '', '', {t: ', ', s: '?' }, '%', '', '', '', '', '']
-  - [TD(TBW), BIN 512, BIN 256, BIN 128, BIN  64, {t: '=', s: '+'}, '00', F0b8, F0b4, F0b2, F0b1, '0']
+  - ['', '', '', '', '', {t: ', ', s: '?' }, '%', '', {t: Hyper, h: OneShot }, {t: Meh, h: OneShot }, {t: Yuh, h: OneShot }, '']
+  - [{t: BSpc, h: ^Bspc }, BIN 512, BIN 256, BIN 128, BIN  64, {t: '=', s: '+'}, '00', F0b8, F0b4, F0b2, F0b1, '0']
   - - Layer Lock
     - /
     - '*'
@@ -293,10 +326,10 @@ layers:
     - {t: ▼, type: trans}
     - .
     - $
-    - {t: Shift, s: OneShot }
-    - {t: Control, s: OneShot }
-    - {t: Alt, s: OneShot }
-    - {t: Win, s: OneShot }
+    - {t: Shift, h: OneShot }
+    - {t: Control, h: OneShot }
+    - {t: Alt, h: OneShot }
+    - {t: Win, h: OneShot }
     - BASE
   - - {t: ▼, type: trans}
     - BIN  32
@@ -305,7 +338,7 @@ layers:
     - F0b16
   NUMPAD:
   - ['', Layer Lock, Print Screen, Scroll Lock, Pause, {t: ', ', s: '?' }, '%', '7', '8', '9', Enter, '']
-  - [BSPC, /, Insert, Home, Page Up, {t: '=', s: '+'}, $, '4', '5', '6', '*', '']
+  - [BSpc, /, Insert, Home, Page Up, {t: '=', s: '+'}, $, '4', '5', '6', '*', '']
   - [Layer Lock, {t: '-', s: '--'}, Delete, End, Page Down, ., '00', '1', '2', '3', {t: '+', s: '++'}, BASE]
   - ['', '', Space, Space, '0']
   POINTER:
@@ -315,28 +348,28 @@ layers:
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
-    - {t: ▼, type: trans}
+    - {t: Yomitan Add }
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
     - {t: Sniping, h: MO }
     - {t: ▼, type: trans}
-    - {t: ▼, type: trans}
+    - {t: Firefox Snap }
   - - {t: ▼, type: trans}
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
+    - {t: Yomitan View }
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
-    - {t: ▼, type: trans}
-    - {t: ▼, type: trans}
+    - {t: Yomitan Play }
   - - {t: ▼, type: trans}
     - {t: ▼, type: trans}
-    - 'V'
-    - 'K'
+    - Opt
+    - Multi
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
     - Double Click
@@ -348,8 +381,8 @@ layers:
   - - {t: ▼, type: trans}
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
-    - {t: Space, h: AltishR }
-    - Opt
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
   POINTEROPT:
   - - {t: ▼, type: trans}
     - {t: ▼, type: trans}
@@ -377,8 +410,8 @@ layers:
     - {t: ▼, type: trans}
   - - {t: ▼, type: trans}
     - {t: ▼, type: trans}
-    - 'V'
-    - 'K'
+    - {t: ▼, type: trans}
+    - Multi
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
@@ -446,11 +479,11 @@ layers:
   GAME:
   - ['1', Q, I, W, R, T, Y, U, I, O, P, '']
   - [LCTL, A, A, S, D, G, H, J, K, L, ;, RCTL]
-  - [LSFT, PT Z, M, C, V, B, N, M, {t: ', ', s: '?' }, {t: '.', s: '!'}, PT SLSH, BASE]
+  - [LSFT, PT Z, M, C, V, B, N, M, {t: ', ', s: '?' }, {t: '.', s: '!'}, /, BASE]
   - [ESC, Space, '', '', ENT]
   THINQU:
   - [TAB, B, D, L, TH, V, Z, {t: '''', s: '"'}, U, H, K, '']
-  - [BSPC, N, T, S, R, W, Y, A, E, O, I, ENT]
+  - [BSpc, N, T, S, R, W, Y, A, E, O, I, ENT]
   - [LSFT, X, G, M, C, ;, J, F, P, {t: ', ', s: '?' }, {t: '.', s: '!'}, BASE]
   - ['', THINQUL, Space, Space, THINQUR]
   THINQUL:
@@ -634,25 +667,11 @@ layers:
   QWERTY:
   - [LGUI, Q, W, E, R, T, Y, U, I, O, P, RGUI]
   - [LCTL, A, S, D, F, G, H, J, K, L, ;, RCTL]
-  - [LSFT, PT Z, X, C, V, B, N, M, {t: ', ', s: '?' }, {t: '.', s: '!'}, PT SLSH, BASE]
-  - ['', Space, BSPC, Delete, ENT]
+  - [LSFT, PT Z, X, C, V, B, N, M, {t: ', ', s: '?' }, {t: '.', s: '!'}, /, BASE]
+  - ['', Space, BSpc, Delete, ENT]
   RANDOM:
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND]
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND]
   - [RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, RAND, BASE]
   - [RAND, RAND, RAND, RAND, RAND]
-  BITCOMBO:
-  - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '']
-  SYSKEYS:
-  - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '', '', '', '', '', '', '', '']
-  - ['', '', '', '', '']
-  TEST:
-    - ['J', {t: Y, h: Yuh}, {t: F, h: Meh}, {t: D, h: Hyper}, 'B', {t: $$mdi:arrow-top-left$$, h: Arcane}, {t: $$mdi:arrow-top-right$$, h: Arcane}, 'W', {t: O, h: Hyper}, {t: '.', s: '!', h: Meh}, {t: L, h: Yuh}, {t: QU, h: Q}]
-    - ['M', {t: C, h: Win}, {t: S, h: Alt}, {t: T, h: Ctrl}, {t: N, h: Shift}, {t: $$mdi:arrow-left$$, h: Arcane}, {t: $$mdi:arrow-right$$, h: Arcane}, {t: U, h: Shift}, {t: A, h: Ctrl}, {t: I, h: Alt}, {t: H, h: Win}, 'G']
-    - [{t: Leader, s: QMK }, 'P', 'V', 'K', 'X', {t: $$mdi:arrow-bottom-left$$, h: Arcane}, {t: $$mdi:arrow-bottom-right$$, h: Arcane}, {t: '=', s: '+'}, {t: '''', s: '"'}, {t: ', ', s: '?' }, '  WH', '']
-    - [{t: Z, h: Bitwise }, {t: R, h: ShftshL }, {t: Space, h: AltishL }, {t: Space, h: AltishR }, {t: E, h: ShftshR }]
+

@@ -1,0 +1,52 @@
+layout: {qmk_keyboard: bastardkb/charybdis/3x6, layout_name: LAYOUT}
+layers:
+  L0:
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+  - - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+  BITCOMBO:
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '']
+combos:
+
+  - { l: ["BITCOMBO"], p: [19, 21], k: 10 }

@@ -1,6 +1,7 @@
 # Define the file path
 $filePath = "E:\uranus\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\keymap.yaml"
-
+$syskeysFilePath = "E:\uranus\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\SYSKEYS.txt"
+$bitcomboFilePath = "E:\uranus\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates\BITCOMBO.txt"
 $comboFilePath = "E:\uranus\coding\bkqmk\users\eristocrates\combos.def"
 
 function Get-StringIndex {
@@ -8,17 +9,6 @@ function Get-StringIndex {
         [string]$string
     )
 
-    # Check for VM exceptions first
-    if ($vimExceptions.ContainsKey($string)) {
-        $value = $vimExceptions[$string]
-        if ([int]::TryParse($value, [ref]$null)) {
-            return [int]$value
-        }
-        else {
-            Write-Error "Non-numeric value '$value' found in vimExceptions for key '$string'."
-            return $null
-        }
-    }
 
     # Check the comboRef dictionary
     if ($comboRef.ContainsKey($string)) {
@@ -37,19 +27,7 @@ function Get-StringIndex {
     }
 }
 
-# Define the exceptions
-$vimExceptions = @{
-    "VM_LEFT" = 31
-    "VM_DOWN" = 32
-    "VM_RGHT" = 33
-    "VM_NTRL" = 34
-    "VM___UP" = 40
-    "VF_LEFT" = 31
-    "VF_DOWN" = 32
-    "VF_RGHT" = 33
-    "VF_NTRL" = 34
-    "VF___UP" = 0
-}
+
 # Read the content of the file
 $content = Get-Content -Path $filePath -Raw
 
@@ -79,10 +57,18 @@ $content = $content -replace "RCTRL A", "{t: A, h: Ctrl}"
 $content = $content -replace "RTALT I", "{t: I, h: Alt}"
 $content = $content -replace "RWKEY H", "{t: H, h: Win}"
 
-
+$content = $content -replace "PLS FUN", "{t: '+', h: BitFunc }"
+$content = $content -replace "COLN", "{t: ':', s: '::'}"
+$content = $content -replace "PIPE", "{t: '|', s: '||'}"
+$content = $content -replace "LPRN", "{t: '(', s: '/*'}"
+$content = $content -replace "RPRN", "{t: ')', s: '*/'}"
+$content = $content -replace "LCBR", "{t: '{', s: '{{/*'}"
+$content = $content -replace "RCBR", "{t: '}', s: '*/}}'}"
+$content = $content -replace "SLSH", "{t: '/', s: '//'}"
+$content = $content -replace "MINS", "{t: '-', s: '^'}"
 $content = $content -replace "TH   QU", "{t: QU, h: Q}"
-$content = $content -replace "DOT ARC", "'.'"
-$content = $content -replace "COM ARC", "','"
+$content = $content -replace "DOT ARC", "{t: '.', h: Adpt}"
+$content = $content -replace "COM ARC", "{t: ',', h: Adpt}"
 $content = $content -replace "PDOT", "{t: '.', s: '!'}"
 $content = $content -replace "DOT", "{t: '.', s: '!'}"
 $content = $content -replace "QUOT", "{t: '''', s: '`"'}"
@@ -122,11 +108,14 @@ $content = $content -replace "GRV", '{t: "`", s: "*"}'
 $content = $content -replace "CUR DIR", "{t: './', s: '../' }"
 $content = $content -replace "AMPR", "{t: '&', s: '&&' }"
 $content = $content -replace "ESLH", "{t: '\/', s: '/>' }"
-$content = $content -replace "OS LSFT", "{t: Shift, s: OneShot }"
-$content = $content -replace "OS LCTL", "{t: Control, s: OneShot }"
-$content = $content -replace "OS LALT", "{t: Alt, s: OneShot }"
-$content = $content -replace "OS LGUI", "{t: Win, s: OneShot }"
-
+$content = $content -replace "OS LSFT", "{t: Shift, h: OneShot }"
+$content = $content -replace "OS LCTL", "{t: Control, h: OneShot }"
+$content = $content -replace "OS LALT", "{t: Alt, h: OneShot }"
+$content = $content -replace "OS LGUI", "{t: Win, h: OneShot }"
+$content = $content -replace "OS HYPR", "{t: Hyper, h: OneShot }"
+$content = $content -replace "OS  MEH", "{t: Meh, h: OneShot }"
+$content = $content -replace "OS  CAG", "{t: Yuh, h: OneShot }"
+$content = $content -replace "TD\(TBW\)", "{t: BSpc, h: ^Bspc }"
 
 $content = $content -replace "BSESLCE", "{t: Space, h: BSlice}"
 
@@ -171,7 +160,7 @@ if ($match.Success) {
 "@
 
     # Append the data to the end of the content
-    $content += $dataToAppend
+    # $content += $dataToAppend
 
     #Write-Host "Data appended successfully."
 }
@@ -186,6 +175,32 @@ $alignments = @(
     "left",
     "right"
 )
+
+
+# Define the list of strings
+$list = @(
+    "LT OUTR", "LT PNKY", "LT RING", "LT MDLE", "LT INDX", "LT INNR", "RT INNR", "RT INDX", "RT MDLE", "RT RING", "RT PNKY", "RT OUTR",
+    "LH OUTR", "LH PNKY", "LH RING", "LH MDLE", "LH INDX", "LH INNR", "RH INNR", "RH INDX", "RH MDLE", "RH RING", "RH PNKY", "RH OUTR",
+    "LB OUTR", "LB PNKY", "LB RING", "LB MDLE", "LB INDX", "LB INNR", "RB INNR", "RB INDX", "RB MDLE", "RB RING", "RB PNKY", "RB OUTR",
+    "L LTHMB", "L MTHMB", "L RTHMB", "R LTHMB", "R MTHMB"
+)
+
+# Create a dictionary to store the comboRef
+$comboRef = @{}
+
+# Iterate through the list and associate each string with its index
+for ($i = 0; $i -lt $list.Count; $i++) {
+    $comboRef[$list[$i]] = $i
+}
+
+# ngrams
+
+# combo ref
+for ($i = 0; $i -lt $list.Count; $i++) {
+    $keycode = $list[$i]
+    $index = Get-StringIndex -string $keycode
+    $content = $content -replace "$keycode", "{ t: $keycode, h: $index }"
+}
 
 
 
@@ -214,9 +229,10 @@ foreach ($match in $matches) {
 
 # Define the regex pattern to match combos starting with VIM_COMBO_
 $vcbComboPattern = 'COMB\((VIM_COMBO_[^, ]+), \s*([^, ]+), \s*([^)]+)\)'
+$controlComboPattern = 'COMB\((CONTROL_COMBO_[^, ]+), \s*([^, ]+), \s*([^)]+)\)'
 
 # Find all matches
-$matches = [regex]::Matches($comboContent, $vcbComboPattern)
+$matches = [regex]::Matches($comboContent, $controlComboPattern)
 
 # Initialize the data to append
 $dataToAppend = @(
@@ -242,13 +258,14 @@ foreach ($match in $matches) {
         $slideAdjustment = $slideAdjustment * -1
     }
 
-    #Write-Host "Combo Name: $comboName"
-    #Write-Host "Output: $output"
-    #Write-Host "Params: $params"
+    # Write-Host "Combo Name: $comboName"
+    # Write-Host "Output: $output"
+    # Write-Host "Params: $params"
     # Get the indices for the parameters
     $paramAverage = 0
     $paramIndices = @()
     foreach ($param in $params) {
+        $param = $param -replace '_', ' '
         $paramIndex = [int](Get-StringIndex -string $param)
         if ([int]::TryParse($paramIndex, [ref]$null)) {
             $paramIndex = [int]$paramIndex
@@ -265,77 +282,37 @@ foreach ($match in $matches) {
         }
     }
 
-    #Write-Host "-------------------------"
-    if ($paramIndices.Count -gt 0) {
-        $paramAverage = $paramAverage / $paramIndices.Count
-    }
-    else {
-        $paramAverage = 0
-    }
-    $paramAverage = $paramAverage / $matches.Count
-    # Generate a random integer between 2 and 10
-    #$randomInt = Get-Random -Minimum 3 -Maximum 11
-    if ($slideAdjustment -gt 0) {
-        $offset = ($accumulator + (.15 * $offsetAdjustment / 100)) / 10
-    }
-    else {
-        $offset = ($accumulator + (2 * $offsetAdjustment / 100)) / 10
-    }
-    $alignment = $alignments[$alignmentIndex++] #[$modResult]
-    # Generate a random float between 0 and 1
-    #$randomFloat = Get-Random -Minimum 0.0 -Maximum 1.0
-
-    # Scale and shift to get a float between -1 and 0
-    $slide = ($offset * (($accumulator * $offset ) / 100) % 1) * $slideAdjustment
-
-    #Write-Host offset $offset
-    #Write-Host slide $slide
-
 
 
     # TODO automate differentiating how combos are drawn https://github.com/caksoylar/keymap-drawer/blob/main/KEYMAP_SPEC.md#combos
     # Append the translated combo to the data
     #$alignment = $alignments[]
-    $dataToAppend += "  - { l: [VIMFIGHTER], p: [$($paramIndices -join ', ')], k: $output, a: $alignment, o: $offset, s: $slide }"
+    $dataToAppend += '  - { l: ["SYSKEYS"]' + ", p: [$($paramIndices -join ', ')], k: $output }"
 }
+
 
 #Write-Host "$dataToAppend"
 # Join the data with newlines
 $dataToAppendString = $dataToAppend -join "`n"
 
+# Save the string to the specified file
+Set-Content -Path $syskeysFilePath -Value $dataToAppendString
+
+# Initialize the data to append
+$dataToAppend = @(
+    "combos:",
+    ""
+)
+$dataToAppend += '  - { l: ["BITCOMBO"]' + ", p: [19, 21], k: 10 }"
+$dataToAppendString = $dataToAppend -join "`n"
+# Save the string to the specified file
+Set-Content -Path $bitcomboFilePath -Value $dataToAppendString
 # Append the new data to the existing content
-## $content += "`n$dataToAppendString"
+# $content += "`n$dataToAppendString"
 
 #Write-Host "Combos translated and appended successfully."
 
 
-
-# Define the list of strings
-$list = @(
-    "LT OUTR", "LT PNKY", "LT RING", "LT MDLE", "LT INDX", "LT INNR", "RT INNR", "RT INDX", "RT MDLE", "RT RING", "RT PNKY", "RT OUTR",
-    "LH OUTR", "LH PNKY", "LH RING", "LH MDLE", "LH INDX", "LH INNR", "RH INNR", "RH INDX", "RH MDLE", "RH RING", "RH PNKY", "RH OUTR",
-    "LB OUTR", "LB PNKY", "LB RING", "LB MDLE", "LB INDX", "LB INNR", "RB INNR", "RB INDX", "RB MDLE", "RB RING", "RB PNKY", "RB OUTR",
-    "L LTHMB", "L MTHMB", "L RTHMB", "R LTHMB", "R MTHMB"
-)
-
-# Create a dictionary to store the comboRef
-$comboRef = @{}
-
-# Iterate through the list and associate each string with its index
-for ($i = 0; $i -lt $list.Count; $i++) {
-    $comboRef[$list[$i]] = $i
-}
-
-
-# ngrams
-
-
-# combo ref
-for ($i = 0; $i -lt $list.Count; $i++) {
-    $keycode = $list[$i]
-    $index = Get-StringIndex -string $keycode
-    $content = $content -replace "$keycode", "{ t: $keycode, h: $index }"
-}
 # vimnav
 $content = $content -replace "VM LEFT", "{t: Left, s: h, h: '<' }"
 $content = $content -replace "VM DOWN", "{t: Down, s: j, h: 'v' }"
@@ -371,6 +348,10 @@ $content = $content -replace "SNIPING", "{t: Sniping, h: MO }"
 $content = $content -replace "DRG TOG", "{t: Drag scroll, h: TG }"
 $content = $content -replace "SCN TOG", "{t: Yomitan Scan, h: TG }"
 $content = $content -replace "SNP TOG", "{t: Sniping, h: TG }"
+$content = $content -replace "YT  ADD", "{t: Yomitan Add }"
+$content = $content -replace "YT VIEW", "{t: Yomitan View }"
+$content = $content -replace "YT PLAY", "{t: Yomitan Play }"
+$content = $content -replace "SM SNAP", "{t: Firefox Snap }"
 
 # numpad
 $content = $content -replace "FNCTION", "{t: Function, h: MO Layer }"

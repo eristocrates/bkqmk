@@ -87,6 +87,8 @@ enum keycodes {
     KC_WH,
     KC_CH,
 
+    KC_JTIL, // Japanese tilde
+
     // split spaces
     KC_LSPC,
     KC_RSPC,
@@ -160,6 +162,7 @@ enum keycodes {
     SKP_GRM, // skipgram key
 
     KC_DBCL, // mouse double click
+    KC_MLTI, // mouse multi click
     RGB_MDE,
     CS__STP,
     CS_RSTP,
@@ -457,6 +460,10 @@ enum keycodes {
     OS__MEH,
     OS_HYPR,
     OS__CAG,
+
+    YT__ADD, // yomitan add
+    YT_VIEW, // yomitan view
+    YT_PLAY, // yomitan play
 
     NEW_SAFE_RANGE, // Use for keymap-specific codes
 };

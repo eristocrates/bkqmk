@@ -53,28 +53,46 @@ if (Select-String -Path $logFilePath -Pattern $searchString) {
         $enumBlock = $matches.Groups[1].Value
 
         # Parse the individual layer names
-        $layerNames = @()
+        $keyLayers = @()
+        $comboLayers = @(
+            "BITCOMBO",
+            "SYSKEYS"
+        )
         foreach ($line in $enumBlock -split "`n") {
             $line = $line.Trim()
             if ($line -match '^\s*_(\w+),?\s*$') {
                 $layerName = $line -replace '^\s*_(\w+),?\s*$', '$1'
-                $layerNames += $layerName
+                $keyLayers += $layerName
             }
         }
         # Join the array into a single string with spaces
-        $layers = $layerNames -join " "
-        Invoke-Expression "keymap -c $keymapPath\config.yaml parse -c 12 -q $keymapPath\c2.json -l $layers --virtual-layers BITCOMBO SYSKEYS -o $keymapPath\keymap.yaml"
+        $KeyLayerString = $keyLayers -join " "
+        $ComboLayerString = $comboLayers -join " "
+        Invoke-Expression "keymap -c $keymapPath\config.yaml parse -c 12 -q $keymapPath\c2.json -l $KeyLayerString -o $keymapPath\keymap.yaml"
         Invoke-Expression "keymap -c $keymapPath\config.yaml draw $keymapPath\keymap.yaml  -o $keymapPath\draw\keymap.svg"
 
         Invoke-Expression $keymapPostParseCmd
 
-        $layerNames += "BITCOMBO"
-        $layerNames += "SYSKEYS"
-        $layerNames += "TEST"
-        foreach ($layer in $layerNames) {
-            Invoke-Expression "keymap -c $keymapPath\config.yaml draw $keymapPath\keymap.yaml -s $layer -o $keymapPath\draw\svg\$layer.svg"
+
+        foreach ($layer in $keyLayers) {
+            Invoke-Expression "keymap -c $keymapPath\config.yaml draw $keymapPath\keymap.yaml -s $layer --keys-only -o $keymapPath\draw\svg\$layer.svg"
             Invoke-Expression "cairosvg -f png -o $keymapPath\draw\png\$layer.png $keymapPath\draw\svg\$layer.svg"
         }
+        foreach ($layer in $comboLayers) {
+            Invoke-Expression "keymap -c $keymapPath\config.yaml parse -c 12 -q $keymapPath\blank.json --virtual-layers $layer -o $keymapPath\$layer.yaml"
+            # Construct the file paths
+            $textFilePath = Join-Path -Path $keymapPath -ChildPath "$($layer).txt"
+            $yamlFilePath = Join-Path -Path $keymapPath -ChildPath "$($layer).yaml"
+
+            # Read the content from the source text file
+            $textContent = Get-Content -Path $textFilePath
+
+            # Append the content to the destination YAML file
+            Add-Content -Path $yamlFilePath -Value $textContent
+            Invoke-Expression "keymap -c $keymapPath\config.yaml draw $keymapPath\$layer.yaml -s $layer --combos-only -o $keymapPath\draw\svg\$layer.svg"
+            Invoke-Expression "cairosvg -f png -o $keymapPath\draw\png\$layer.png $keymapPath\draw\svg\$layer.svg"
+        }
+
     }
 
     ## Invoke-Expression ".\keymapMotionInputParse.ps1"

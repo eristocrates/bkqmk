@@ -41,9 +41,11 @@ void pointer_mode_process(uint16_t keycode, keyrecord_t *record) {
         case KC_DGSC:
         case KC_SNPE:
         case PNTROPT:
-        case ALTRSPC:
         case SCN_TOG:
         case KC_ESC:
+        case YT__ADD:
+        case YT_VIEW:
+        case YT_PLAY:
 
             // process the code and stay in the mode *dabs*
             break;

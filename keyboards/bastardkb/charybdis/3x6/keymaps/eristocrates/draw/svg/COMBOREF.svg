@@ -27,7 +27,7 @@ svg path {
 /* font and background color specifications */
 svg.keymap {
     font-family: Monaspace Krypton,Consolas,Liberation Mono,Menlo,monospace;
-    font-size: 14px;
+    font-size: 12px;
     font-kerning: normal;
     text-rendering: optimizeLegibility;
     fill: #24292e;

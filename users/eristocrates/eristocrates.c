@@ -187,6 +187,7 @@ bool is_text_object       = false;
 bool pending_insert       = false;
 bool restore_motion_layer = false;
 
+static bool is_multi_held = false;
 // swapper
 bool sw_win_active = false;
 
@@ -289,7 +290,7 @@ static bool process_quopostrokey(uint16_t keycode, keyrecord_t *record) {
 const key_override_t dot_override       = ko_make_basic(MOD_MASK_SHIFT, RMEH_DT, KC_EXLM); // . !
 const key_override_t comma_override     = ko_make_basic(MOD_MASK_SHIFT, KC_COMM, KC_QUES); // , ?
 const key_override_t quote_override     = ko_make_basic(MOD_MASK_SHIFT, KC_QUOT, KC_DQUO); // ' "
-const key_override_t minus_override     = ko_make_basic(MOD_MASK_SHIFT, KC_MINS, KC_NEQL); // - !=
+const key_override_t minus_override     = ko_make_basic(MOD_MASK_SHIFT, KC_MINS, KC_CIRC); // - ^
 const key_override_t grave_override     = ko_make_basic(MOD_MASK_SHIFT, KC_GRV, KC_ASTR);  // ` *
 const key_override_t tilde_override     = ko_make_basic(MOD_MASK_SHIFT, KC_TILD, KC_CIRC); // ~ ^
 const key_override_t r_bracket_override = ko_make_basic(MOD_MASK_SHIFT, KC_RBRC, KC_ESLH); // ] \/
@@ -302,7 +303,7 @@ const key_override_t  *key_overrides_list[] = {
 &quote_override,
 &minus_override,
 &grave_override,
-&tilde_override,
+// &tilde_override,
 &r_bracket_override,
 NULL};
 
@@ -813,7 +814,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     update_oneshot(&os_gui_state, KC_LCMD, OS__GUI, keycode, record);
     */
 
-    process_layermodes(keycode, record);
+    switch (keycode) {
+        case KC_MLTI:
+            is_multi_held = record->event.pressed;
+    }
+
+    if (!is_multi_held) {
+        process_layermodes(keycode, record);
+    }
 
     /*------------------------------input buffer------------------------------*/
     if (update_input_buffer(keycode, record)) {
@@ -949,6 +957,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false; // Skip default handling.
         /*------------------------------Break pointer mode on hold of tap hold------------------------------*/
         case ALTLSPC:
+        case ALTRSPC:
+        case BITWISEZ:
+
             if (record->event.pressed) {
                 pointer_mode_disable();
             }
@@ -1064,6 +1075,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             return false; // Skip all further processing of this key
+        case YT__ADD:
+            if (record->event.pressed) {
+                register_code(KC_LALT);
+                tap_code(KC_E);
+                unregister_code(KC_LALT);
+            }
+            return false;
+        case YT_VIEW:
+            if (record->event.pressed) {
+                register_code(KC_LALT);
+                tap_code(KC_V);
+                unregister_code(KC_LALT);
+            }
+            return false;
+        case YT_PLAY:
+            if (record->event.pressed) {
+                register_code(KC_LALT);
+                tap_code(KC_P);
+                unregister_code(KC_LALT);
+            }
+            return false;
         /*------------------------------semantic keys------------------------------*/
         // TODO figure out raw hid
         // TODO figure out appropriate shift overrides/holds for vim versions of semantic keys eg save tap/save all hold
@@ -1101,11 +1133,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case SM_SNAP:
             if (record->event.pressed) {
-                register_code(KC_LGUI);
+                register_code(KC_LCTL);
                 register_code(KC_LSFT);
+                wait_ms(180);
                 tap_code(KC_S);
                 unregister_code(KC_LSFT);
-                unregister_code(KC_LGUI);
+                unregister_code(KC_LCTL);
             }
             return false;
             /*------------------------------modal keys------------------------------*/

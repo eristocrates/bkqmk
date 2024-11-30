@@ -1,0 +1,3 @@
+combos:
+
+  - { l: ["BITCOMBO"], p: [19, 21], k: 10 }

@@ -6,16 +6,16 @@ Copyright (C) 2023 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-Compiling: E:/uranus/coding/bkqmk/users/eristocrates/features/empressabyss/arcane_keys.c            [32;01m[OK][0m
+Compiling: quantum/keymap_introspection.c                                                           [32;01m[OK][0m
 Linking: .build/bastardkb_charybdis_3x6_eristocrates.elf                                            [32;01m[OK][0m
 Creating UF2 file for deployment: .build/bastardkb_charybdis_3x6_eristocrates.uf2                   [32;01m[OK][0m
 Copying bastardkb_charybdis_3x6_eristocrates.uf2 to qmk_firmware folder                             [32;01m[OK][0m
 Copying bastardkb_charybdis_3x6_eristocrates.uf2 to userspace folder                                [32;01m[OK][0m
 ###########################################
 # Highest flash usage:
-  259344 r keycode_display_map
-   12704 T process_normal_mode_user
-    9460 T process_record_user
+  259360 r keycode_display_map
+   12708 T process_normal_mode_user
+    9816 T process_record_user
     4094 R pmw33xx_firmware_data
     3524 T process_arcane_columns
     2688 R keymaps
