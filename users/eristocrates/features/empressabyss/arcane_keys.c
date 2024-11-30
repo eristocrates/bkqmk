@@ -346,7 +346,10 @@ uint16_t arcane_tap(uint16_t keycode) {
             } else if (RIGHT_HOME_ARCANE && LAST_LEFT_MIDDLE_THUMB) {\
                 ARCANE_STRING("or", KC_R);\
                 return KC_NO;\
-            } else if (LAST_RIGHT_TOP_MIDDLE && RIGHT_HOME_ARCANE) {\
+            } else if (LAST_RIGHT_TOP_MIDDLE && RIGHT_BOTTOM_ARCANE) {\
+                 ARCANE_STRING("nd", KC_D);\
+                return KC_NO;\
+           } else if (LAST_RIGHT_TOP_MIDDLE && RIGHT_HOME_ARCANE) {\
                 MAGIC_RIGHT_HOME_MIDDLE} \
 // clang-format on
 
@@ -370,9 +373,9 @@ uint16_t process_arcane_columns(keypos_t arcane_key, uint16_t last_keycode, keyp
             if (last_keycode == KC_DOT) ARCANE_STRING(".", KC_DOT);
             if (last_keycode == KC___WH) ARCANE_STRING("ich", KC_H);
             if (last_keycode == KC_QUOT) {
-ARCANE_STRING("ll", KC_L); 
-return KC_NO; 
-            } 
+ARCANE_STRING("ll", KC_L);
+return KC_NO;
+            }
             return arcane_tap(last_keycode);
         } else {
             if (LAST_RIGHT_HOME_MIDDLE && LEFT_TOP_ARCANE) {

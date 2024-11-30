@@ -135,40 +135,31 @@ $content = $content -replace "'   ", "'"
 # Define the regex pattern to match the layers section
 $layerPattern = 'layers:\s*(\w+):\s*-\s*\[([^\]]+)\]\s*-\s*\[([^\]]+)\]\s*-\s*\[([^\]]+)\]\s*-\s*\[([^\]]+)\]'
 
-# Find the match
-$match = [regex]::Match($content, $layerPattern)
-
-if ($match.Success) {
-    $layerName = $match.Groups[1].Value
-    $line1 = $match.Groups[2].Value
-    $line2 = $match.Groups[3].Value
-    $line3 = $match.Groups[4].Value
-    $line4 = $match.Groups[5].Value
-
-    # Print the captured layer name and lines
-    #Write-Host "Layer Name: $layerName"
-    #Write-Host "Line 1: $line1"
-    #Write-Host "Line 2: $line2"
-    #Write-Host "Line 3: $line3"
-    #Write-Host "Line 4: $line4"
-    # Prepare the data to append
-    $dataToAppend = @"
-  TEST:
-    - [$line1]
-    - [$line2]
-    - [$line3]
-    - [$line4]
+$dataToAppend = @"
+  VIMSLICE:
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', 'H', 'J', 'K', 'L', '']
+  - ['', '', '', {t: Space, h: BSlice}, '']
+  ARROWSLICE:
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', 'Left', 'Down', 'Up', 'Right', '']
+  - ['', '', '', {t: Space, h: BSlice}, '']
+  NAVSLICE:
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', 'Home', 'PgDwn', 'PgUp', 'End', '']
+  - ['', '', '', {t: Space, h: BSlice}, '']
+  BINSLICE:
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', '', '', '', '', '']
+  - ['', '', '', '', '', '', '', 'BIN   8', 'BIN   4', 'BIN   2', 'BIN   1', '']
+  - ['', '', '', {t: Space, h: BSlice}, '']
 "@
 
-    # Append the data to the end of the content
-    # $content += $dataToAppend
-
-    #Write-Host "Data appended successfully."
-}
-else {
-    Write-Error "No layers section found in the file."
-}
-
+  # Append the data to the end of the content
+  $content += $dataToAppend
 
 $alignments = @(
     "top",
