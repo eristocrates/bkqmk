@@ -49,15 +49,15 @@ layers:
   - ['', '', '', '', '']
 combos:
 
-  - { l: ["SYSKEYS"], p: [32, 33], k: KC_ENT }
-  - { l: ["SYSKEYS"], p: [27, 26], k: KC_ESC }
-  - { l: ["SYSKEYS"], p: [33, 31], k: KC_RTAB }
-  - { l: ["SYSKEYS"], p: [26, 28], k: KC_LTAB }
-  - { l: ["SYSKEYS"], p: [31, 32], k: TD(TBW) }
-  - { l: ["SYSKEYS"], p: [33, 34], k: TD(TDW) }
-  - { l: ["SYSKEYS"], p: [27, 28], k: KC_INS }
-  - { l: ["SYSKEYS"], p: [25, 26], k: KC_PAUS }
-  - { l: ["SYSKEYS"], p: [31, 34], k: KC_PSCR }
-  - { l: ["SYSKEYS"], p: [32, 34], k: KC_SCRL }
-  - { l: ["SYSKEYS"], p: [23, 35], k: CS__STP }
-  - { l: ["SYSKEYS"], p: [12, 24], k: CS_RSTP }
+  - { l: ["SYSKEYS"], p: [32, 33], k: Ent }
+  - { l: ["SYSKEYS"], p: [27, 26], k: Esc }
+  - { l: ["SYSKEYS"], p: [33, 31], k: Tab }
+  - { l: ["SYSKEYS"], p: [26, 28], k: RTab }
+  - { l: ["SYSKEYS"], p: [31, 32], k: BSpc }
+  - { l: ["SYSKEYS"], p: [33, 34], k: Del }
+  - { l: ["SYSKEYS"], p: [27, 28], k: Ins }
+  - { l: ["SYSKEYS"], p: [25, 26], k: Pause }
+  - { l: ["SYSKEYS"], p: [31, 34], k: PrntScr }
+  - { l: ["SYSKEYS"], p: [32, 34], k: ScrLck }
+  - { l: ["SYSKEYS"], p: [23, 35], k: ClrStp }
+  - { l: ["SYSKEYS"], p: [12, 24], k: RClrStp }

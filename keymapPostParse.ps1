@@ -240,7 +240,21 @@ $dataToAppend = @(
     "combos:",
     ""
 )
-
+# Define the exceptions
+$syskeyStrings = @{
+"KC_ENT" = "Ent"
+"KC_ESC" = "Esc"
+"KC_RTAB" = "Tab"
+"KC_LTAB" = "RTab"
+"TD(TBW)" = "BSpc"
+"TD(TDW)" = "Del"
+"KC_INS" = "Ins"
+"KC_PAUS" = "Pause"
+"KC_PSCR" = "PrntScr"
+"KC_SCRL" = "ScrLck"
+"CS__STP" = "ClrStp"
+"CS_RSTP" = "RClrStp"
+}
 $alignmentIndex = 0
 $offsetAdjustment = 1
 $slideAdjustment = -1
@@ -284,11 +298,17 @@ foreach ($match in $matches) {
     }
 
 
+# Example code for using the key to get the associated string value
+if ($syskeyStrings.ContainsKey($output)) {
+    $outputString = $syskeyStrings[$output]
+} else {
+    $outputString = $output   # Fallback if key is not found
+}
 
     # TODO automate differentiating how combos are drawn https://github.com/caksoylar/keymap-drawer/blob/main/KEYMAP_SPEC.md#combos
     # Append the translated combo to the data
     #$alignment = $alignments[]
-    $dataToAppend += '  - { l: ["SYSKEYS"]' + ", p: [$($paramIndices -join ', ')], k: $output }"
+    $dataToAppend += '  - { l: ["SYSKEYS"]' + ", p: [$($paramIndices -join ', ')], k: $outputString }"
 }
 
 
