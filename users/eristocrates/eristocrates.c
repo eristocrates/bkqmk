@@ -2630,8 +2630,8 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     */
 }
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
-    // if (timer_elapsed(last_keydown) > MAGIC_TERM) {
-    if (timer_elapsed(last_keydown) > REPEAT_TERM) {
+    if (timer_elapsed(last_keydown) > MAGIC_TERM) {
+        // if (timer_elapsed(last_keydown) > REPEAT_TERM) {
         return true;
     } else {
         return false;
