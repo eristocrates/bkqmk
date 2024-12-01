@@ -304,6 +304,8 @@ uint16_t arcane_tap(uint16_t keycode) {
                 MAGIC_RIGHT_TOP_PINKY\
             } else if (LAST_RIGHT_HOME_MIDDLE && RIGHT_TOP_ARCANE) {\
                 MAGIC_LEFT_TOP_PINKY\
+            } else if (LAST_RIGHT_HOME_MIDDLE && LEFT_BOTTOM_ARCANE) {\
+                MAGIC_LEFT_TOP_PINKY\
             } else if (LAST_RIGHT_HOME_MIDDLE && RIGHT_BOTTOM_ARCANE) {\
                 MAGIC_RIGHT_TOP_PINKY\
             } else if (LAST_RIGHT_HOME_PINKY && RIGHT_TOP_ARCANE) {\
@@ -396,8 +398,6 @@ return KC_NO;
             } else if (LAST_RIGHT_HOME_MIDDLE && LEFT_HOME_ARCANE) {
                 ARCANE_STRING("nd", KC_D); // a
                 return KC_NO;
-            } else if (LAST_RIGHT_HOME_MIDDLE && LEFT_BOTTOM_ARCANE) {
-                MAGIC_LEFT_TOP_PINKY
             } else if (LAST_LEFT_TOP_INDEX && RIGHT_TOP_ARCANE) {
                  ARCANE_STRING("oard", KC_D); // b
                 return KC_NO;
@@ -606,6 +606,9 @@ return KC_NO;
                 return KC_NO;
             } else if (LAST_RIGHT_TOP_RING && LEFT_TOP_ARCANE) {
                 ARCANE_STRING("*", KC_ASTR); // .
+                return KC_NO;
+            } else if (LAST_RIGHT_TOP_RING && LEFT_HOME_ARCANE) {
+                ARCANE_STRING("\\", KC_ASTR); // .
                 return KC_NO;
             } else
                 DUAL_CASES

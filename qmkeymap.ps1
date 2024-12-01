@@ -8,7 +8,8 @@ $mingwPath = "C:\msys64\usr\bin\bash.exe"
 $keymapPathMingw = "E:/uranus/coding/bkqmk/keyboards/bastardkb/charybdis/3x6/keymaps/eristocrates"
 #$userspacePathMingw = "E:/uranus/coding/bkqmk/users/eristocrates"
 $keymapPath = "E:\uranus\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates"
-# Play an MP3 sound
+
+# Play an MP3 soundi
 # https://stackoverflow.com/questions/25895428/how-to-play-mp3-with-powershell-simple
 $filesDone = "E:\uranus\coding\bkqmk\files-done.mp3"
 $baka = "E:\uranus\coding\bkqmk\naruto-saying-baka.mp3"
@@ -25,7 +26,7 @@ $compile2jsonCmd = "qmk compile -j 0 -kb bastardkb/charybdis/3x6 -km eristocrate
 
 $keymapPostParseCmd = ".\keymapPostParse.ps1"
 
-$vimFighterTableCmd = "node .\keymapMotionInputPostParse.mjs"
+$arcaneCmd = "node .\parseArcane.mjs"
 
 
 
@@ -58,6 +59,12 @@ if (Select-String -Path $logFilePath -Pattern $searchString) {
             "BITCOMBO",
             "SYSKEYS"
         )
+        $sliceLayers = @(
+            "VIMSLICE",
+            "ARROWSLICE",
+            "NAVSLICE",
+            "BINSLICE"
+        )
         foreach ($line in $enumBlock -split "`n") {
             $line = $line.Trim()
             if ($line -match '^\s*_(\w+),?\s*$') {
@@ -73,8 +80,7 @@ if (Select-String -Path $logFilePath -Pattern $searchString) {
 
         Invoke-Expression $keymapPostParseCmd
 
-
-        foreach ($layer in $keyLayers) {
+        foreach ($layer in $($keyLayers + $sliceLayers)) {
             Invoke-Expression "keymap -c $keymapPath\config.yaml draw $keymapPath\keymap.yaml -s $layer --keys-only -o $keymapPath\draw\svg\$layer.svg"
             Invoke-Expression "cairosvg -f png -o $keymapPath\draw\png\$layer.png $keymapPath\draw\svg\$layer.svg"
         }
@@ -92,12 +98,9 @@ if (Select-String -Path $logFilePath -Pattern $searchString) {
             Invoke-Expression "keymap -c $keymapPath\config.yaml draw $keymapPath\$layer.yaml -s $layer --combos-only -o $keymapPath\draw\svg\$layer.svg"
             Invoke-Expression "cairosvg -f png -o $keymapPath\draw\png\$layer.png $keymapPath\draw\svg\$layer.svg"
         }
-
     }
 
-    ## Invoke-Expression ".\keymapMotionInputParse.ps1"
-    ## Invoke-Expression ".\comboEdit.ps1"
-    ## Invoke-Expression $vimFighterTableCmd
+    Invoke-Expression $arcaneCmd
     Write-Output "Ding! Firmware done."
     New-BurntToastNotification -Text "QMK Compilation", "Ding! Firmware done."
     $mediaPlayer.open($filesDone)

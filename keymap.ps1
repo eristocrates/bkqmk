@@ -26,7 +26,7 @@ $compile2jsonCmd = "qmk compile -j 0 -kb bastardkb/charybdis/3x6 -km eristocrate
 
 $keymapPostParseCmd = ".\keymapPostParse.ps1"
 
-$vimFighterTableCmd = "node .\keymapMotionInputPostParse.mjs"
+$arcaneCmd = "node .\parseArcane.mjs"
 
 
 
@@ -100,9 +100,7 @@ if (Select-String -Path $logFilePath -Pattern $searchString) {
         }
     }
 
-    ## Invoke-Expression ".\keymapMotionInputParse.ps1"
-    Invoke-Expression ".\parseArcane.ps1"
-    ## Invoke-Expression $vimFighterTableCmd
+    Invoke-Expression $arcaneCmd
     Write-Output "Ding! Firmware done."
     New-BurntToastNotification -Text "QMK Compilation", "Ding! Firmware done."
     $mediaPlayer.open($filesDone)
