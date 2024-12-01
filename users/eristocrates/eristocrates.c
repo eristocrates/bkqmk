@@ -825,17 +825,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     /*------------------------------input buffer------------------------------*/
     if (update_input_buffer(keycode, record)) {
-        // "qumk" to qmk
-        if (input_buffer[INPUT_BUFFER_SIZE - 3] == KC_Q && input_buffer[INPUT_BUFFER_SIZE - 2] == KC_M && input_buffer[INPUT_BUFFER_SIZE - 1] == KC_K) {
-            SEND_STRING(SS_TAP(X_BSPC) SS_TAP(X_BSPC) SS_TAP(X_BSPC) "qmk");
+        // "qunk" to qmk
+        if (input_buffer[INPUT_BUFFER_SIZE - 3] == KC_Q && input_buffer[INPUT_BUFFER_SIZE - 2] == KC_N && input_buffer[INPUT_BUFFER_SIZE - 1] == KC_K) {
+            SEND_STRING(SS_TAP(X_BSPC) SS_TAP(X_BSPC) "mk");
             return false;
         }
-        // "squl" to sql
-        if (input_buffer[INPUT_BUFFER_SIZE - 3] == KC_S && input_buffer[INPUT_BUFFER_SIZE - 2] == KC_Q && input_buffer[INPUT_BUFFER_SIZE - 1] == KC_L) {
-            SEND_STRING(SS_TAP(X_BSPC) "l");
+        // "skl" to sql
+        if (input_buffer[INPUT_BUFFER_SIZE - 3] == KC_S && input_buffer[INPUT_BUFFER_SIZE - 2] == KC_K && input_buffer[INPUT_BUFFER_SIZE - 1] == KC_L) {
+            SEND_STRING(SS_TAP(X_BSPC) "ql");
             return false;
         }
-
+        // "wpn" to wpm
+        if (input_buffer[INPUT_BUFFER_SIZE - 3] == KC_W && input_buffer[INPUT_BUFFER_SIZE - 2] == KC_P && input_buffer[INPUT_BUFFER_SIZE - 1] == KC_N) {
+            SEND_STRING("m");
+            return false;
+        }
         // konami code
         if (input_buffer[INPUT_BUFFER_SIZE - 10] == KC_R && input_buffer[INPUT_BUFFER_SIZE - 9] == KC_R && input_buffer[INPUT_BUFFER_SIZE - 8] == KC_T && input_buffer[INPUT_BUFFER_SIZE - 7] == KC_T && input_buffer[INPUT_BUFFER_SIZE - 6] == KC_S && input_buffer[INPUT_BUFFER_SIZE - 5] == KC_N && input_buffer[INPUT_BUFFER_SIZE - 4] == KC_S && input_buffer[INPUT_BUFFER_SIZE - 3] == KC_N && input_buffer[INPUT_BUFFER_SIZE - 2] == KC_B && input_buffer[INPUT_BUFFER_SIZE - 1] == KC_A) {
             register_code(KC_LSFT);
