@@ -1,6 +1,6 @@
 # Base Alphas
 
-![image](https://github.com/user-attachments/assets/7d18fab9-3735-4836-b6f2-7557dfae8040)
+![image](https://github.com/eristocrates/bkqmk/blob/main/keyboards/bastardkb/charybdis/3x6/keymaps/eristocrates/draw/png/CISTERN.png?raw=true)
 
 # Legend
 

@@ -8,7 +8,8 @@ $mingwPath = "C:\msys64\usr\bin\bash.exe"
 $keymapPathMingw = "E:/uranus/coding/bkqmk/keyboards/bastardkb/charybdis/3x6/keymaps/eristocrates"
 #$userspacePathMingw = "E:/uranus/coding/bkqmk/users/eristocrates"
 $keymapPath = "E:\uranus\coding\bkqmk\keyboards\bastardkb\charybdis\3x6\keymaps\eristocrates"
-# Play an MP3 sound
+
+# Play an MP3 soundi
 # https://stackoverflow.com/questions/25895428/how-to-play-mp3-with-powershell-simple
 $filesDone = "E:\uranus\coding\bkqmk\files-done.mp3"
 $baka = "E:\uranus\coding\bkqmk\naruto-saying-baka.mp3"
@@ -100,7 +101,7 @@ if (Select-String -Path $logFilePath -Pattern $searchString) {
     }
 
     ## Invoke-Expression ".\keymapMotionInputParse.ps1"
-    ## Invoke-Expression ".\comboEdit.ps1"
+    Invoke-Expression ".\parseArcane.ps1"
     ## Invoke-Expression $vimFighterTableCmd
     Write-Output "Ding! Firmware done."
     New-BurntToastNotification -Text "QMK Compilation", "Ding! Firmware done."
