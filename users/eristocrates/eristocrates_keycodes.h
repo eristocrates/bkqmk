@@ -465,9 +465,14 @@ enum keycodes {
     YT_VIEW, // yomitan view
     YT_PLAY, // yomitan play
 
+    KC_BWRD, // backword
+    KC_FWRD, // frontword
+
     NEW_SAFE_RANGE, // Use for keymap-specific codes
 };
 /* ---------- Aliases ---------- */
+// control
+#define KC_FSPC KC_DEL
 #define KC_DGSC LT(_POINTER, KC_1)
 #define KC_SNPE LT(_POINTER, KC_2)
 

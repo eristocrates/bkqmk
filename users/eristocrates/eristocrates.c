@@ -294,6 +294,7 @@ const key_override_t minus_override     = ko_make_basic(MOD_MASK_SHIFT, KC_MINS,
 const key_override_t grave_override     = ko_make_basic(MOD_MASK_SHIFT, KC_GRV, KC_ASTR);  // ` *
 const key_override_t tilde_override     = ko_make_basic(MOD_MASK_SHIFT, KC_TILD, KC_CIRC); // ~ ^
 const key_override_t r_bracket_override = ko_make_basic(MOD_MASK_SHIFT, KC_RBRC, KC_ESLH); // ] \/
+const key_override_t r_parens_override  = ko_make_basic(MOD_MASK_SHIFT, KC_RPRN, KC_RCCM); // ] \/
 
 // clang-format off
 // This globally defines all key overrides to be used
@@ -303,7 +304,7 @@ const key_override_t  *key_overrides_list[] = {
 &quote_override,
 &minus_override,
 &grave_override,
-// &tilde_override,
+&r_parens_override,
 &r_bracket_override,
 NULL};
 
@@ -935,6 +936,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 current_slice = slices[index];
             }
             return false;
+        /*------------------------------control------------------------------*/
+        case KC_BWRD: // Control + Backspace
+            if (record->event.pressed) {
+                // Hold Control, tap Backspace, then release Control
+                register_code(KC_LCTL);
+                tap_code(KC_BSPC);
+                unregister_code(KC_LCTL);
+            }
+            return false; // Skip further processing
+
+        case KC_FWRD: // Control + Delete
+            if (record->event.pressed) {
+                // Hold Control, tap Delete, then release Control
+                register_code(KC_LCTL);
+                tap_code(KC_DEL);
+                unregister_code(KC_LCTL);
+            }
+            return false; // Skip further processing
 
             /*------------------------------Pointer codes ------------------------------*/
 
@@ -1308,12 +1327,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return true;
         case KC_GRV:
             if (record->event.pressed) {
-                if ((get_weak_mods() & MOD_MASK_SHIFT) || (get_mods() & MOD_MASK_SHIFT)) {
-                    del_mods(MOD_MASK_SHIFT);
-                    SEND_STRING("*");
-                    return false;
-                }
-
                 if (autopair_mode) {
                     send_autopair(KC_GRV, KC_GRV, record);
                 } else if (roll_reversal_mode) {
@@ -1498,8 +1511,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case KC_RPRN:
             if (record->event.pressed) {
                 if ((get_weak_mods() & MOD_MASK_SHIFT) || (get_mods() & MOD_MASK_SHIFT)) {
-                    del_mods(MOD_MASK_SHIFT);
                     SEND_STRING("*/");
+                    del_mods(MOD_MASK_SHIFT);
                     return false;
                 }
                 if (roll_reversal_mode) {
@@ -2593,10 +2606,10 @@ bool caps_word_press_user(uint16_t keycode) {
         // Keycodes that continue Caps Word, without shifting.
         case KC_1 ... KC_0:
         case KC_BSPC:
-        case KC_DEL:
+        case KC_FSPC:
         case KC_UNDS:
-        case TD(TBW):
-        case TD(TDW):
+        case KC_BWRD:
+        case KC_FWRD:
         case ALTLSPC:
         case ALTRSPC:
         case KC_MINS:
@@ -2652,7 +2665,9 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
         case CONTROL_COMBO_ENTER:
         case CONTROL_COMBO_TAB:
         case CONTROL_COMBO_BACKSPACE:
-        case CONTROL_COMBO_DELETE:
+        case CONTROL_COMBO_FRONTSPACE:
+        case CONTROL_COMBO_BACKWORD:
+        case CONTROL_COMBO_FRONTWORD:
         case CONTROL_COMBO_PRINT_SCREEN:
         case CONTROL_COMBO_SCROLL_LOCK:
             if (IS_LAYER_ON(_SLICE) && current_slice == BIN) {

@@ -348,39 +348,39 @@ layers:
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
-    - {t: Yomitan Add }
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
-    - {t: Sniping, h: MO }
     - {t: ▼, type: trans}
-    - {t: Firefox Snap }
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
   - - {t: ▼, type: trans}
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
-    - {t: Yomitan View }
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
-    - {t: Yomitan Play }
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
   - - {t: ▼, type: trans}
     - {t: ▼, type: trans}
     - Opt
     - Multi
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
-    - Double Click
-    - Left Click
-    - Right Click
+    - {t: ▼, type: trans}
+    - {t: ▼, type: trans}
     - Drag Scroll
+    - {t: Sniping, h: MO }
     - Scroll Wheel Click
     - {t: Yomitan Scan, h: TG }
-  - - {t: ▼, type: trans}
-    - {t: ▼, type: trans}
-    - {t: ▼, type: trans}
+  - - Double Click
+    - Left Click
+    - Right Click
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
   POINTEROPT:
