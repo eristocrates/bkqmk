@@ -15,7 +15,7 @@ Copying bastardkb_charybdis_3x6_eristocrates.uf2 to userspace folder            
 # Highest flash usage:
   259360 r keycode_display_map
    12708 T process_normal_mode_user
-    9836 T process_record_user
+    9832 T process_record_user
     4094 R pmw33xx_firmware_data
     3260 T process_arcane_columns
     2688 R keymaps

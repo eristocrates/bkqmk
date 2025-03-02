@@ -2339,8 +2339,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (IS_LAYER_ON(_POINTER)) {
                 pointer_mode_disable();
             }
-            tap_code(KC_ESC);
-            return false;
+            // tap_code(KC_ESC);
+            return true;
         case SKP_GRM:
             return false;
         default:

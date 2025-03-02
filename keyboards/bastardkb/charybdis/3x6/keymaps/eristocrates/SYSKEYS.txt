@@ -2,15 +2,15 @@ combos:
 
   - { l: ["SYSKEYS"], p: [32, 33], k: Ent }
   - { l: ["SYSKEYS"], p: [26, 27], k: Esc }
-  - { l: ["SYSKEYS"], p: [27, 28], k: Tab }
-  - { l: ["SYSKEYS"], p: [25, 26], k: RTab }
+  - { l: ["SYSKEYS"], p: [31, 34], k: Tab }
+  - { l: ["SYSKEYS"], p: [25, 28], k: RTab }
   - { l: ["SYSKEYS"], p: [31, 33], k: KC_BSPC }
   - { l: ["SYSKEYS"], p: [32, 34], k: KC_DEL }
   - { l: ["SYSKEYS"], p: [31, 32], k: KC_BWRD }
   - { l: ["SYSKEYS"], p: [33, 34], k: KC_FWRD }
   - { l: ["SYSKEYS"], p: [26, 28], k: Ins }
   - { l: ["SYSKEYS"], p: [25, 27], k: Pause }
-  - { l: ["SYSKEYS"], p: [31, 34], k: PrntScr }
-  - { l: ["SYSKEYS"], p: [25, 28], k: ScrLck }
+  - { l: ["SYSKEYS"], p: [27, 28], k: PrntScr }
+  - { l: ["SYSKEYS"], p: [25, 26], k: ScrLck }
   - { l: ["SYSKEYS"], p: [23, 35], k: ClrStp }
   - { l: ["SYSKEYS"], p: [12, 24], k: RClrStp }
