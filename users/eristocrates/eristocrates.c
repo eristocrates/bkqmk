@@ -842,7 +842,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         }
         // konami code
-        if (input_buffer[INPUT_BUFFER_SIZE - 10] == KC_R && input_buffer[INPUT_BUFFER_SIZE - 9] == KC_R && input_buffer[INPUT_BUFFER_SIZE - 8] == KC_T && input_buffer[INPUT_BUFFER_SIZE - 7] == KC_T && input_buffer[INPUT_BUFFER_SIZE - 6] == KC_S && input_buffer[INPUT_BUFFER_SIZE - 5] == KC_N && input_buffer[INPUT_BUFFER_SIZE - 4] == KC_S && input_buffer[INPUT_BUFFER_SIZE - 3] == KC_N && input_buffer[INPUT_BUFFER_SIZE - 2] == KC_B && input_buffer[INPUT_BUFFER_SIZE - 1] == KC_A) {
+        if (input_buffer[INPUT_BUFFER_SIZE - 10] == KC_R && input_buffer[INPUT_BUFFER_SIZE - 9] == KC_R && input_buffer[INPUT_BUFFER_SIZE - 8] == KC_T && input_buffer[INPUT_BUFFER_SIZE - 7] == KC_T && input_buffer[INPUT_BUFFER_SIZE - 6] == KC_S && input_buffer[INPUT_BUFFER_SIZE - 5] == KC_N && input_buffer[INPUT_BUFFER_SIZE - 4] == KC_S && input_buffer[INPUT_BUFFER_SIZE - 3] == KC_N && input_buffer[INPUT_BUFFER_SIZE - 2] == KC_U && input_buffer[INPUT_BUFFER_SIZE - 1] == KC_A) {
             register_code(KC_LSFT);
             tap_code(KC_HOME);
             unregister_code(KC_LSFT);
@@ -1682,6 +1682,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case SECRET2: {
             if (record->event.pressed) {
                 SEND_STRING(SECRET_TWO);
+                tap_code(KC_ENT);
+                layer_off(_SECRET);
+            }
+        }
+            return false;
+        case SECRET3: {
+            if (record->event.pressed) {
+                SEND_STRING(SECRET_THREE);
                 tap_code(KC_ENT);
                 layer_off(_SECRET);
             }
@@ -2565,6 +2573,9 @@ void leader_end_user(void) {
     } else
     if (leader_sequence_four_keys(KC_S, KC_C, KC_R, KC_T)) {
             layer_on(_SECRET);
+    } else
+    if (leader_sequence_two_keys(KC_N, KC_P)) {
+            layer_on(_NUMPAD);
     } else
 
     // shortcuts

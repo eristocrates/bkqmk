@@ -373,14 +373,14 @@ layers:
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
-    - {t: ▼, type: trans}
+    - Left Click
     - Drag Scroll
     - {t: Sniping, h: MO }
-    - Scroll Wheel Click
-    - {t: Yomitan Scan, h: TG }
-  - - Double Click
-    - Left Click
     - Right Click
+    - {t: Yomitan Scan, h: TG }
+  - - {t: ▼, type: trans}
+    - Double Click
+    - Scroll Wheel Click
     - {t: ▼, type: trans}
     - {t: ▼, type: trans}
   POINTEROPT:
@@ -651,7 +651,7 @@ layers:
     - BASE
   - - {t: ▼, type: trans}
     - SECRETR
-    - {t: ▼, type: trans}
+    - SECRET3
     - SECRET1
     - SECRET2
   NAGINATA:

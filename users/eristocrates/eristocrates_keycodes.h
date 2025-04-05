@@ -143,6 +143,7 @@ enum keycodes {
     // secrets
     SECRET1,
     SECRET2,
+    SECRET3,
     SECRETR,
     SECRETC,
     SECRETT,
